@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 
 $params = require(__DIR__ . '/params.php');
 
@@ -10,7 +10,7 @@ $config = [
     'version' => 'v.0.1',
     'defaultRoute' => 'site',
     'params' => [
-        'country.name' => 'Ðîññèÿ',
+        'country.name' => 'Ð Ð¾ÑÑÐ¸Ñ',
     ],
     'components' => [
         'urlManager' => [
