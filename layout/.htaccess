@@ -1,0 +1,6 @@
+Options All -Indexes
+
+<FilesMatch ".(htaccess|json|gitignore|lock)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
