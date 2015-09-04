@@ -2,8 +2,6 @@
 
 function init()
 {
-    $(".pre-btn-psw").tooltip();
-    
     if (navigator.geolocation)
         navigator.geolocation.getCurrentPosition(displayLocation, displayError);
     else 
