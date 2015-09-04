@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $params = require(__DIR__ . '/params.php');
 
@@ -8,10 +8,7 @@ $config = [
     'bootstrap' => ['log'],
     'language' => 'ru-RU',
     'version' => 'v.0.1',
-    'defaultRoute' => 'site',
-    'params' => [
-        'country.name' => 'Россия',
-    ],
+    'defaultRoute' => 'index',
     'components' => [
         'urlManager' => [
             'showScriptName' => false,
@@ -29,7 +26,7 @@ $config = [
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
-            'errorAction' => 'site/error',
+            'errorAction' => 'index/error',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
