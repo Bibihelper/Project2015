@@ -17,6 +17,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'aa8WnT2ZPOGUW2tGqnlYURPs6jGoGOMS',
+//            'baseUrl' => '/BibiHelper/bibihelper/bibihelper/',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
