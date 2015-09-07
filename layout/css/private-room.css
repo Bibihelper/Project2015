@@ -1,0 +1,275 @@
+/* styles for private-room */
+
+.pr-room {
+    background-color: #fffcf4;
+}
+
+.nav-tabs_pr {
+    height: 75px;
+    background-color: #fffcf4;
+    border: none;
+}
+
+.tab-pr {
+    text-align: center;
+}
+
+.tab-pr_w1 {
+    margin-top: 41px;
+    width: 255px;
+}
+
+.tab-pr_w2 {
+    width: 242px;
+}
+
+.tab-pr_right {
+    margin-left: 35px;
+}
+
+.nav-tabs > li > a.tab-pr_a {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #38b2ce;
+    border-radius: 0;
+    border: none;
+    height: 32px;
+    padding: 4px 0;
+    background-color: #e8e6e6;
+}
+
+.tab-pr_ls {
+    width: 240px;
+}
+
+.nav-tabs > li > a.tab-pr_a-left {
+    margin-right: 0;
+}
+
+.nav-tabs > li.active > a.tab-pr_a,
+.nav-tabs > li.active > a.tab-pr_a:focus,
+.nav-tabs > li.active > a.tab-pr_a:hover {
+    background-color: #d5eded;
+    color: #071d70;
+    border: none;
+}
+
+.tab-content_pr {
+    background-color: #d5eded;
+    margin-bottom: 20px;
+}
+
+.tab-content__info {
+    margin-bottom: 40px;
+}
+
+.tab-content__info_h1 {
+    height: 305px;
+}
+
+.tab-content__info_t {
+    padding: 0 60px;
+}
+
+.tab-pane_pr {
+    padding: 40px 40px 20px 40px;
+}
+
+#map-pr {
+    background-color: #fff;
+    width: 443px;
+    height: 305px;
+    border: 1px solid #071d70;
+    float: left;
+}
+
+.content__info {
+    margin-left: 540px;
+}
+
+.info {
+    display: block;
+}
+
+.info__title {
+    font-family: MyriadProBold;
+    font-size: 18px;
+    color: #071d70;
+    margin-bottom: 8px;
+}
+
+.info__addr, .info__shedule {
+    font-family: Tahoma;
+    font-size: 14px;
+    font-style: normal;
+    color: #000;
+}
+
+.info__shedule {
+    margin-bottom: 2px;
+}
+
+.info__phone {
+    font-family: Tahoma;
+    font-size: 14px;
+    font-style: bold;
+    color: #000;    
+}
+
+.tabs_t {
+    background-color: #fff;
+    border: 2px solid #fff;
+}
+
+.nav-tabs_t {
+    border-bottom: none;
+}
+
+.arrow-ud {
+    height: 40px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.arrow_up-a {
+    background: #fff url("../images/arrow-up-a.png") 50% 13px no-repeat;
+}
+
+.arrow_up-a:hover {
+    background: #f8f8f7 url("../images/arrow-up-a.png") 50% 13px no-repeat;
+}
+
+.arrow_up-na {
+    background: #fff url("../images/arrow-up-na.png") 50% 13px no-repeat;
+}
+
+.arrow_up-na:hover {
+    background: #f8f8f7 url("../images/arrow-up-na.png") 50% 13px no-repeat;
+}
+
+.arrow_down-a {
+    background: #fff url("../images/arrow-down-a.png") 50% 13px no-repeat;
+}
+
+.arrow_down-a:hover {
+    background: #f8f8f7 url("../images/arrow-down-a.png") 50% 13px no-repeat;
+}
+
+.arrow_down-na {
+    background: #fff url("../images/arrow-down-na.png") 50% 13px no-repeat;
+}
+
+.arrow_down-na:hover {
+    background: #f8f8f7 url("../images/arrow-down-na.png") 50% 13px no-repeat;
+}
+
+ul.info-s {
+    list-style: none;
+    padding: 0 35px;
+    margin: 0;
+}
+
+.info__item {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #000;
+    line-height: 30px;
+}
+
+.arrow-item {
+    margin-left: 15px;
+    display: inline-block;
+}
+
+.arrow-item-left {
+
+}
+
+.arrow-item-right {
+
+}
+
+.item-menu {
+    list-style: none;
+    width: 280px;
+    background-color: #d5eded;
+    padding-left: 0;
+    display: none;
+}
+
+.item-menu_active {
+    display: inline-block;
+}
+
+.item-menu_m {
+    margin-left: 40px;
+}
+
+.item-menu__i {
+    font-family: Tahoma;
+    font-size: 14px;
+    color: #000;
+    line-height: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+}
+
+.item-menu__i_first {
+    background-color: #fff;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.item-menu__i_last {
+    padding-bottom: 8px;
+}
+
+.info__item-label {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.item-menu__i-label {
+    display: inline-block;
+}
+
+.info__chbx {
+    display: inline-block;
+    margin-top: 3px;
+    float: right;
+}
+
+.info__chbx_all {
+    margin-top: 8px;
+    margin-left: 40px;
+    float: none;
+}
+
+.info__cbx {
+    display: none;
+}
+
+.info__check {
+    width: 18px;
+    height: 17px;
+    background: #fff url("../images/im-cbx.png") 0 0 no-repeat;
+}
+
+.info__check_active {
+    width: 18px;
+    height: 17px;
+    background: #fff url("../images/im-cbx.png") -18px 0 no-repeat;
+}
+
+
+
+
+
+
+
+
+
+
+
+
