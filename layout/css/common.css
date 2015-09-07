@@ -114,6 +114,14 @@ img {
     width: 100%;
 }
 
+.bibi-form-btn {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    height: 45px;
+    border-radius: 0;
+    width: 100%;
+}
+
 .bibi-btn-text {
     float: left;
 }
@@ -180,16 +188,6 @@ img {
     bottom: 0; 
     color: #fff; 
     font-size: 12px;
-}
-
-/* media */
-
-@media all and (max-width: 660px) {
-
-    .header1, .header2, .main, .icons, .special-offers-header, .special-offers, .all-special-offers, .pre-footer, .footer {
-        width: 660px;
-    }
-
 }
 
 /* main */
