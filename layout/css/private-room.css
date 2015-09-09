@@ -380,6 +380,7 @@ ul.info-s {
 .info-c__btn {
     height: 80px;
     padding: 0 65px;
+    clear: right;
 }
 
 .info-c__btn_save, .info-c__btn_save:hover, .info-c__btn_save:focus {
@@ -391,6 +392,255 @@ ul.info-s {
     float: right;
 }
 
+.s-off {
+    padding: 30px 65px 60px 40px;
+    height: 385px;
+}
+
+.s-off-ctrls {
+    float: left;
+}
+
+.s-off-block {
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.s-off-caption {
+    font-family: Tahoma;
+    font-size: 14px;
+    color: #000;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.s-off-caption_b {
+    display: inline-block;
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.s-off-caption_e {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.s-off-btn, .s-off-btn:hover, .s-off-btn:focus {
+    font-family: MyriadProBold;
+    font-size: 14px;
+    color: #fff;
+    height: 30px;
+    width: 125px;
+    border-radius: 0;
+    background-color: #679b00;
+    padding: 0;
+    vertical-align: top;
+}
+
+.s-off-btn_m {
+    margin-left: 28px;
+}
+
+.s-off-edit {
+    font-family: Tahoma;
+    font-size: 14px;
+    border-radius: 0;
+    border: #38b2ce solid 1px;
+    display: inline-block;
+    height: 30px;
+}
+
+.s-off-edit_m {
+    text-align: right;
+    width: 190px;
+    padding-top: 4px;
+}
+
+.s-off-edit_m2 {
+    text-align: left;
+    width: 470px;
+}
+
+#datepicker1, #datepicker2 {
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 0;
+    border: #38b2ce solid 1px;
+    display: inline-block;
+    height: 30px;
+    width: 160px;
+    padding: 0 5px;
+}
+
+#ui-datepicker-div {
+    width: 160px;
+    border-radius: 0;
+    border: #38b2ce 1px solid;
+    padding: 0;
+}
+
+#ui-datepicker-div > .ui-datepicker-header {
+    background-color: #38b2ce;
+    height: 25px;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    background-image: none;
+}
+
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-prev {
+    border-radius: 0;
+    top: 0;
+    left: 0;
+    height: 24px;
+}
+
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-prev > span {
+    background: #38b2ce url("../images/c-arrow-prev.png") -9px -4px no-repeat;
+}
+
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-next {
+    border-radius: 0;
+    top: 0;
+    right: 0;
+    height: 24px;
+}
+
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-next > span {
+    background: #38b2ce url("../images/c-arrow-next.png") -6px -4px no-repeat;
+}
+
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-prev:hover,
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-next:hover {
+    background-color: #38b2ce;
+    background-image: none;
+    border: #fff solid 1px;
+    cursor: pointer;
+}
+
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-title {
+    background-color: #38b2ce;
+    height: 25px;
+    padding: 0;
+    line-height: 1.1em;
+}
+
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-title > .ui-datepicker-month {
+    font-family: MyriadProBold;
+    font-size: 14px;
+    font-weight: 400;
+    color: #fff;
+    background-color: #38b2ce;
+}
+
+#ui-datepicker-div > .ui-datepicker-header > .ui-datepicker-title > .ui-datepicker-year {
+    display: none;
+}
+
+#ui-datepicker-div > .ui-datepicker-calendar {
+
+}
+
+#ui-datepicker-div > .ui-datepicker-calendar > thead > tr > th {
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 400;
+    color: #38b2ce;
+    padding: 2px 0;
+}
+
+#ui-datepicker-div > .ui-datepicker-calendar > tbody > tr > td {
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 400;
+    color: #071d70;
+}
+
+#ui-datepicker-div > .ui-datepicker-calendar > tbody > tr > td > a {
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 400;
+    color: #071d70;
+    background-color: #fff;
+    background-image: none;
+    text-align: center;
+    border: none;
+    line-height: 1em;
+}
+
+#ui-datepicker-div > .ui-datepicker-calendar > tbody > tr > td > a.ui-state-active {
+    font-weight: 600;
+}
+
+.c-arrow {
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    display: block;
+    cursor: pointer;
+}
+
+.c-arrow_expand {
+    background: #fff url("../images/c-arrow-expand.png") 0px 0px no-repeat;
+}
+
+.c-arrow_collapse {
+    background: #fff url("../images/c-arrow-collapse.png") 0px 0px no-repeat;
+}
+
+.c-arrow_1 {
+    left: 150px;
+    top: 26px;
+}
+
+.c-arrow_2 {
+    left: 353px;
+    top: 26px;
+}
+
+.s-off-preview {
+    float: right;
+    width: 285px;
+    margin: 0 auto;
+}
+
+.prtxt {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    display: block;
+    width: 285px;
+    text-align: center;
+}
+
+.prtxt_caption {
+    text-decoration: underline;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.prtxt_title {
+    color: #071d70;
+    margin-bottom: 3px;
+}
+
+.prtxt_text {
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+}
+
+.primg {
+    width: 285px;
+    height: 170px;
+    margin-bottom: 3px;
+}
+
+#s-br {
+    display: none;
+}
 
 
 
