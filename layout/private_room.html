@@ -270,28 +270,28 @@
                                                         <div class="s-off-ctrls">
                                                             <form>
                                                             
-                                                                <div class="s-off-block">
-                                                                    <span class="s-off-caption">Выберете картинку для акции.</span>
-                                                                    <button type="button" class="btn s-off-btn" id="s-browse">Обзор</button><input type="text" class="form-control s-off-edit s-off-edit_m" placeholder="Фото.jpg" id="s-filename">
+                                                                <div class="c-block">
+                                                                    <span class="c-caption">Выберете картинку для акции.</span>
+                                                                    <button type="button" class="btn s-off-btn" id="s-browse">Обзор</button><input type="text" class="form-control c-edit s-off-edit_m" placeholder="Фото.jpg" id="s-filename">
                                                                     <button type="button" class="btn s-off-btn s-off-btn_m" id="s-load-image">Загрузить</button>
                                                                     <input type="file" id="s-br">
                                                                 </div>
                                                                 
-                                                                <div class="s-off-block">
-                                                                    <span class="s-off-caption">Период действия предложения:</span>
+                                                                <div class="c-block">
+                                                                    <span class="c-caption">Период действия предложения:</span>
                                                                     
-                                                                    <span class="s-off-caption s-off-caption_b">с</span>
+                                                                    <span class="c-caption s-off-caption_b">с</span>
                                                                     <input type="text" id="datepicker1">
                                                                     <span class="c-arrow c-arrow_expand c-arrow_1" id="c-arrow-1"></span>
                                                                     
-                                                                    <span class="s-off-caption s-off-caption_e">по</span>
+                                                                    <span class="c-caption s-off-caption_e">по</span>
                                                                     <input type="text" id="datepicker2">
                                                                     <span class="c-arrow c-arrow_expand c-arrow_2" id="c-arrow-2"></span>
                                                                 </div>
                                                                 
-                                                                <div class="s-off-block">
-                                                                    <span class="s-off-caption">Описание предложения (макс. 50 символов):</span>
-                                                                    <input type="text" class="form-control s-off-edit s-off-edit_m2" value="Скидка 30% на замену масла плюс мойка за пол цены!">
+                                                                <div class="c-block">
+                                                                    <span class="c-caption">Описание предложения (макс. 50 символов):</span>
+                                                                    <input type="text" class="form-control c-edit s-off-edit_m2" value="Скидка 30% на замену масла плюс мойка за пол цены!">
                                                                 </div>
                                                                 
                                                             </form>
@@ -328,9 +328,37 @@
                                 </div>
                                 
                                 <div id="options-pr" class="tab-pane fade">
-                                    <p>
-                                        А относилось, пожалуй,  то,  что  инспектор  Сбитнев,  сосредоточенно выбривающий сейчас щеки, к  завершению  стажировки  имел  совсем  неплохие показатели как в теории,  так  и  на  практике,  и  это  было  отмечено  - соответствующим продлением  на  три  года  зарубежной  командировки.  Этот субъект мог в любой момент недурно пробежать славную дистанцию  -  полторы мили, умел хорошо стрелять - не будем  скромничать,  одно  время,  еще  до Интерпола, был даже призером регионального  первенства;  были  у  него  не только эти,  но  и  многие  другие  профессиональные  козыри...  Всего  не перечислить. Пожалуй, этому субъекту с намыленной физиономией вроде  бы  и не на что жаловаться.
-                                    </p>
+
+                                    <div class="opt">
+
+                                        <span class="opt-title">Личные настройки аккаунта</span>
+                                        
+                                        <form>
+                                            <div class="c-block c-block_m">
+                                                <span class="c-caption">Сменить пароль:</span>
+                                                <input type="text" class="form-control c-edit c-edit_m" placeholder="Старый пароль">
+                                                <input type="text" class="form-control c-edit c-edit_m" placeholder="Новый пароль">
+                                                <input type="text" class="form-control c-edit c-edit_m" placeholder="Подтверждение">
+                                                <div class="info-c__btn info-c__btn_m">
+                                                    <button type="button" class="btn bibi-form-btn info-c__btn_save" id="s-publish" data-btn-type="1">Сохранить</button>
+                                                </div>
+                                            </div>
+                                            <div class="c-block c-block_m2">
+                                                <span class="c-caption">Сменить e-mail:</span>
+                                                <input type="email" class="form-control c-edit c-edit_m">
+                                                <div class="info-c__btn info-c__btn_m">
+                                                    <button type="button" class="btn bibi-form-btn info-c__btn_save" id="s-publish" data-btn-type="1">Сохранить</button>
+                                                </div>
+                                            </div>
+                                            <div class="c-block">
+                                                <span class="c-caption c-caption_m">Настройки уведомлений:</span>
+                                                <span class="c-cbx" data-checked="0"></span>
+                                                <span class="c-caption c-caption_m">Новости сайта</span>
+                                            </div>
+                                        </form>
+
+                                    </div>
+
                                 </div>
                                 
                             </div> <!-- /tab-content -->

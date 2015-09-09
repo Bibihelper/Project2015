@@ -401,12 +401,12 @@ ul.info-s {
     float: left;
 }
 
-.s-off-block {
+.c-block {
     margin-bottom: 35px;
     position: relative;
 }
 
-.s-off-caption {
+.c-caption {
     font-family: Tahoma;
     font-size: 14px;
     color: #000;
@@ -442,7 +442,7 @@ ul.info-s {
     margin-left: 28px;
 }
 
-.s-off-edit {
+.c-edit {
     font-family: Tahoma;
     font-size: 14px;
     border-radius: 0;
@@ -641,6 +641,54 @@ ul.info-s {
 #s-br {
     display: none;
 }
+
+.opt {
+    padding: 40px 315px 60px 315px;
+}
+
+.opt-title {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #071d70;
+    text-align: center;
+    display: block;
+}
+
+.c-edit_m {
+    margin-bottom: 10px;
+}
+
+.info-c__btn_m {
+    padding: 0;
+    height: 55px;
+}
+
+.c-block_m {
+    margin: 0;
+}
+
+.c-block_m {
+    margin-bottom: 10px;
+}
+
+.c-block_m2 {
+    margin-bottom: 15px;
+}
+
+.c-cbx {
+    background: #fff url("../images/op-cbx.png") 0px 0px no-repeat;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: -0.4em;
+}
+
+.c-caption_m {
+    display: inline-block;
+    margin-right: 20px;
+}
+
 
 
 
