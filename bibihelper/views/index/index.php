@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use app\assets\IndexAsset;
+use yii\helpers\Url;
 
 IndexAsset::register($this);
 
@@ -339,8 +340,8 @@ $this->params["page"] = "index";
         <div class="container">
             <div class="row">
                 <ul class="icons__i-list">
-                    <li class="i-list__item"><img src="images/icon-red.png" alt="">- официальный диллер</li>
-                    <li class="i-list__item"><img src="images/icon-cyan.png" alt="">- универсальный автосервис</li>
+                    <li class="i-list__item"><img src="<?= Url::to('/images/icon-red.png') ?>" alt="">- официальный диллер</li>
+                    <li class="i-list__item"><img src="<?= Url::to('/images/icon-cyan.png') ?>" alt="">- универсальный автосервис</li>
                 </ul>
             </div> <!-- /row -->
         </div>
@@ -352,6 +353,7 @@ $this->params["page"] = "index";
         <div class="container">
             <div class="row">
                 <span class="special-offers-header__title">Специальные предложения</span>
+                <a href="<?= Url::to('/private-room/') ?>">private room</a>
             </div> <!-- /row -->
         </div>
     </div> <!-- row -->
@@ -382,15 +384,15 @@ $this->params["page"] = "index";
             <div class="row slider-row slider-row_middle">
             
                 <ul class="slider__viewport" data-current="0">
-                    <li class="slider__col"><img src="images/slide-1.png" alt=""></li>
-                    <li class="slider__col"><img src="images/slide-2.png" alt=""></li>
-                    <li class="slider__col"><img src="images/slide-3.png" alt=""></li>
-                    <li class="slider__col"><img src="images/slide-1.png" alt=""></li>
-                    <li class="slider__col"><img src="images/slide-2.png" alt=""></li>
-                    <li class="slider__col"><img src="images/slide-3.png" alt=""></li>
-                    <li class="slider__col"><img src="images/slide-1.png" alt=""></li>
-                    <li class="slider__col"><img src="images/slide-2.png" alt=""></li>
-                    <li class="slider__col"><img src="images/slide-3.png" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-1.png') ?>" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-2.png') ?>" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-3.png') ?>" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-1.png') ?>" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-2.png') ?>" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-3.png') ?>" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-1.png') ?>" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-2.png') ?>" alt=""></li>
+                    <li class="slider__col"><img src="<?= Url::to('/images/slide-3.png') ?>" alt=""></li>
                 </ul>
 
                 <div class="arrow arrow_left" ></div>

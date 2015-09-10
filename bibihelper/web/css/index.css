@@ -1,12 +1,5 @@
 /* styles for index */
 
-body {
-    width: 100%;
-    margin: 0;
-    font-family: MyriadProRegular;
-    font-size: 16px;
-}
-
 /* media */
 
 @media all and (max-width: 660px) {
@@ -15,75 +8,6 @@ body {
         width: 660px;
     }
 
-}
-
-/* header1 */
-
-.header1 {
-    background-color: #38b2ce;
-    height: 35px;
-}
-
-.menu {
-    position: relative;
-}
-
-.menu__item {
-    font-family: MyriadProBold;
-    font-size: 16px;
-    height: 35px;
-    line-height: 35px;
-    display: inline-block;
-    margin-right: 30px;
-    float: right;
-}
-
-.menu__item_mrg-r {
-    margin-right: 220px;
-}
-
-/* header2 */
-
-.header2 {
-    background-color: #071d70;
-    height: 100px;
-}    
-
-/* logo */
-
-.logo {
-    background: #071d70 url("../images/emblem.png") 0 20px no-repeat;
-    padding: 20px 0;
-    float: left;
-    margin: 0 30px;
-    cursor: pointer;
-}
-
-.logo__bibi-helper {
-    font-family: "Berlin Sans FB";
-    font-size: 40px;
-    text-shadow: 2px 3px 5px #000;
-    margin: 0;
-    line-height: 40px;
-}
-
-.logo__bibi_shift {
-    margin-left: 50px;
-}
-
-.logo__bibi_color {
-    color: #b3dede;
-}
-
-.logo__helper_color{
-    color: #ff4040;
-}
-
-.logo__slogan {
-    font-family: MyriadProBold;
-    font-size: 14px;
-    color: #fff;
-    margin: 0 0 0 50px;
 }
 
 /* button city */
@@ -184,14 +108,6 @@ body {
     color: #071d70;
 }
 
-.bibi-form-btn {
-    font-family: MyriadProBold;
-    font-size: 16px;
-    height: 45px;
-    border-radius: 0;
-    width: 100%;
-}
-
 .bibi-form-btn_search, .bibi-form-btn_search:hover, .bibi-form-btn_search:focus {
     width: 280px;
     color: #fff;
@@ -204,12 +120,6 @@ body {
 
 .input-group .bibi-form-edit {
     width: 280px;
-}
-
-/* main */
-
-.main {
-    position: relative;
 }
 
 /* icons */
@@ -344,53 +254,6 @@ body {
     width: 350px;
     color: #fff;
     background-color: #38b2ce;
-}
-
-/* footer */
-
-.pre-footer {
-    height: 10px;
-    background-color: #38b2ce;
-}
-
-.footer {
-    height: 100px;
-    background-color: #071d70;
-    position: relative;
-}
-
-.f-menu {
-    padding: 30px 30px 0;
-    float: left;
-}
-
-.f-menu__col {
-    width: 190px;
-    display: inline-block;
-}
-
-.f-menu__col > span {
-    font-family: MyriadProBold;
-    font-size: 14px;
-    color: #fff;
-    display: block;
-}
-
-.f-block {
-    padding: 15px 30px 0;
-    float: right;
-}
-
-.f-block__social {
-    margin-bottom: 10px;
-    text-align: right;
-}
-
-.f-block__copyright > p {
-    font-family: MyriadProBold;
-    font-size: 14px;
-    color: #fff;
-    margin: 0;
 }
 
 /* private room entry modal */

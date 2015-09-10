@@ -60,6 +60,14 @@
 }
 
 /* common styles */
+
+body {
+    width: 100%;
+    margin: 0;
+    font-family: MyriadProRegular;
+    font-size: 16px;
+}
+
 a, a:hover, a:active, a:visited, a:focus {
     color: #fff;
     text-decoration: none;
@@ -102,6 +110,14 @@ img {
     height: 35px;
     text-align: left;
     padding: 0 15px;
+    border-radius: 0;
+    width: 100%;
+}
+
+.bibi-form-btn {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    height: 45px;
     border-radius: 0;
     width: 100%;
 }
@@ -174,5 +190,166 @@ img {
     font-size: 12px;
 }
 
+/* main */
 
+.main {
+    position: relative;
+}
+
+/* header1 */
+
+.header1 {
+    background-color: #38b2ce;
+    height: 35px;
+}
+
+.menu {
+    position: relative;
+}
+
+.menu__item {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    height: 35px;
+    line-height: 35px;
+    display: inline-block;
+    margin-right: 30px;
+    float: right;
+}
+
+.menu__item_mrg-r {
+    margin-right: 220px;
+}
+
+/* header2 */
+
+.header2 {
+    background-color: #071d70;
+    height: 100px;
+}    
+
+/* logo */
+
+.logo {
+    background: #071d70 url("../images/emblem.png") 0 20px no-repeat;
+    padding: 20px 0;
+    float: left;
+    margin: 0 30px;
+    cursor: pointer;
+}
+
+.logo__bibi-helper {
+    font-family: "Berlin Sans FB";
+    font-size: 40px;
+    text-shadow: 2px 3px 5px #000;
+    margin: 0;
+    line-height: 40px;
+}
+
+.logo__bibi_shift {
+    margin-left: 50px;
+}
+
+.logo__bibi_color {
+    color: #b3dede;
+}
+
+.logo__helper_color{
+    color: #ff4040;
+}
+
+.logo__slogan {
+    font-family: MyriadProBold;
+    font-size: 14px;
+    color: #fff;
+    margin: 0 0 0 50px;
+}
+
+/* footer */
+
+.pre-footer {
+    height: 10px;
+    background-color: #38b2ce;
+}
+
+.footer {
+    height: 100px;
+    background-color: #071d70;
+    position: relative;
+}
+
+.f-menu {
+    padding: 30px 30px 0;
+    float: left;
+}
+
+.f-menu__col {
+    width: 190px;
+    display: inline-block;
+}
+
+.f-menu__col > span {
+    font-family: MyriadProBold;
+    font-size: 14px;
+    color: #fff;
+    display: block;
+}
+
+.f-block {
+    padding: 15px 30px 0;
+    float: right;
+}
+
+.f-block__social {
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.f-block__copyright > p {
+    font-family: MyriadPro;
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+}
+
+div.ui-dialog {
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    background-color: #fff;
+}
+
+div.ui-dialog > div.ui-dialog-titlebar {
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    background: none;
+    background-color: #d5eded;
+    padding: 0px 0px 0px 8px;
+}
+
+div.ui-dialog > div.ui-dialog-titlebar > span.ui-dialog-title {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #071d70;
+    font-weight: 400;
+}
+
+div.ui-dialog > div.ui-dialog-content {
+    font-family: MyriadPro;
+    font-size: 14px;
+    color: #000;
+}
+
+div.ui-dialog > div.ui-dialog-titlebar > button.ui-dialog-titlebar-close {
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    background: none;
+    background-color: #d5eded;
+}
+
+div.ui-dialog > div.ui-dialog-buttonpane > div.ui-dialog-buttonset > button.ui-button {
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    font-family: MyriadProBold;
+    font-size: 14px;
+}
 
