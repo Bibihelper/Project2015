@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "479407875c975e7dbee0aefcb85e62d5",
+    "hash": "583838f5e6abb629985515cc6540d542",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -315,6 +315,82 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
+        },
+        {
+            "name": "kwizer15/jquery",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kwizer15/jquery.git",
+                "reference": "5925eb10edfd3a5c4eb325c50e68b1789083412a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kwizer15/jquery/zipball/5925eb10edfd3a5c4eb325c50e68b1789083412a",
+                "reference": "5925eb10edfd3a5c4eb325c50e68b1789083412a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emmanuel Bernaszuk",
+                    "email": "emmanuel.bernaszuk@kw12er.com"
+                }
+            ],
+            "description": "JQuery Javascript Library",
+            "keywords": [
+                "jquery"
+            ],
+            "time": "2015-03-04 10:43:47"
+        },
+        {
+            "name": "kwizer15/jquery-ui",
+            "version": "1.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kwizer15/jquery-ui.git",
+                "reference": "64336a9612cb8c422449cd099cbdd60d2af79eb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kwizer15/jquery-ui/zipball/64336a9612cb8c422449cd099cbdd60d2af79eb0",
+                "reference": "64336a9612cb8c422449cd099cbdd60d2af79eb0",
+                "shasum": ""
+            },
+            "require": {
+                "kwizer15/jquery": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emmanuel Bernaszuk",
+                    "email": "emmanuel.bernaszuk@kw12er.com"
+                }
+            ],
+            "description": "JQuery UI Javascript Library",
+            "keywords": [
+                "jQueryUI",
+                "jquery-ui"
+            ],
+            "time": "2015-03-04 10:52:02"
         },
         {
             "name": "swiftmailer/swiftmailer",
