@@ -225,9 +225,9 @@
 .arrow-ud {
     height: 40px;
     width: 100%;
-    cursor: pointer;
+//    cursor: pointer;
 }
-
+/*
 .arrow_up-a {
     background: #fff url("../images/arrow-up-a.png") 50% 13px no-repeat;
 }
@@ -259,6 +259,7 @@
 .arrow_down-na:hover {
     background: #f8f8f7 url("../images/arrow-down-na.png") 50% 13px no-repeat;
 }
+*/
 
 ul.info-s {
     list-style: none;
@@ -272,6 +273,8 @@ ul.info-s {
     color: #000;
     line-height: 30px;
     background-color: #fff;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
 }
 
 .arrow-item {
@@ -331,6 +334,7 @@ ul.info-s {
 .info__item-label {
     display: inline-block;
     vertical-align: top;
+    width: 50%;
 }
 
 .item-menu__i-label {
@@ -684,6 +688,7 @@ ul.info-s {
     height: 23px;
     display: inline-block;
     vertical-align: -0.4em;
+    cursor: pointer;
 }
 
 .c-caption_m {

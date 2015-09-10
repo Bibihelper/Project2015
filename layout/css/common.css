@@ -306,11 +306,50 @@ img {
 }
 
 .f-block__copyright > p {
-    font-family: MyriadProBold;
+    font-family: MyriadPro;
     font-size: 14px;
     color: #fff;
     margin: 0;
 }
 
+div.ui-dialog {
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    background-color: #fff;
+}
 
+div.ui-dialog > div.ui-dialog-titlebar {
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    background: none;
+    background-color: #d5eded;
+    padding: 0px 0px 0px 8px;
+}
+
+div.ui-dialog > div.ui-dialog-titlebar > span.ui-dialog-title {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #071d70;
+    font-weight: 400;
+}
+
+div.ui-dialog > div.ui-dialog-content {
+    font-family: MyriadPro;
+    font-size: 14px;
+    color: #000;
+}
+
+div.ui-dialog > div.ui-dialog-titlebar > button.ui-dialog-titlebar-close {
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    background: none;
+    background-color: #d5eded;
+}
+
+div.ui-dialog > div.ui-dialog-buttonpane > div.ui-dialog-buttonset > button.ui-button {
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    font-family: MyriadProBold;
+    font-size: 14px;
+}
 

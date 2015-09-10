@@ -98,6 +98,81 @@ $("li.item-menu__i").click(function() {
     return true;
 });
 
+$("a.arrow-item").click(function() {
+    var exp = $(this).attr("data-exp");
+    var sbm = $(this).parent("span").next("ul");
+    exp = (exp == 0) ? 1 : 0;
+    $(this).attr("data-exp", exp);
+    if (exp == 1) {
+        $(this).children("img").attr("src", "images/arrow-item-left.png");
+        $(sbm).addClass("item-menu_active");
+    } else {
+        $(this).children("img").attr("src", "images/arrow-item-right.png");
+        $(sbm).removeClass("item-menu_active");
+    }
+});
+
+$("#send-site-news").click(function() {
+    var ch = $(this).attr("data-ch");
+    ch = (ch == 0) ? 1 : 0;
+    $(this).attr("data-ch", ch);
+    if (ch == 1)
+        $(this).css("background-position", "-23px 0");
+    else
+        $(this).css("background-position", "0 0");
+});
+
+var obj = {
+    resizable: false,
+    height: 150,
+    modal: true,
+    buttons: {
+        OK: function() {
+            $(this).dialog("close");
+        }
+    }
+};
+    
+$("#save-psw").click(function() {
+    $("#dialog").attr("title", "Изменение пароля");
+    var pswNew = $("#psw-new").val();
+    var pswOld = $("#psw-confirm").val();
+    if (pswNew == "") {
+        $("#dialog > p").text("Пароль не может быть пустым");
+        $("#dialog").dialog(obj);
+        return false;
+    } else 
+    if (pswNew.length < 6) {
+        $("#dialog > p").text("Минимальная длина пароля - 6 символов");
+        $("#dialog").dialog(obj);
+    } else
+    if (pswNew == pswOld) {
+        $("#dialog > p").text("Пароль изменен");
+        $("#dialog").dialog(obj);
+    } else {
+        $("#dialog > p").text("Пароли не совпадают");
+        $("#dialog").dialog(obj);
+    }
+    return false;
+});
+
+$("#save-email").click(function() {
+    $("#dialog").attr("title", "Изменение E-mail");
+    var email = /^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$/;
+    var emailNew = $("#new-email").val();
+    if (email.test(emailNew)) {
+        $("#dialog > p").text("E-mail изменен");
+        $("#dialog").dialog(obj);
+    } else {
+        $("#dialog > p").text("Введен некоректный email");
+        $("#dialog").dialog(obj);
+    }
+});
+
+
+
+
+
 
 
 
