@@ -26,4 +26,9 @@ class IndexAsset extends AssetBundle
         'js/map.js',
         'js/index.js',
     ];
+    public $depends = [
+        'app\assets\ResetAsset',
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+    ];
 }

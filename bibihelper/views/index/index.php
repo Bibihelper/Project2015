@@ -2,7 +2,11 @@
 
 /* @var $this yii\web\View */
 
+use app\assets\IndexAsset;
+
 $this->title = 'BibiHelper';
+
+IndexAsset::register($this);
 ?>
 <div class="modal fade" id="private-room-entry" tabindex="-1" role="dialog" aria-labelledby="modal-label-pre" aria-hidden="true">
     <div class="modal-dialog modal-dialog_dlg">
