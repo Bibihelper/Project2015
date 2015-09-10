@@ -68,7 +68,35 @@ $("#s-publish").click(function() {
     $(this).text("Удалить предложение").attr("data-btn-type", "2");
 })
 
+function updCbxState(cbx, state) {
+    $(cbx).attr("data-ch", state);
 
+    if (state == 1) {
+        $(cbx).addClass("info__cbx_active");
+    } else {
+        $(cbx).removeClass("info__cbx_active");
+    }
+}
+
+function updCbxStateNextElem(elm, stt) {
+    var nxt = $(elm).next();
+    var len = $(nxt).length;
+    if (len != 0) {
+        var nxx = $(nxt).children("span.info__chbx").children("div.info__cbx");
+        updCbxState(nxx, stt);
+        updCbxStateNextElem(nxt, stt);
+    }
+}
+
+$("li.item-menu__i").click(function() {
+    var cbx = $(this).children("span.info__chbx").children("div.info__cbx");
+    var stt = $(cbx).attr("data-ch");
+    stt = (stt == 0) ? 1 : 0;
+    updCbxState(cbx, stt);
+    if ($(this).hasClass("item-menu__i_first"))
+        updCbxStateNextElem($(this), stt);
+    return true;
+});
 
 
 

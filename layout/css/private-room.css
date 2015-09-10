@@ -58,7 +58,7 @@
 
 .tab-content_pr {
     background-color: #d5eded;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .tab-content__info {
@@ -271,6 +271,7 @@ ul.info-s {
     font-size: 16px;
     color: #000;
     line-height: 30px;
+    background-color: #fff;
 }
 
 .arrow-item {
@@ -289,7 +290,6 @@ ul.info-s {
 .item-menu {
     list-style: none;
     width: 280px;
-    background-color: #d5eded;
     padding-left: 0;
     display: none;
 }
@@ -306,10 +306,16 @@ ul.info-s {
     font-family: Tahoma;
     font-size: 14px;
     color: #000;
+    background-color: #d5eded;
     line-height: 20px;
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 4px;
+    cursor: pointer;
+}
+
+.item-menu__i:hover {
+    background-color: #e9fafa;
 }
 
 .item-menu__i_first {
@@ -344,16 +350,13 @@ ul.info-s {
 }
 
 .info__cbx {
-    display: none;
-}
-
-.info__check {
     width: 18px;
     height: 17px;
     background: #fff url("../images/im-cbx.png") 0 0 no-repeat;
+    cursor: pointer;
 }
 
-.info__check_active {
+.info__cbx_active {
     width: 18px;
     height: 17px;
     background: #fff url("../images/im-cbx.png") -18px 0 no-repeat;
@@ -679,7 +682,6 @@ ul.info-s {
     background: #fff url("../images/op-cbx.png") 0px 0px no-repeat;
     width: 23px;
     height: 23px;
-    cursor: pointer;
     display: inline-block;
     vertical-align: -0.4em;
 }
