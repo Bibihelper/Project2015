@@ -82,14 +82,14 @@ function updCbxStateNextElem(elm, stt) {
     var nxt = $(elm).next();
     var len = $(nxt).length;
     if (len != 0) {
-        var nxx = $(nxt).children("span.info__chbx").children("div.info__cbx");
+        var nxx = $(nxt).children("div.info__chbx").children("span.info__cbx");
         updCbxState(nxx, stt);
         updCbxStateNextElem(nxt, stt);
     }
 }
 
 $("li.item-menu__i").click(function() {
-    var cbx = $(this).children("span.info__chbx").children("div.info__cbx");
+    var cbx = $(this).children("div.info__chbx").children("span.info__cbx");
     var stt = $(cbx).attr("data-ch");
     stt = (stt == 0) ? 1 : 0;
     updCbxState(cbx, stt);

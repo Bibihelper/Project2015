@@ -358,6 +358,7 @@ ul.info-s {
     height: 17px;
     background: #fff url("../images/im-cbx.png") 0 0 no-repeat;
     cursor: pointer;
+    display: block;
 }
 
 .info__cbx_active {
@@ -611,6 +612,7 @@ ul.info-s {
     float: right;
     width: 285px;
     margin: 0 auto;
+    padding-bottom: 60px;
 }
 
 .prtxt {
