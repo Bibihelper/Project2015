@@ -66,7 +66,7 @@ $("#s-publish").click(function() {
     $(".s-off-ctrls").hide();
     $(".s-off-preview").css("float", "none");
     $(this).text("Удалить предложение").attr("data-btn-type", "2");
-})
+});
 
 function updCbxState(cbx, state) {
     $(cbx).attr("data-ch", state);
@@ -104,10 +104,10 @@ $("a.arrow-item").click(function() {
     exp = (exp == 0) ? 1 : 0;
     $(this).attr("data-exp", exp);
     if (exp == 1) {
-        $(this).children("img").attr("src", "images/arrow-item-left.png");
+        $(this).children("img").attr("src", "/images/arrow-item-left.png");
         $(sbm).addClass("item-menu_active");
     } else {
-        $(this).children("img").attr("src", "images/arrow-item-right.png");
+        $(this).children("img").attr("src", "/images/arrow-item-right.png");
         $(sbm).removeClass("item-menu_active");
     }
 });
@@ -122,38 +122,30 @@ $("#send-site-news").click(function() {
         $(this).css("background-position", "0 0");
 });
 
-var obj = {
-    resizable: false,
-    height: 150,
-    modal: true,
-    buttons: {
-        OK: function() {
-            $(this).dialog("close");
-        }
-    }
-};
-    
+function showMessage($msg) {
+
+}
+
 $("#save-psw").click(function() {
     $("#dialog").attr("title", "Изменение пароля");
+    var pswOld = $("#psw-old").val();
     var pswNew = $("#psw-new").val();
     var pswOld = $("#psw-confirm").val();
-    if (pswNew == "") {
-        $("#dialog > p").text("Пароль не может быть пустым");
-        $("#dialog").dialog(obj);
-        return false;
+    if (pswOld === "") {
+        showMessage("Введите старый пароль");
+    } else 
+    if (pswNew === "") {
+        showMessage("Введите новый пароль");
     } else 
     if (pswNew.length < 6) {
-        $("#dialog > p").text("Минимальная длина пароля - 6 символов");
-        $("#dialog").dialog(obj);
+        showMessage("Минимальная длина пароля - 6 символов");
     } else
-    if (pswNew == pswOld) {
-        $("#dialog > p").text("Пароль изменен");
-        $("#dialog").dialog(obj);
+    if (pswNew === pswOld) {
+        showMessage("Пароль изменен");
     } else {
-        $("#dialog > p").text("Пароли не совпадают");
-        $("#dialog").dialog(obj);
+        showMessage("Пароли не совпадают");
     }
-    return false;
+    return false;    
 });
 
 $("#save-email").click(function() {
@@ -161,12 +153,11 @@ $("#save-email").click(function() {
     var email = /^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$/;
     var emailNew = $("#new-email").val();
     if (email.test(emailNew)) {
-        $("#dialog > p").text("E-mail изменен");
-        $("#dialog").dialog(obj);
+        showMessage("Неверный email");
     } else {
-        $("#dialog > p").text("Введен некоректный email");
-        $("#dialog").dialog(obj);
+        showMessage("E-mail изменен");
     }
+    return false;
 });
 
 

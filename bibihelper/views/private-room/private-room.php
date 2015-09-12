@@ -814,7 +814,3 @@ $this->params['page'] = 'private-room';
     </div> <!-- /row -->
 </div>
 
-<div id="dialog" title="" style="display: none;">
-    <p></p>
-</div>
- 
