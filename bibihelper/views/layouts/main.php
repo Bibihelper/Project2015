@@ -39,7 +39,7 @@ use yii\helpers\Html;
                 <div class="menu__item menu__item_mrg-r" style="display: none;"><a href="#" title="" data-toggle="modal" data-target="#restore-psw" id="rst">Восстановить пароль</a></div>
             <? endif; ?>
             <? if ($this->params['page'] == 'private-room'): ?>
-                <div class="menu__item"><a href="#" title="">Mymail@mail.ru</a></div>
+                <div class="menu__item"><a href="mailto:<?= $this->params['company']['user']['email'] ?>" title=""><?= $this->params['company']['user']['email'] ?></a></div>
             <? endif; ?>
             </div> <!-- /row -->
         </div> 

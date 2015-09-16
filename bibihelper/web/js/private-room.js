@@ -160,11 +160,11 @@ $("#save-email").click(function() {
     return false;
 });
 
+// logo
 
-
-
-
-
+$(".logo").click(function() {
+    window.location.href = "http://bibihelper.com/";
+});
 
 
 

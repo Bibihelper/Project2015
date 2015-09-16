@@ -15,19 +15,19 @@ function init()
 
 $(".logo").click(function() {
     window.location.href = "#";
-})
+});
 
 // Переключение между формами простого и расширенного поиска
 
 $("#ext-search-btn").click(function() {
     $(".search_simple").hide("slow");
     $(".search_ext").show("slow");
-})
+});
 
 $("#simple-search-btn").click(function() {
     $(".search_ext").hide("slow");
     $(".search_simple").show("slow");
-})
+});
 
 // Чекбоксы на формах простого и расширенного поиска
 
@@ -43,7 +43,7 @@ $("#search_simple__tw-check").click(function() {
         $("#search_ext__tw-check").css("background-position", "-25px 0");    
         $("#search_ext__tw-cbx")[0].checked = true;        
     }
-})
+});
 
 $("#search_ext__tw-check").click(function() {
     if ($("#search_ext__tw-cbx")[0].checked) {
@@ -57,7 +57,7 @@ $("#search_ext__tw-check").click(function() {
         $("#search_simple__tw-check").css("background-position", "-25px 0");    
         $("#search_simple__tw-cbx")[0].checked = true;        
     }
-})
+});
 
 // Чекбокс на форме авторизации
 
@@ -69,7 +69,7 @@ $("#modal-dialog-rmbr__check").click(function() {
         $("#modal-dialog-rmbr__check").css("background-position", "-20px 0");    
         $("#modal-dialog-rmbr__cbx")[0].checked = true;        
     }
-})
+});
 
 // Проверка правильности ввода email
 
@@ -90,31 +90,31 @@ function checkEmail(edit, flag) {
 
 $("#modal-dialog__edit_email-pre").keyup(function() {
     checkEmail($(this).attr("id"), "modal-dialog__email-ok-pre");
-})
+});
 
 $("#modal-dialog__edit_email-pre").blur(function() {
     checkEmail($(this).attr("id"), "modal-dialog__email-ok-pre");
-})
+});
 
 // для регистрации
 
 $("#modal-dialog__edit_email-reg").keyup(function() {
     checkEmail($(this).attr("id"), "modal-dialog__email-ok-reg");
-})
+});
 
 $("#modal-dialog__edit_email-reg").blur(function() {
     checkEmail($(this).attr("id"), "modal-dialog__email-ok-reg");
-})
+});
 
 // для восстановления
 
 $("#modal-dialog__edit_email-restore-psw").keyup(function() {
     checkEmail($(this).attr("id"), "modal-dialog__email-ok-restore-psw");
-})
+});
 
 $("#modal-dialog__edit_email-restore-psw").blur(function() {
     checkEmail($(this).attr("id"), "modal-dialog__email-ok-restore-psw");
-})
+});
 
 // Кнопка "Войти"
 
@@ -128,7 +128,7 @@ $("#pre-btn").click(function() {
         $("#modal-dialog__edit_psw-pre").focus();
         return;
     }
-})
+});
 
 // Проверка длины пароля
 
@@ -146,7 +146,7 @@ $("#modal-dialog__edit_psw-reg").blur(function() {
         $(this).css("background-color", "#ffffff");
         pswCheckLength = 0;
     }
-})
+});
 
 $("#modal-dialog__edit_psw-reg").keyup(function() {
     var psw = $(this).val();
@@ -156,7 +156,7 @@ $("#modal-dialog__edit_psw-reg").keyup(function() {
         $(this).css("background-color", "#ffffff");
         pswCheckLength = 0;
     }
-})
+});
 
 // Сравнение паролей
 
@@ -187,7 +187,7 @@ $("#modal-dialog__edit_psw-confirm-reg").keyup(function() {
     if (pswIsEqual == 1) {
         comparePasswords();
     }
-})
+});
 
 // Кнопка "Зарегистрироваться"
 
@@ -210,7 +210,7 @@ $("#reg-btn").click(function() {
     if (!comparePasswords()) {
         return;
     }
-})
+});
 
 // Кнопка "Восстановить пароль"
 
@@ -219,7 +219,7 @@ $("#restore-psw-btn").click(function() {
         $("#modal-dialog__edit_email-restore-psw").focus();
         return;
     }
-})
+});
 
 // Кнопка "Мой город"
 
@@ -232,7 +232,7 @@ $(".city .bibi-list_city > li").click(function() {
     
     var coords = eval("(" + $(this).attr("data-city-coords") + ")");    
     showMap(coords);
-})
+});
 
 // Форма простого поиска - кнопка "Марка"
 
@@ -244,7 +244,7 @@ $("#search_simple__brand-list > li").click(function() {
     $("#search_simple__brand").html(brandName);
     $("#search_ext__brand").attr("data-brand-id", brandID);
     $("#search_ext__brand").html(brandName);
-})
+});
 
 // Форма простого поиска - кнопка "Вид работы"
 
@@ -256,7 +256,7 @@ $("#search_simple__w-type-list > li").click(function() {
     $("#search_simple__w-type").html(brandName);
     $("#search_ext__w-type").attr("data-w-type-id", brandID);
     $("#search_ext__w-type").html(brandName);
-})
+});
 
 // Форма расширенного поиска - кнопка "Марка"
 
@@ -268,7 +268,7 @@ $("#search_ext__brand-list > li").click(function() {
     $("#search_ext__brand").html(brandName);
     $("#search_simple__brand").attr("data-brand-id", brandID);
     $("#search_simple__brand").html(brandName);
-})
+});
 
 // Форма расширенного поиска - кнопка "Вид работы"
 
@@ -280,7 +280,7 @@ $("#search_ext__w-type-list > li").click(function() {
     $("#search_ext__w-type").html(brandName);
     $("#search_simple__w-type").attr("data-w-type-id", brandID);
     $("#search_simple__w-type").html(brandName);
-})
+});
 
 // Форма расширенного поиска - кнопка "Район"
 
@@ -290,7 +290,7 @@ $("#search_ext__distr-list > li").click(function() {
     
     $("#search_ext__distr").attr("data-distr-id", brandID);
     $("#search_ext__distr").html(brandName);
-})
+});
 
 // Слайдер
 
@@ -352,7 +352,7 @@ $(".arrow_left").click(function() {
     if (currentSlide > $('.slider-row_middle > .slider__viewport').children().size() - 3)
         return;
     animateSlide(currentSlide);
-})
+});
 
 $(".arrow_right").click(function() {
     var currentSlide = parseInt($('.slider-row_middle > .slider__viewport').data('current'));
@@ -360,7 +360,7 @@ $(".arrow_right").click(function() {
     if (currentSlide < 0)
         return;
     animateSlide(currentSlide);
-})
+});
 
 // Подсказка для кнопки "Забыли пароль"
 
@@ -369,21 +369,21 @@ $('.pre-btn-psw').hover(function(){
     },function(){
         $(".bibi-hint_psw-pre").hide();
     }
-)
+);
 
 // Переключение диалогов
 
 $("#modal-dialog__link-login").click(function() {
     setTimeout(function() { $("#pre").click(); }, 500);
-})
+});
 
 $("#modal-dialog__link-reg").click(function() {
     setTimeout(function() { $("#reg").click(); }, 500);
-})
+});
 
 $("#modal-dialog__restore-psw").click(function() {
     $(".bibi-hint_psw-pre").hide();
     setTimeout(function() { $("#rst").click(); }, 500);
-})
+});
 
 

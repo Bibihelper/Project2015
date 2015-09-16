@@ -9,6 +9,7 @@ PrivateRoomAsset::register($this);
 
 $this->title = 'BibiHelper: ЛК';
 $this->params['page'] = 'private-room';
+$this->params['company']['user']['email'] = $company->user->email;
 
 ?>
 
