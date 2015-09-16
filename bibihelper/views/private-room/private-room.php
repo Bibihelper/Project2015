@@ -174,7 +174,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                     </form>
                                                 </div>
                                                 
-                                                <div class="s-off-preview">
+                                                <div class="s-off-preview hidden">
                                                 
                                                     <div class="preview-block">
                                                         <span class="prtxt prtxt_caption">Предпоказ акции:</span>

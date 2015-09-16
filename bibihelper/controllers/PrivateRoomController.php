@@ -11,7 +11,7 @@ class PrivateRoomController extends Controller
 {
     public function getCompanyId()
     {
-        return 2;
+        return 1;
     }
 
     public function actionIndex()

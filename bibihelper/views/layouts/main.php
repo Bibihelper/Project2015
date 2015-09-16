@@ -33,14 +33,13 @@ use yii\helpers\Html;
     <div class="row">
         <div class="container">
             <div class="row menu">
-            <? if ($this->params['page'] == 'index'): ?>
+            <?php if ($this->params['page'] == 'index'): ?>
                 <div class="menu__item"><a href="#" title="" data-toggle="modal" data-target="#private-room-entry" id="pre">Войти в личный кабинет</a></div>
                 <div class="menu__item menu__item_mrg-r"><a href="#" title="" data-toggle="modal" data-target="#register-company" id="reg">Добавить автосервис</a></div>
                 <div class="menu__item menu__item_mrg-r" style="display: none;"><a href="#" title="" data-toggle="modal" data-target="#restore-psw" id="rst">Восстановить пароль</a></div>
-            <? endif; ?>
-            <? if ($this->params['page'] == 'private-room'): ?>
+            <?php elseif ($this->params['page'] == 'private-room'): ?>
                 <div class="menu__item"><a href="mailto:<?= $this->params['company']['user']['email'] ?>" title=""><?= $this->params['company']['user']['email'] ?></a></div>
-            <? endif; ?>
+            <?php endif ?>
             </div> <!-- /row -->
         </div> 
     </div> <!-- /row -->
@@ -56,7 +55,7 @@ use yii\helpers\Html;
                     <p class="logo__slogan">Удобный выбор автосервиса</p>                        
                 </div>
                 
-                <? if ($this->params['page'] == 'index'): ?>
+                <?php if ($this->params['page'] == 'index'): ?>
                     <div class="city">                                             
                         <div class="btn-group">
                             <button type="button" class="btn dropdown-toggle bibi-btn bibi-btn_city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,7 +71,7 @@ use yii\helpers\Html;
                             </ul>
                         </div>                                                                                               
                     </div>
-                <? endif; ?>
+                <?php endif ?>
                 
             </div> <!-- /row -->               
         </div>     
