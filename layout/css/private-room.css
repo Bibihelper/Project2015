@@ -101,16 +101,13 @@
     font-size: 14px;
     font-style: normal;
     color: #000;
-}
-
-.info__shedule {
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .info__phone {
     font-family: Tahoma;
     font-size: 14px;
-    font-style: bold;
+    font-weight: 600;
     color: #000;    
 }
 

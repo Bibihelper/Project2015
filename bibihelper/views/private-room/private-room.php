@@ -33,10 +33,14 @@ $this->params['page'] = 'private-room';
                                     <img src="<?= Url::to('/images/map-pr.png') ?>" title="">
                                 </div>
                                 <div class="content__info">
-                                    <span class="info info__title">Ультра-сервис</span>
-                                    <span class="info info__addr">г. Красноярск, ул. Ленина, д.3, к.1, стр. 2</span>
-                                    <span class="info info__shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>" title=""></span>
-                                    <span class="info info_phone">+7 (985) 647-85-11</span>
+                                    <span class="info info__title"><?= $company->name ?></span>
+                                    <span class="info info__addr"><?= $company->address->getAddressStr() ?></span>
+                                    <?php if ($company->twenty_four_hours): ?>
+                                        <span class="info info__shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>" title=""></span>
+                                    <?php else: ?>
+                                        <span class="info info__shedule">График работы: <?= $shedule ?></span>
+                                    <?php endif ?>
+                                    <span class="info info__phone"><?= $company->phone ?></span>
                                 </div>
                             </div>
                         
@@ -57,334 +61,27 @@ $this->params['page'] = 'private-room';
                                             <div class="arrow-ud arrow_up-na"></div>
 
                                             <ul class="info-s">
-                                                <li class="info__item" data-exp="1">
-                                                    <span class="info__item-label">Техническое обслуживание<a href="javascript::void(0)" title="" class="arrow-item arrow-item-left" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>  
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Замена колодок</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Плановые ТО</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Послегарантийное обслуживание</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Экспресс замена жидкостей</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Экспресс замена масла, фильтров</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Кузовной ремонт и покраска<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>  
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Замена колодок</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Плановые ТО</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Послегарантийное обслуживание</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Экспресс замена жидкостей</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Экспресс замена масла, фильтров</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Ремонт ходовой и трансмиссии<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>  
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Замена колодок</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Плановые ТО</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Послегарантийное обслуживание</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Экспресс замена жидкостей</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Экспресс замена масла, фильтров</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Ремонт систем двигателя<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>  
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Замена колодок</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Плановые ТО</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Послегарантийное обслуживание</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Экспресс замена жидкостей</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Экспресс замена масла, фильтров</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Ремонт электрооборудования<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>  
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Замена колодок</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Плановые ТО</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Послегарантийное обслуживание</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Экспресс замена жидкостей</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Экспресс замена масла, фильтров</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Ремонт других систем и агрегатов<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>  
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Замена колодок</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Плановые ТО</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Послегарантийное обслуживание</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Экспресс замена жидкостей</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Экспресс замена масла, фильтров</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Установка дополнительного оборудования<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>  
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Замена колодок</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Плановые ТО</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Послегарантийное обслуживание</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Экспресс замена жидкостей</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Экспресс замена масла, фильтров</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Прочие услуги<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>  
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Замена колодок</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Плановые ТО</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Послегарантийное обслуживание</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Экспресс замена жидкостей</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Экспресс замена масла, фильтров</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
+                                                <?php foreach($srvs[$company->id] as $category => $srv): ?>
+                                                    <li class="info__item" data-exp="1">
+                                                        <span class="info__item-label"><?= $category ?><a href="javascript::void(0)" title="" class="arrow-item arrow-item-left" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
+                                                        <ul class="item-menu item-menu_m">
+                                                            <li class="item-menu__i item-menu__i_first">
+                                                                <span class="item-menu__i-label">Выбрать все</span>
+                                                                <div class="info__chbx">
+                                                                    <span class="info__cbx" data-ch="0"></span>  
+                                                                </div>
+                                                            </li>
+                                                            <?php foreach($srv as $name): ?>
+                                                                <li class="item-menu__i">
+                                                                    <span class="item-menu__i-label"><?= $name ?></span>
+                                                                    <div class="info__chbx">
+                                                                        <span class="info__cbx" data-ch="0"></span>
+                                                                    </div>
+                                                                </li>
+                                                            <?php endforeach ?>
+                                                        </ul>
+                                                    </li>
+                                                <?php endforeach ?>
                                             </ul>
                                             
                                             <div class="arrow-ud arrow_down-a"></div>
@@ -404,293 +101,28 @@ $this->params['page'] = 'private-room';
                                                     </span>
                                                 </li>
                                                 -->
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Англия<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Bentlee</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Jaguar</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Land Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">MG</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Германия<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Bentlee</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Jaguar</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Land Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">MG</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Иран<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Bentlee</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Jaguar</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Land Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">MG</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Испания<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Bentlee</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Jaguar</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Land Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">MG</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Италия<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Bentlee</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Jaguar</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Land Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">MG</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Китай<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Bentlee</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Jaguar</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Land Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">MG</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Корея<a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
-                                                    <ul class="item-menu item-menu_m">
-                                                        <li class="item-menu__i item-menu__i_first">
-                                                            <span class="item-menu__i-label">Выбрать все</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Bentlee</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Jaguar</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">Land Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i">
-                                                            <span class="item-menu__i-label">MG</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                        <li class="item-menu__i item-menu__i_last">
-                                                            <span class="item-menu__i-label">Rover</span>
-                                                            <div class="info__chbx">
-                                                                <span class="info__cbx" data-ch="0"></span>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                </li>
+                                                
+                                                <?php foreach($brands[$company->id] as $country => $brand): ?>
+                                                    <li class="info__item">
+                                                        <span class="info__item-label"><?= $country ?><a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
+                                                        <ul class="item-menu item-menu_m">
+                                                            <li class="item-menu__i item-menu__i_first">
+                                                                <span class="item-menu__i-label">Выбрать все</span>
+                                                                <div class="info__chbx">
+                                                                    <span class="info__cbx" data-ch="0"></span>
+                                                                </div>
+                                                            </li>
+                                                            <?php foreach ($brand as $car): ?>
+                                                                <li class="item-menu__i">
+                                                                    <span class="item-menu__i-label"><?= $car ?></span>
+                                                                    <div class="info__chbx">
+                                                                        <span class="info__cbx"></span>
+                                                                    </div>
+                                                                </li>
+                                                            <?php endforeach ?>
+                                                        </ul>
+                                                    </li>
+                                                <?php endforeach ?>
                                             </ul>
                                             
                                             <div class="arrow-ud arrow_down-a"></div>
@@ -699,7 +131,7 @@ $this->params['page'] = 'private-room';
                                         <div id="company-info" class="tab-pane fade">
 
                                             <div class="info-c">
-                                                <textarea class="info-c__text"></textarea>
+                                                <textarea class="info-c__text"><?= $company->comment ?></textarea>
                                             </div>
 
                                             <div class="info-c__btn">
@@ -789,7 +221,7 @@ $this->params['page'] = 'private-room';
                                     </div>
                                     <div class="c-block c-block_m2">
                                         <span class="c-caption">Сменить e-mail:</span>
-                                        <input type="email" class="form-control c-edit c-edit_m" id="new-email">
+                                        <input type="email" class="form-control c-edit c-edit_m" id="new-email" value="<?= $company->user->email ?>">
                                         <div class="info-c__btn info-c__btn_m">
                                             <button type="button" class="btn bibi-form-btn info-c__btn_save" id="save-email">Сохранить</button>
                                         </div>
