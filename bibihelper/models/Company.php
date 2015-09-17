@@ -8,6 +8,7 @@ use app\models\Address;
 use app\models\CompanyServices;
 use app\models\Service;
 use app\models\User;
+use app\models\Country;
 
 /**
  * This is the model class for table "company".

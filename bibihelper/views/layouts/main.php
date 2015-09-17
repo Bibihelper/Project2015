@@ -3,6 +3,7 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+use Yii;
 use yii\helpers\Html;
 
 ?>
@@ -34,11 +35,25 @@ use yii\helpers\Html;
         <div class="container">
             <div class="row menu">
             <?php if ($this->params['page'] == 'index'): ?>
-                <div class="menu__item"><a href="#" title="" data-toggle="modal" data-target="#private-room-entry" id="pre">Войти в личный кабинет</a></div>
-                <div class="menu__item menu__item_mrg-r"><a href="#" title="" data-toggle="modal" data-target="#register-company" id="reg">Добавить автосервис</a></div>
-                <div class="menu__item menu__item_mrg-r" style="display: none;"><a href="#" title="" data-toggle="modal" data-target="#restore-psw" id="rst">Восстановить пароль</a></div>
+                <?php if (Yii::$app->user->isGuest): ?>
+                    <div class="menu__item">
+                        <a href="#" title="" data-toggle="modal" data-target="#private-room-entry" id="pre">Войти в личный кабинет</a>
+                    </div>
+                <?php else: ?>
+                    <div class="menu__item">
+                        <a href="<?= Yii::$app->user->getReturnUrl() ?>" title="">Войти в личный кабинет</a>
+                    </div>
+                <?php endif ?>
+                <div class="menu__item menu__item_mrg-r">
+                    <a href="#" title="" data-toggle="modal" data-target="#register-company" id="reg">Добавить автосервис</a>
+                </div>
+                <div class="menu__item menu__item_mrg-r" style="display: none;">
+                    <a href="#" title="" data-toggle="modal" data-target="#restore-psw" id="rst">Восстановить пароль</a>
+                </div>
             <?php elseif ($this->params['page'] == 'private-room'): ?>
-                <div class="menu__item"><a href="mailto:<?= $this->params['company']['user']['email'] ?>" title=""><?= $this->params['company']['user']['email'] ?></a></div>
+                <div class="menu__item">
+                    <a href="mailto:<?= $this->params['company']['user']['email'] ?>" title=""><?= $this->params['company']['user']['email'] ?></a>
+                </div>
             <?php endif ?>
             </div> <!-- /row -->
         </div> 

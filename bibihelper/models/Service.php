@@ -3,7 +3,28 @@
 namespace app\models;
 
 use yii\db\ActiveRecord;
+use yii\db\ActiveQuery;
 use app\models\Category;
+
+/**
+ * This is the query class for table "service".
+ *
+ * @property integer $id
+ * @property string $name
+ * @property integer $category_id
+ */
+class ServiceQuery extends ActiveQuery
+{
+    public function filterByCategory($categoryID = 0)
+    {
+        return $this->andWhere(['category_id' => $categoryID]);
+    }
+
+    public function filterByService($serviceID = 0)
+    {
+        return $this->andWhere(['id' => $serviceID]);
+    }
+}
 
 /**
  * This is the model class for table "service".
@@ -35,6 +56,11 @@ class Service extends ActiveRecord
             'name' => 'Name',
             'category_id' => 'Category ID',
         ];
+    }
+    
+    public static function find()
+    {
+        return new ServiceQuery(get_called_class());
     }
 
     public function getCategory()

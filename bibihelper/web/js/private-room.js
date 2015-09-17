@@ -1,5 +1,7 @@
 /* Private room */
 
+// Календарь
+
 $(function() {
     $("#datepicker1").datepicker($.datepicker.regional["ru"]);
     
@@ -54,6 +56,8 @@ $("#c-arrow-2").click(function(e) {
     return true;
 });
 
+// Выбор изображения
+
 $("#s-browse").click(function() {
     $("#s-br").click();
 });
@@ -67,6 +71,8 @@ $("#s-publish").click(function() {
     $(".s-off-preview").css("float", "none");
     $(this).text("Удалить предложение").attr("data-btn-type", "2");
 });
+
+// Чекбоксы
 
 function updCbxState(cbx, state) {
     $(cbx).attr("data-ch", state);
@@ -98,6 +104,8 @@ $("li.item-menu__i").click(function() {
     return true;
 });
 
+// Стрелки
+
 $("a.arrow-item").click(function() {
     var exp = $(this).attr("data-exp");
     var sbm = $(this).parent("span").next("ul");
@@ -111,6 +119,8 @@ $("a.arrow-item").click(function() {
         $(sbm).removeClass("item-menu_active");
     }
 });
+
+// Личные настройки аккаунта
 
 $("#send-site-news").click(function() {
     var ch = $(this).attr("data-ch");

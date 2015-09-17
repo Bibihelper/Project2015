@@ -62,12 +62,12 @@ $("#search_ext__tw-check").click(function() {
 // Чекбокс на форме авторизации
 
 $("#modal-dialog-rmbr__check").click(function() {
-    if ($("#modal-dialog-rmbr__cbx")[0].checked) {
+    if ($("#modal-dialog-rmbr__check").attr("data-ch") == 1) {
         $("#modal-dialog-rmbr__check").css("background-position", "0 0");
-        $("#modal-dialog-rmbr__cbx")[0].checked = false;        
+        $("#modal-dialog-rmbr__check").attr("data-ch", 0);        
     } else {
         $("#modal-dialog-rmbr__check").css("background-position", "-20px 0");    
-        $("#modal-dialog-rmbr__cbx")[0].checked = true;        
+        $("#modal-dialog-rmbr__check").attr("data-ch", 1);        
     }
 });
 
@@ -118,16 +118,49 @@ $("#modal-dialog__edit_email-restore-psw").blur(function() {
 
 // Кнопка "Войти"
 
+function createAuthXml(email, psw, rmbr) {
+    try {
+        var xml = $($.parseXML('<?xml version="1.0" encoding="utf-8" ?><root />'));
+        $('root', xml).append($('<email />', xml).text(email));
+        $('root', xml).append($('<psw />',   xml).text(psw));
+        $('root', xml).append($('<rmbr />',  xml).text(rmbr));
+        var xmlContext = (new XMLSerializer()).serializeToString(xml.context);
+    } catch(e) {
+        return "";
+    }
+
+    return xmlContext;
+}
+
 $("#pre-btn").click(function() {
     if (!checkEmail("modal-dialog__edit_email-pre", "modal-dialog__email-ok-pre")) {
         $("#modal-dialog__edit_email-pre").focus();
         return;
     }
     
-    if ($("#modal-dialog__edit_psw-pre").val() == "") {
+    if ($("#modal-dialog__edit_psw-pre").val().length < 6) {
         $("#modal-dialog__edit_psw-pre").focus();
         return;
     }
+    
+    var email = $("#modal-dialog__edit_email-pre").val();
+    var psw   = $("#modal-dialog__edit_psw-pre").val();
+    var rmbr  = $("#modal-dialog-rmbr__check").attr("data-ch");
+    
+    var request = $.ajax({
+      url: "/private-room/login/",
+      method: "POST",
+      data: { email: email, psw: psw, rmbr: rmbr },
+      dataType: "xml"
+    });
+
+    request.success(function(xml) {
+        var status = $(xml).find("status").text();
+        var compID = $(xml).find("companyID").text();
+        if (status === "OK") {
+          window.location.href = "/private-room/?id=" + compID;
+        }
+    });
 });
 
 // Проверка длины пароля

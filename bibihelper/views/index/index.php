@@ -44,9 +44,8 @@ $this->params["page"] = "index";
                     </div>
                     
                     <div class="modal-dialog__block">
-                        <span class="modal-dialog__check" id="modal-dialog-rmbr__check"></span>
+                        <span class="modal-dialog__check" id="modal-dialog-rmbr__check" data-ch="1"></span>
                         <span class="modal-dialog__caption modal-dialog__caption_rmbr">Запомнить</span>
-                        <input type="checkbox" class="form__cbx" id="modal-dialog-rmbr__cbx" checked="checked">
                     </div>
                     
                     <div class="modal-dialog__block" id="modal-dialog__capcha">
@@ -353,7 +352,6 @@ $this->params["page"] = "index";
         <div class="container">
             <div class="row">
                 <span class="special-offers-header__title">Специальные предложения</span>
-                <a href="<?= Url::to('/private-room/') ?>">private room</a>
             </div> <!-- /row -->
         </div>
     </div> <!-- row -->

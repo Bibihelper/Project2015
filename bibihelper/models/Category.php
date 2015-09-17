@@ -3,6 +3,7 @@
 namespace app\models;
 
 use yii\db\ActiveRecord;
+use app\models\Service;
 
 /**
  * This is the model class for table "category".
@@ -31,5 +32,10 @@ class Category extends ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
         ];
+    }
+
+    public function getService()
+    {
+        return $this->hasMany(Service::className(), ['category_id' => 'id']);
     }
 }

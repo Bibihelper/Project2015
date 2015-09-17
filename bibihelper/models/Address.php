@@ -55,11 +55,11 @@ class Address extends ActiveRecord
     
     public function getAddressStr()
     {
-        $city     = ($this->city     == null) ? '' : 'г.' . $this->city;
-        $street   = ($this->street   == null) ? '' : ', ул.' . $this->street;
-        $home     = ($this->home     == null) ? '' : ', д.' . $this->home;
-        $housing  = ($this->housing  == null) ? '' : ', к.' . $this->housing;
-        $building = ($this->building == null) ? '' : ', стр.' . $this->building;
+        $city     = ($this->city     == null) ? '' : 'г. ' . $this->city;
+        $street   = ($this->street   == null) ? '' : ', ул. ' . $this->street;
+        $home     = ($this->home     == null) ? '' : ', д. ' . $this->home;
+        $housing  = ($this->housing  == null) ? '' : ', к. ' . $this->housing;
+        $building = ($this->building == null) ? '' : ', стр. ' . $this->building;
         
         return $city . $street . $home . $housing . $building;
     }

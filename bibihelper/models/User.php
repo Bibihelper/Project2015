@@ -2,7 +2,11 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveRecord;
+use yii\web\IdentityInterface;
+use app\models\UserCompanies;
+use app\models\Company;
 
 /**
  * This is the model class for table "user".
@@ -21,7 +25,7 @@ use yii\db\ActiveRecord;
  * @property string $last_auth_date
  * @property integer $active
  */
-class User extends ActiveRecord
+class User extends ActiveRecord implements IdentityInterface
 {
     public static function tableName()
     {
@@ -56,5 +60,63 @@ class User extends ActiveRecord
             'last_auth_date' => 'Last Auth Date',
             'active' => 'Active',
         ];
+    }
+
+    public function getUserCompanies()
+    {
+        return $this->hasMany(UserCompanies::className(), ['user_id' => 'id']);
+    }
+    
+    public function getCompany()
+    {
+        return $this->hasOne(Company::className(), ['id' => 'company_id'])
+            ->via('userCompanies');
+    }    
+
+    public static function findIdentity($id)
+    {
+        return self::findOne($id);
+    }
+
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        return null;
+    }
+
+    public static function findByEmail($email)
+    {
+        return self::find()->where(['email' => $email])->one();
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    public function validateAuthKey($authKey)
+    {
+        return $this->auth_key === $authKey;
+    }
+
+    public function validatePassword($password)
+    {
+        return $this->password_hash === $password;
+    }
+
+    public function getPassword()
+    {
+        return $this->password_hash;
+    }
+
+    public function setPassword($password)
+    {
+        if (!empty($password) && $password != $this->password_hash) {
+            $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        }
     }
 }

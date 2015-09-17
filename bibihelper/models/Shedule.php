@@ -4,8 +4,6 @@ namespace app\models;
 
 use yii\db\ActiveRecord;
 
-
-
 /**
  * This is the model class for table "shedule".
  *
@@ -46,7 +44,7 @@ class Shedule extends ActiveRecord
     
     public static function getSheduleTable($companyID)
     {
-        $st = Shedule::find(['company_id' => $companyID])
+        $st = self::find(['company_id' => $companyID])
             ->orderBy('day')
             ->all();
         
@@ -61,7 +59,7 @@ class Shedule extends ActiveRecord
     
     public static function getSheduleString($companyID)
     {
-        $st = Shedule::getSheduleTable($companyID);
+        $st = self::getSheduleTable($companyID);
         $ss = '';
         
         foreach ($st as $tm => $ds) {

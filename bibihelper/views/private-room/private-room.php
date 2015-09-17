@@ -42,6 +42,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                         <span class="info info__shedule">График работы: <?= $shedule ?></span>
                                     <?php endif ?>
                                     <span class="info info__phone"><?= $company->phone ?></span>
+                                    <span class="info info__change"><a href="<?= Url::to('/private-room/logout/') ?>" title="">[Изменить]</a></span>
                                 </div>
                             </div>
                         
@@ -62,27 +63,51 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             <div class="arrow-ud arrow_up-na"></div>
 
                                             <ul class="info-s">
-                                                <?php foreach($srvs[$company->id] as $category => $srv): ?>
+                                                
+                                                <?php foreach($categories as $ctg): ?>
                                                     <li class="info__item" data-exp="1">
-                                                        <span class="info__item-label"><?= $category ?><a href="javascript::void(0)" title="" class="arrow-item arrow-item-left" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt=""></a></span>
+                                                        
+                                                        <span class="info__item-label">
+                                                            <?= $ctg->name ?>
+                                                            <a href="javascript::void(0)" title="" class="arrow-item arrow-item-left" data-exp="0">
+                                                                <img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt="">
+                                                            </a>
+                                                        </span>
+                                                        
                                                         <ul class="item-menu item-menu_m">
-                                                            <li class="item-menu__i item-menu__i_first">
-                                                                <span class="item-menu__i-label">Выбрать все</span>
-                                                                <div class="info__chbx">
-                                                                    <span class="info__cbx" data-ch="0"></span>  
-                                                                </div>
-                                                            </li>
-                                                            <?php foreach($srv as $name): ?>
-                                                                <li class="item-menu__i">
-                                                                    <span class="item-menu__i-label"><?= $name ?></span>
-                                                                    <div class="info__chbx">
-                                                                        <span class="info__cbx" data-ch="0"></span>
-                                                                    </div>
+                                                            <?php if (count($ctg->service) != 0): ?>
+                                                                <li class="item-menu__i item-menu__i_first">
+                                                                    <span class="item-menu__i-label">Выбрать все</span>
+                                                                    <?php if (count($company->getService()->filterByCategory($ctg->id)->all()) == count($ctg->service)): ?>
+                                                                        <div class="info__chbx">
+                                                                            <span class="info__cbx info__cbx_active" data-ch="1"></span>  
+                                                                        </div>
+                                                                    <?php else: ?>
+                                                                        <div class="info__chbx">
+                                                                            <span class="info__cbx" data-ch="0"></span>  
+                                                                        </div>
+                                                                    <?php endif ?>
                                                                 </li>
-                                                            <?php endforeach ?>
+                                                                <?php foreach($ctg->service as $srv): ?>
+                                                                    <li class="item-menu__i">
+                                                                        <span class="item-menu__i-label"><?= $srv->name ?></span>
+                                                                        <?php if (count($company->getService()->filterByCategory($ctg->id)->filterByService($srv->id)->all()) == 0): ?>
+                                                                            <div class="info__chbx">
+                                                                                <span class="info__cbx" data-ch="0"></span>
+                                                                            </div>
+                                                                        <?php else: ?>
+                                                                            <div class="info__chbx">
+                                                                                <span class="info__cbx info__cbx_active" data-ch="1"></span>
+                                                                            </div>
+                                                                        <?php endif ?>
+                                                                    </li>
+                                                                <?php endforeach ?>
+                                                            <?php endif ?>
                                                         </ul>
+                                                        
                                                     </li>
                                                 <?php endforeach ?>
+                                                    
                                             </ul>
                                             
                                             <div class="arrow-ud arrow_down-a"></div>
@@ -103,27 +128,50 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                 </li>
                                                 -->
                                                 
-                                                <?php foreach($brands[$company->id] as $country => $brand): ?>
-                                                    <li class="info__item">
-                                                        <span class="info__item-label"><?= $country ?><a href="javascript::void(0)" title="" class="arrow-item arrow-item-right" data-exp="0"><img src="<?= Url::to('/images/arrow-item-right.png') ?>"></a></span>
+                                                <?php foreach($countries as $cntr): ?>
+                                                    <li class="info__item" data-exp="1">
+                                                        
+                                                        <span class="info__item-label">
+                                                            <?= $cntr->country ?>
+                                                            <a href="javascript::void(0)" title="" class="arrow-item arrow-item-left" data-exp="0">
+                                                                <img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt="">
+                                                            </a>
+                                                        </span>
+                                                        
                                                         <ul class="item-menu item-menu_m">
-                                                            <li class="item-menu__i item-menu__i_first">
-                                                                <span class="item-menu__i-label">Выбрать все</span>
-                                                                <div class="info__chbx">
-                                                                    <span class="info__cbx" data-ch="0"></span>
-                                                                </div>
-                                                            </li>
-                                                            <?php foreach ($brand as $car): ?>
-                                                                <li class="item-menu__i">
-                                                                    <span class="item-menu__i-label"><?= $car ?></span>
-                                                                    <div class="info__chbx">
-                                                                        <span class="info__cbx"></span>
-                                                                    </div>
+                                                            <?php if (count($cntr->brand) != 0): ?>
+                                                                <li class="item-menu__i item-menu__i_first">
+                                                                    <span class="item-menu__i-label">Выбрать все</span>
+                                                                    <?php if (count($company->getBrand()->filterByCountry($cntr->country)->all()) == count($cntr->brand)): ?>
+                                                                        <div class="info__chbx">
+                                                                            <span class="info__cbx info__cbx_active" data-ch="1"></span>  
+                                                                        </div>
+                                                                    <?php else: ?>
+                                                                        <div class="info__chbx">
+                                                                            <span class="info__cbx" data-ch="0"></span>  
+                                                                        </div>
+                                                                    <?php endif ?>
                                                                 </li>
-                                                            <?php endforeach ?>
+                                                                <?php foreach($cntr->brand as $brand): ?>
+                                                                    <li class="item-menu__i">
+                                                                        <span class="item-menu__i-label"><?= $brand->name ?></span>
+                                                                        <?php if (count($company->getBrand()->filterByCountry($cntr->country)->filterByBrand($brand->id)->all()) == 0): ?>
+                                                                            <div class="info__chbx">
+                                                                                <span class="info__cbx" data-ch="0"></span>
+                                                                            </div>
+                                                                        <?php else: ?>
+                                                                            <div class="info__chbx">
+                                                                                <span class="info__cbx info__cbx_active" data-ch="1"></span>
+                                                                            </div>
+                                                                        <?php endif ?>
+                                                                    </li>
+                                                                <?php endforeach ?>
+                                                            <?php endif ?>
                                                         </ul>
+                                                        
                                                     </li>
                                                 <?php endforeach ?>
+                                                    
                                             </ul>
                                             
                                             <div class="arrow-ud arrow_down-a"></div>
@@ -178,7 +226,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                 
                                                     <div class="preview-block">
                                                         <span class="prtxt prtxt_caption">Предпоказ акции:</span>
-                                                        <span class="prtxt prtxt_title">Ультра-сервис</span>
+                                                        <span class="prtxt prtxt_title"><?= $company->name ?></span>
                                                         <div class="primg">
                                                             <img src="<?= Url::to('/images/slide-1.png') ?>" alt="">
                                                         </div>
