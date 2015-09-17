@@ -191,12 +191,28 @@ $("#s-br").change(function() {
 });
 
 $("#s-publish").click(function() {
+    if ($(this).hasClass("disabled")) {
+      return false;
+    }
+
     $(".s-off-ctrls").hide();
     $(".s-off-preview").css("float", "none");
     $(this).text("Удалить предложение").attr("data-btn-type", "2");
 });
 
+function updateStatePublishBtn() {
+    if ($("#s-descr-edit").val().length > 6 && $("#s-br").val().length > 4) {
+        $("#s-publish").removeClass("disabled")
+    } else {
+        $("#s-publish").addClass("disabled")      
+    };  
+}
+
 $("#s-load-image").click(function() {
+    if ($(this).hasClass("disabled")) {
+      return false;
+    }
+    
     var data = new FormData();
 
     $.each(image, function(key, value) {
@@ -220,7 +236,11 @@ $("#s-load-image").click(function() {
         var filename = $(xml).find("filename").text();
         
         if (status === "OK") {
+
             $("#s-image").attr("src", filename);
+            
+            updateStatePublishBtn();
+            
         }
     });
 });
@@ -230,5 +250,7 @@ $("#s-load-image").click(function() {
 $("#s-descr-edit").keyup(function() {
 
   $("#s-descr").html($(this).val());
+  
+  updateStatePublishBtn();
   
 });

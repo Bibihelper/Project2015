@@ -239,7 +239,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             </div>
                                             
                                             <div class="info-c__btn">
-                                                <button type="button" class="btn bibi-form-btn info-c__btn_save" id="s-publish" data-btn-type="1">Опубликовать</button>
+                                                <button type="button" class="btn bibi-form-btn info-c__btn_save disabled" id="s-publish" data-btn-type="1">Опубликовать</button>
                                             </div>
                     
                                         </div>

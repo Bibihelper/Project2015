@@ -352,7 +352,6 @@ $this->params["page"] = "index";
         <div class="container">
             <div class="row">
                 <span class="special-offers-header__title">Специальные предложения</span>
-                <a href="<?= Url::to("/private-room/?id=2") ?>">private room</a>
             </div> <!-- /row -->
         </div>
     </div> <!-- row -->
