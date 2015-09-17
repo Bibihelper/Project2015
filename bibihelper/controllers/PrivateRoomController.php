@@ -11,6 +11,7 @@ use app\models\User;
 use app\models\Category;
 use app\models\Country;
 use app\models\Brand;
+use yii\web\UploadedFile;
 
 class PrivateRoomController extends Controller
 {
@@ -92,5 +93,28 @@ class PrivateRoomController extends Controller
         }
         
         return true;
+    }
+    
+    public function actionLoadImageTmp($id)
+    {
+        foreach ($_FILES as $file) {
+            $fileTmpName = $file['tmp_name'];
+            $fileName    = $file['name'];
+            $fileRPath   = '/web/data/' . $id . '/';
+            $fileFPath   = Yii::$app->basePath . $fileRPath;
+        }
+        
+        if (!is_writable($fileFPath)) {
+            
+            chmod($fileFPath, 0777);
+            
+        }
+        
+        $mv = move_uploaded_file($fileTmpName, $fileFPath . $fileName);
+
+        $status = ($mv) ? 'OK' : 'ERROR';
+        $responce = '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status><filename>' . $fileRPath . $fileName . '</filename></root>';
+        
+        return $responce;
     }
 }

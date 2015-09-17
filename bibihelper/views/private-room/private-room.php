@@ -43,6 +43,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                     <?php endif ?>
                                     <span class="info info__phone"><?= $company->phone ?></span>
                                     <span class="info info__change"><a href="<?= Url::to('/private-room/logout/') ?>" title="">[Изменить]</a></span>
+                                    <span class="hidden" id="c-id"><?= $company->id ?></span>
                                 </div>
                             </div>
                         
@@ -198,8 +199,8 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                         <div class="c-block">
                                                             <span class="c-caption">Выберете картинку для акции.</span>
                                                             <button type="button" class="btn s-off-btn" id="s-browse">Обзор</button><input type="text" class="form-control c-edit s-off-edit_m" placeholder="Фото.jpg" id="s-filename">
-                                                            <button type="button" class="btn s-off-btn s-off-btn_m" id="s-load-image">Загрузить</button>
-                                                            <input type="file" id="s-br">
+                                                            <button type="button" class="btn s-off-btn s-off-btn_m disabled" id="s-load-image">Загрузить</button>
+                                                            <input type="file" id="s-br" name="sBr" accept="image/jpeg, image/png, image/gif">
                                                         </div>
                                                         
                                                         <div class="c-block">
@@ -216,24 +217,21 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                         
                                                         <div class="c-block">
                                                             <span class="c-caption">Описание предложения (макс. 50 символов):</span>
-                                                            <input type="text" class="form-control c-edit s-off-edit_m2" value="Скидка 30% на замену масла плюс мойка за пол цены!">
+                                                            <input type="text" class="form-control c-edit s-off-edit_m2" id="s-descr-edit" maxlength="50" value="">
                                                         </div>
                                                         
                                                     </form>
                                                 </div>
                                                 
-                                                <div class="s-off-preview hidden">
+                                                <div class="s-off-preview">
                                                 
                                                     <div class="preview-block">
                                                         <span class="prtxt prtxt_caption">Предпоказ акции:</span>
                                                         <span class="prtxt prtxt_title"><?= $company->name ?></span>
                                                         <div class="primg">
-                                                            <img src="<?= Url::to('/images/slide-1.png') ?>" alt="">
+                                                            <img src="<?= Url::to('/images/s-img.png') ?>" alt="" id="s-image">
                                                         </div>
-                                                        <span class="prtxt prtxt_text">
-                                                            Скидка 20% на замену масла плюс мойка за пол цены!<br>
-                                                            С 17 августа по 17 сентября
-                                                        </span>
+                                                        <span class="prtxt prtxt_text" id="s-descr"></span>
                                                     </div>
                                                     
                                                 </div>

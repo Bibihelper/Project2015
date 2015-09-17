@@ -1,9 +1,23 @@
 /* Private room */
 
+$(document).ready(function() {
+
+  
+  
+});
+
 // Календарь
+
+Date.prototype.addDays = function(days)
+{
+    var dat = new Date(this.valueOf());
+    dat.setDate(dat.getDate() + days);
+    return dat;
+}
 
 $(function() {
     $("#datepicker1").datepicker($.datepicker.regional["ru"]);
+    $("#datepicker1").datepicker("setDate", new Date())
     
     $('#datepicker1').datepicker('option', 'beforeShow', function() {
         if (!$("#c-arrow-1").hasClass("ca-exp")) {
@@ -31,6 +45,7 @@ $("#c-arrow-1").click(function(e) {
 
 $(function() {
     $("#datepicker2").datepicker($.datepicker.regional["ru"]);                
+    $("#datepicker2").datepicker("setDate", (new Date()).addDays(10))
     
     $('#datepicker2').datepicker('option', 'beforeShow', function() {
         if (!$("#c-arrow-2").hasClass("ca-exp")) {
@@ -54,22 +69,6 @@ $("#c-arrow-2").click(function(e) {
         $('#datepicker2').datepicker("show");
     }
     return true;
-});
-
-// Выбор изображения
-
-$("#s-browse").click(function() {
-    $("#s-br").click();
-});
-
-$("#s-br").change(function() {
-    $("#s-filename").val($("#s-br").val());
-});
-
-$("#s-publish").click(function() {
-    $(".s-off-ctrls").hide();
-    $(".s-off-preview").css("float", "none");
-    $(this).text("Удалить предложение").attr("data-btn-type", "2");
 });
 
 // Чекбоксы
@@ -170,11 +169,66 @@ $("#save-email").click(function() {
     return false;
 });
 
-// logo
+// Logo
 
 $(".logo").click(function() {
     window.location.href = "http://bibihelper.com/";
 });
 
+// Загрузка картинки
 
+var image;
 
+$("#s-browse").click(function() {
+    $("#s-br").click();
+});
+
+$("#s-br").change(function() {
+    $("#s-filename").val($("#s-br").val());
+    $("#s-load-image").removeClass("disabled");
+    
+    image = this.files;
+});
+
+$("#s-publish").click(function() {
+    $(".s-off-ctrls").hide();
+    $(".s-off-preview").css("float", "none");
+    $(this).text("Удалить предложение").attr("data-btn-type", "2");
+});
+
+$("#s-load-image").click(function() {
+    var data = new FormData();
+
+    $.each(image, function(key, value) {
+        data.append(key, value);
+    });
+    
+    var cID = $("#c-id").html();
+    
+    var request = $.ajax({
+        url: '/private-room/load-image-tmp/?id=' + cID,
+        type: 'POST',
+        data: data,
+        cache: false,
+        dataType: 'xml',
+        processData: false,
+        contentType: false,
+    });
+
+    request.success(function(xml) {
+        var status   = $(xml).find("status"  ).text();
+        var filename = $(xml).find("filename").text();
+        
+        if (status === "OK") {
+            $("#s-image").attr("src", filename);
+        }
+    });
+});
+
+// Описание специального предложения
+
+$("#s-descr-edit").keyup(function() {
+
+  $("#s-descr").html($(this).val());
+  
+});

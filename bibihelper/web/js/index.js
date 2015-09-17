@@ -155,10 +155,11 @@ $("#pre-btn").click(function() {
     });
 
     request.success(function(xml) {
-        var status = $(xml).find("status").text();
-        var compID = $(xml).find("companyID").text();
+        var status    = $(xml).find("status"   ).text();
+        var companyID = $(xml).find("companyID").text();
+        
         if (status === "OK") {
-          window.location.href = "/private-room/?id=" + compID;
+            window.location.href = "/private-room/?id=" + companyID;
         }
     });
 });
