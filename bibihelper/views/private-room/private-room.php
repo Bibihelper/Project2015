@@ -185,11 +185,11 @@ $this->params['company']['user']['email'] = $company->user->email;
                                         <div id="company-info" class="tab-pane fade">
 
                                             <div class="info-c">
-                                                <textarea class="info-c__text"><?= $company->comment ?></textarea>
+                                                <textarea class="info-c__text" id="cinfo-comment" data-cid="<?= $company->id ?>"><?= $company->comment ?></textarea>
                                             </div>
 
                                             <div class="info-c__btn">
-                                                <button type="button" class="btn bibi-form-btn info-c__btn_save">Сохранить</button>
+                                                <button type="button" class="btn bibi-form-btn info-c__btn_save" id="cinfo-save-btn" disabled="disabled">Сохранить</button>
                                             </div>
                     
                                         </div>

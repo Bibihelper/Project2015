@@ -94,6 +94,12 @@ class Company extends \yii\db\ActiveRecord
         return $this->hasOne(User::className(), ['id' => 'user_id'])
             ->via('userCompanies');
     }    
+    
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+        return $this->save();
+    }
 }
 
 

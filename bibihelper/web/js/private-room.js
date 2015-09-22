@@ -144,6 +144,32 @@ function setCompanySB(cbx, state, url) {
     });
 }
 
+// Информация о компании
+
+$("#cinfo-save-btn").click(function() {
+    var cid = $("#cinfo-comment").attr("data-cid");
+    var txt = $("#cinfo-comment").val();
+    
+    var request = $.ajax({
+        url: "/private-room/set-company-comment/",
+        method: "POST",
+        data: { cid: cid, txt: txt },
+        dataType: "xml"
+    });
+
+    request.success(function(xml) {
+        var status = $(xml).find("status").text();
+        
+        if (status === "OK") {
+            $("#cinfo-save-btn").attr("disabled", "disabled");
+        }
+    });
+});
+
+$("#cinfo-comment").keyup(function() {
+    $("#cinfo-save-btn").removeAttr("disabled");
+});
+
 // Стрелки
 
 $("a.arrow-item").click(function() {

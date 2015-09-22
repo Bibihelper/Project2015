@@ -148,9 +148,32 @@ class PrivateRoomController extends Controller
         $state = $data['state'];
         
         $cb = new CompanyBrands();
-        $err = $cb->setCompanyBrand($cmid, $sbid, $state);
+        $ok = $cb->setCompanyBrand($cmid, $sbid, $state);
         
-        if (!$err) {
+        if (!$ok) {
+            $status = 'ERROR';
+        }
+
+        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+    }
+    
+    public function actionSetCompanyComment()
+    {
+        $status = "OK";
+        $data = Yii::$app->request->post();
+        
+        $cid = $data["cid"];
+        $txt = $data["txt"];
+        
+        $company = Company::findOne($cid);
+        
+        if ($company) {
+            $ok = $company->setComment($txt);
+        } else {
+            $status = "ERROR";
+        }
+
+        if (!$ok) {
             $status = 'ERROR';
         }
 
