@@ -73,7 +73,7 @@ $("#c-arrow-2").click(function(e) {
 
 // Чекбоксы
 
-function updateCbxState(cbx, state) {
+function setCbxState(cbx, state) {
     $(cbx).attr("data-ch", state);
 
     if (state == 1) {
@@ -82,6 +82,46 @@ function updateCbxState(cbx, state) {
         $(cbx).removeClass("info__cbx_active");
     }    
 }
+
+function setCbxStateDB(cbx, state) {
+    var type = $(cbx).attr("data-type");
+
+    switch (type) {
+        case "service":
+            setCompanyService(cbx, state);
+            break;
+        
+        case "brand":
+            break;
+    }
+}
+
+$("li.item-menu__i_first").click(function() {
+    var cbx = $(this).children("div.info__chbx").children("span.info__cbx");
+    var stt = $(cbx).attr("data-ch");
+    stt = (stt == 0) ? 1 : 0;
+    setCbxState(cbx, stt);
+
+    var nxt = $(this).next();
+    var len = $(nxt).length;
+    
+    while (len != 0) {
+        var nxx = $(nxt).children("div.info__chbx").children("span.info__cbx");
+        setCbxStateDB(nxx, stt);
+        nxt = $(nxt).next();
+        len = $(nxt).length;
+    }
+
+    return true;
+});
+
+$("li.item-menu__i").click(function() {
+    var cbx = $(this).children("div.info__chbx").children("span.info__cbx");
+    var stt = $(cbx).attr("data-ch");
+    stt = (stt == 0) ? 1 : 0;
+    setCbxStateDB(cbx, stt);
+    return true;
+});
 
 function setCompanyService(cbx, state) {
     var cid = $(cbx).attr("data-cid");
@@ -98,47 +138,10 @@ function setCompanyService(cbx, state) {
         var status = $(xml).find("status").text();
         
         if (status === "OK") {
-            updateCbxState(cbx, state);
+            setCbxState(cbx, state);
         }
     });
 }
-
-function updCbxState(cbx, state) {
-    var type = $(cbx).attr("data-type");
-
-    switch (type) {
-        case "select-all":
-            updateCbxState(cbx, state);
-            break;
-            
-        case "service":
-            setCompanyService(cbx, state);
-            break;
-        
-        case "brand":
-            break;
-    }
-}
-
-function updCbxStateNextElem(elm, stt) {
-    var nxt = $(elm).next();
-    var len = $(nxt).length;
-    if (len != 0) {
-        var nxx = $(nxt).children("div.info__chbx").children("span.info__cbx");
-        updCbxState(nxx, stt);
-        updCbxStateNextElem(nxt, stt);
-    }
-}
-
-$("li.item-menu__i").click(function() {
-    var cbx = $(this).children("div.info__chbx").children("span.info__cbx");
-    var stt = $(cbx).attr("data-ch");
-    stt = (stt == 0) ? 1 : 0;
-    updCbxState(cbx, stt);
-    if ($(this).hasClass("item-menu__i_first"))
-        updCbxStateNextElem($(this), stt);
-    return true;
-});
 
 // Стрелки
 
