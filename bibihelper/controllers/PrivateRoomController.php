@@ -11,7 +11,7 @@ use app\models\User;
 use app\models\Category;
 use app\models\Country;
 use app\models\Brand;
-use yii\web\UploadedFile;
+use app\models\CompanyServices;
 
 class PrivateRoomController extends Controller
 {
@@ -116,5 +116,24 @@ class PrivateRoomController extends Controller
         $responce = '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status><filename>' . $fileRPath . $fileName . '</filename></root>';
         
         return $responce;
+    }
+    
+    public function actionSetCompanyService()
+    {
+        $status = 'OK';
+        $data = Yii::$app->request->post();      
+        
+        $cid = $data['cid'];
+        $sid = $data['sid'];
+        $state = $data['state'];
+        
+        $companyServices = new CompanyServices();
+        $err = $companyServices->setCompanyService($cid, $sid, $state);
+        
+        if (!$err) {
+            $status = 'ERROR';
+        }
+
+        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
     }
 }

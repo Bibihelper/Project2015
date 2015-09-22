@@ -73,13 +73,50 @@ $("#c-arrow-2").click(function(e) {
 
 // Чекбоксы
 
-function updCbxState(cbx, state) {
+function updateCbxState(cbx, state) {
     $(cbx).attr("data-ch", state);
 
     if (state == 1) {
         $(cbx).addClass("info__cbx_active");
     } else {
         $(cbx).removeClass("info__cbx_active");
+    }    
+}
+
+function setCompanyService(cbx, state) {
+    var cid = $(cbx).attr("data-cid");
+    var sid = $(cbx).attr("data-sid");
+
+    var request = $.ajax({
+        url: "/private-room/set-company-service/",
+        method: "POST",
+        data: { cid: cid, sid: sid, state: state },
+        dataType: "xml"
+    });
+
+    request.success(function(xml) {
+        var status = $(xml).find("status").text();
+        
+        if (status === "OK") {
+            updateCbxState(cbx, state);
+        }
+    });
+}
+
+function updCbxState(cbx, state) {
+    var type = $(cbx).attr("data-type");
+
+    switch (type) {
+        case "select-all":
+            updateCbxState(cbx, state);
+            break;
+            
+        case "service":
+            setCompanyService(cbx, state);
+            break;
+        
+        case "brand":
+            break;
     }
 }
 

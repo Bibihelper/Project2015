@@ -148,10 +148,10 @@ $("#pre-btn").click(function() {
     var rmbr  = $("#modal-dialog-rmbr__check").attr("data-ch");
     
     var request = $.ajax({
-      url: "/private-room/login/",
-      method: "POST",
-      data: { email: email, psw: psw, rmbr: rmbr },
-      dataType: "xml"
+        url: "/private-room/login/",
+        method: "POST",
+        data: { email: email, psw: psw, rmbr: rmbr },
+        dataType: "xml"
     });
 
     request.success(function(xml) {
