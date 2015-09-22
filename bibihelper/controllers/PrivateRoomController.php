@@ -12,6 +12,7 @@ use app\models\Category;
 use app\models\Country;
 use app\models\Brand;
 use app\models\CompanyServices;
+use app\models\CompanyBrands;
 
 class PrivateRoomController extends Controller
 {
@@ -123,12 +124,31 @@ class PrivateRoomController extends Controller
         $status = 'OK';
         $data = Yii::$app->request->post();      
         
-        $cid = $data['cid'];
-        $sid = $data['sid'];
+        $cmid  = $data['cmid'];
+        $sbid  = $data['sbid'];
         $state = $data['state'];
         
-        $companyServices = new CompanyServices();
-        $err = $companyServices->setCompanyService($cid, $sid, $state);
+        $cs = new CompanyServices();
+        $err = $cs->setCompanyService($cmid, $sbid, $state);
+        
+        if (!$err) {
+            $status = 'ERROR';
+        }
+
+        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+    }
+    
+    public function actionSetCompanyBrand()
+    {
+        $status = 'OK';
+        $data = Yii::$app->request->post();      
+        
+        $cmid  = $data['cmid'];
+        $sbid  = $data['sbid'];
+        $state = $data['state'];
+        
+        $cb = new CompanyBrands();
+        $err = $cb->setCompanyBrand($cmid, $sbid, $state);
         
         if (!$err) {
             $status = 'ERROR';

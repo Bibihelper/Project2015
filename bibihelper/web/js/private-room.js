@@ -88,10 +88,11 @@ function setCbxStateDB(cbx, state) {
 
     switch (type) {
         case "service":
-            setCompanyService(cbx, state);
+            setCompanySB(cbx, state, "/private-room/set-company-service/");
             break;
         
         case "brand":
+            setCompanySB(cbx, state, "/private-room/set-company-brand/");
             break;
     }
 }
@@ -123,14 +124,14 @@ $("li.item-menu__i").click(function() {
     return true;
 });
 
-function setCompanyService(cbx, state) {
-    var cid = $(cbx).attr("data-cid");
-    var sid = $(cbx).attr("data-sid");
+function setCompanySB(cbx, state, url) {
+    var cmid = $(cbx).attr("data-cid");
+    var sbid = $(cbx).attr("data-sid");
 
     var request = $.ajax({
-        url: "/private-room/set-company-service/",
+        url: url,
         method: "POST",
-        data: { cid: cid, sid: sid, state: state },
+        data: { cmid: cmid, sbid: sbid, state: state },
         dataType: "xml"
     });
 

@@ -143,28 +143,30 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                         
                                                         <ul class="item-menu item-menu_m">
                                                             <?php if (count($cntr->brand) != 0): ?>
+                                                            
                                                                 <li class="item-menu__i item-menu__i_first">
                                                                     <span class="item-menu__i-label">Выбрать все</span>
                                                                     <?php if (count($company->getBrand()->filterByCountry($cntr->country)->all()) == count($cntr->brand)): ?>
                                                                         <div class="info__chbx">
-                                                                            <span class="info__cbx info__cbx_active" data-ch="1"></span>  
+                                                                            <span class="info__cbx info__cbx_active" data-ch="1" data-type="sellect-all"></span>  
                                                                         </div>
                                                                     <?php else: ?>
                                                                         <div class="info__chbx">
-                                                                            <span class="info__cbx" data-ch="0"></span>  
+                                                                            <span class="info__cbx" data-ch="0" data-type="sellect-all"></span>  
                                                                         </div>
                                                                     <?php endif ?>
                                                                 </li>
+                                                                
                                                                 <?php foreach($cntr->brand as $brand): ?>
                                                                     <li class="item-menu__i">
                                                                         <span class="item-menu__i-label"><?= $brand->name ?></span>
                                                                         <?php if (count($company->getBrand()->filterByCountry($cntr->country)->filterByBrand($brand->id)->all()) == 0): ?>
                                                                             <div class="info__chbx">
-                                                                                <span class="info__cbx" data-ch="0"></span>
+                                                                                <span class="info__cbx" data-ch="0"  data-cid="<?= $company->id ?>" data-sid="<?= $brand->id ?>" data-type="brand"></span>
                                                                             </div>
                                                                         <?php else: ?>
                                                                             <div class="info__chbx">
-                                                                                <span class="info__cbx info__cbx_active" data-ch="1"></span>
+                                                                                <span class="info__cbx info__cbx_active" data-ch="1" data-cid="<?= $company->id ?>" data-sid="<?= $brand->id ?>" data-type="brand"></span>
                                                                             </div>
                                                                         <?php endif ?>
                                                                     </li>

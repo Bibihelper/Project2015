@@ -34,4 +34,48 @@ class CompanyBrands extends ActiveRecord
             'brand_id' => 'Brand ID',
         ];
     }
+    
+    public function addCompanyBrand($cid, $bid)
+    {
+        $brandCount = $this->find()
+            ->where(['company_id' => $cid, 'brand_id' => $bid])
+            ->count();
+        
+        if ($brandCount > 0) {
+            return true;
+        } else {
+            $this->company_id = $cid;
+            $this->brand_id = $bid;
+            return $this->save();
+        }
+    }
+    
+    public function removeCompanyBrand($cid, $bid)
+    {
+        $brand = $this->find()
+            ->where(['company_id' => $cid, 'brand_id' => $bid]);
+        
+        $brandCount = $brand->count();
+
+        if ($brandCount > 0) {
+            $brandall = $brand->all();
+            
+            foreach ($brandall as $brnd) {
+                $ok = $brnd->delete();
+                if (!$ok) {
+                    return false;
+                }
+            }
+        }
+        
+        return true;
+    }
+
+    public function setCompanyBrand($cid, $bid, $state)
+    {
+        switch ($state) {
+            case 0: return $this->removeCompanyBrand($cid, $bid);
+            case 1: return $this->addCompanyBrand($cid, $bid);
+        }
+    }
 }
