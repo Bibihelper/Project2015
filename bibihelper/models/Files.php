@@ -43,4 +43,22 @@ class Files extends \yii\db\ActiveRecord
         
         return $value;
     }
+    
+    public function saveFile($src, $name)
+    {
+        $this->src  = $src;
+        $this->name = $name;
+        $this->save();
+        return $this->id;
+    }
+    
+    public function getSrc($path)
+    {
+        return pathinfo($path, PATHINFO_DIRNAME) . '/';
+    }
+    
+    public function getName($path)
+    {
+        return pathinfo($path, PATHINFO_BASENAME);
+    }
 }

@@ -214,30 +214,65 @@ $("#send-site-news").click(function() {
         $(this).css("background-position", "0 0");
 });
 
-function showMessage($msg) {
-
+function showMessage(msg) {
+    alert(msg);
 }
 
 $("#save-psw").click(function() {
-    $("#dialog").attr("title", "Изменение пароля");
     var pswOld = $("#psw-old").val();
     var pswNew = $("#psw-new").val();
-    var pswOld = $("#psw-confirm").val();
+    var pswCnf = $("#psw-confirm").val();
+    var cid    = $("#options-pr").attr("data-cid");
+    
     if (pswOld === "") {
         showMessage("Введите старый пароль");
-    } else 
+        $("#psw-old").focus();
+        return false;    
+    }
+    
     if (pswNew === "") {
         showMessage("Введите новый пароль");
-    } else 
+        $("#psw-new").focus();
+        return false;    
+    }
+    
     if (pswNew.length < 6) {
         showMessage("Минимальная длина пароля - 6 символов");
-    } else
-    if (pswNew === pswOld) {
-        showMessage("Пароль изменен");
-    } else {
-        showMessage("Пароли не совпадают");
+        $("#psw-new").focus();
+        return false;    
     }
-    return false;    
+    
+    if (pswNew !== pswCnf) {
+        showMessage("Пароли не совпадают");
+        $("#psw-confirm").focus();
+        return false;    
+    }
+    
+    var request = $.ajax({
+        url: "/private-room/change-password/",
+        method: "POST",
+        data: { pswOld: pswOld, pswNew: pswNew, pswCnf: pswCnf, cid: cid },
+        dataType: "xml"
+    });
+
+    request.success(function(xml) {
+        var status = $(xml).find("status").text();
+        
+        if (status === "OK") {
+            showMessage("Пароль изменен");
+            $("psw-old").val("");
+            $("psw-new").val("");
+            $("psw-confirm").val("");
+        }
+        
+        if (status === "ERROR") {
+            var code  = $(xml).find("code") .text();
+            var error = $(xml).find("error").text();
+            
+            showMessage("Не удалось изменить пароль: " + code + " - " + error);
+        }
+    });
+    return true;    
 });
 
 $("#save-email").click(function() {
@@ -288,7 +323,7 @@ $("#s-publish").click(function() {
         var request = $.ajax({
             url: "/private-room/set-special-offer/",
             method: "POST",
-            data: { cid: cid, image: imgage, comment: comment, activeFrom: activeFrom, activeTo: activeTo },
+            data: { cid: cid, image: imgage, comment: comment, activeFrom: activeFrom.toLocaleString(), activeTo: activeTo.toLocaleString() },
             dataType: "xml"
         });
         
@@ -301,6 +336,34 @@ $("#s-publish").click(function() {
                 $(".s-off-ctrls").hide();
                 $(".s-off-preview").css("float", "none");
                 $(sPublish).text("Удалить предложение").attr("data-btn-type", "2");
+            }
+        });
+    }
+
+    if ($(this).attr("data-btn-type") == "2") {
+        var cid = $("#sp-off").attr("data-cid");
+
+        var request = $.ajax({
+            url: "/private-room/remove-special-offer/",
+            method: "POST",
+            data: { cid: cid },
+            dataType: "xml"
+        });
+        
+        var sPublish = this;
+
+        request.success(function(xml) {
+            var status = $(xml).find("status").text();
+
+            if (status === "OK") {
+                $(".s-off-ctrls").show();
+                $(".s-off-preview").css("float", "right");
+                $(sPublish).text("Опубликовать").attr("data-btn-type", "1").addClass("disabled");
+                $("#s-image").attr("src", "/images/s-img.png");
+                $("#s-descr-edit").val("");
+                $("#s-descr").html("");
+                $("#datepicker1").datepicker("setDate", (new Date()));
+                $("#datepicker2").datepicker("setDate", (new Date()).addDays(10));
             }
         });
     }

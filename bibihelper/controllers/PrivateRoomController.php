@@ -13,6 +13,7 @@ use app\models\Country;
 use app\models\Brand;
 use app\models\CompanyServices;
 use app\models\CompanyBrands;
+use app\models\SpecialOffer;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 
@@ -193,7 +194,66 @@ class PrivateRoomController extends Controller
     {
         $status = "OK";
         $data = Yii::$app->request->post();
+        $sp = new SpecialOffer();
+        $ok = $sp->setSpecialOffer($data);
+        
+        if (!$ok) {
+            $status = "ERROR";
+        }
         
         return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+    }
+    
+    public function actionRemoveSpecialOffer()
+    {
+        $status = "OK";
+        $data = Yii::$app->request->post();
+        $sp = new SpecialOffer();
+        $ok = $sp->removeSpecialOffer($data['cid']);
+        
+        if (!$ok) {
+            $status = "ERROR";
+        }
+        
+        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+    }
+    
+    public function actionChangePassword()
+    {
+        $status = "OK";
+        $err = 0;
+        $error = "";
+        $company = $user = null;
+        $data = Yii::$app->request->post();
+        $company = Company::findOne($data['cid']);
+        
+        if ($company) {
+            $user = $company->user;
+        } else {
+            $err = 4;
+        }
+        
+        if ($user) {
+            $err = $user->changePassword($data);
+        } else {
+            $err = 4;
+        }
+        
+        if ($err) {
+            $status = "ERROR";
+            
+            switch ($err) {
+                case 1: $error = "Неверный старый пароль"; break;
+                case 2: $error = "Минимальная длина пароля - 6 символов"; break;
+                case 3: $error = "Пароли не совпадают"; break;
+                case 4: $error = "Unknown error"; break;
+            }
+        }
+        
+        return '<?xml version="1.0" encoding="utf-8" ?><root>'
+                . '<status>' . $status . '</status>'
+                . '<code>' . $err . '</code>'
+                . '<error>'  . $error  . '</error>'
+            . '</root>';
     }
 }

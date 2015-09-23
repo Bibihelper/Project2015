@@ -105,7 +105,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function validatePassword($password)
     {
-        return $this->password_hash === $password;
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
     public function getPassword()
@@ -113,10 +113,23 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->password_hash;
     }
 
-    public function setPassword($password)
+    public function changePassword($data)
     {
-        if (!empty($password) && $password != $this->password_hash) {
-            $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        if (empty($data['pswOld']) != 0 || !$this->validatePassword($data['pswOld'])) {
+            return 1;
         }
+        
+        if (strlen($data['pswNew']) < 6) {
+            return 2;
+        }
+        
+        if ($data['pswNew'] !== $data['pswCnf']) {
+            return 3;
+        }
+        
+        $this->password_hash = Yii::$app->security->generatePasswordHash($data["pswNew"]);
+        $this->save();
+            
+        return 0;
     }
 }

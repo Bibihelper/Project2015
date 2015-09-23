@@ -193,7 +193,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             </div>
                     
                                         </div>
-                                        <div id="sp-off" class="tab-pane fade" data-cid="<?= $company->id ?>">
+                                        <div id="sp-off" class="tab-pane fade" data-cid="<?= $company->id ?>" data-soid="<?= $company->specialOffer->id ?>">
 
                                             <div class="s-off">
                                                 
@@ -258,7 +258,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                         
                         </div>
                         
-                        <div id="options-pr" class="tab-pane fade">
+                        <div id="options-pr" class="tab-pane fade" data-cid="<?= $company->id ?>">
 
                             <div class="opt">
 
