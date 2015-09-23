@@ -269,7 +269,7 @@ $("#reg-btn").click(function() {
         var status = $(xml).find("status").text();
 
         if (status === "OK") {
-            showMessage("Вы успешно зарегистрировались! \nТеперь вы можете войти в ЛК используя свой E-mail и пароль.");
+            showMessage("Вам на почту высланно письмо для подтверждения регистрации.");
         }
         
         if (status === "ERROR") {

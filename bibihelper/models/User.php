@@ -7,7 +7,6 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use app\models\UserCompanies;
 use app\models\Company;
-use app\models\Address;
 
 /**
  * This is the model class for table "user".

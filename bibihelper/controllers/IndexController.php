@@ -6,6 +6,9 @@ use Yii;
 use yii\web\Controller;
 use app\models\SpecialOffer;
 use app\models\User;
+use app\models\Address;
+use app\models\Company;
+use app\models\UserCompanies;
 
 class IndexController extends Controller
 {
