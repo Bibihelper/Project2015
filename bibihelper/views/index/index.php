@@ -417,7 +417,7 @@ $this->params["page"] = "index";
             <div class="row slider-row slider-row_bottom">
             
                 <ul class="slider__viewport">
-                    <?php if (count($spOffs) > 0): ?>
+                    <?php if ($spOffs !== false): ?>
                         <?php foreach ($spOffs as $spOff): ?>
                             <li class="slider__col">
                                 <div class="slider__col-footer"><?= $spOff->comment ?></div>
