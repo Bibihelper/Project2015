@@ -58,16 +58,37 @@ class PrivateRoomController extends Controller
         $this->rememberMe = $post['rmbr'] == 1 ? true : false;
         
         if ($this->validatePassword()) {
-            $auth = Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
-            $this->companyID = $this->_user->company->id;
-            
-            if ($this->rememberMe) {
+            if (!$this->getUser()) {
+                $auth = 1;
+            } else if ($this->getUser()->email_confirm == 0) {
+                $auth = 2;
+            } else {
+                $auth = Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+                $this->companyID = $this->_user->company->id;
+                if ($auth) {
+                    $auth = 0;
+                } else {
+                    $auth = 3;
+                }
+            }
+            if ($auth == 0 && $this->rememberMe) {
                 Yii::$app->user->setReturnUrl('/private-room/?id=' . $this->companyID);
             }
         }
         
-        $status = ($auth) ? 'OK' : 'ERROR';
-        $responce = '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status><companyID>' . $this->companyID . '</companyID></root>';
+        switch ($auth) {
+            case 1: $error = "Учетная запись не существует"; break;
+            case 2: $error = "Учетная запись не активированна"; break;
+            case 3: $error = "Неверный логин или пароль"; break;
+        }
+        
+        $status = ($auth === 0) ? 'OK' : 'ERROR';
+        $responce = '<?xml version="1.0" encoding="utf-8" ?><root>'
+                . '<status>' . $status . '</status>'
+                . '<companyID>' . $this->companyID . '</companyID>'
+                . '<code>' . $auth . '</code>'
+                . '<error>' . $error . '</error>'
+            . '</root>';
         
         return $responce;
     }

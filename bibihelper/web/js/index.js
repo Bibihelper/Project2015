@@ -163,7 +163,8 @@ $("#pre-btn").click(function() {
         }
 
         if (status === "ERROR") {
-            showMessage("Неверный E-mail или пароль");
+            var error = $(xml).find("error").text();
+            showMessage(error);
         }
     });
 });
