@@ -128,6 +128,14 @@ class IndexController extends Controller
             $uc->company_id = $companyID;
             $uc->save();
             
+            $path = Yii::$app->basePath . '/web/data/' . $userID . '/';
+            $ok = mkdir($path, 0777, true);
+            
+            if (!$ok) {
+                $transaction->rollBack();
+                return 5;
+            }
+            
             $transaction->commit();
             
         } catch (Exception $e) {
