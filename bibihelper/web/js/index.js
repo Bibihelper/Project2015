@@ -269,7 +269,6 @@ $("#reg-btn").click(function() {
 
         if (status === "OK") {
             showMessage("Вы успешно зарегистрировались! \nТеперь вы можете войти в ЛК используя свой E-mail и пароль.");
-            window.location.href = $(".logo").attr("data-home");
         }
         
         if (status === "ERROR") {

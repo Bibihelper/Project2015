@@ -26,13 +26,7 @@ class IndexController extends Controller
         $error = "";
         $data = Yii::$app->request->post();
 
-        $user = new User();
-        
-        if ($user) {
-            $err = $user->createUser($data['email'], $data['password'], $data['passwordConfirm']);
-        } else {
-            $err = 4;
-        }
+        $err = $this->createService($data['email'], $data['password'], $data['passwordConfirm']);
         
         if ($err) {
             $status = "ERROR";
@@ -43,6 +37,7 @@ class IndexController extends Controller
                 case 3: $error = "Пароли не совпадают"; break;
                 case 4: $error = "Unknown error"; break;
                 case 5: $error = "Не удалось сохранить данные. Повторите попытку позже."; break;
+                case 6: $error = "Пользователь с таким E-mail уже существует"; break;
             }
         }
         
@@ -51,5 +46,97 @@ class IndexController extends Controller
                 . '<code>' . $err . '</code>'
                 . '<error>'  . $error  . '</error>'
             . '</root>';
+    }
+    
+    public function createService($email, $password, $passwordConfirm)
+    {
+        $regex = '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/';
+        
+        $e = empty($email);
+        $r = preg_match($regex, $email);
+        
+        if ($e || $r != 1) {
+            return 1;
+        }
+        
+        if (strlen($password) < 6) {
+            return 2;
+        }
+        
+        if ($password !== $passwordConfirm) {
+            return 3;
+        }
+        
+        $val = User::findByEmail($email);
+        if ($val) {
+            return 6;
+        }
+        
+        $db = Yii::$app->db;
+        
+        $transaction = $db->beginTransaction();
+        
+        try {
+            
+            $user = new User();
+            $user->name = $email;
+            $user->auth_key = Yii::$app->security->generateRandomString();
+            $user->password_hash = Yii::$app->security->generatePasswordHash($password);
+            $user->password_reset_token = "";
+            $user->email = $email;
+            $user->email_confirm_token = "";
+            $user->email_confirm = 0;
+            $user->role_id = 0;
+            $user->created_at = date("Y-m-d H:i:s");
+            $user->updated_at = date("Y-m-d H:i:s");
+            $user->last_auth_date = 0;
+            $user->active = 1;
+            $user->save();
+            
+            $userID = $user->id;
+            
+            $address = new Address();
+            $address->region = "";
+            $address->city = "";
+            $address->district = "";
+            $address->street = "";
+            $address->home = "";
+            $address->housing = "";
+            $address->building = "";
+            $address->metro = "";
+            $address->latitude = 0;
+            $address->longitude = 0;
+            $address->save();
+            
+            $addressID = $address->id;
+            
+            $company = new Company();
+            $company->created_at = date("Y-m-d H:i:s");
+            $company->name = $email;
+            $company->comment = "";
+            $company->phone = "";
+            $company->twenty_four_hours = 0;
+            $company->active = 1;
+            $company->status_d = 0;
+            $company->address_id = $addressID;
+            $company->save();
+            
+            $companyID = $company->id;
+            
+            $uc = new UserCompanies();
+            $uc->user_id = $userID;
+            $uc->company_id = $companyID;
+            $uc->save();
+            
+            $transaction->commit();
+            
+        } catch (Exception $e) {
+            
+            $transaction->rollBack();
+            return 5;
+            
+        }
+        
+        return 0;
     }
 }
