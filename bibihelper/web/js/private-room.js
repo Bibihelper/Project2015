@@ -16,8 +16,16 @@ Date.prototype.addDays = function(days)
 }
 
 $(function() {
+    var val = $("#datepicker1").attr("data-date"), date;
+    
+    if (val == "") {
+        date = (new Date());
+    } else {
+        date = (new Date(parseInt(val)));
+    }
+    
     $("#datepicker1").datepicker($.datepicker.regional["ru"]);
-    $("#datepicker1").datepicker("setDate", new Date())
+    $("#datepicker1").datepicker("setDate", date);
     
     $('#datepicker1').datepicker('option', 'beforeShow', function() {
         if (!$("#c-arrow-1").hasClass("ca-exp")) {
@@ -44,8 +52,16 @@ $("#c-arrow-1").click(function(e) {
 });
 
 $(function() {
+    var val = $("#datepicker2").attr("data-date"), date;
+    
+    if (val == "") {
+        date = (new Date()).addDays(10);
+    } else {
+        date = (new Date(parseInt(val)));
+    }
+    
     $("#datepicker2").datepicker($.datepicker.regional["ru"]);                
-    $("#datepicker2").datepicker("setDate", (new Date()).addDays(10))
+    $("#datepicker2").datepicker("setDate", date);
     
     $('#datepicker2').datepicker('option', 'beforeShow', function() {
         if (!$("#c-arrow-2").hasClass("ca-exp")) {
@@ -289,7 +305,7 @@ $("#s-load-image").click(function() {
     var cID = $("#c-id").html();
     
     var request = $.ajax({
-        url: '/private-room/load-image-tmp/?id=' + cID,
+        url: '/private-room/load-image/?id=' + cID,
         type: 'POST',
         data: data,
         cache: false,

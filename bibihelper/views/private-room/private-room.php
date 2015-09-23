@@ -211,11 +211,11 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                             <span class="c-caption">Период действия предложения:</span>
                                                             
                                                             <span class="c-caption s-off-caption_b">с</span>
-                                                            <input type="text" id="datepicker1">
+                                                            <input type="text" id="datepicker1" data-date="<?= $company->specialOffer->getActiveFrom() ?>">
                                                             <span class="c-arrow c-arrow_expand c-arrow_1" id="c-arrow-1"></span>
                                                             
                                                             <span class="c-caption s-off-caption_e">по</span>
-                                                            <input type="text" id="datepicker2">
+                                                            <input type="text" id="datepicker2" data-date="<?= $company->specialOffer->getActiveTo() ?>">
                                                             <span class="c-arrow c-arrow_expand c-arrow_2" id="c-arrow-2"></span>
                                                         </div>
                                                         

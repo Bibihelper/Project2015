@@ -8,7 +8,7 @@ use app\models\Address;
 use app\models\CompanyServices;
 use app\models\Service;
 use app\models\User;
-use app\models\Country;
+use app\models\SpecialOffer;
 
 /**
  * This is the model class for table "company".
@@ -71,6 +71,17 @@ class Company extends \yii\db\ActiveRecord
     public function getAddress()
     {
         return $this->hasOne(Address::className(), ['id' => 'address_id']);
+    }
+    
+    public function getSpecialOffer()
+    {
+        $result = $this->hasOne(SpecialOffer::className(), ['company_id' => 'id']);
+        
+        if ($result->count() == 0) {
+            $result = new SpecialOffer();
+        }
+        
+        return $result;
     }
     
     public function getCompanyServices()

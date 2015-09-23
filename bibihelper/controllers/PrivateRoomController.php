@@ -96,13 +96,13 @@ class PrivateRoomController extends Controller
         return true;
     }
     
-    public function actionLoadImageTmp($id)
+    public function actionLoadImage($id)
     {
         foreach ($_FILES as $file) {
             $fileTmpName = $file['tmp_name'];
             $fileName    = $file['name'];
-            $fileRPath   = '/web/data/' . $id . '/';
-            $fileFPath   = Yii::$app->basePath . $fileRPath;
+            $fileRPath   = '/data/' . $id . '/';
+            $fileFPath   = Yii::$app->basePath . '/web' . $fileRPath;
         }
         
         if (!is_writable($fileFPath)) {
