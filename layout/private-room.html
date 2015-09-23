@@ -67,7 +67,7 @@
                                 
                                 <div id="profile" class="tab-pane fade in active tab-pane_pr">
                                     
-                                    <div class="tab-content__info tab-content__info_h1">
+                                    <div class="tab-content__info tab-content__info_h1" style="display: none;">
                                         <div id="map-pr">
                                             <img src="images/map-pr.png" title="">
                                         </div>
@@ -79,7 +79,8 @@
                                         </div>
                                     </div>
                                 
-                                    <div class="tab-content__info tab-content__info_t">
+                                    <div class="tab-content__info tab-content__info_t" style="display: none;">
+                                    
                                         <div class="tabs tabs_t">
                                         
                                             <ul class="nav nav-tabs nav-tabs_t">
@@ -808,6 +809,90 @@
                                         </div>
                                     </div> <!-- /tab-content__info -->
                                 
+                                    <div class="tab-content__info">
+                                        <div class="opt-frm">
+                                            <div class="frm-hint" id="frm-hint-1">
+                                                <span class="hint-text">Допустим ввод символов руссокго и латинского алфавитов и знака - </span>
+                                            </div>
+                                            <div class="frm-block frm-block_ta">
+                                                <span class="frm-header">Данные автосервиса</span>
+                                            </div>
+                                            <div class="frm-block">
+                                                <span class="ctrl-title">Название автосервиса:</span>
+                                                <input type="text" class="text-edit" value="Ультра-сервис">
+                                            </div>
+                                            <div class="frm-block">
+                                                <span class="ctrl-title not-req-t">Регион:</span>
+                                                <input type="text" class="text-edit not-req" value="">
+                                            </div>
+                                            <div class="frm-block">
+                                                <span class="ctrl-title">Город:</span>
+                                                <input type="text" class="text-edit type-error" value="Красноярск.">
+                                            </div>
+                                            <div class="frm-block">
+                                                <span class="ctrl-title">Район:</span>
+                                                <input type="text" class="text-edit" value="Центральный">
+                                            </div>
+                                            <div class="frm-block">
+                                                <span class="ctrl-title">Улица:</span>
+                                                <input type="text" class="text-edit" placeholder="не более 256 символов" value="">
+                                            </div>
+                                            <div class="frm-block">
+                                                <div class="frm-block frm-block_inline frm-block_nm">
+                                                    <span class="ctrl-title">Дом:</span>
+                                                    <input type="text" class="text-edit" placeholder="не более 10 с." value="">
+                                                </div>
+
+                                                <div class="frm-block frm-block_inline frm-block_nm">
+                                                    <span class="ctrl-title">Корпус:</span>
+                                                    <input type="text" class="text-edit" placeholder="не более 10 с." value="">
+                                                </div>
+
+                                                <div class="frm-block frm-block_inline frm-block_nm">
+                                                    <span class="ctrl-title">Строение:</span>
+                                                    <input type="text" class="text-edit" placeholder="не более 10 с." value="">
+                                                </div>
+                                            </div>
+                                            <div class="frm-block">
+                                                <span class="ctrl-title not-req-t">Станция метро:</span>
+                                                <input type="text" class="text-edit not-req" value="">
+                                            </div>
+                                            <div class="frm-block">
+                                                <span class="ctrl-title ctrl-title_mb">График работы:</span>
+                                                <div class="frm-block">
+                                                    <div class="frm-block frm-block_inline frm-block_top frm-block_nm">
+                                                        <span class="info__cbx info__cbx_active"></span><span class="info__cbx-caption" data-ch="0">ежедневно</span>
+                                                    </div>
+                                                    <div class="frm-block frm-block_inline frm-block_nm">
+                                                        <ul class="week">
+                                                            <li><span class="info__cbx info__cbx_active" data-ch="1"></span><span class="info__cbx-caption">понедельник</span></li>
+                                                            <li><span class="info__cbx info__cbx_active" data-ch="1"></span><span class="info__cbx-caption">вторник</span></li>
+                                                            <li><span class="info__cbx info__cbx_active" data-ch="1"></span><span class="info__cbx-caption">среда</span></li>
+                                                            <li><span class="info__cbx info__cbx_active" data-ch="1"></span><span class="info__cbx-caption">четверг</span></li>
+                                                            <li><span class="info__cbx info__cbx_active" data-ch="1"></span><span class="info__cbx-caption">пятница</span></li>
+                                                            <li><span class="info__cbx" data-ch="0"></span><span class="info__cbx-caption">суббота</span></li>
+                                                            <li><span class="info__cbx" data-ch="0"></span><span class="info__cbx-caption">воскресенье</span></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="frm-block">
+                                                    <span class="info__cbx info__cbx_active"></span><span class="info__cbx-caption" data-ch="0">круглосуточно</span>
+                                                </div>
+                                                <div class="frm-block">
+                                                    <div class="frm-block frm-block_inline frm-block_nm">
+                                                        <span class="period-caption">с</span>
+                                                        <div class="counter">
+                                                            <span class="cntr-arrow-up"></span>
+                                                            <span class="cntr-nums"></span>
+                                                            <span class="cntr-arrow-down"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="frm-block frm-block_inline frm-block_nm">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div id="options-pr" class="tab-pane fade">

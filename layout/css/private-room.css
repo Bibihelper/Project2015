@@ -364,13 +364,21 @@ ul.info-s {
     height: 17px;
     background: #fff url("../images/im-cbx.png") 0 0 no-repeat;
     cursor: pointer;
-    display: block;
+    display: inline-block;
 }
 
 .info__cbx_active {
     width: 18px;
     height: 17px;
     background: #fff url("../images/im-cbx.png") -18px 0 no-repeat;
+}
+
+.info__cbx-caption {
+    display: inline-block;
+    font-family: Tahoma;
+    font-size: 14px;
+    margin-left: 6px;
+    vertical-align: 3px;    
 }
 
 .info-c {
@@ -703,6 +711,162 @@ ul.info-s {
     display: inline-block;
     margin-right: 20px;
 }
+
+.opt-frm {
+    margin: 0 280px;
+    position: relative;
+}
+
+.frm-block {
+    margin-bottom: 15px;
+}
+
+.frm-block_nm {
+    margin-bottom: 0;
+}
+
+.frm-block_inline {
+    display: inline-block;    
+    margin-right: 50px;
+    width: 120px;
+}
+
+.frm-block_ta {
+    text-align: center;
+}
+
+.frm-block_top {
+    vertical-align: top;
+}
+
+.frm-header {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #071d72;
+}
+
+.ctrl-title {
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.ctrl-title_mb {
+    margin-bottom: 10px;
+}
+
+.text-edit {
+    display: block;
+    width: 100%;
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    border: 1px solid #39b2cf;
+    height: 30px;
+    padding: 0 10px;
+}
+
+.not-req {
+    background-color: #e0dcdb;
+}
+
+.not-req-t {
+    color: #918d8c;
+}
+
+.type-error {
+    background-color: #fecbca;
+}
+
+.frm-hint {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid #000;
+    background-color: #ffe490;
+    padding: 0px 8px;
+    display: none;
+}
+
+.hint-text {
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 400;
+    color: #000;
+    vertical-align: 1px;
+}
+
+.week {
+    list-style: none;
+    padding: 0;
+}
+
+.period-caption {
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: 400;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: 22px;
+}
+
+.counter {
+    width: 64px;
+    height: 55px;
+    border: 1px solid #39b2cf;
+    background-color: #fff;
+    display: inline-block;
+}
+
+.cntr-nums {
+    background: #eee;
+    overflow: hidden;
+    width: 62px;
+    height: 25px;
+    display: block;
+}
+
+.cntr-arrow-up {
+    overflow: hidden;
+    background: #fff url("../images/cntr-arrows.png") 0px 0px no-repeat;
+    width: 62px;
+    height: 14px;
+    display: block;
+    cursor: pointer;
+}
+
+.cntr-arrow-down {
+    overflow: hidden;
+    background: #fff url("../images/cntr-arrows.png") 0px -14px no-repeat;
+    width: 62px;
+    height: 14px;
+    display: block;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
