@@ -1,8 +1,6 @@
 /* Private room */
 
 $(document).ready(function() {
-
-  
   
 });
 
@@ -272,19 +270,43 @@ $("#save-psw").click(function() {
             showMessage("Не удалось изменить пароль: " + code + " - " + error);
         }
     });
+    
     return true;    
 });
 
 $("#save-email").click(function() {
-    $("#dialog").attr("title", "Изменение E-mail");
-    var email = /^[-._a-z0-9]+@(?:[a-z0-9][-a-z0-9]+\.)+[a-z]{2,6}$/;
+    var email = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     var emailNew = $("#new-email").val();
-    if (email.test(emailNew)) {
+    var cid = $("#options-pr").attr("data-cid");
+    
+    if (!email.test(emailNew)) {
         showMessage("Неверный email");
-    } else {
-        showMessage("E-mail изменен");
+        return false;
     }
-    return false;
+    
+    var request = $.ajax({
+        url: "/private-room/change-email/",
+        method: "POST",
+        data: { email: emailNew, cid: cid },
+        dataType: "xml"
+    });
+
+    request.success(function(xml) {
+        var status = $(xml).find("status").text();
+        
+        if (status === "OK") {
+            showMessage("E-mail изменен");
+        }
+        
+        if (status === "ERROR") {
+            var code  = $(xml).find("code") .text();
+            var error = $(xml).find("error").text();
+
+            showMessage("Не удалось изменить E-mail: " + code + " - " + error);
+        }
+    });
+    
+    return true;
 });
 
 // Logo

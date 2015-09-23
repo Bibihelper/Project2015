@@ -132,4 +132,21 @@ class User extends ActiveRecord implements IdentityInterface
             
         return 0;
     }
+    
+    public function changeEmail($data)
+    {
+        $regex = '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/';
+        
+        $e = empty($data['email']);
+        $r = preg_match($regex, $data['email']);
+        
+        if ($e != 0 || $r != 1) {
+            return 1;
+        }
+        
+        $this->email = $data['email'];
+        $this->save();
+        
+        return 0;
+    }
 }

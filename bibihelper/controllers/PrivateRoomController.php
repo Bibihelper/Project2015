@@ -53,9 +53,9 @@ class PrivateRoomController extends Controller
     {
         $post = Yii::$app->request->post();
         
-        $this->email        = $post['email'];
-        $this->password     = $post['psw'];
-        $this->rememberMe   = $post['rmbr'] == 1 ? true : false;
+        $this->email      = $post['email'];
+        $this->password   = $post['psw'];
+        $this->rememberMe = $post['rmbr'] == 1 ? true : false;
         
         if ($this->validatePassword()) {
             $auth = Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
@@ -246,6 +246,43 @@ class PrivateRoomController extends Controller
                 case 1: $error = "Неверный старый пароль"; break;
                 case 2: $error = "Минимальная длина пароля - 6 символов"; break;
                 case 3: $error = "Пароли не совпадают"; break;
+                case 4: $error = "Unknown error"; break;
+            }
+        }
+        
+        return '<?xml version="1.0" encoding="utf-8" ?><root>'
+                . '<status>' . $status . '</status>'
+                . '<code>' . $err . '</code>'
+                . '<error>'  . $error  . '</error>'
+            . '</root>';
+    }
+    
+    public function actionChangeEmail()
+    {
+        $status = "OK";
+        $err = 0;
+        $error = "";
+        $company = $user = null;
+        $data = Yii::$app->request->post();
+        $company = Company::findOne($data['cid']);
+        
+        if ($company) {
+            $user = $company->user;
+        } else {
+            $err = 4;
+        }
+        
+        if ($user) {
+            $err = $user->changeEmail($data);
+        } else {
+            $err = 4;
+        }
+        
+        if ($err) {
+            $status = "ERROR";
+            
+            switch ($err) {
+                case 1: $error = "Неверный email"; break;
                 case 4: $error = "Unknown error"; break;
             }
         }

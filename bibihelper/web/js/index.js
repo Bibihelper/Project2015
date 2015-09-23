@@ -161,8 +161,16 @@ $("#pre-btn").click(function() {
         if (status === "OK") {
             window.location.href = "/private-room/?id=" + companyID;
         }
+
+        if (status === "ERROR") {
+            showMessage("Неверный E-mail или пароль");
+        }
     });
 });
+
+function showMessage(msg) {
+    alert(msg);
+}
 
 // Проверка длины пароля
 
