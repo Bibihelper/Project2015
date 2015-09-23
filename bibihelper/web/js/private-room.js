@@ -275,20 +275,43 @@ $("#s-br").change(function() {
 
 $("#s-publish").click(function() {
     if ($(this).hasClass("disabled")) {
-      return false;
+        return false;
     }
+    
+    if ($(this).attr("data-btn-type") == "1") {
+        var cid = $("#sp-off").attr("data-cid");
+        var imgage = $(".primg > img").attr("src");
+        var comment = $("#s-descr-edit").val();
+        var activeFrom = $("#datepicker1").datepicker("getDate");
+        var activeTo = $("#datepicker2").datepicker("getDate");
 
-    $(".s-off-ctrls").hide();
-    $(".s-off-preview").css("float", "none");
-    $(this).text("Удалить предложение").attr("data-btn-type", "2");
+        var request = $.ajax({
+            url: "/private-room/set-special-offer/",
+            method: "POST",
+            data: { cid: cid, image: imgage, comment: comment, activeFrom: activeFrom, activeTo: activeTo },
+            dataType: "xml"
+        });
+        
+        var sPublish = this;
+
+        request.success(function(xml) {
+            var status = $(xml).find("status").text();
+
+            if (status === "OK") {
+                $(".s-off-ctrls").hide();
+                $(".s-off-preview").css("float", "none");
+                $(sPublish).text("Удалить предложение").attr("data-btn-type", "2");
+            }
+        });
+    }
 });
 
 function updateStatePublishBtn() {
-    if ($("#s-descr-edit").val().length > 6 && $("#s-br").val().length > 4) {
+    if ($("#s-descr-edit").val().length > 6 && $("#s-image").attr("data-load") == "1") {
         $("#s-publish").removeClass("disabled")
     } else {
         $("#s-publish").addClass("disabled")      
-    };  
+    } 
 }
 
 $("#s-load-image").click(function() {
@@ -321,6 +344,7 @@ $("#s-load-image").click(function() {
         if (status === "OK") {
 
             $("#s-image").attr("src", filename);
+            $("#s-image").attr("data-load", "1");
             
             updateStatePublishBtn();
             

@@ -179,4 +179,12 @@ class PrivateRoomController extends Controller
 
         return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
     }
+    
+    public function actionSetSpecialOffer()
+    {
+        $status = "OK";
+        $data = Yii::$app->request->post();
+        
+        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+    }
 }

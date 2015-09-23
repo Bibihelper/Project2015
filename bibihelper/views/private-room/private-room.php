@@ -193,11 +193,11 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             </div>
                     
                                         </div>
-                                        <div id="sp-off" class="tab-pane fade">
+                                        <div id="sp-off" class="tab-pane fade" data-cid="<?= $company->id ?>">
 
                                             <div class="s-off">
                                                 
-                                                <div class="s-off-ctrls">
+                                                <div class="s-off-ctrls" style="<?= $company->hasOffer() ? "display: none;" : "display: block;" ?>">
                                                     <form>
                                                     
                                                         <div class="c-block">
@@ -221,21 +221,21 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                         
                                                         <div class="c-block">
                                                             <span class="c-caption">Описание предложения (макс. 50 символов):</span>
-                                                            <input type="text" class="form-control c-edit s-off-edit_m2" id="s-descr-edit" maxlength="50" value="">
+                                                            <input type="text" class="form-control c-edit s-off-edit_m2" id="s-descr-edit" maxlength="50" value="<?= $company->specialOffer->comment ?>">
                                                         </div>
                                                         
                                                     </form>
                                                 </div>
                                                 
-                                                <div class="s-off-preview">
+                                                <div class="s-off-preview" style="<?= $company->hasOffer() ? "float: none;" : "float: right;" ?>">
                                                 
                                                     <div class="preview-block">
                                                         <span class="prtxt prtxt_caption">Предпоказ акции:</span>
                                                         <span class="prtxt prtxt_title"><?= $company->name ?></span>
                                                         <div class="primg">
-                                                            <img src="<?= Url::to('/images/s-img.png') ?>" alt="" id="s-image">
+                                                            <img src="<?= Url::to($company->specialOffer->file->getFileFullName()) ?>" alt="" id="s-image">
                                                         </div>
-                                                        <span class="prtxt prtxt_text" id="s-descr"></span>
+                                                        <span class="prtxt prtxt_text" id="s-descr"><?= $company->specialOffer->comment ?></span>
                                                     </div>
                                                     
                                                 </div>
@@ -243,7 +243,11 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             </div>
                                             
                                             <div class="info-c__btn">
-                                                <button type="button" class="btn bibi-form-btn info-c__btn_save disabled" id="s-publish" data-btn-type="1">Опубликовать</button>
+                                                <?php if ($company->hasOffer()): ?>
+                                                    <button type="button" class="btn bibi-form-btn info-c__btn_save" id="s-publish" data-btn-type="2">Удалить предложение</button>
+                                                <?php else: ?>
+                                                    <button type="button" class="btn bibi-form-btn info-c__btn_save disabled" id="s-publish" data-btn-type="1">Опубликовать</button>
+                                                <?php endif ?>
                                             </div>
                     
                                         </div>

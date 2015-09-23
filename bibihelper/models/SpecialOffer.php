@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use Yii;
 use app\models\Files;
 
 /**
@@ -46,7 +45,13 @@ class SpecialOffer extends \yii\db\ActiveRecord
     
     public function getFile()
     {
-        return $this->hasOne(Files::className(), ['id' => 'file_id']);
+        $result = $this->hasOne(Files::className(), ['id' => 'file_id']);
+        
+        if ($result->count() == 0) {
+            $result = new Files();
+        }
+        
+        return $result;
     }
     
     public function getActiveFrom()

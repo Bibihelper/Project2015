@@ -84,7 +84,14 @@ class Company extends \yii\db\ActiveRecord
         return $result;
     }
     
-    public function getCompanyServices()
+    public function hasOffer()
+    {
+        $result = $this->hasOne(SpecialOffer::className(), ['company_id' => 'id']);
+
+        return $result->count() > 0;
+    }
+
+        public function getCompanyServices()
     {
         return $this->hasMany(CompanyServices::className(), ['company_id' => 'id']);
     }
