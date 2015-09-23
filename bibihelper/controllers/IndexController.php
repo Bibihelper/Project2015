@@ -2,13 +2,18 @@
 
 namespace app\controllers;
 
-use Yii;
 use yii\web\Controller;
+use app\models\SpecialOffer;
 
 class IndexController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $spOffs = new SpecialOffer();
+        $spOffs = $spOffs->getAllSpecialOffers();
+        
+        return $this->render('index', [
+            'spOffs' => $spOffs,
+        ]);
     }
 }

@@ -364,15 +364,17 @@ $this->params["page"] = "index";
             <div class="row slider-row slider-row_top">
             
                 <ul class="slider__viewport">
-                    <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
-                    <li class="slider__col"><div class="slider__col-header">Сервис-X</div></li>
-                    <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
-                    <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
-                    <li class="slider__col"><div class="slider__col-header">Сервис-X</div></li>
-                    <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
-                    <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
-                    <li class="slider__col"><div class="slider__col-header">Сервис-X</div></li>
-                    <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
+                    <?php if ($spOffs !== false): ?>
+                        <?php foreach ($spOffs as $spOff): ?>
+                            <li class="slider__col"><div class="slider__col-header"><?= $spOff->company->name ?></div></li>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <?php for ($i = 1; $i <= 3; $i++): ?> 
+                            <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
+                            <li class="slider__col"><div class="slider__col-header">Сервис-X</div></li>
+                            <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
+                        <?php endfor ?>
+                    <?php endif ?>
                 </ul>
             
             </div> <!-- /row -->
@@ -382,15 +384,27 @@ $this->params["page"] = "index";
             <div class="row slider-row slider-row_middle">
             
                 <ul class="slider__viewport" data-current="0">
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-1.png') ?>" alt=""></li>
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-2.png') ?>" alt=""></li>
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-3.png') ?>" alt=""></li>
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-1.png') ?>" alt=""></li>
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-2.png') ?>" alt=""></li>
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-3.png') ?>" alt=""></li>
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-1.png') ?>" alt=""></li>
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-2.png') ?>" alt=""></li>
-                    <li class="slider__col"><img src="<?= Url::to('/images/slide-3.png') ?>" alt=""></li>
+                    <?php if ($spOffs !== false): ?>
+                        <?php foreach ($spOffs as $spOff): ?>
+                            <li class="slider__col">
+                                <a href="#" title="">
+                                    <img src="<?= Url::to($spOff->file->getFileFullName('/images/slide-1.png')) ?>" alt="">
+                                </a>
+                            </li>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <?php for ($i = 1; $i <= 3; $i++): ?>
+                            
+                            <?php for ($j = 1; $j <= 3; $j++): ?>
+                                <li class="slider__col">
+                                    <a href="#" title="">
+                                        <img src="<?= Url::to('/images/slide-' . $j . '.png') ?>" alt="">
+                                    </a>
+                                </li>
+                            <?php endfor ?>
+                                
+                        <?php endfor ?>
+                    <?php endif ?>
                 </ul>
 
                 <div class="arrow arrow_left" ></div>
@@ -403,15 +417,25 @@ $this->params["page"] = "index";
             <div class="row slider-row slider-row_bottom">
             
                 <ul class="slider__viewport">
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
-                    <li class="slider__col"><div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div></li>
+                    <?php if (count($spOffs) > 0): ?>
+                        <?php foreach ($spOffs as $spOff): ?>
+                            <li class="slider__col">
+                                <div class="slider__col-footer"><?= $spOff->comment ?></div>
+                            </li>
+                        <?php endforeach ?>
+                    <?php else: ?>
+                        <?php for ($i = 1; $i <= 3; $i++): ?>
+                            <li class="slider__col">
+                                <div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
+                            </li>
+                            <li class="slider__col">
+                                <div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
+                            </li>
+                            <li class="slider__col">
+                                <div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
+                            </li>
+                        <?php endfor ?>
+                    <?php endif ?>
                 </ul>
                 
             </div> <!-- /row -->                        

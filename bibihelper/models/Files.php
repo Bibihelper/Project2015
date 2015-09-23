@@ -33,12 +33,12 @@ class Files extends \yii\db\ActiveRecord
         ];
     }
     
-    public function getFileFullName()
+    public function getFileFullName($defName = "/images/s-img.png")
     {
         $value = $this->src . $this->name;
         
         if ($value == null) {
-            $value = "/images/s-img.png";
+            $value = $defName;
         }
         
         return $value;

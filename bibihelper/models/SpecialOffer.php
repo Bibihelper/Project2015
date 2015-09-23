@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\Files;
+use app\models\Company;
 
 /**
  * This is the model class for table "special_offer".
@@ -142,5 +143,27 @@ class SpecialOffer extends \yii\db\ActiveRecord
 
         $transaction->commit();
         return true;
+    }
+    
+    public function getCompany()
+    {
+        return $this->hasOne(Company::className(), ['id' => 'company_id']);
+    }
+
+    public function getAllSpecialOffers()
+    {
+        $val = $this->find()->all();
+        
+        switch (count($val)) {
+            case 0: return false;
+            case 1: return array_merge($val, $val, $val, $val, $val, $val, $val, $val, $val);
+            case 2: return array_merge($val, $val, $val, $val);
+            case 3: return array_merge($val, $val, $val);
+            case 4: return array_merge($val, $val);
+            case 5: return array_merge($val, $val);
+            case 6: return array_merge($val, $val);
+        }
+        
+        return $val;
     }
 }
