@@ -255,7 +255,7 @@ $("#save-email").click(function() {
 // Logo
 
 $(".logo").click(function() {
-    window.location.href = "http://bibihelper.com/";
+    window.location.href = $(this).attr("data-home");
 });
 
 // Загрузка картинки

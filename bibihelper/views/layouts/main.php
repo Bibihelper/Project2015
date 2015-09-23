@@ -4,6 +4,7 @@
 /* @var $content string */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 ?>
 
@@ -64,7 +65,7 @@ use yii\helpers\Html;
         <div class="container">                
             <div class="row">
             
-                <div class="logo">
+                <div class="logo" data-home="<?= Url::home() ?>">
                     <p class="logo__bibi-helper logo__bibi_color logo__bibi_shift"><span>BiBi<span class="logo__bibi-helper logo__helper_color">Helper</span></span></p>
                     <p class="logo__slogan">Удобный выбор автосервиса</p>                        
                 </div>

@@ -13,6 +13,8 @@ use app\models\Country;
 use app\models\Brand;
 use app\models\CompanyServices;
 use app\models\CompanyBrands;
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
 
 class PrivateRoomController extends Controller
 {
@@ -112,6 +114,13 @@ class PrivateRoomController extends Controller
         }
         
         $mv = move_uploaded_file($fileTmpName, $fileFPath . $fileName);
+        
+        if ($mv) {
+            $imagine = new Imagine();
+            $image = $imagine->open($fileFPath . $fileName);
+            $box = new Box(700, 420);
+            $image->resize($box)->save();
+        }
 
         $status = ($mv) ? 'OK' : 'ERROR';
         $responce = '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status><filename>' . $fileRPath . $fileName . '</filename></root>';
