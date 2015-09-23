@@ -7,6 +7,7 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use app\models\UserCompanies;
 use app\models\Company;
+use app\models\Address;
 
 /**
  * This is the model class for table "user".
@@ -115,7 +116,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function changePassword($data)
     {
-        if (empty($data['pswOld']) != 0 || !$this->validatePassword($data['pswOld'])) {
+        if (empty($data['pswOld']) || !$this->validatePassword($data['pswOld'])) {
             return 1;
         }
         
@@ -140,12 +141,96 @@ class User extends ActiveRecord implements IdentityInterface
         $e = empty($data['email']);
         $r = preg_match($regex, $data['email']);
         
-        if ($e != 0 || $r != 1) {
+        if ($e || $r != 1) {
             return 1;
         }
         
         $this->email = $data['email'];
         $this->save();
+        
+        return 0;
+    }
+    
+    public function createUser($email, $password, $passwordConfirm)
+    {
+        $regex = '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/';
+        
+        $e = empty($email);
+        $r = preg_match($regex, $email);
+        
+        if ($e || $r != 1) {
+            return 1;
+        }
+        
+        if (strlen($password) < 6) {
+            return 2;
+        }
+        
+        if ($password !== $passwordConfirm) {
+            return 3;
+        }
+        
+        $db = Yii::$app->db;
+        
+        $transaction = $db->beginTransaction();
+        
+        try {
+            
+            $this->name = $email;
+            $this->auth_key = Yii::$app->security->generateRandomString();
+            $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+            $this->password_reset_token = "";
+            $this->email = $email;
+            $this->email_confirm_token = "";
+            $this->email_confirm = 0;
+            $this->role_id = 0;
+            $this->created_at = date("Y-m-d H:i:s");
+            $this->updated_at = date("Y-m-d H:i:s");
+            $this->last_auth_date = 0;
+            $this->active = 1;
+            $this->save();
+            
+            $userID = $this->id;
+            
+            $address = new Address();
+            $address->region = "";
+            $address->city = "";
+            $address->district = "";
+            $address->street = "";
+            $address->home = "";
+            $address->housing = "";
+            $address->building = "";
+            $address->metro = "";
+            $address->latitude = 0;
+            $address->longitude = 0;
+            $address->save();
+            
+            $addressID = $address->id;
+            
+            $company = new Company();
+            $company->created_at = date("Y-m-d H:i:s");
+            $company->name = $email;
+            $company->comment = "";
+            $company->phone = "";
+            $company->twenty_four_hours = 0;
+            $company->active = 1;
+            $company->status_d = 0;
+            $company->address_id = $addressID;
+            $company->save();
+            
+            $companyID = $company->id;
+            
+            $uc = new UserCompanies();
+            $uc->user_id = $userID;
+            $uc->company_id = $companyID;
+            $uc->save();
+            
+        } catch (Exception $e) {
+            
+            $transaction->rollBack();
+            return 5;
+            
+        }
         
         return 0;
     }

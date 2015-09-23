@@ -252,6 +252,31 @@ $("#reg-btn").click(function() {
     if (!comparePasswords()) {
         return;
     }
+    
+    var email           = $("#modal-dialog__edit_email-reg"      ).val();
+    var password        = $("#modal-dialog__edit_psw-reg"        ).val();
+    var passwordConfirm = $("#modal-dialog__edit_psw-confirm-reg").val();
+    
+    var request = $.ajax({
+        url: "/index/register/",
+        method: "POST",
+        data: { email: email, password: password, passwordConfirm: passwordConfirm },
+        dataType: "xml"
+    });
+
+    request.success(function(xml) {
+        var status = $(xml).find("status").text();
+
+        if (status === "OK") {
+            showMessage("Вы успешно зарегистрировались! \nТеперь вы можете войти в ЛК используя свой E-mail и пароль.");
+            window.location.href = $(".logo").attr("data-home");
+        }
+        
+        if (status === "ERROR") {
+            var error = $(xml).find("error").text();
+            showMessage(error);
+        }
+    });
 });
 
 // Кнопка "Восстановить пароль"
