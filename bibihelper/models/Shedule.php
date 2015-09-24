@@ -60,12 +60,12 @@ class Shedule extends ActiveRecord
     public static function getSheduleString($companyID)
     {
         $st = self::getSheduleTable($companyID);
-        $ss = '';
+        $ss = '&nbsp;&nbsp;';
         
         foreach ($st as $tm => $ds) {
             $b = $ds[0];
             $e = $ds[count($ds) - 1];
-            $ss = $ss . $b . ' - ' . $e . ': ' . $tm . '; ';
+            $ss = $ss . $b . ' - ' . $e . ': ' . $tm . '&nbsp;&nbsp;&nbsp;&nbsp;';
         }
         
         return $ss;
