@@ -465,6 +465,32 @@ $(".frm-block > input[type='text']").keyup(function() {
     }
 });
 
+function uncheck(cbx) {
+    $(cbx).removeClass("info__cbx_active");
+    $(cbx).attr("data-ch", 0);
+}
+
+function check(cbx) {
+    $(cbx).addClass("info__cbx_active");
+    $(cbx).attr("data-ch", 1);
+}
+
+$(".frm-block .info__cbx").click(function() {
+    var state = $(this).attr("data-ch");
+    switch (state) {
+        case "0": check(this); break;
+        case "1": uncheck(this); break;
+    }
+});
+
+
+
+
+
+
+
+
+
 
 
 
