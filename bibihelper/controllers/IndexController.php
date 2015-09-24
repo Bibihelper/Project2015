@@ -9,6 +9,7 @@ use app\models\User;
 use app\models\Address;
 use app\models\Company;
 use app\models\UserCompanies;
+use yii\helpers\Url;
 
 class IndexController extends Controller
 {
@@ -30,6 +31,13 @@ class IndexController extends Controller
         $data = Yii::$app->request->post();
 
         $err = $this->createService($data['email'], $data['password'], $data['passwordConfirm']);
+        
+        if ($err == 0) {
+            $user = User::findByEmail($data['email']);
+            if ($user) {
+                $this->sendActEmail($user->email, $user->id, $user->email_confirm_token);
+            }
+        }
         
         if ($err) {
             $status = "ERROR";
@@ -87,7 +95,7 @@ class IndexController extends Controller
             $user->password_hash = Yii::$app->security->generatePasswordHash($password);
             $user->password_reset_token = "";
             $user->email = $email;
-            $user->email_confirm_token = "";
+            $user->email_confirm_token = Yii::$app->security->generateRandomString();
             $user->email_confirm = 0;
             $user->role_id = 0;
             $user->created_at = date("Y-m-d H:i:s");
@@ -149,5 +157,35 @@ class IndexController extends Controller
         }
         
         return 0;
+    }
+    
+    public function sendActEmail($email, $userID, $emailConfirmToken)
+    {
+        $href = Url::base(true) . '/index/confirm/?id=' . $userID . '&token=' . $emailConfirmToken;
+        
+        $text = '<h3>BiBiHelper</h3>'
+            . '<p>Для подтверждения регистрации перейдите по ссылке:</p>' 
+            . '<p><a href="' . $href . '" title="">' . $href . '</a></p>';
+        
+        Yii::$app->mailer->compose()
+            ->setFrom('bibihelper.test1@yandex.ru')
+            ->setTo($email)
+            ->setSubject(Url::home() . ' - подтверждение регистрации')
+            ->setHtmlBody($text)
+            ->send();
+    }
+    
+    public function actionConfirm($id, $token)
+    {
+        $user = User::findOne($id);
+        
+        if ($user && $user->email_confirm_token == $token) {
+            $user->email_confirm = 1;
+            $user->save();
+            $this->redirect(Url::home());
+            Yii::$app->user->login($user, 0);
+            Yii::$app->user->setReturnUrl('/private-room/?id=' . $user->company->id);
+            $this->redirect('/private-room/?id=' . $user->company->id);
+        }
     }
 }
