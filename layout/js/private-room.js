@@ -473,11 +473,13 @@ $(".frm-block > input[type='text']").keyup(function() {
 function uncheck(cbx) {
     $(cbx).removeClass("info__cbx_active");
     $(cbx).attr("data-ch", 0);
+    $("#" + cbx.id + "_2").val(0);
 }
 
 function check(cbx) {
     $(cbx).addClass("info__cbx_active");
     $(cbx).attr("data-ch", 1);
+    $("#" + cbx.id + "_2").val(1);
 }
 
 $(".frm-block .info__cbx").click(function() {
@@ -544,6 +546,7 @@ $(".cntr-arrow-up").click(function() {
         v--;
         $(t).attr("data-time", v);
         $(t).children("img").animate({top: -25 * v});
+        $("#" + $(t).attr("id") + "_2").val(v);
     }
 });
 
@@ -563,6 +566,7 @@ $(".cntr-arrow-down").click(function() {
         v++;
         $(t).attr("data-time", v);
         $(t).children("img").animate({top: -25 * v});
+        $("#" + $(t).attr("id") + "_2").val((bound == 3) ? 15 * v : v);
     }
 });
 
