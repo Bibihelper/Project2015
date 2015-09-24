@@ -345,6 +345,7 @@ ul.info-s {
 
 .item-menu__i-label {
     display: inline-block;
+    width: 90%;
 }
 
 .info__chbx {

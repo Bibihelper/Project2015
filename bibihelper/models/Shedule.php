@@ -40,22 +40,25 @@ class SheduleQuery extends ActiveQuery
         if (!$this->time) {
             $this->time = $this->select(['*'])
                 ->one();
+            if ($this->time == null) {
+                $this->time['begin'] = "09:00";
+                $this->time['end'] = '17:00';
+            }
         }
-        
         return $this->time;
     }
     
     public function getHour($bound = 'begin')
     {
         $time = $this->getTime();
-        $dt = \DateTime::createFromFormat('H:i:s', $time[$bound]);
+        $dt = new \DateTime($time[$bound]);
         return $dt->format('H');
     }
 
     public function getMinute($bound = 'begin')
     {
         $time = $this->getTime();
-        $dt = \DateTime::createFromFormat('H:i:s', $time[$bound]);
+        $dt = new \DateTime($time[$bound]);
         return $dt->format('i');
     }
 }
