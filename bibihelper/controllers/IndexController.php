@@ -170,7 +170,7 @@ class IndexController extends Controller
         Yii::$app->mailer->compose()
             ->setFrom('bibihelper.test1@yandex.ru')
             ->setTo($email)
-            ->setSubject(Url::home() . ' - подтверждение регистрации')
+            ->setSubject(Url::base(true) . ' - подтверждение регистрации')
             ->setHtmlBody($text)
             ->send();
     }
