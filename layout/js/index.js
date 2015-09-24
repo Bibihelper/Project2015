@@ -270,6 +270,7 @@ $("#reg-btn").click(function() {
 
         if (status === "OK") {
             showMessage("Вам на почту высланно письмо для подтверждения регистрации.");
+            setTimeout(function() { $("#pre").click(); }, 500);
         }
         
         if (status === "ERROR") {
