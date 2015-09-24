@@ -148,20 +148,30 @@ $("#pre-btn").click(function() {
     var rmbr  = $("#modal-dialog-rmbr__check").attr("data-ch");
     
     var request = $.ajax({
-      url: "/private-room/login/",
-      method: "POST",
-      data: { email: email, psw: psw, rmbr: rmbr },
-      dataType: "xml"
+        url: "/private-room/login/",
+        method: "POST",
+        data: { email: email, psw: psw, rmbr: rmbr },
+        dataType: "xml"
     });
 
     request.success(function(xml) {
-        var status = $(xml).find("status").text();
-        var compID = $(xml).find("companyID").text();
+        var status    = $(xml).find("status"   ).text();
+        var companyID = $(xml).find("companyID").text();
+        
         if (status === "OK") {
-          window.location.href = "/private-room/?id=" + compID;
+            window.location.href = "/private-room/?id=" + companyID;
+        }
+
+        if (status === "ERROR") {
+            var error = $(xml).find("error").text();
+            showMessage(error);
         }
     });
 });
+
+function showMessage(msg) {
+    alert(msg);
+}
 
 // Проверка длины пароля
 
@@ -243,6 +253,30 @@ $("#reg-btn").click(function() {
     if (!comparePasswords()) {
         return;
     }
+    
+    var email           = $("#modal-dialog__edit_email-reg"      ).val();
+    var password        = $("#modal-dialog__edit_psw-reg"        ).val();
+    var passwordConfirm = $("#modal-dialog__edit_psw-confirm-reg").val();
+    
+    var request = $.ajax({
+        url: "/index/register/",
+        method: "POST",
+        data: { email: email, password: password, passwordConfirm: passwordConfirm },
+        dataType: "xml"
+    });
+
+    request.success(function(xml) {
+        var status = $(xml).find("status").text();
+
+        if (status === "OK") {
+            showMessage("Вам на почту высланно письмо для подтверждения регистрации.");
+        }
+        
+        if (status === "ERROR") {
+            var error = $(xml).find("error").text();
+            showMessage(error);
+        }
+    });
 });
 
 // Кнопка "Восстановить пароль"
