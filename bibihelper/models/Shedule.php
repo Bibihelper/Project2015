@@ -3,6 +3,62 @@
 namespace app\models;
 
 use yii\db\ActiveRecord;
+use yii\db\ActiveQuery;
+use yii\helpers\ArrayHelper;
+
+/**
+ * This is the query class for table "shedule".
+ *
+ * @property integer $id
+ * @property integer $company_id
+ * @property integer $day
+ * @property string $begin
+ * @property string $end
+ */
+class SheduleQuery extends ActiveQuery
+{
+    private $time = false;
+    
+    public function hasDay($day)
+    {
+        $count = $this->select(['*'])
+            ->where(['day' => $day])
+            ->count();
+        
+        return $count == 0 ? 0 : 1;
+    }
+    
+    public function isEveryDay()
+    {
+        $count = $this->select(['*'])
+            ->count();
+        return $count == 7 ? 1 : 0;
+    }
+    
+    public function getTime()
+    {
+        if (!$this->time) {
+            $this->time = $this->select(['*'])
+                ->one();
+        }
+        
+        return $this->time;
+    }
+    
+    public function getHour($bound = 'begin')
+    {
+        $time = $this->getTime();
+        $dt = \DateTime::createFromFormat('H:i:s', $time[$bound]);
+        return $dt->format('H');
+    }
+
+    public function getMinute($bound = 'begin')
+    {
+        $time = $this->getTime();
+        $dt = \DateTime::createFromFormat('H:i:s', $time[$bound]);
+        return $dt->format('i');
+    }
+}
 
 /**
  * This is the model class for table "shedule".
@@ -42,6 +98,11 @@ class Shedule extends ActiveRecord
         ];
     }
     
+    public static function find()
+    {
+        return new SheduleQuery(get_called_class());
+    }
+
     public static function getSheduleTable($companyID)
     {
         $st = self::find(['company_id' => $companyID])

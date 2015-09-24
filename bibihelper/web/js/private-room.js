@@ -446,3 +446,175 @@ $("#s-descr-edit").keyup(function() {
   updateStatePublishBtn();
   
 });
+
+// Форма данных о компании
+
+$(".frm-block > input[type='text']").keyup(function() {
+    var regexp = /^[a-zA-Zа-яА-Я0-9-_\.]*$/;
+    $("#frm-hint-1 > span.hint-text").html("Допустим ввод символов руссокго и латинского алфавитов и знаков: . - ");
+    if (this.id === "company_phone") {
+        regexp = /^[ 0-9-\(\)\+]*$/;
+        $("#frm-hint-1 > span.hint-text").html("Допустим ввод цифр и знаков: - ( ) + ");
+    }
+    var test = regexp.test($(this).val());
+    
+    if (!test) {
+        $("#frm-hint-1")
+            .css("left", 0)
+            .css("top", this.offsetTop + this.offsetHeight + 1);
+        $("#frm-hint-1").show();
+        $(this).addClass("type-error");
+    } else {
+        $("#frm-hint-1").hide();
+        $(this).removeClass("type-error");
+    }
+});
+
+function uncheck(cbx) {
+    $(cbx).removeClass("info__cbx_active");
+    $(cbx).attr("data-ch", 0);
+    $("#" + cbx.id + "_2").val(0);
+}
+
+function check(cbx) {
+    $(cbx).addClass("info__cbx_active");
+    $(cbx).attr("data-ch", 1);
+    $("#" + cbx.id + "_2").val(1);
+}
+
+$(".frm-block .info__cbx-inline").click(function() {
+    var state = $(this).attr("data-ch");
+    switch (state) {
+        case "0": check(this); break;
+        case "1": uncheck(this); break;
+    }
+    switch (this.id) {
+        case "shedule_every_day": setEveryDay(this); break;
+        case "shedule_twfh"     : setTwfh(this);     break;
+    }
+});
+
+function setEveryDay(cbx) {    
+    var mon = document.getElementById("shedule_mon");
+    var tue = document.getElementById("shedule_tue");
+    var wed = document.getElementById("shedule_wed");
+    var thu = document.getElementById("shedule_thu");
+    var fri = document.getElementById("shedule_fri");
+    var sat = document.getElementById("shedule_sat");
+    var sun = document.getElementById("shedule_sun");
+    var state = $(cbx).attr("data-ch");
+    if (state === "1") {
+        check(mon);
+        check(tue);
+        check(wed);
+        check(thu);
+        check(fri);
+        check(sat);
+        check(sun);
+    } else {
+        uncheck(mon);
+        uncheck(tue);
+        uncheck(wed);
+        uncheck(thu);
+        uncheck(fri);
+        uncheck(sat);
+        uncheck(sun);
+    }
+
+    var state = $(cbx).attr("data-ch");
+    switch (state) {
+        case "0": 
+            $("#shedule_days").slideDown();
+            break;
+        case "1": 
+            $("#shedule_days").slideUp();
+            break;
+    }
+}
+
+function setTwfh(cbx) {
+    var state = $(cbx).attr("data-ch");
+    switch (state) {
+        case "0": 
+            $("#shedule_clock").slideDown();
+            break;
+        case "1": 
+            $("#shedule_clock").slideUp();
+            break;
+    }
+}
+
+$(".cntr-arrow-up").click(function() {
+    var t = $(this).next();
+    var v = parseInt($(t).attr("data-time"));
+
+    if ($(t).hasClass("cntr-hours")) {
+        if (v > 0) {
+            v--;
+            $(t).children("img").animate({top: -25 * v});
+            $(t).attr("data-time", v);
+            $("#" + $(t).attr("id") + "_2").val(v);
+        }
+    }
+    
+    if ($(t).hasClass("cntr-minutes")) {
+        if (v > 0) {
+            v = v - 15;
+            $(t).children("img").animate({top: -25 * Math.floor(v / 15)});
+            $(t).attr("data-time", v);
+            $("#" + $(t).attr("id") + "_2").val(v);
+        }
+    }
+});
+
+$(".cntr-arrow-down").click(function() {
+    var t = $(this).prev();
+    var v = parseInt($(t).attr("data-time"));
+    
+    if ($(t).hasClass("cntr-hours")) {
+        if (v < 23) {
+            v++;
+            $(t).children("img").animate({top: -25 * v});
+            $(t).attr("data-time", v);
+            $("#" + $(t).attr("id") + "_2").val(v);
+        }
+    }
+    
+    if ($(t).hasClass("cntr-minutes")) {
+        if (v < 45) {
+            v = v + 15;
+            $(t).children("img").animate({top: -25 * Math.floor(v / 15)});
+            $(t).attr("data-time", v);
+            $("#" + $(t).attr("id") + "_2").val(v);
+        }
+    }
+});
+
+$("#opt-ch").click(function() {
+    var b = $("#profile").children("div");
+    $(b[0]).slideUp();
+    $(b[1]).slideUp();
+    $(b[2]).slideDown();
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,7 +42,8 @@ $this->params['company']['user']['email'] = $company->user->email;
                                         <span class="info info__shedule">График работы: <?= $shedule ?></span>
                                     <?php endif ?>
                                     <span class="info info__phone"><?= $company->phone ?></span>
-                                    <span class="info info__change"><a href="<?= Url::to('/private-room/logout/') ?>" title="">[Изменить]</a></span>
+                                    <span class="info info__change"><a href="#" title="" id="opt-ch">[Изменить]</a></span>
+                                    <span class="info info__change"><a href="<?= Url::to('/private-room/logout/') ?>" title="" style="display: none;">[Выйти]</a></span>
                                     <span class="hidden" id="c-id"><?= $company->id ?></span>
                                 </div>
                             </div>
@@ -254,8 +255,144 @@ $this->params['company']['user']['email'] = $company->user->email;
                                     </div>
                                     
                                 </div>
-                            </div> <!-- /tab-content__info -->
-                        
+                            </div>
+                 
+                            <div class="tab-content__info" style="display: none;">
+                                <div class="opt-frm">
+                                    <form method="post" action="<?= Url::to("/private-room/options-save") ?>">
+                                        <div class="frm-hint" id="frm-hint-1">
+                                            <span class="hint-text">Допустим ввод символов руссокго и латинского алфавитов и знака - </span>
+                                        </div>
+                                        <div class="frm-block frm-block_ta">
+                                            <span class="frm-header">Данные автосервиса</span>
+                                        </div>
+                                        <div class="frm-block">
+                                            <span class="ctrl-title">Название автосервиса:</span>
+                                            <input type="text" class="text-edit" value="<?= $company->name ?>" id="company_name" name="company_name_2">
+                                        </div>
+                                        <div class="frm-block">
+                                            <span class="ctrl-title not-req-t">Регион:</span>
+                                            <input type="text" class="text-edit not-req" value="<?= $company->address->region ?>" id="address_reginon" name="address_reginon_2">
+                                        </div>
+                                        <div class="frm-block">
+                                            <span class="ctrl-title">Город:</span>
+                                            <input type="text" class="text-edit" value="<?= $company->address->city ?>" id="address_city" name="address_city_2">
+                                        </div>
+                                        <div class="frm-block">
+                                            <span class="ctrl-title">Район:</span>
+                                            <input type="text" class="text-edit" value="<?= $company->address->district ?>" id="address_district" name="address_district_2">
+                                        </div>
+                                        <div class="frm-block">
+                                            <span class="ctrl-title">Улица:</span>
+                                            <input type="text" class="text-edit" maxlength="256" placeholder="не более 256 символов" value="<?= $company->address->street ?>" id="address_street" name="address_street_2">
+                                        </div>
+                                        <div class="frm-block">
+                                            <div class="frm-block frm-block_inline frm-block_nm">
+                                                <span class="ctrl-title">Дом:</span>
+                                                <input type="text" class="text-edit" maxlength="10" placeholder="не более 10 с." value="<?= $company->address->home ?>" id="address_home" name="address_home_2">
+                                            </div>
+
+                                            <div class="frm-block frm-block_inline frm-block_nm">
+                                                <span class="ctrl-title">Корпус:</span>
+                                                <input type="text" class="text-edit" maxlength="10" placeholder="не более 10 с." value="<?= $company->address->housing ?>" id="address_housing" name="address_housing_2">
+                                            </div>
+
+                                            <div class="frm-block frm-block_inline frm-block_nm">
+                                                <span class="ctrl-title">Строение:</span>
+                                                <input type="text" class="text-edit" maxlength="10" placeholder="не более 10 с." value="<?= $company->address->building ?>" id="address_building" name="address_building_2">
+                                            </div>
+                                        </div>
+                                        <div class="frm-block">
+                                            <span class="ctrl-title not-req-t">Станция метро:</span>
+                                            <input type="text" class="text-edit not-req" value="<?= $company->address->metro ?>" id="address_metro" name="address_metro_2">
+                                        </div>
+                                        <div class="frm-block">
+                                            <span class="ctrl-title ctrl-title_mb">График работы:</span>
+                                            <div class="frm-block" id="shedule_twenty_four_hours">
+                                                <span class="info__cbx-inline <?= $company->twenty_four_hours ? "info__cbx_active" : "" ?>" id="shedule_twfh"
+                                                      data-ch="<?= $company->twenty_four_hours ?>"></span><span class="info__cbx-caption">круглосуточно</span>
+                                            </div>
+                                            <div class="frm-block">
+                                                <div class="frm-block frm-block_inline frm-block_top frm-block_nm">
+                                                    <span class="info__cbx-inline <?= $company->getShedule()->isEveryDay() == 1 ? "info__cbx_active" : "" ?>"
+                                                          data-ch="<?= $company->getShedule()->isEveryDay() ?>" id="shedule_every_day"></span><span class="info__cbx-caption">ежедневно</span>
+                                                </div>
+                                                <div class="frm-block frm-block_inline frm-block_nm" id="shedule_days" <?= $company->getShedule()->isEveryDay() == 1 ? 'style="display: none;"' : '' ?>>
+                                                    <ul class="week">
+                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(1) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(1) ?>" id="shedule_mon"></span><span class="info__cbx-caption">понедельник</span></li>
+                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(2) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(2) ?>" id="shedule_tue"></span><span class="info__cbx-caption">вторник</span></li>
+                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(3) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(3) ?>" id="shedule_wed"></span><span class="info__cbx-caption">среда</span></li>
+                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(4) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(4) ?>" id="shedule_thu"></span><span class="info__cbx-caption">четверг</span></li>
+                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(5) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(5) ?>" id="shedule_fri"></span><span class="info__cbx-caption">пятница</span></li>
+                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(6) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(6) ?>" id="shedule_sat"></span><span class="info__cbx-caption">суббота</span></li>
+                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(7) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(7) ?>" id="shedule_sun"></span><span class="info__cbx-caption">воскресенье</span></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="frm-block" id="shedule_clock" <?= $company->twenty_four_hours ? 'style="display: none"' : '' ?>>
+                                                <div class="frm-block frm-block_inline frm-block_nm frm-block_w">
+                                                    <span class="period-caption">с</span>
+                                                    <div class="counter">
+                                                        <span class="cntr-arrow-up"></span>
+                                                        <span class="cntr-nums cntr-hours" id="b_hour" data-time="<?= $company->getShedule()->getHour() ?>">
+                                                            <img src="<?= Url::to("/images/dial-hours.png") ?>" alt="" style="top: <?= -25 * $company->getShedule()->getHour() ?>px;">
+                                                        </span>
+                                                        <span class="cntr-arrow-down"></span>
+                                                    </div>
+                                                    <div class="counter counter_m">
+                                                        <span class="cntr-arrow-up"></span>
+                                                        <span class="cntr-nums cntr-minutes" id="b_minute" data-time="<?= $company->getShedule()->getMinute() ?>">
+                                                            <img src="<?= Url::to("/images/dial-minutes.png") ?>" alt="" style="top: <?= -25 * (int) floor($company->getShedule()->getMinute() /15) ?>px;">
+                                                        </span>
+                                                        <span class="cntr-arrow-down"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="frm-block frm-block_inline frm-block_nm frm-block_w">
+                                                    <span class="period-caption">до</span>
+                                                    <div class="counter">
+                                                        <span class="cntr-arrow-up"></span>
+                                                        <span class="cntr-nums cntr-hours" id="e_hour" data-time="<?= $company->getShedule()->getHour('end') ?>">
+                                                            <img src="<?= Url::to("/images/dial-hours.png") ?>" alt="" style="top: <?= -25 * $company->getShedule()->getHour('end') ?>px;">
+                                                        </span>
+                                                        <span class="cntr-arrow-down"></span>
+                                                    </div>
+                                                    <div class="counter counter_m">
+                                                        <span class="cntr-arrow-up"></span>
+                                                        <span class="cntr-nums cntr-minutes" id="e_minute" data-time="<?= $company->getShedule()->getMinute('end') ?>">
+                                                            <img src="<?= Url::to("/images/dial-minutes.png") ?>" alt="" style="top: <?= -25 * (int) floor($company->getShedule()->getMinute('end') / 15) ?>px;">
+                                                        </span>
+                                                        <span class="cntr-arrow-down"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="frm-block frm-block_mb">
+                                            <span class="ctrl-title">Телефон:</span>
+                                            <input type="text" class="text-edit" placeholder="+7 (_ _ _) _ _ _-_ _-_ _" value="<?= $company->phone ?>" id="company_phone" name="company_phone_2">
+                                        </div>
+                                        <div class="frm-block">
+                                            <div class="info-c__btn info-c__btn_m">
+                                                <button type="submit" class="btn bibi-form-btn info-c__btn_save" id="save-opt">Сохранить</button>
+                                            </div>
+                                        </div>
+                                        <div class="frm-data">
+                                            <input type="hidden" value="<?= $company->twenty_four_hours ?>" id="shedule_twfh_2" name="shedule_twfh_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->hasDay(1) ?>" id="shedule_mon_2" name="shedule_mon_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->hasDay(2) ?>" id="shedule_tue_2" name="shedule_tue_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->hasDay(3) ?>" id="shedule_wed_2" name="shedule_wed_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->hasDay(4) ?>" id="shedule_thu_2" name="shedule_thu_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->hasDay(5) ?>" id="shedule_fri_2" name="shedule_fri_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->hasDay(6) ?>" id="shedule_sat_2" name="shedule_sat_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->hasDay(7) ?>" id="shedule_sun_2" name="shedule_sun_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->getHour() ?>" id="b_hour_2" name="b_hour_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->getMinute() ?>" id="b_minute_2" name="b_minute_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->getHour('end') ?>" id="e_hour_2" name="e_hour_2">
+                                            <input type="hidden" value="<?= $company->getShedule()->getMinute('end') ?>" id="e_minute_2" name="e_minute_2">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
                         </div>
                         
                         <div id="options-pr" class="tab-pane fade" data-cid="<?= $company->id ?>">

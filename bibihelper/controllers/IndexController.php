@@ -9,6 +9,7 @@ use app\models\User;
 use app\models\Address;
 use app\models\Company;
 use app\models\UserCompanies;
+use app\models\Shedule;
 use yii\helpers\Url;
 
 class IndexController extends Controller

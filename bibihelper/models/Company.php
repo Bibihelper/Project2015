@@ -9,6 +9,7 @@ use app\models\CompanyServices;
 use app\models\Service;
 use app\models\User;
 use app\models\SpecialOffer;
+use app\models\Shedule;
 
 /**
  * This is the model class for table "company".
@@ -57,6 +58,11 @@ class Company extends \yii\db\ActiveRecord
         ];
     }
     
+    public function getShedule()
+    {
+        return $this->hasMany(Shedule::className(), ['company_id' => 'id']);
+    }
+    
     public function getCompanyBrands()
     {
         return $this->hasMany(CompanyBrands::className(), ['company_id' => 'id']);
@@ -91,7 +97,7 @@ class Company extends \yii\db\ActiveRecord
         return $result->count() > 0;
     }
 
-        public function getCompanyServices()
+    public function getCompanyServices()
     {
         return $this->hasMany(CompanyServices::className(), ['company_id' => 'id']);
     }
