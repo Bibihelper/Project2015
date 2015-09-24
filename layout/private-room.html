@@ -836,22 +836,22 @@
                                                 </div>
                                                 <div class="frm-block">
                                                     <span class="ctrl-title">Улица:</span>
-                                                    <input type="text" class="text-edit" placeholder="не более 256 символов" value="" id="address_street" name="address_street">
+                                                    <input type="text" class="text-edit" maxlength="256" placeholder="не более 256 символов" value="" id="address_street" name="address_street">
                                                 </div>
                                                 <div class="frm-block">
                                                     <div class="frm-block frm-block_inline frm-block_nm">
                                                         <span class="ctrl-title">Дом:</span>
-                                                        <input type="text" class="text-edit" placeholder="не более 10 с." value="" id="address_home" name="address_home">
+                                                        <input type="text" class="text-edit" maxlength="10" placeholder="не более 10 с." value="" id="address_home" name="address_home">
                                                     </div>
 
                                                     <div class="frm-block frm-block_inline frm-block_nm">
                                                         <span class="ctrl-title">Корпус:</span>
-                                                        <input type="text" class="text-edit" placeholder="не более 10 с." value="" id="address_housing" name="address_housing">
+                                                        <input type="text" class="text-edit" maxlength="10" placeholder="не более 10 с." value="" id="address_housing" name="address_housing">
                                                     </div>
 
                                                     <div class="frm-block frm-block_inline frm-block_nm">
                                                         <span class="ctrl-title">Строение:</span>
-                                                        <input type="text" class="text-edit" placeholder="не более 10 с." value="" id="address_building" name="address_building">
+                                                        <input type="text" class="text-edit" maxlength="10" placeholder="не более 10 с." value="" id="address_building" name="address_building">
                                                     </div>
                                                 </div>
                                                 <div class="frm-block">
@@ -860,7 +860,10 @@
                                                 </div>
                                                 <div class="frm-block">
                                                     <span class="ctrl-title ctrl-title_mb">График работы:</span>
-                                                    <div class="frm-block">
+                                                    <div class="frm-block" id="shedule_twenty_four_hours">
+                                                        <span class="info__cbx" id="shedule_twfh" data-ch="0"></span><span class="info__cbx-caption">круглосуточно</span>
+                                                    </div>
+                                                    <div class="frm-block" id="shedule_days">
                                                         <div class="frm-block frm-block_inline frm-block_top frm-block_nm">
                                                             <span class="info__cbx info__cbx_active" data-ch="1" id="shedule_every_day"></span><span class="info__cbx-caption">ежедневно</span>
                                                         </div>
@@ -876,20 +879,17 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                    <div class="frm-block">
-                                                        <span class="info__cbx" id="shedule_twfh" data-ch="0"></span><span class="info__cbx-caption">круглосуточно</span>
-                                                    </div>
-                                                    <div class="frm-block">
+                                                    <div class="frm-block" id="shedule_clock">
                                                         <div class="frm-block frm-block_inline frm-block_nm frm-block_w">
                                                             <span class="period-caption">с</span>
                                                             <div class="counter">
                                                                 <span class="cntr-arrow-up"></span>
-                                                                <span class="cntr-nums-hours" id="b-hour" data-hour="9"></span>
+                                                                <span class="cntr-nums cntr-hours" id="b-hour" data-time="9"><img src="images/dial-hours.png" alt="" style="top: -225px;"></span>
                                                                 <span class="cntr-arrow-down"></span>
                                                             </div>
                                                             <div class="counter counter_m">
                                                                 <span class="cntr-arrow-up"></span>
-                                                                <span class="cntr-nums-minutes" id="b-minute" data-minute="0"></span>
+                                                                <span class="cntr-nums cntr-minutes" id="b-minute" data-time="0"><img src="images/dial-minutes.png" alt=""></span>
                                                                 <span class="cntr-arrow-down"></span>
                                                             </div>
                                                         </div>
@@ -897,12 +897,12 @@
                                                             <span class="period-caption">до</span>
                                                             <div class="counter">
                                                                 <span class="cntr-arrow-up"></span>
-                                                                <span class="cntr-nums-hours" id="e-hour" data-hour="9"></span>
+                                                                <span class="cntr-nums cntr-hours" id="e-hour" data-time="19"><img src="images/dial-hours.png" alt="" style="top: -475px;"></span>
                                                                 <span class="cntr-arrow-down"></span>
                                                             </div>
                                                             <div class="counter counter_m">
                                                                 <span class="cntr-arrow-up"></span>
-                                                                <span class="cntr-nums-minutes" id="e-minute" data-minute="0"></span>
+                                                                <span class="cntr-nums cntr-minutes" id="e-minute" data-time="0"><img src="images/dial-minutes.png" alt=""></span>
                                                                 <span class="cntr-arrow-down"></span>
                                                             </div>
                                                         </div>
@@ -910,7 +910,7 @@
                                                 </div>
                                                 <div class="frm-block frm-block_mb">
                                                     <span class="ctrl-title">Телефон:</span>
-                                                    <input type="text" class="text-edit" placeholder="+7 (_ _ _) _ _ _-_ _-_ _" value="">
+                                                    <input type="text" class="text-edit" placeholder="+7 (_ _ _) _ _ _-_ _-_ _" value="" id="company_phone" name="company_phone">
                                                 </div>
                                                 <div class="frm-block">
                                                     <div class="info-c__btn info-c__btn_m">

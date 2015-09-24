@@ -828,6 +828,7 @@ ul.info-s {
     border: 1px solid #39b2cf;
     background-color: #fff;
     display: inline-block;
+    position: relative;
 }
 
 .cntr-arrow-up {
@@ -846,24 +847,21 @@ ul.info-s {
     height: 14px;
     display: block;
     cursor: pointer;
+    margin-top: 25px;
 }
 
-.cntr-nums-hours {
+.cntr-nums {
     background: #eee;
     overflow: hidden;
     width: 62px;
     height: 25px;
     display: block;
-    background: #fff url("../images/dial-hours.png") 0px -225px no-repeat;
+    background-color: #fff;
+    position: absolute;
 }
 
-.cntr-nums-minutes {
-    background: #eee;
-    overflow: hidden;
-    width: 62px;
-    height: 25px;
-    display: block;
-    background: #fff url("../images/dial-minutes.png") 0px 0px no-repeat;
+.cntr-nums > img {
+    position: absolute;
 }
 
 .counter_m {
