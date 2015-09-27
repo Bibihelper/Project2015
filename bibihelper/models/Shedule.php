@@ -41,7 +41,7 @@ class SheduleQuery extends ActiveQuery
             $this->time = $this->select(['*'])
                 ->one();
             if ($this->time == null) {
-                $this->time['begin'] = "09:00";
+                $this->time['begin'] = '09:00';
                 $this->time['end'] = '17:00';
             }
         }
