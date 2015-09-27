@@ -345,6 +345,7 @@ ul.info-s {
 
 .item-menu__i-label {
     display: inline-block;
+    width: 90%;
 }
 
 .info__chbx {
@@ -360,6 +361,14 @@ ul.info-s {
 }
 
 .info__cbx {
+    width: 18px;
+    height: 17px;
+    background: #fff url("../images/im-cbx.png") 0 0 no-repeat;
+    cursor: pointer;
+    display: block;
+}
+
+.info__cbx-inline {
     width: 18px;
     height: 17px;
     background: #fff url("../images/im-cbx.png") 0 0 no-repeat;
