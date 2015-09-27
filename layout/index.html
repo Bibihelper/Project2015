@@ -97,9 +97,9 @@
             </div>
         </div> <!-- /private-room-entry -->
         
-        <div class="modal fade" id="register-company" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
+        <div class="modal fade" id="company-rf" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
             <div class="modal-dialog m-dialog">
-                <form id="register-form">
+                <form id="rf">
                     <div class="modal-content f-content rf-content">
                         <button type="button" class="close f-close" data-dismiss="modal" aria-hidden="true" id="rf-close">&times;</button>
 
@@ -108,24 +108,25 @@
                         </div>
                         
                         <div class="modal-body f-body">
-                            <div class="f-hint"><span class="f-text"></span></div>
-                            
                             <div class="form-group f-group">
                                 <label for="rf-email" class="f-label">Адрес электронной почты:</label>
                                 <span class="f-icon f-icon-ok"></span>
                                 <input type="text" class="form-control f-control" id="rf-email">
+                                <div class="f-hint"><span class="f-text"></span></div>
                             </div>
                             
                             <div class="form-group f-group">
                                 <label for="rf-password" class="f-label">Пароль:</label>
                                 <span class="f-icon f-icon-ok"></span>
                                 <input type="password" class="form-control f-control" id="rf-password">
+                                <div class="f-hint"><span class="f-text"></span></div>
                             </div>
                             
                             <div class="form-group f-group c-mb0">
                                 <label for="rf-password-ok" class="f-label">Подтвердите пароль:</label>
                                 <span class="f-icon f-icon-ok"></span>
                                 <input type="password" class="form-control f-control" id="rf-password-ok">
+                                <div class="f-hint"><span class="f-text"></span></div>
                             </div>
                         </div>
                         
@@ -190,7 +191,7 @@
                 <div class="container">
                     <div class="row menu">
                         <div class="menu__item"><a href="#" title="" data-toggle="modal" data-target="#private-room-entry" id="pre">Войти в личный кабинет</a></div>
-                        <div class="menu__item menu__item_mrg-r"><a href="#" title="" data-toggle="modal" data-target="#register-company" id="reg">Добавить автосервис</a></div>
+                        <div class="menu__item menu__item_mrg-r"><a href="#" title="" data-toggle="modal" data-target="#company-rf" id="reg">Добавить автосервис</a></div>
                         <div class="menu__item menu__item_mrg-r" style="display: none;"><a href="#" title="" data-toggle="modal" data-target="#restore-psw" id="rst">Восстановить пароль</a></div>
                     </div> <!-- /row -->
                 </div> 
@@ -528,5 +529,6 @@
         <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
         <script src="js/map.js"></script>
         <script src="js/index.js"></script>
+        <script src="js/company-rf.js"></script>
     </body>
 </html>
