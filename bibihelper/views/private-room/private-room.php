@@ -39,7 +39,8 @@ $this->params['company']['user']['email'] = $company->user->email;
                                     <?php if ($company->twenty_four_hours): ?>
                                         <span class="info info__shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>" title=""></span>
                                     <?php else: ?>
-                                        <span class="info info__shedule">График работы: <?= $shedule ?></span>
+                                        <span class="info info__shedule">График работы:</span>
+                                        <div class="info info__shedule info__shedule_m"><?= $shedule ?></div>
                                     <?php endif ?>
                                     <span class="info info__phone"><?= $company->phone ?></span>
                                     <span class="info info__change"><a href="#" title="" id="opt-ch">[Изменить]</a></span>

@@ -189,7 +189,6 @@ class RegisterForm extends Model
     {
         if ($this->registerUser()) {
             $user = User::findByEmail($this->email);
-
             if ($user) {
                 $this->sendEmail($user->email, $user->id, $user->email_confirm_token);
                 return true;

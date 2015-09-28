@@ -27,9 +27,6 @@ class PrivateRoomController extends Controller
             return $this->redirect(Url::home());
         }
         
-        $k = $c[0]->brand;
-        $n = Brand::find()->filterByCountry('Германия')->filterByBrand(2)->all();
-        
         $company = Company::findOne($id);
         $shedule = Shedule::getSheduleString($company->id);
         $categories = Category::find()->all();

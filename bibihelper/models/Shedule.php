@@ -105,33 +105,25 @@ class Shedule extends ActiveRecord
     {
         return new SheduleQuery(get_called_class());
     }
-
-    public static function getSheduleTable($companyID)
-    {
-        $st = self::find(['company_id' => $companyID])
-            ->orderBy('day')
-            ->all();
-        
-        $shedule = array();
-        
-        foreach ($st as $t) {
-            $shedule[$t->begin . ' - ' . $t->end][] = Shedule::$DayOfWeek[$t->day];
-        }
-        
-        return $shedule;
-    }
     
     public static function getSheduleString($companyID)
     {
-        $st = self::getSheduleTable($companyID);
-        $ss = '&nbsp;&nbsp;';
+        $shedule = self::find()
+            ->where(['company_id' => $companyID])
+            ->orderBy('day')
+            ->all();
         
-        foreach ($st as $tm => $ds) {
-            $b = $ds[0];
-            $e = $ds[count($ds) - 1];
-            $ss = $ss . $b . ' - ' . $e . ': ' . $tm . '&nbsp;&nbsp;&nbsp;&nbsp;';
+        $sheduleStr = '';
+        
+        foreach ($shedule as $day) {
+            $dayNumber = $day->day;
+            $dayName = self::$DayOfWeek[$dayNumber];
+            $beginTime = \DateTime::createFromFormat('H:i:s', $day->begin);
+            $endTime = \DateTime::createFromFormat('H:i:s', $day->end);
+            $workTime = $beginTime->format('H:i') . '-' . $endTime->format('H:i');
+            $sheduleStr .= $dayName . ': ' . $workTime . '<br>';
         }
         
-        return $ss;
+        return $sheduleStr;
     }
 }
