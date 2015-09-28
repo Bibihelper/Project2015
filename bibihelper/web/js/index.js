@@ -232,54 +232,6 @@ $("#modal-dialog__edit_psw-confirm-reg").keyup(function() {
     }
 });
 
-// Кнопка "Зарегистрироваться"
-
-$("#reg-btn").click(function() {
-    if (!checkEmail("modal-dialog__edit_email-reg", "modal-dialog__email-ok-reg")) {
-        $("#modal-dialog__edit_email-reg").focus();
-        return;
-    }
-    
-    if ($("#modal-dialog__edit_psw-reg").val() == "") {
-        $("#modal-dialog__edit_psw-reg").focus();
-        return;
-    }
-
-    if ($("#modal-dialog__edit_psw-confirm-reg").val() == "") {
-        $("#modal-dialog__edit_psw-confirm-reg").focus();
-        return;
-    }
-    
-    if (!comparePasswords()) {
-        return;
-    }
-    
-    var email           = $("#modal-dialog__edit_email-reg"      ).val();
-    var password        = $("#modal-dialog__edit_psw-reg"        ).val();
-    var passwordConfirm = $("#modal-dialog__edit_psw-confirm-reg").val();
-    
-    var request = $.ajax({
-        url: "/index/register/",
-        method: "POST",
-        data: { email: email, password: password, passwordConfirm: passwordConfirm },
-        dataType: "xml"
-    });
-
-    request.success(function(xml) {
-        var status = $(xml).find("status").text();
-
-        if (status === "OK") {
-            showMessage("Вам на почту высланно письмо для подтверждения регистрации.");
-            setTimeout(function() { $("#pre").click(); }, 500);
-        }
-        
-        if (status === "ERROR") {
-            var error = $(xml).find("error").text();
-            showMessage(error);
-        }
-    });
-});
-
 // Кнопка "Восстановить пароль"
 
 $("#restore-psw-btn").click(function() {

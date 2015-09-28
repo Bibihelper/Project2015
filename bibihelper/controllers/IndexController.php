@@ -2,191 +2,21 @@
 
 namespace app\controllers;
 
-use Yii;
 use yii\web\Controller;
 use app\models\SpecialOffer;
-use app\models\User;
-use app\models\Address;
-use app\models\Company;
-use app\models\UserCompanies;
-use app\models\Shedule;
-use yii\helpers\Url;
+use app\models\RegisterForm;
 
 class IndexController extends Controller
 {
     public function actionIndex()
     {
+        $regFrm = new RegisterForm();
         $spOffs = new SpecialOffer();
         $spOffs = $spOffs->getAllSpecialOffers();
         
         return $this->render('index', [
             'spOffs' => $spOffs,
+            'regFrm' => $regFrm,
         ]);
-    }
-    
-    public function actionRegister()
-    {
-        $status = "OK";
-        $err = 0;
-        $error = "";
-        $data = Yii::$app->request->post();
-
-        $err = $this->createService($data['email'], $data['password'], $data['passwordConfirm']);
-        
-        if ($err == 0) {
-            $user = User::findByEmail($data['email']);
-            if ($user) {
-                $this->sendActEmail($user->email, $user->id, $user->email_confirm_token);
-            }
-        }
-        
-        if ($err) {
-            $status = "ERROR";
-            
-            switch ($err) {
-                case 1: $error = "Неверный email"; break;
-                case 2: $error = "Минимальная длина пароля - 6 символов"; break;
-                case 3: $error = "Пароли не совпадают"; break;
-                case 4: $error = "Unknown error"; break;
-                case 5: $error = "Не удалось сохранить данные. Повторите попытку позже."; break;
-                case 6: $error = "Пользователь с таким E-mail уже существует"; break;
-            }
-        }
-        
-        return '<?xml version="1.0" encoding="utf-8" ?><root>'
-                . '<status>' . $status . '</status>'
-                . '<code>' . $err . '</code>'
-                . '<error>'  . $error  . '</error>'
-            . '</root>';
-    }
-    
-    public function createService($email, $password, $passwordConfirm)
-    {
-        $regex = '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/';
-        
-        $e = empty($email);
-        $r = preg_match($regex, $email);
-        
-        if ($e || $r != 1) {
-            return 1;
-        }
-        
-        if (strlen($password) < 6) {
-            return 2;
-        }
-        
-        if ($password !== $passwordConfirm) {
-            return 3;
-        }
-        
-        $val = User::findByEmail($email);
-        if ($val) {
-            return 6;
-        }
-        
-        $db = Yii::$app->db;
-        
-        $transaction = $db->beginTransaction();
-        
-        try {
-            
-            $user = new User();
-            $user->name = $email;
-            $user->auth_key = Yii::$app->security->generateRandomString();
-            $user->password_hash = Yii::$app->security->generatePasswordHash($password);
-            $user->password_reset_token = "";
-            $user->email = $email;
-            $user->email_confirm_token = Yii::$app->security->generateRandomString();
-            $user->email_confirm = 0;
-            $user->role_id = 0;
-            $user->created_at = date("Y-m-d H:i:s");
-            $user->updated_at = date("Y-m-d H:i:s");
-            $user->last_auth_date = 0;
-            $user->active = 1;
-            $user->save();
-            
-            $userID = $user->id;
-            
-            $address = new Address();
-            $address->region = "";
-            $address->city = "";
-            $address->district = "";
-            $address->street = "";
-            $address->home = "";
-            $address->housing = "";
-            $address->building = "";
-            $address->metro = "";
-            $address->latitude = 0;
-            $address->longitude = 0;
-            $address->save();
-            
-            $addressID = $address->id;
-            
-            $company = new Company();
-            $company->created_at = date("Y-m-d H:i:s");
-            $company->name = $email;
-            $company->comment = "";
-            $company->phone = "";
-            $company->twenty_four_hours = 0;
-            $company->active = 1;
-            $company->status_d = 0;
-            $company->address_id = $addressID;
-            $company->save();
-            
-            $companyID = $company->id;
-            
-            $uc = new UserCompanies();
-            $uc->user_id = $userID;
-            $uc->company_id = $companyID;
-            $uc->save();
-            
-            $path = Yii::$app->basePath . '/web/data/' . $userID . '/';
-            $ok = mkdir($path, 0777, true);
-            
-            if (!$ok) {
-                $transaction->rollBack();
-                return 5;
-            }
-            
-            $transaction->commit();
-            
-        } catch (Exception $e) {
-            
-            $transaction->rollBack();
-            return 5;
-            
-        }
-        
-        return 0;
-    }
-    
-    public function sendActEmail($email, $userID, $emailConfirmToken)
-    {
-        $href = Url::base(true) . '/index/confirm/?id=' . $userID . '&token=' . $emailConfirmToken;
-        
-        $text = '<h3>BiBiHelper</h3>'
-            . '<p>Для подтверждения регистрации перейдите по ссылке:</p>' 
-            . '<p><a href="' . $href . '" title="">' . $href . '</a></p>';
-        
-        Yii::$app->mailer->compose()
-            ->setFrom('bibihelper.test1@yandex.ru')
-            ->setTo($email)
-            ->setSubject(Url::base(true) . ' - подтверждение регистрации')
-            ->setHtmlBody($text)
-            ->send();
-    }
-    
-    public function actionConfirm($id, $token)
-    {
-        $user = User::findOne($id);
-        
-        if ($user && $user->email_confirm_token == $token) {
-            $user->email_confirm = 1;
-            $user->save();
-            $this->redirect(Url::home());
-            Yii::$app->user->login($user, 0);
-            Yii::$app->user->setReturnUrl('/private-room/?id=' . $user->company->id);
-            $this->redirect('/private-room/?id=' . $user->company->id);
-        }
     }
 }

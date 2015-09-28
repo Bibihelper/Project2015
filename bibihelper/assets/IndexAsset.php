@@ -20,11 +20,13 @@ class IndexAsset extends AssetBundle
     public $css = [
         'css/common.css',
         'css/index.css',
+        'css/form.css',
     ];
     public $js = [
         'http://maps.google.com/maps/api/js?sensor=true',
         'js/map.js',
         'js/index.js',
+        'js/company-rf.js',
     ];
     public $depends = [
         'app\assets\ResetAsset',

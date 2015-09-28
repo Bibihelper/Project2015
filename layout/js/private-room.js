@@ -451,9 +451,9 @@ $("#s-descr-edit").keyup(function() {
 
 $(".frm-block > input[type='text']").keyup(function() {
     var regexp = /^[a-zA-Zа-яА-Я0-9-_\.]*$/;
-    $("#frm-hint-1 > span.hint-text").html("Допустим ввод символов руссокго и латинского алфавитов и знака - ");
+    $("#frm-hint-1 > span.hint-text").html("Допустим ввод символов руссокго и латинского алфавитов и знаков: . - ");
     if (this.id === "company_phone") {
-        regexp = /^[0-9-\(\)\+]*$/;
+        regexp = /^[ 0-9-\(\)\+]*$/;
         $("#frm-hint-1 > span.hint-text").html("Допустим ввод цифр и знаков: - ( ) + ");
     }
     var test = regexp.test($(this).val());
@@ -482,7 +482,7 @@ function check(cbx) {
     $("#" + cbx.id + "_2").val(1);
 }
 
-$(".frm-block .info__cbx").click(function() {
+$(".frm-block .info__cbx-inline").click(function() {
     var state = $(this).attr("data-ch");
     switch (state) {
         case "0": check(this); break;
@@ -490,14 +490,11 @@ $(".frm-block .info__cbx").click(function() {
     }
     switch (this.id) {
         case "shedule_every_day": setEveryDay(this); break;
-        case "shedule_twfh": setTwfh(this); break;
-        default:
-            uncheck(document.getElementById("shedule_every_day"));
-            break;
+        case "shedule_twfh"     : setTwfh(this);     break;
     }
 });
 
-function setEveryDay(cbx) {
+function setEveryDay(cbx) {    
     var mon = document.getElementById("shedule_mon");
     var tue = document.getElementById("shedule_tue");
     var wed = document.getElementById("shedule_wed");
@@ -512,8 +509,8 @@ function setEveryDay(cbx) {
         check(wed);
         check(thu);
         check(fri);
-        uncheck(sat);
-        uncheck(sun);
+        check(sat);
+        check(sun);
     } else {
         uncheck(mon);
         uncheck(tue);
@@ -523,17 +520,25 @@ function setEveryDay(cbx) {
         uncheck(sat);
         uncheck(sun);
     }
+
+    var state = $(cbx).attr("data-ch");
+    switch (state) {
+        case "0": 
+            $("#shedule_days").slideDown();
+            break;
+        case "1": 
+            $("#shedule_days").slideUp();
+            break;
+    }
 }
 
 function setTwfh(cbx) {
     var state = $(cbx).attr("data-ch");
     switch (state) {
         case "0": 
-            $("#shedule_days").slideDown();
             $("#shedule_clock").slideDown();
             break;
         case "1": 
-            $("#shedule_days").slideUp();
             $("#shedule_clock").slideUp();
             break;
     }
@@ -541,36 +546,56 @@ function setTwfh(cbx) {
 
 $(".cntr-arrow-up").click(function() {
     var t = $(this).next();
-    var v = $(t).attr("data-time");
-    if (v > 0) {
-        v--;
-        $(t).attr("data-time", v);
-        $(t).children("img").animate({top: -25 * v});
-        $("#" + $(t).attr("id") + "_2").val(v);
+    var v = parseInt($(t).attr("data-time"));
+
+    if ($(t).hasClass("cntr-hours")) {
+        if (v > 0) {
+            v--;
+            $(t).children("img").animate({top: -25 * v});
+            $(t).attr("data-time", v);
+            $("#" + $(t).attr("id") + "_2").val(v);
+        }
+    }
+    
+    if ($(t).hasClass("cntr-minutes")) {
+        if (v > 0) {
+            v = v - 15;
+            $(t).children("img").animate({top: -25 * Math.floor(v / 15)});
+            $(t).attr("data-time", v);
+            $("#" + $(t).attr("id") + "_2").val(v);
+        }
     }
 });
 
 $(".cntr-arrow-down").click(function() {
     var t = $(this).prev();
-    var v = $(t).attr("data-time");
+    var v = parseInt($(t).attr("data-time"));
     
-    var bound = 0;
+    if ($(t).hasClass("cntr-hours")) {
+        if (v < 23) {
+            v++;
+            $(t).children("img").animate({top: -25 * v});
+            $(t).attr("data-time", v);
+            $("#" + $(t).attr("id") + "_2").val(v);
+        }
+    }
     
-    if ($(t).hasClass("cntr-hours"))
-        bound = 23;
-    
-    if ($(t).hasClass("cntr-minutes"))
-        bound = 3;
-        
-    if (v < bound) {
-        v++;
-        $(t).attr("data-time", v);
-        $(t).children("img").animate({top: -25 * v});
-        $("#" + $(t).attr("id") + "_2").val((bound == 3) ? 15 * v : v);
+    if ($(t).hasClass("cntr-minutes")) {
+        if (v < 45) {
+            v = v + 15;
+            $(t).children("img").animate({top: -25 * Math.floor(v / 15)});
+            $(t).attr("data-time", v);
+            $("#" + $(t).attr("id") + "_2").val(v);
+        }
     }
 });
 
-
+$("#opt-ch").click(function() {
+    var b = $("#profile").children("div");
+    $(b[0]).slideUp();
+    $(b[1]).slideUp();
+    $(b[2]).slideDown();
+});
 
 
 

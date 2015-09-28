@@ -45,7 +45,7 @@ use yii\helpers\Url;
                     </div>
                 <?php endif ?>
                 <div class="menu__item menu__item_mrg-r">
-                    <a href="#" title="" data-toggle="modal" data-target="#register-company" id="reg">Добавить автосервис</a>
+                    <a href="#" title="" data-toggle="modal" data-target="#company-rf" id="reg">Добавить автосервис</a>
                 </div>
                 <div class="menu__item menu__item_mrg-r" style="display: none;">
                     <a href="#" title="" data-toggle="modal" data-target="#restore-psw" id="rst">Восстановить пароль</a>
