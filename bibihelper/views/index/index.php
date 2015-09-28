@@ -82,58 +82,6 @@ $this->params["page"] = "index";
         
     </div>
 </div> <!-- /private-room-entry -->
-<!--
-<div class="modal fade" id="company-rf" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
-    <div class="modal-dialog m-dialog">
-        <form id="rf">
-            <div class="modal-content f-content rf-content">
-                <button type="button" class="close f-close" data-dismiss="modal" aria-hidden="true" id="rf-close">&times;</button>
-
-                <div class="modal-header f-header">
-                    <h1 class="modal-title f-title">Регистрация</h1>
-                </div>
-
-                <div class="modal-body f-body">
-                    <div class="form-group f-group">
-                        <label for="rf-email" class="f-label">Адрес электронной почты:</label>
-                        <span class="f-icon f-icon-ok"></span>
-                        <input type="text" class="form-control f-control" id="rf-email">
-                        <div class="f-hint"><span class="f-text"></span></div>
-                    </div>
-
-                    <div class="form-group f-group">
-                        <label for="rf-password" class="f-label">Пароль:</label>
-                        <span class="f-icon f-icon-ok"></span>
-                        <input type="password" class="form-control f-control" id="rf-password">
-                        <div class="f-hint"><span class="f-text"></span></div>
-                    </div>
-
-                    <div class="form-group f-group c-mb0">
-                        <label for="rf-password-ok" class="f-label">Подтвердите пароль:</label>
-                        <span class="f-icon f-icon-ok"></span>
-                        <input type="password" class="form-control f-control" id="rf-password-ok">
-                        <div class="f-hint"><span class="f-text"></span></div>
-                    </div>
-                </div>
-
-                <div class="modal-footer f-footer">
-                    <div class="form-group f-group">
-                        <button type="button" class="f-button f-submit" id="rf-submit">Зарегистрироваться</button>
-                    </div>
-
-                    <div class="form-group f-group">
-                        <span class="f-qtext">Уже зарегистрировались?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                        <span class="f-link" id="rf-login">Войти</span>
-                    </div>
-                </div>
-
-            </div>
-        </form>
-    </div>
-</div>  -->
-
-
-
     
 <div class="modal fade" id="company-rf" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
     <div class="modal-dialog m-dialog">
@@ -189,9 +137,6 @@ $this->params["page"] = "index";
         <?php ActiveForm::end(); ?>
     </div>
 </div> 
-
-
-
 
 <div class="modal fade" id="restore-psw" tabindex="-3" role="dialog" aria-labelledby="modal-label-restore-psw" aria-hidden="true">
     <div class="modal-dialog modal-dialog_dlg">
