@@ -12,17 +12,21 @@ use app\models\UserCompanies;
 
 class RegisterForm extends Model
 {
+    const M_WRONG_EMAIL = 'Неверный email';
+    const M_EMAIL_EXISTS = 'Пользователь с таким E-mail уже существует';
+    const M_PASSWORDS_NOT_MATCH = 'Пароли не совпадают';
+    const M_MIN_PASSWORD_LENGTH = 'Минимальная длина пароля - 6 символов';
+
     public $email;
     public $password;
     public $passwordok;
-    public $rememberMe = true;
 
     public function rules()
     {
         return [
             [['email', 'password', 'passwordok'], 'required'],
             ['email', 'validateEmail'],
-            ['password', 'validatePassword'],
+            ['password', 'validatePasswordLength'],
             ['passwordok', 'validatePasswordOk'],
         ];
     }
@@ -41,7 +45,7 @@ class RegisterForm extends Model
             $regexp = '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/';
 
             if (!preg_match($regexp, $this->email)) {
-                $this->addError($attribute, 'Неверный email');
+                $this->addError($attribute, self::M_WRONG_EMAIL);
             }
         }
             
@@ -49,16 +53,16 @@ class RegisterForm extends Model
             $user = User::findByEmail($this->email);
             
             if ($user) {
-                $this->addError($attribute, 'Пользователь с таким email уже существует');
+                $this->addError($attribute, self::M_EMAIL_EXISTS);
             }
         }
     }
 
-    public function validatePassword($attribute, $params)
+    public function validatePasswordLength($attribute, $params)
     {
         if (!$this->hasErrors()) {
             if (strlen($this->password) < 6) {
-                $this->addError($attribute, 'Минимальная длина пароля - 6 символов');
+                $this->addError($attribute, self::M_MIN_PASSWORD_LENGTH);
             }
         }
     }
@@ -67,7 +71,7 @@ class RegisterForm extends Model
     {
         if (!$this->hasErrors()) {
             if ($this->password !== $this->passwordok) {
-                $this->addError($attribute, 'Пароли не совпадают');
+                $this->addError($attribute, self::M_PASSWORDS_NOT_MATCH);
             }
         }
     }
@@ -129,7 +133,7 @@ class RegisterForm extends Model
         $uc->user_id = $userID;
         $uc->company_id = $companyID;
         $uc->save();
-        return $us->id;
+        return $uc->id;
     }
     
     private function createUserDir($userID)

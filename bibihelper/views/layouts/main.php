@@ -37,7 +37,7 @@ use yii\helpers\Url;
             <?php if ($this->params['page'] == 'index'): ?>
                 <?php if (Yii::$app->user->isGuest): ?>
                     <div class="menu__item">
-                        <a href="#" title="" data-toggle="modal" data-target="#private-room-entry" id="pre">Войти в личный кабинет</a>
+                        <a href="#" title="" data-toggle="modal" data-target="#user-login-form" id="pre">Войти в личный кабинет</a>
                     </div>
                 <?php else: ?>
                     <div class="menu__item">
@@ -45,7 +45,7 @@ use yii\helpers\Url;
                     </div>
                 <?php endif ?>
                 <div class="menu__item menu__item_mrg-r">
-                    <a href="#" title="" data-toggle="modal" data-target="#company-rf" id="reg">Добавить автосервис</a>
+                    <a href="#" title="" data-toggle="modal" data-target="#user-register-form" id="reg">Добавить автосервис</a>
                 </div>
                 <div class="menu__item menu__item_mrg-r" style="display: none;">
                     <a href="#" title="" data-toggle="modal" data-target="#restore-psw" id="rst">Восстановить пароль</a>

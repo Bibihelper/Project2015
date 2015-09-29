@@ -1,6 +1,6 @@
 /* User register form */
 
-function rfCheckEmail(ctrl) {
+function checkEmail(ctrl) {
     var regexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
     var hint = $(ctrl).next("div.f-hint");
@@ -25,7 +25,7 @@ function rfCheckEmail(ctrl) {
     return true;
 }
 
-function rfCheckPassword(ctrl) {
+function checkPassword(ctrl) {
     var hint = $(ctrl).next("div.f-hint");
     $(hint).children("span.f-text").html("Минимальная длина пароля - 6 символов");
 
@@ -47,7 +47,7 @@ function rfCheckPassword(ctrl) {
     }
 }
 
-function rfCheckPasswordOk(ctrl) {
+function checkPasswordOk(ctrl) {
     var hint = $(ctrl).next("div.f-hint");
     $(hint).children("span.f-text").html("Пароли не совпадают");
 
@@ -70,23 +70,35 @@ function rfCheckPasswordOk(ctrl) {
 }
 
 function rfCheckAll() {
-    if (!rfCheckEmail(document.getElementById("rf-email"))) {
+    if (!checkEmail(document.getElementById("rf-email"))) {
         $("#rf-email").focus();
         return false;
     }
-    if (!rfCheckPassword(document.getElementById("rf-password"))) {
+    if (!checkPassword(document.getElementById("rf-password"))) {
         $("#rf-password").focus();
         return false;
     }
-    if (!rfCheckPasswordOk(document.getElementById("rf-password-ok"))) {
+    if (!checkPasswordOk(document.getElementById("rf-password-ok"))) {
         $("#rf-password-ok").focus();
         return false;
     }
     return true;
 }
 
+function lfCheckAll() {
+    if (!checkEmail(document.getElementById("lf-email"))) {
+        $("#lf-email").focus();
+        return false;
+    }
+    if (!checkPassword(document.getElementById("lf-password"))) {
+        $("#lf-password").focus();
+        return false;
+    }
+    return true;
+}
+
 function rfSendForm() {
-    var form = $("#rf");
+    var form = $("#register-form");
     
     $.ajax({
         url: "/user/register/",
@@ -99,16 +111,34 @@ function rfSendForm() {
     });
 }
 
+function lfSendForm() {
+    var form = $("#login-form");
+    
+    $.ajax({
+        url: "/user/login/",
+        method: "POST",
+        data: form.serialize(),
+        dataType: "json",
+        success: function(response) {
+            if (response.status === "OK") {
+                window.location.href = "/private-room/?id=" + response.companyid;
+            } else {
+                showMessage(response.message);
+            }
+        }
+    });
+}
+
 $("#rf-email").blur(function() {
-    rfCheckEmail(this);
+    checkEmail(this);
 });
 
 $("#rf-password").blur(function() {
-    rfCheckPassword(this);
+    checkPassword(this);
 });
 
 $("#rf-password-ok").keyup(function() {
-    rfCheckPasswordOk(this);
+    checkPasswordOk(this);
 });
 
 $("#rf-submit").click(function() {
@@ -116,7 +146,23 @@ $("#rf-submit").click(function() {
         return false;
     }
     rfSendForm();
-    $("#company-rf").modal("hide");
+    $("#user-register-form").modal("hide");
+});
+
+$("#lf-email").blur(function() {
+    checkEmail(this);
+});
+
+$("#lf-password").blur(function() {
+    checkPassword(this);
+});
+
+$("#lf-submit").click(function() {
+    if (!lfCheckAll()) {
+        return false;
+    }
+    lfSendForm();
+    $("#user-login-form").modal("hide");
 });
 
 

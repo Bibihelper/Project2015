@@ -26,7 +26,7 @@ class IndexAsset extends AssetBundle
 //        'http://maps.google.com/maps/api/js?sensor=true',
 //        'js/map.js',
         'js/index.js',
-        'js/user-register-form.js',
+        'js/user-form.js',
     ];
     public $depends = [
         'app\assets\ResetAsset',

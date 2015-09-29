@@ -13,7 +13,8 @@ $this->title = 'BibiHelper';
 $this->params["page"] = "index";
 
 ?>
-<div class="modal fade" id="private-room-entry" tabindex="-1" role="dialog" aria-labelledby="modal-label-pre" aria-hidden="true">
+<!--
+<div class="modal fade" id="user-login-form" tabindex="-1" role="dialog" aria-labelledby="modal-label-pre" aria-hidden="true">
     <div class="modal-dialog modal-dialog_dlg">
     
         <div class="modal-content modal-content_dlg">
@@ -76,17 +77,76 @@ $this->params["page"] = "index";
                     </div>
                     
                 </form>
-            </div> <!-- /modal-body_dlg -->
+            </div> 
             
-        </div> <!-- /modal-content -->
+        </div>
         
     </div>
-</div> <!-- /private-room-entry -->
-    
-<div class="modal fade" id="company-rf" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
+</div>  -->
+
+<div class="modal fade" id="user-login-form" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
     <div class="modal-dialog m-dialog">
         <?php $form = ActiveForm::begin([
-            'id' => 'rf',
+            'id' => 'login-form',
+            'fieldConfig' => [
+                'template' => "{label}\n<span class=\"f-icon f-icon-ok\"></span>{input}\n<div class=\"f-hint\"><span class=\"f-text\"></span></div>\n{error}",
+            ]]); ?>
+            <div class="modal-content f-content rf-content">
+                <button type="button" class="close f-close" data-dismiss="modal" aria-hidden="true" id="rf-close">&times;</button>
+
+                <div class="modal-header f-header">
+                    <h1 class="modal-title f-title">Вход в личный кабинет</h1>
+                </div>
+
+                <div class="modal-body f-body">
+                    <?= $form->field($logFrm, 'email', [
+                            'options' => ['class' => 'form-group f-group']
+                        ])->textInput([
+                            'class' => 'form-control f-control', 'id' => 'lf-email'
+                        ])->label($logFrm->getAttributeLabel('email'), [
+                            'class' => 'f-label'
+                        ])
+                    ?>
+
+                    <?= $form->field($logFrm, 'password', [
+                            'options' => ['class' => 'form-group f-group'],
+                        ])->passwordInput([
+                            'class' => 'form-control f-control', 'id' => 'lf-password', 'type' => 'password'
+                        ])->label($logFrm->getAttributeLabel('password'), [
+                            'class' => 'f-label'
+                        ]) 
+                    ?>
+                    
+                    <?= $form->field($logFrm, 'rememberme', [
+                            'options' => ['class' => 'form-group f-group'],
+                            'checkboxTemplate' => "{input}\n{label}"
+                        ])->checkbox([
+                            'class' => 'f-checkbox', 'id' => 'lf-remember-me'
+                        ])->label($logFrm->getAttributeLabel('rememberme'), [
+                            'class' => 'f-label'
+                        ])
+                    ?>
+                    
+                </div>
+                
+                <div class="modal-footer f-footer">
+                    <div class="form-group f-group">
+                        <?= Html::button('Войти', ['class' => 'f-button f-submit', 'id' => 'lf-submit']) ?>
+                    </div>
+
+                    <div class="form-group f-group">
+                        <span class="f-link" id="lf-register">Еще не зарегистрировались?</span>
+                    </div>
+                </div>
+            </div>
+        <?php ActiveForm::end(); ?>
+    </div>
+</div> 
+    
+<div class="modal fade" id="user-register-form" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
+    <div class="modal-dialog m-dialog">
+        <?php $form = ActiveForm::begin([
+            'id' => 'register-form',
             'fieldConfig' => [
                 'template' => "{label}\n<span class=\"f-icon f-icon-ok\"></span>{input}\n<div class=\"f-hint\"><span class=\"f-text\"></span></div>\n{error}",
             ]]); ?>
@@ -99,27 +159,30 @@ $this->params["page"] = "index";
 
                 <div class="modal-body f-body">
                     <?= $form->field($regFrm, 'email', [
-                            'options' => ['class' => 'form-group f-group'],
-                            'inputOptions' => ['class' => 'form-control f-control', 'id' => 'rf-email']
+                            'options' => ['class' => 'form-group f-group']
+                        ])->textInput([
+                            'class' => 'form-control f-control', 'id' => 'rf-email'
                         ])->label($regFrm->getAttributeLabel('email'), [
                             'class' => 'f-label'
                         ]) 
                     ?>
 
                     <?= $form->field($regFrm, 'password', [
-                            'options' => ['class' => 'form-group f-group'],
-                            'inputOptions' => ['class' => 'form-control f-control', 'id' => 'rf-password', 'type' => 'password']
+                            'options' => ['class' => 'form-group f-group']
+                        ])->passwordInput([
+                            'class' => 'form-control f-control', 'id' => 'rf-password', 'type' => 'password'
                         ])->label($regFrm->getAttributeLabel('password'), [
                             'class' => 'f-label'
                         ]) 
                     ?>
 
                     <?= $form->field($regFrm, 'passwordok', [
-                            'options' => ['class' => 'form-group f-group c-mb0'],
-                            'inputOptions' => ['class' => 'form-control f-control', 'id' => 'rf-password-ok', 'type' => 'password']
+                            'options' => ['class' => 'form-group f-group c-mb0']
+                        ])->passwordInput([
+                            'class' => 'form-control f-control', 'id' => 'rf-password-ok', 'type' => 'password'
                         ])->label($regFrm->getAttributeLabel('password'), [
                             'class' => 'f-label'
-                        ]) 
+                        ])
                     ?>
                 </div>
                 

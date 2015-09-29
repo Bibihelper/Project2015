@@ -41,58 +41,6 @@ class PrivateRoomController extends Controller
         ]);
     }
     
-    public function actionLogin() 
-    {
-        $post = Yii::$app->request->post();
-        $email = $post['email'];
-        $password = $post['psw'];
-        $rmbrMe = $post['rmbr'] == 1 ? true : false;
-        $auth = 0;
-        $user = User::findByEmail($email);
-        
-        if (!$user) {
-            $auth = 1;
-        } else 
-        
-        if ($user->email_confirm == 0) {
-            $auth = 2;
-        } else 
-        
-        if (!$user->validatePassword($password)) {
-            $auth = 3;
-        } else {
-            $auth = Yii::$app->user->login($user, $rmbrMe ? 3600 * 24 * 30 : 0) ? 0 : 4;
-        }
-        
-        if ($auth == 0) {
-            Yii::$app->user->setReturnUrl('/private-room/?id=' . $user->company->id);
-        }
-        
-        switch ($auth) {
-            case 1: $error = "Учетная запись не существует"; break;
-            case 2: $error = "Учетная запись не активированна"; break;
-            case 3: $error = "Неверный пароль"; break;
-            case 4: $error = "Unknown error"; break;
-        }
-        
-        $status = ($auth === 0) ? 'OK' : 'ERROR';
-        $responce = '<?xml version="1.0" encoding="utf-8" ?><root>'
-                . '<status>' . $status . '</status>'
-                . '<companyID>' . $user->company->id . '</companyID>'
-                . '<code>' . $auth . '</code>'
-                . '<error>' . $error . '</error>'
-            . '</root>';
-        
-        return $responce;
-    }
-    
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->redirect(Url::home());
-    }
-
     public function actionLoadImage($id)
     {
         foreach ($_FILES as $file) {

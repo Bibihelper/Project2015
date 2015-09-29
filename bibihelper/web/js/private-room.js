@@ -450,7 +450,7 @@ $("#s-descr-edit").keyup(function() {
 // Форма данных о компании
 
 $(".frm-block > input[type='text']").keyup(function() {
-    var regexp = /^[a-zA-Zа-яА-Я0-9-_\. ]*$/;
+    var regexp = /^[ a-zA-Zа-яА-Я0-9-_\.]*$/;
     $("#frm-hint-1 > span.hint-text").html("Допустим ввод символов руссокго и латинского алфавитов и знаков: . - ");
     if (this.id === "company_phone") {
         regexp = /^[ 0-9-\(\)\+]*$/;
