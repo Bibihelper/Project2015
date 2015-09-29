@@ -7,20 +7,16 @@ use yii\web\Controller;
 use app\models\User;
 use app\models\RegisterForm;
 use app\models\LoginForm;
+use app\components\Common;
 use yii\helpers\Url;
 
 class UserController extends Controller
 {
-    const M_EMAIL_SEND = 'Вам на почту высланно письмо для подтверждения регистрации.';
-    const M_FAILED_SAVE_DATA = 'Не удалось сохранить данные. Повторите попытку позже.';
-    const M_LOGIN_FAILED = 'Не удалось произвести вход в систему. Повторите попытку позже.';
-    const M_WRONG_PASSWORD = 'Неверный пароль';
-    
     public function actionRegister()
     {
         $status = 'OK';
         $code = 0;
-        $message = self::M_EMAIL_SEND;
+        $message = Common::M_EMAIL_SEND;
 
         $regFrm = new RegisterForm();
         
@@ -28,12 +24,12 @@ class UserController extends Controller
             if (!$regFrm->register()) {
                 $status = 'ERROR';
                 $code = 1;
-                $message = self::M_FAILED_SAVE_DATA;
+                $message = Common::M_FAILED_SAVE_DATA;
             }
         } else {
             $status = 'ERROR';
             $code = 2;
-            $message = implode('<br>', $regFrm->getFirstErrors());
+            $message = implode(' ', $regFrm->getFirstErrors());
         }
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -71,17 +67,17 @@ class UserController extends Controller
                 if (!($companyid = $logFrm->login())) {
                     $status = 'ERROR';
                     $code = 3;
-                    $message = self::M_LOGIN_FAILED;
+                    $message = Common::M_LOGIN_FAILED;
                 }
             } else {
                 $status = 'ERROR';
                 $code = 4;
-                $message = self::M_WRONG_PASSWORD;
+                $message = Common::M_WRONG_PASSWORD;
             }
         } else {
             $status = 'ERROR';
             $code = 4;
-            $message = implode('<br>', $logFrm->getFirstErrors());
+            $message = implode(' ', $logFrm->getFirstErrors());
         }
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;

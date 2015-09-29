@@ -27,9 +27,16 @@ function checkEmail(ctrl, left) {
 
 function checkPassword(ctrl, left) {
     var hint = $(ctrl).next("div.f-hint");
-    $(hint).children("span.f-text").html("Минимальная длина пароля - 6 символов");
+    var length = $(ctrl).val().length;
+    var test = true;
 
-    var test = $(ctrl).val().length >= 6;
+    if (length < 6) {
+        $(hint).children("span.f-text").html("Минимальная длина пароля - 6 символов");
+        test = false;
+    } else if (length > 32) {
+        $(hint).children("span.f-text").html("Максимальная длина пароля - 32 символа");
+        test = false;
+    }
     
     if (test) {
         $(hint).hide();
@@ -108,7 +115,7 @@ function rfSendForm() {
         data: form.serialize(),
         dataType: "json",
         success: function(response) {
-            showMessage(response.message);
+            alert(response.message);
         }
     });
 }
@@ -127,7 +134,7 @@ function lfSendForm() {
             if (response.status === "OK") {
                 window.location.href = "/private-room/?id=" + response.companyid;
             } else {
-                showMessage(response.message);
+                alert(response.message);
             }
         }
     });
@@ -199,4 +206,12 @@ $("#lf-restore-password").click(function() {
         $("#user-restorepsw-form").modal("show");
     }, 700);
 });
+
+//function hideHint() {
+//    $("div.f-hint").hide();
+//}
+//
+//$("#user-login-form"   ).on('hidden.bs.modal', hideHint);
+//$("#user-register-form").on('hidden.bs.modal', hideHint);
+
 

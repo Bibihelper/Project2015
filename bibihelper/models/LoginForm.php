@@ -4,18 +4,11 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
-use yii\helpers\Url;
 use app\models\User;
-use app\models\Address;
-use app\models\Company;
-use app\models\UserCompanies;
+use app\components\Common;
 
 class LoginForm extends Model
 {
-    const M_WRONG_EMAIL = 'Неверный email';
-    const M_EMAIL_NOT_EXISTS = 'Пользователя с таким E-mail не существует';
-    const M_MIN_PASSWORD_LENGTH = 'Минимальная длина пароля - 6 символов';
-    
     public $email;
     public $password;
     public $rememberme;
@@ -34,8 +27,9 @@ class LoginForm extends Model
     {
         return [
             [['email', 'password'], 'required'],
-            ['email', 'validateEmail'],
-            ['password', 'validatePasswordLength'],
+            ['email', 'email', 'message' => Common::M_WRONG_EMAIL],
+            ['email', 'emailNotExists'],
+            ['password', 'string', 'length' => [6, 32], 'tooShort' => Common::M_MIN_PASSWORD_LENGTH, 'tooLong' => Common::M_MAX_PASSWORD_LENGTH],
         ];
     }
     
@@ -47,32 +41,15 @@ class LoginForm extends Model
         ];
     }
 
-    public function validateEmail($attribute, $params)
+    public function emailNotExists($attribute, $params)
     {
-        if (!$this->hasErrors()) {
-            $regexp = '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/';
-
-            if (!preg_match($regexp, $this->email)) {
-                $this->addError($attribute, self::M_WRONG_EMAIL);
-            }
-        }
-            
         if (!$this->hasErrors()) {
             if (!$this->getUser()) {
-                $this->addError($attribute, self::M_EMAIL_NOT_EXISTS);
+                $this->addError($attribute, Common::M_EMAIL_NOT_EXISTS);
             }
         }
     }
 
-    public function validatePasswordLength($attribute, $params)
-    {
-        if (!$this->hasErrors()) {
-            if (strlen($this->password) < 6) {
-                $this->addError($attribute, self::M_MIN_PASSWORD_LENGTH);
-            }
-        }
-    }
-    
     public function validatePassword()
     {
         return $this->getUser()->validatePassword($this->password);

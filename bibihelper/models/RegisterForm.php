@@ -9,14 +9,10 @@ use app\models\User;
 use app\models\Address;
 use app\models\Company;
 use app\models\UserCompanies;
+use app\components\Common;
 
 class RegisterForm extends Model
 {
-    const M_WRONG_EMAIL = 'Неверный email';
-    const M_EMAIL_EXISTS = 'Пользователь с таким E-mail уже существует';
-    const M_PASSWORDS_NOT_MATCH = 'Пароли не совпадают';
-    const M_MIN_PASSWORD_LENGTH = 'Минимальная длина пароля - 6 символов';
-
     public $email;
     public $password;
     public $passwordok;
@@ -25,9 +21,10 @@ class RegisterForm extends Model
     {
         return [
             [['email', 'password', 'passwordok'], 'required'],
-            ['email', 'validateEmail'],
-            ['password', 'validatePasswordLength'],
-            ['passwordok', 'validatePasswordOk'],
+            ['email', 'email', 'message' => Common::M_WRONG_EMAIL],
+            ['email', 'emailExists'],
+            ['password', 'string', 'length' => [6, 32], 'tooShort' => Common::M_MIN_PASSWORD_LENGTH, 'tooLong' => Common::M_MAX_PASSWORD_LENGTH],
+            ['passwordok', 'compare', 'compareAttribute' => 'password', 'message' => Common::M_PASSWORDS_NOT_MATCH],
         ];
     }
     
@@ -39,43 +36,17 @@ class RegisterForm extends Model
         ];
     }
 
-    public function validateEmail($attribute, $params)
+    public function emailExists($attribute, $params)
     {
-        if (!$this->hasErrors()) {
-            $regexp = '/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/';
-
-            if (!preg_match($regexp, $this->email)) {
-                $this->addError($attribute, self::M_WRONG_EMAIL);
-            }
-        }
-            
         if (!$this->hasErrors()) {
             $user = User::findByEmail($this->email);
             
             if ($user) {
-                $this->addError($attribute, self::M_EMAIL_EXISTS);
+                $this->addError($attribute, Common::M_EMAIL_EXISTS);
             }
         }
     }
 
-    public function validatePasswordLength($attribute, $params)
-    {
-        if (!$this->hasErrors()) {
-            if (strlen($this->password) < 6) {
-                $this->addError($attribute, self::M_MIN_PASSWORD_LENGTH);
-            }
-        }
-    }
-
-    public function validatePasswordOk($attribute, $params)
-    {
-        if (!$this->hasErrors()) {
-            if ($this->password !== $this->passwordok) {
-                $this->addError($attribute, self::M_PASSWORDS_NOT_MATCH);
-            }
-        }
-    }
-    
     private function createUser()
     {
         $user = new User();
