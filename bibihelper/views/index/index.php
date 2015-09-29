@@ -13,76 +13,6 @@ $this->title = 'BibiHelper';
 $this->params["page"] = "index";
 
 ?>
-<!--
-<div class="modal fade" id="user-login-form" tabindex="-1" role="dialog" aria-labelledby="modal-label-pre" aria-hidden="true">
-    <div class="modal-dialog modal-dialog_dlg">
-    
-        <div class="modal-content modal-content_dlg">
-        
-            <div class="modal-header modal-header_dlg">
-                <button type="button" class="close modal-header_close-btn" data-dismiss="modal" aria-hidden="true" id="pre-close">&times;</button>
-                <h1 class="modal-title modal-title_dlg">Вход в личный кабинет</h1>
-            </div>
-            
-            <div class="modal-body modal-body_dlg">
-                <form>
-                    
-                    <div class="modal-dialog__block">
-                        <span class="modal-dialog__caption">Адрес электронной почты:</span>
-                        <div class="input-group">
-                            <input type="text" class="form-control modal-dialog__edit" id="modal-dialog__edit_email-pre">
-                            <span id="modal-dialog__email-ok-pre"></span>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-dialog__block">
-                        <span class="modal-dialog__caption">Пароль:</span>
-                        <div class="input-group">
-                            <input type="password" class="form-control modal-dialog__edit modal-dialog__edit_psw" id="modal-dialog__edit_psw-pre">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default pre-btn-psw" type="button" id="modal-dialog__restore-psw" data-dismiss="modal" aria-hidden="true">?</button>
-                            </span>
-                            <span class="bibi-hint bibi-hint_psw-pre">Забыли пароль?</span>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-dialog__block">
-                        <span class="modal-dialog__check" id="modal-dialog-rmbr__check" data-ch="1"></span>
-                        <span class="modal-dialog__caption modal-dialog__caption_rmbr">Запомнить</span>
-                    </div>
-                    
-                    <div class="modal-dialog__block" id="modal-dialog__capcha">
-                        <span class="modal-dialog__caption">Введите текст, который видите на картинке:</span>
-                        <div class="modal-dialog__capcha">
-                            <div class="modal-dialog__capcha-img">
-                                <img src="" alt="" id="capcha-img">
-                            </div>
-
-                            <div class="input-group">
-                                <input type="text" class="form-control modal-dialog__edit modal-dialog_capcha-edit" id="modal-dialog__capcha-edit">
-                            </div>
-                        </div>
-
-                        <div class="modal-dialog__capcha-refresh">
-                            <a href="#" title="" class="modal-dialog__link">Обновить текст</a>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-dialog__block">
-                        <button type="button" class="btn bibi-form-btn bibi-form-btn-dlg bibi-form-btn-dlg_pre" id="pre-btn">Войти</button>
-                    </div>
-                    
-                    <div class="modal-dialog__block modal-dialog__block_reg">
-                        <a href="#" title="" class="modal-dialog__link" id="modal-dialog__link-reg" data-dismiss="modal" aria-hidden="true">Еще не зарегистрировались?</a>
-                    </div>
-                    
-                </form>
-            </div> 
-            
-        </div>
-        
-    </div>
-</div>  -->
 
 <div class="modal fade" id="user-login-form" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
     <div class="modal-dialog m-dialog">
@@ -110,8 +40,15 @@ $this->params["page"] = "index";
 
                     <?= $form->field($logFrm, 'password', [
                             'options' => ['class' => 'form-group f-group'],
+                            'template' => "{label}\n"
+                                . "<span class=\"f-icon f-icon-ok\"></span>"
+                                . "<div class=\"input-group\">{input}"
+                                    . "<span class=\"input-group-addon f-input-group-addon\" id=\"lf-restore-password\">?</span>"
+                                    . "<span class=\"f-hint f-hint-password\">Забыли пароль?</span>"
+                                . "</div>\n"
+                                . "<div class=\"f-hint\"><span class=\"f-text\"></span></div>\n{error}"
                         ])->passwordInput([
-                            'class' => 'form-control f-control', 'id' => 'lf-password', 'type' => 'password'
+                            'class' => 'form-control f-control', 'id' => 'lf-password', 'type' => 'password',
                         ])->label($logFrm->getAttributeLabel('password'), [
                             'class' => 'f-label'
                         ]) 
@@ -201,7 +138,7 @@ $this->params["page"] = "index";
     </div>
 </div> 
 
-<div class="modal fade" id="restore-psw" tabindex="-3" role="dialog" aria-labelledby="modal-label-restore-psw" aria-hidden="true">
+<div class="modal fade" id="user-restorepsw-form" tabindex="-3" role="dialog" aria-labelledby="modal-label-restore-psw" aria-hidden="true">
     <div class="modal-dialog modal-dialog_dlg">
     
         <div class="modal-content modal-content_dlg">

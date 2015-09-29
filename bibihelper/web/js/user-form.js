@@ -165,7 +165,30 @@ $("#lf-submit").click(function() {
     $("#user-login-form").modal("hide");
 });
 
+$("#rf-login").click(function() {
+    setTimeout(function() {
+        $("#user-register-form").modal("hide");
+    }, 200);
+    setTimeout(function() {
+        $("#user-login-form").modal("show");
+    }, 700);
+});
 
+$("#lf-register").click(function() {
+    setTimeout(function() {
+        $("#user-login-form").modal("hide");
+    }, 200);
+    setTimeout(function() {
+        $("#user-register-form").modal("show");
+    }, 700);
+});
 
-
+$("#lf-restore-password").click(function() {
+    setTimeout(function() {
+        $("#user-login-form").modal("hide");
+    }, 200);
+    setTimeout(function() {
+        $("#user-restorepsw-form").modal("show");
+    }, 700);
+});
 
