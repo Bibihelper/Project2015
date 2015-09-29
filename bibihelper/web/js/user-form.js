@@ -1,6 +1,6 @@
 /* User register form */
 
-function checkEmail(ctrl) {
+function checkEmail(ctrl, left) {
     var regexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
     var hint = $(ctrl).next("div.f-hint");
@@ -15,7 +15,7 @@ function checkEmail(ctrl) {
         return true;
     } else {
         $(hint)
-            .css("left", "398px")
+            .css("left", left)
             .css("top", ctrl.offsetTop + ctrl.offsetHeight + 1);
         $(hint).show();
         $(ctrl).addClass("type-error");
@@ -25,7 +25,7 @@ function checkEmail(ctrl) {
     return true;
 }
 
-function checkPassword(ctrl) {
+function checkPassword(ctrl, left) {
     var hint = $(ctrl).next("div.f-hint");
     $(hint).children("span.f-text").html("Минимальная длина пароля - 6 символов");
 
@@ -38,7 +38,7 @@ function checkPassword(ctrl) {
         return true;
     } else {
         $(hint)
-            .css("left", "250px")
+            .css("left", left)
             .css("top", ctrl.offsetTop + ctrl.offsetHeight + 1);
         $(hint).show();
         $(ctrl).addClass("type-error");
@@ -47,7 +47,7 @@ function checkPassword(ctrl) {
     }
 }
 
-function checkPasswordOk(ctrl) {
+function checkPasswordOk(ctrl, left) {
     var hint = $(ctrl).next("div.f-hint");
     $(hint).children("span.f-text").html("Пароли не совпадают");
 
@@ -60,7 +60,7 @@ function checkPasswordOk(ctrl) {
         return true;
     } else {
         $(hint)
-            .css("left", "362px")
+            .css("left", left)
             .css("top", ctrl.offsetTop + ctrl.offsetHeight + 1);
         $(hint).show();
         $(ctrl).addClass("type-error");
@@ -70,15 +70,15 @@ function checkPasswordOk(ctrl) {
 }
 
 function rfCheckAll() {
-    if (!checkEmail(document.getElementById("rf-email"))) {
+    if (!checkEmail(document.getElementById("rf-email"), "398px")) {
         $("#rf-email").focus();
         return false;
     }
-    if (!checkPassword(document.getElementById("rf-password"))) {
+    if (!checkPassword(document.getElementById("rf-password"), "250px")) {
         $("#rf-password").focus();
         return false;
     }
-    if (!checkPasswordOk(document.getElementById("rf-password-ok"))) {
+    if (!checkPasswordOk(document.getElementById("rf-password-ok"), "362px")) {
         $("#rf-password-ok").focus();
         return false;
     }
@@ -86,16 +86,18 @@ function rfCheckAll() {
 }
 
 function lfCheckAll() {
-    if (!checkEmail(document.getElementById("lf-email"))) {
+    if (!checkEmail(document.getElementById("lf-email"), "398px")) {
         $("#lf-email").focus();
         return false;
     }
-    if (!checkPassword(document.getElementById("lf-password"))) {
+    if (!checkPassword(document.getElementById("lf-password"), "235px")) {
         $("#lf-password").focus();
         return false;
     }
     return true;
 }
+
+// register form - send data
 
 function rfSendForm() {
     var form = $("#register-form");
@@ -110,6 +112,8 @@ function rfSendForm() {
         }
     });
 }
+
+// login form - send data
 
 function lfSendForm() {
     var form = $("#login-form");
@@ -129,16 +133,18 @@ function lfSendForm() {
     });
 }
 
+// События - форма регистрации
+
 $("#rf-email").blur(function() {
-    checkEmail(this);
+    checkEmail(this, "398px");
 });
 
 $("#rf-password").blur(function() {
-    checkPassword(this);
+    checkPassword(this, "250px");
 });
 
 $("#rf-password-ok").keyup(function() {
-    checkPasswordOk(this);
+    checkPasswordOk(this, "362px");
 });
 
 $("#rf-submit").click(function() {
@@ -149,12 +155,23 @@ $("#rf-submit").click(function() {
     $("#user-register-form").modal("hide");
 });
 
+$("#rf-login").click(function() {
+    setTimeout(function() {
+        $("#user-register-form").modal("hide");
+    }, 200);
+    setTimeout(function() {
+        $("#user-login-form").modal("show");
+    }, 700);
+});
+
+// События - форма входа
+
 $("#lf-email").blur(function() {
-    checkEmail(this);
+    checkEmail(this,"398px");
 });
 
 $("#lf-password").blur(function() {
-    checkPassword(this);
+    checkPassword(this, "235px");
 });
 
 $("#lf-submit").click(function() {
@@ -163,15 +180,6 @@ $("#lf-submit").click(function() {
     }
     lfSendForm();
     $("#user-login-form").modal("hide");
-});
-
-$("#rf-login").click(function() {
-    setTimeout(function() {
-        $("#user-register-form").modal("hide");
-    }, 200);
-    setTimeout(function() {
-        $("#user-login-form").modal("show");
-    }, 700);
 });
 
 $("#lf-register").click(function() {

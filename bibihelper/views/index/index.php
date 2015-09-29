@@ -43,10 +43,10 @@ $this->params["page"] = "index";
                             'template' => "{label}\n"
                                 . "<span class=\"f-icon f-icon-ok\"></span>"
                                 . "<div class=\"input-group\">{input}"
+                                    . "<div class=\"f-hint\"><span class=\"f-text\"></span></div>\n{error}"
                                     . "<span class=\"input-group-addon f-input-group-addon\" id=\"lf-restore-password\">?</span>"
                                     . "<span class=\"f-hint f-hint-password\">Забыли пароль?</span>"
                                 . "</div>\n"
-                                . "<div class=\"f-hint\"><span class=\"f-text\"></span></div>\n{error}"
                         ])->passwordInput([
                             'class' => 'form-control f-control', 'id' => 'lf-password', 'type' => 'password',
                         ])->label($logFrm->getAttributeLabel('password'), [
