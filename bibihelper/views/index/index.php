@@ -118,7 +118,7 @@ $this->params["page"] = "index";
                     ?>
                     
                     <?= $form->field($logFrm, 'rememberme', [
-                            'options' => ['class' => 'form-group f-group'],
+                            'options' => ['class' => 'form-group f-group c-mb0'],
                             'checkboxTemplate' => "{input}\n{label}"
                         ])->checkbox([
                             'class' => 'f-checkbox', 'id' => 'lf-remember-me'

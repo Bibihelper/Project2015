@@ -14,7 +14,6 @@ class LoginForm extends Model
 {
     const M_WRONG_EMAIL = 'Неверный email';
     const M_EMAIL_NOT_EXISTS = 'Пользователя с таким E-mail не существует';
-    const M_WRONG_PASSWORD = 'Неверный пароль';
     const M_MIN_PASSWORD_LENGTH = 'Минимальная длина пароля - 6 символов';
     
     public $email;

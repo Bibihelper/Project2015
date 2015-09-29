@@ -14,6 +14,7 @@ class UserController extends Controller
     const M_EMAIL_SEND = 'Вам на почту высланно письмо для подтверждения регистрации.';
     const M_FAILED_SAVE_DATA = 'Не удалось сохранить данные. Повторите попытку позже.';
     const M_LOGIN_FAILED = 'Не удалось произвести вход в систему. Повторите попытку позже.';
+    const M_WRONG_PASSWORD = 'Неверный пароль';
     
     public function actionRegister()
     {
@@ -66,10 +67,16 @@ class UserController extends Controller
         $logFrm = new LoginForm();
         
         if ($logFrm->load(Yii::$app->request->post()) && $logFrm->validate()) {
-            if (!($companyid = $logFrm->login())) {
+            if ($logFrm->validatePassword()) {
+                if (!($companyid = $logFrm->login())) {
+                    $status = 'ERROR';
+                    $code = 3;
+                    $message = self::M_LOGIN_FAILED;
+                }
+            } else {
                 $status = 'ERROR';
-                $code = 3;
-                $message = self::M_LOGIN_FAILED;
+                $code = 4;
+                $message = self::M_WRONG_PASSWORD;
             }
         } else {
             $status = 'ERROR';
