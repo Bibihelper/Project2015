@@ -33,7 +33,7 @@ CREATE TABLE `address` (
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `brand` */
 
@@ -43,8 +43,10 @@ CREATE TABLE `brand` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `country` varchar(32) NOT NULL,
   `name` varchar(50) NOT NULL,
+  `icon_src` varchar(255) DEFAULT NULL,
+  `icon_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `category` */
 
@@ -54,7 +56,7 @@ CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `city` */
 
@@ -66,7 +68,7 @@ CREATE TABLE `city` (
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `company` */
 
@@ -83,7 +85,7 @@ CREATE TABLE `company` (
   `status_d` int(11) DEFAULT '0',
   `address_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `company_blocking_reason` */
 
@@ -94,7 +96,8 @@ CREATE TABLE `company_blocking_reason` (
   `company_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `comment` longtext,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `ix_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `company_brands` */
@@ -106,7 +109,7 @@ CREATE TABLE `company_brands` (
   `company_id` int(11) NOT NULL,
   `brand_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `company_services` */
 
@@ -117,7 +120,7 @@ CREATE TABLE `company_services` (
   `company_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `company_specializations` */
 
@@ -128,7 +131,7 @@ CREATE TABLE `company_specializations` (
   `company_id` int(11) NOT NULL,
   `specialization_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `files` */
 
@@ -139,7 +142,7 @@ CREATE TABLE `files` (
   `src` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `role` */
 
@@ -160,7 +163,7 @@ CREATE TABLE `service` (
   `name` varchar(50) NOT NULL,
   `category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `shedule` */
 
@@ -173,7 +176,7 @@ CREATE TABLE `shedule` (
   `begin` time NOT NULL,
   `end` time NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `special_offer` */
 
@@ -187,7 +190,7 @@ CREATE TABLE `special_offer` (
   `file_id` int(11) NOT NULL,
   `company_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `specializations` */
 
@@ -197,7 +200,7 @@ CREATE TABLE `specializations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `user` */
 
@@ -218,7 +221,7 @@ CREATE TABLE `user` (
   `last_auth_date` datetime DEFAULT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 /*Table structure for table `user_blocking_reason` */
 
@@ -229,7 +232,8 @@ CREATE TABLE `user_blocking_reason` (
   `user_id` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `comment` longtext,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `ix_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `user_companies` */
@@ -241,7 +245,7 @@ CREATE TABLE `user_companies` (
   `company_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
