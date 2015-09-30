@@ -45,7 +45,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                     <span class="info info__phone"><?= $company->phone ?></span>
                                     <span class="info info__change"><a href="#" title="" id="opt-ch">[Изменить]</a></span>
                                     <span class="info info__change"><a href="<?= Url::to('/user/logout/') ?>" title="" style="display: none;">[Выйти]</a></span>
-                                    <span class="hidden" id="c-id"><?= $company->id ?></span>
+                                    <span class="hidden" id="cid"><?= $company->id ?></span>
                                 </div>
                             </div>
                         

@@ -21,16 +21,17 @@ class IndexAsset extends AssetBundle
         'css/common.css',
         'css/index.css',
         'css/form.css',
+        'css/card.css',
     ];
     public $js = [
-//        'http://maps.google.com/maps/api/js?sensor=true',
-//        'js/map.js',
         'js/index.js',
         'js/user-form.js',
+        'js/card.js',
     ];
     public $depends = [
         'app\assets\ResetAsset',
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'app\assets\MapAsset',
     ];
 }

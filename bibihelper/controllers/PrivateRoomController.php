@@ -23,7 +23,7 @@ class PrivateRoomController extends Controller
     
     public function actionIndex($id)
     {
-        if (Yii::$app->user->isGuest) {
+        if (Yii::$app->user->isGuest || $id != Yii::$app->user->id) {
             return $this->redirect(Url::home());
         }
         
@@ -65,9 +65,9 @@ class PrivateRoomController extends Controller
             $image->resize($box)->save();
         }
 
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $status = ($mv) ? 'OK' : 'ERROR';
-        $responce = '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status><filename>' . $fileRPath . $fileName . '</filename></root>';
-        
+        $responce = ['status' => $status, 'filename' => $fileRPath . $fileName];
         return $responce;
     }
     
@@ -87,7 +87,9 @@ class PrivateRoomController extends Controller
             $status = 'ERROR';
         }
 
-        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['status' => $status];
+        return $responce;
     }
     
     public function actionSetCompanyBrand()
@@ -106,7 +108,9 @@ class PrivateRoomController extends Controller
             $status = 'ERROR';
         }
 
-        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['status' => $status];
+        return $responce;
     }
     
     public function actionSetCompanyComment()
@@ -129,7 +133,9 @@ class PrivateRoomController extends Controller
             $status = 'ERROR';
         }
 
-        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['status' => $status];
+        return $responce;
     }
     
     public function actionSetSpecialOffer()
@@ -143,7 +149,9 @@ class PrivateRoomController extends Controller
             $status = "ERROR";
         }
         
-        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['status' => $status];
+        return $responce;
     }
     
     public function actionRemoveSpecialOffer()
@@ -157,7 +165,9 @@ class PrivateRoomController extends Controller
             $status = "ERROR";
         }
         
-        return '<?xml version="1.0" encoding="utf-8" ?><root><status>' . $status . '</status></root>';;
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['status' => $status];
+        return $responce;
     }
     
     public function actionChangePassword()
@@ -192,11 +202,9 @@ class PrivateRoomController extends Controller
             }
         }
         
-        return '<?xml version="1.0" encoding="utf-8" ?><root>'
-                . '<status>' . $status . '</status>'
-                . '<code>' . $err . '</code>'
-                . '<error>'  . $error  . '</error>'
-            . '</root>';
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['status' => $status, 'code' => $err, 'error' => $error];
+        return $responce;
     }
     
     public function actionChangeEmail()
@@ -229,11 +237,9 @@ class PrivateRoomController extends Controller
             }
         }
         
-        return '<?xml version="1.0" encoding="utf-8" ?><root>'
-                . '<status>' . $status . '</status>'
-                . '<code>' . $err . '</code>'
-                . '<error>'  . $error  . '</error>'
-            . '</root>';
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['status' => $status, 'code' => $err, 'error' => $error];
+        return $responce;
     }
     
     public function actionOptionsSave()

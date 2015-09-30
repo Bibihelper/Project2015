@@ -178,6 +178,112 @@ $this->params["page"] = "index";
     </div>
 </div> <!-- /restore-psw -->
 
+<div class="modal fade" id="card" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="aria-card">
+    <div class="modal-dialog c-card">
+
+        <div class="modal-content c-content">
+            <div class="modal-header c-header">
+            <button type="button" class="close c-close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+
+            <div class="modal-body c-body">
+                <div class="c-col-1">
+                    <div class="address">
+                        <span class="a-title">Ультра-Сервис</span>
+                        <span class="a-diller">Автосервис</span>
+                        <span class="a-district">Центральный район</span>
+                        <span class="a-address">ул. Ленина, д.3, к.1, стр. 2</span>
+                        <span class="a-shedule">График работы: ежедневно <img src="images/twenty-four-hour.png" alt=""></span>
+                        <span class="a-phone"><img src="images/a-phone.png" alt=""> +7 (985) 647-85-11</span>
+                    </div>
+
+                    <div class="info">
+                        <span class="i-title">Обслуживаемые марки автомобилей</span>
+
+                        <div class="i-block">
+                            <span class="info-arrow info-arrow-up-na"></span>
+
+                            <div class="i-block-list">
+                                <ul class="icon-list" data-top="0">
+                                    <li class="il-item"><img src="images/brand-icons/Mercedes.png" alt=""></li>
+                                    <li class="il-item"><img src="images/brand-icons/Fiat.png" alt=""></li>
+                                    <li class="il-item"><img src="images/brand-icons/Lotus.png" alt=""></li>
+                                    <li class="il-item"><img src="images/brand-icons/Lamborghini.png" alt=""></li>
+                                    <li class="il-item"><img src="images/brand-icons/Ferrari.png" alt=""></li>
+                                    <li class="il-item"><img src="images/brand-icons/MG.png" alt=""></li>
+                                    <li class="il-item"><img src="images/brand-icons/Lancia.png" alt=""></li>
+                                    <li class="il-item"><img src="images/brand-icons/BMW.png" alt=""></li>
+                                    <li class="il-item"><img src="images/brand-icons/Hyundai.png" alt=""></li>
+                                </ul>
+                            </div>
+
+                            <span class="info-arrow info-arrow-down"></span>
+                        </div>
+                    </div>
+
+                    <div class="info">
+                        <span class="i-title">Оказываемые услуги</span>
+
+                        <div class="i-block">
+                            <span class="info-arrow info-arrow-up-na"></span>
+
+                            <div class="i-block-list i-block-list-m">
+                                <ul class="cat-list" data-top="0">
+                                    <li class="cl-item">
+                                        <span class="cl-item-text">Техническое обслуживание:</span>
+
+                                        <ul class="srv-list">
+                                            <li class="sl-item">замена колодок</li>
+                                            <li class="sl-item">плановое ТО</li>
+                                            <li class="sl-item">экспресс замена жидкостей</li>
+                                        </ul>
+                                    </li>
+
+                                    <li class="cl-item">
+                                        <span class="cl-item-text">Кузовной ремонт и покраска:</span>
+
+                                        <ul class="srv-list">
+                                            <li class="sl-item">ремонт зеркал</li>
+                                            <li class="sl-item">покраска</li>
+                                            <li class="sl-item">полировка кузова</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <span class="info-arrow info-arrow-down"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="c-col-2">
+                    <div id="address-map-id" class="address-map"></div>
+
+                    <div class="special-offer">
+                        <div class="so-title">
+                            <span class="so-title-text">Специальное предложение</span>
+                        </div>
+
+                        <div class="so-info">
+                            <div class="so-col-1">
+                                <img src="images/slide-1.png" alt="" class="so-img">
+                            </div>
+
+                            <div class="so-col-2">
+                                <span class="so-text">Скидка 20% на замену масла плюс мойка за пол цены!</span>
+                                <span class="so-text so-period">С 1 августа по 1 сентября</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="c-footer"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <div class="container main">
     <div class="row">
         
@@ -390,7 +496,7 @@ $this->params["page"] = "index";
                     <?php if ($spOffs !== false): ?>
                         <?php foreach ($spOffs as $spOff): ?>
                             <li class="slider__col">
-                                <a href="#" title="">
+                                <a href="#" title="" class="slider__href" data-cid="<?= $spOff->company_id ?>">
                                     <img src="<?= Url::to($spOff->file->getFileFullName('/images/slide-1.png')) ?>" alt="">
                                 </a>
                             </li>

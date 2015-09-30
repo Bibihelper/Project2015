@@ -2,11 +2,9 @@ window.onload = init;
 
 function init()
 {
-    if (navigator.geolocation)
-        navigator.geolocation.getCurrentPosition(displayLocation, displayError);
-    else 
-        alert("Определение местоположения не поддерживается.");
-
+    var m = new Map("map");
+    m.showMap(63.31268278, 103.42773438);
+    
     VK.init({apiId: 5050952, onlyWidgets: true});
     VK.Widgets.Like("vk_like", {type: "mini", height: 24});
 }

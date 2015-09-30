@@ -146,13 +146,11 @@ function setCompanySB(cbx, state, url) {
         url: url,
         method: "POST",
         data: { cmid: cmid, sbid: sbid, state: state },
-        dataType: "xml"
+        dataType: "json"
     });
 
-    request.success(function(xml) {
-        var status = $(xml).find("status").text();
-        
-        if (status === "OK") {
+    request.success(function(r) {
+        if (r.status === "OK") {
             setCbxState(cbx, state);
         }
     });
@@ -168,13 +166,11 @@ $("#cinfo-save-btn").click(function() {
         url: "/private-room/set-company-comment/",
         method: "POST",
         data: { cid: cid, txt: txt },
-        dataType: "xml"
+        dataType: "json"
     });
 
-    request.success(function(xml) {
-        var status = $(xml).find("status").text();
-        
-        if (status === "OK") {
+    request.success(function(r) {
+        if (r.status === "OK") {
             $("#cinfo-save-btn").attr("disabled", "disabled");
         }
     });
@@ -250,24 +246,19 @@ $("#save-psw").click(function() {
         url: "/private-room/change-password/",
         method: "POST",
         data: { pswOld: pswOld, pswNew: pswNew, pswCnf: pswCnf, cid: cid },
-        dataType: "xml"
+        dataType: "json"
     });
 
-    request.success(function(xml) {
-        var status = $(xml).find("status").text();
-        
-        if (status === "OK") {
+    request.success(function(r) {
+        if (r.status === "OK") {
             showMessage("Пароль изменен");
             $("psw-old").val("");
             $("psw-new").val("");
             $("psw-confirm").val("");
         }
         
-        if (status === "ERROR") {
-            var code  = $(xml).find("code") .text();
-            var error = $(xml).find("error").text();
-            
-            showMessage("Не удалось изменить пароль: " + code + " - " + error);
+        if (r.status === "ERROR") {
+            showMessage("Не удалось изменить пароль: " + r.code + " - " + r.error);
         }
     });
     
@@ -288,21 +279,16 @@ $("#save-email").click(function() {
         url: "/private-room/change-email/",
         method: "POST",
         data: { email: emailNew, cid: cid },
-        dataType: "xml"
+        dataType: "json"
     });
 
-    request.success(function(xml) {
-        var status = $(xml).find("status").text();
-        
-        if (status === "OK") {
+    request.success(function(r) {
+        if (r.status === "OK") {
             showMessage("E-mail изменен");
         }
         
-        if (status === "ERROR") {
-            var code  = $(xml).find("code") .text();
-            var error = $(xml).find("error").text();
-
-            showMessage("Не удалось изменить E-mail: " + code + " - " + error);
+        if (r.status === "ERROR") {
+            showMessage("Не удалось изменить E-mail: " + r.code + " - " + r.error);
         }
     });
     
@@ -330,6 +316,38 @@ $("#s-br").change(function() {
     image = this.files;
 });
 
+$("#s-load-image").click(function() {
+    if ($(this).hasClass("disabled")) {
+      return false;
+    }
+    
+    var data = new FormData();
+
+    $.each(image, function(key, value) {
+        data.append(key, value);
+    });
+    
+    var cID = $("#cid").html();
+    
+    var request = $.ajax({
+        url: "/private-room/load-image/?id=" + cID,
+        type: 'POST',
+        data: data,
+        cache: false,
+        dataType: "json",
+        processData: false,
+        contentType: false,
+    });
+
+    request.success(function(r) {
+        if (r.status === "OK") {
+            $("#s-image").attr("src", r.filename);
+            $("#s-image").attr("data-load", "1");
+            updateStatePublishBtn();
+        }
+    });
+});
+
 $("#s-publish").click(function() {
     if ($(this).hasClass("disabled")) {
         return false;
@@ -346,15 +364,13 @@ $("#s-publish").click(function() {
             url: "/private-room/set-special-offer/",
             method: "POST",
             data: { cid: cid, image: imgage, comment: comment, activeFrom: activeFrom.toLocaleString(), activeTo: activeTo.toLocaleString() },
-            dataType: "xml"
+            dataType: "json"
         });
         
         var sPublish = this;
 
-        request.success(function(xml) {
-            var status = $(xml).find("status").text();
-
-            if (status === "OK") {
+        request.success(function(r) {
+            if (r.status === "OK") {
                 $(".s-off-ctrls").hide();
                 $(".s-off-preview").css("float", "none");
                 $(sPublish).text("Удалить предложение").attr("data-btn-type", "2");
@@ -369,15 +385,13 @@ $("#s-publish").click(function() {
             url: "/private-room/remove-special-offer/",
             method: "POST",
             data: { cid: cid },
-            dataType: "xml"
+            dataType: "json"
         });
         
         var sPublish = this;
 
-        request.success(function(xml) {
-            var status = $(xml).find("status").text();
-
-            if (status === "OK") {
+        request.success(function(r) {
+            if (r.status === "OK") {
                 $(".s-off-ctrls").show();
                 $(".s-off-preview").css("float", "right");
                 $(sPublish).text("Опубликовать").attr("data-btn-type", "1").addClass("disabled");
@@ -398,44 +412,6 @@ function updateStatePublishBtn() {
         $("#s-publish").addClass("disabled")      
     } 
 }
-
-$("#s-load-image").click(function() {
-    if ($(this).hasClass("disabled")) {
-      return false;
-    }
-    
-    var data = new FormData();
-
-    $.each(image, function(key, value) {
-        data.append(key, value);
-    });
-    
-    var cID = $("#c-id").html();
-    
-    var request = $.ajax({
-        url: '/private-room/load-image/?id=' + cID,
-        type: 'POST',
-        data: data,
-        cache: false,
-        dataType: 'xml',
-        processData: false,
-        contentType: false,
-    });
-
-    request.success(function(xml) {
-        var status   = $(xml).find("status"  ).text();
-        var filename = $(xml).find("filename").text();
-        
-        if (status === "OK") {
-
-            $("#s-image").attr("src", filename);
-            $("#s-image").attr("data-load", "1");
-            
-            updateStatePublishBtn();
-            
-        }
-    });
-});
 
 // Описание специального предложения
 

@@ -1,63 +1,54 @@
-var map;
+/* Map */
 
-function displayLocation(position)
+function Map(mapid)
 {
-    showMap(position.coords);
+    this.map = null;
+    this.mapid = mapid;
+    this.lat = 0;
+    this.lng = 0;
+    this.infoWindowTitle = "Ваше местоположение";
+    this.infoWinfowContent = "Широта: " + this.lat + ", Долгота: " + this.lng;
 }
 
-function displayError(error)
+Map.prototype.showMap = function(lat, lng, zoom)
 {
-    errorTypes = {
-        0: "Unknown error",
-        1: "Permission denied by user",
-        2: "Position is not available",
-        3: "Request limited timed out"
-    };
-    var errorMessage = errorTypes[error.code];
-    if (error.code == 0 || error.code == 2)
-        errorMessage = errorMessage + " " + error.message;
-    var div = document.getElementById("location");
-    div.innerHTML = errorMessage;
-}
+    this.lat = lat || 0;
+    this.lng = lng || 0;
 
-function showMap(coords)
-{
-    var googleLatAndLong = new google.maps.LatLng(coords.latitude, coords.longitude);
-    
-    var mapOptions = {
-        zoom: 10,
-        center: googleLatAndLong,
-        mapTypeID: google.maps.MapTypeId.ROADMAP
-    };
-    
-    var mapDiv = document.getElementById("map");
-    map = new google.maps.Map(mapDiv, mapOptions);
-  
-    var title = "Ваше местоположение";
-    var content = "Широта: " + coords.latitude + ", Долгота: " + coords.longitude;
-    
-    addMarker(map, googleLatAndLong, title, content);
-}
+    if (this.lat !== 0 && this.lng !== 0) {
+        zoom = zoom || 3;
+        var coords = new google.maps.LatLng(this.lat, this.lng);
+        var mapOptions = {
+            zoom: zoom,
+            center: coords,
+            mapTypeID: google.maps.MapTypeId.ROADMAP
+        };
+        this.map = new google.maps.Map(document.getElementById(this.mapid), mapOptions);
+    }
+};
 
-function addMarker(map, latlong, title, content)
+Map.prototype.showMarker = function()
 {
+    var coords = new google.maps.LatLng(this.lat, this.lng);
     var markerOptions = {
-        position: latlong,
-        map: map,
-        title: title,
+        position: coords,
+        map: this.map,
+        title: this.infoWindowTitle,
         clickable: true
     };
     var marker = new google.maps.Marker(markerOptions);
-  
     var infoWindowOptions = {
-        content: content,
-        position: latlong
+        content: this.infoWinfowContent,
+        position: coords
     };
     var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
     google.maps.event.addListener(marker, "click", function () {
-        infoWindow.open(map);
+        infoWindow.open(this.map);
     });
-}
+};
+
+
+
 
 
 

@@ -44,10 +44,9 @@ class UserController extends Controller
         if ($user && $user->email_confirm_token == $token) {
             $user->email_confirm = 1;
             $user->save();
-            $this->redirect(Url::home());
             Yii::$app->user->login($user, 0);
             Yii::$app->user->setReturnUrl('/private-room/?id=' . $user->company->id);
-            $this->redirect('/private-room/?id=' . $user->company->id);
+            return $this->redirect('/private-room/?id=' . $user->company->id);
         }
     }
     
