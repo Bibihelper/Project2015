@@ -1,5 +1,22 @@
 /* Form */
 
+.m-dialog {
+    margin-top: 180px;
+    width: 600px;
+}
+
+.type-error {
+    background-color: #fecbca;
+}
+
+.c-mb0 {
+    margin-bottom: 0;
+}
+
+.rf-content {
+    padding: 0 35px;
+}
+
 .f-content {
     border-radius: 0;
     border: 1px solid #071d70;
@@ -119,23 +136,65 @@ span.f-link:hover {
     height: 40px;
 }
 
-.m-dialog {
-    margin-top: 180px;
-    width: 600px;
+.f-checkbox {
+    vertical-align: top;
+    margin: 0 3px 0 0;
+    width: 20px;
+    height: 20px;
 }
 
-.type-error {
-    background-color: #fecbca;
+.f-checkbox + label {
+    cursor: pointer;
 }
 
-.c-mb0 {
-    margin-bottom: 0;
+.f-checkbox:not(checked) {
+    position: absolute;
+    opacity: 0;
 }
 
-.rf-content {
-    padding: 0 35px;
+.f-checkbox:not(checked) + label {
+    position: relative;
+    padding: 0 0 0 30px;
 }
 
+.f-checkbox:not(checked) + label:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #38b2ce;
+    background: #fff;
+}
 
+.f-checkbox:checked + label:before {
+    background: #fff url("../images/form-checkbox.png") no-repeat 0 0;
+}
 
+.f-input-group-addon {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    border-radius: 0;
+    border: 1px solid #38b2ce;
+    border-left: none;
+    background-color: #e8e6e6;
+    color: #38b2ce;
+    cursor: pointer;
+}
+
+.f-hint-password {
+    background-color: #ceeef5;
+}
+
+.f-input-group-addon:hover + .f-hint-password {
+    font-family: Tahoma;
+    font-size: 12px;
+    line-height: 21px;
+    text-decoration: underline;
+    background-color: #ceeef5;
+    display: block;
+    top: -27px;
+    left: 389px;
+}
 
