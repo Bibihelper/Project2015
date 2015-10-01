@@ -10,6 +10,8 @@ use app\models\Shedule;
 use app\models\Category;
 use app\models\SpecialOffer;
 use app\models\Files;
+use app\components\Common;
+use app\models\forms\CompanyInfoForm;
 use yii\helpers\ArrayHelper;
 
 class CompanyController extends Controller
@@ -74,6 +76,24 @@ class CompanyController extends Controller
             'file'     => $file
         ];
         
+        return $response;
+    }
+    
+    public function actionSaveInfo()
+    {
+        $status = 'OK';
+        $message = '';
+        $cInfFrm = new CompanyInfoForm();
+        
+        if ($cInfFrm->load(Yii::$app->request->post())) {
+            if (!$cInfFrm->saveInfo()) {
+                $status = 'ERROR';
+                $message = Common::M_DATA_SAVE_FAILED;
+            }
+        }
+
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response = ['status' => $status, 'message' => $message];
         return $response;
     }
 }

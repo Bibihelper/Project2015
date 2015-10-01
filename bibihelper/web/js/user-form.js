@@ -1,4 +1,4 @@
-/* User register form */
+/* User register and login forms */
 
 function checkEmail(ctrl, left) {
     var regexp = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;

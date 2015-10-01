@@ -20,12 +20,14 @@ class PrivateRoomAsset extends AssetBundle
     public $css = [
         'css/common.css',
         'css/private-room.css',
+        'css/form.css',
     ];
     public $js = [
         'http://maps.google.com/maps/api/js?sensor=true',
         'js/map.js',
         'js/datepicker-ru.js',
         'js/private-room.js',
+        'js/company-info.js',
     ];
     public $depends = [
         'app\assets\ResetAsset',

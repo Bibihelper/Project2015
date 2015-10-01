@@ -13,8 +13,16 @@
     margin-bottom: 0;
 }
 
+.c-tar {
+    text-align: right;
+}
+
 .rf-content {
     padding: 0 35px;
+}
+
+.ci-block {
+    padding: 30px 65px 40px 65px;
 }
 
 .f-content {
@@ -198,3 +206,16 @@ span.f-link:hover {
     left: 389px;
 }
 
+.f-textarea {
+    font-family: Tahoma;
+    font-size: 16px;
+    width: 100%;
+    height: 300px;
+    background-color: #d5eded;
+    border: none;
+    padding: 10px;
+    max-width: 836px;
+    min-width: 418px;
+    max-height: 300px;
+    min-height: 300px;
+}

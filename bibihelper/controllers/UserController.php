@@ -5,8 +5,8 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\User;
-use app\models\RegisterForm;
-use app\models\LoginForm;
+use app\models\forms\RegisterForm;
+use app\models\forms\LoginForm;
 use app\components\Common;
 use yii\helpers\Url;
 
@@ -15,7 +15,6 @@ class UserController extends Controller
     public function actionRegister()
     {
         $status = 'OK';
-        $code = 0;
         $message = Common::M_EMAIL_SEND;
 
         $regFrm = new RegisterForm();
@@ -23,17 +22,15 @@ class UserController extends Controller
         if ($regFrm->load(Yii::$app->request->post()) && $regFrm->validate()) {
             if (!$regFrm->register()) {
                 $status = 'ERROR';
-                $code = 1;
                 $message = Common::M_FAILED_SAVE_DATA;
             }
         } else {
             $status = 'ERROR';
-            $code = 2;
             $message = implode(' ', $regFrm->getFirstErrors());
         }
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $response = ['status' => $status, 'code' => $code, 'message' => $message];
+        $response = ['status' => $status, 'message' => $message];
         return $response;
     }
     
@@ -53,34 +50,28 @@ class UserController extends Controller
     public function actionLogin()
     {
         $status = 'OK';
-        $code = 0;
         $message = '';
         $companyid = 0;
         
-        $data = Yii::$app->request->post();
-
         $logFrm = new LoginForm();
         
         if ($logFrm->load(Yii::$app->request->post()) && $logFrm->validate()) {
             if ($logFrm->validatePassword()) {
                 if (!($companyid = $logFrm->login())) {
                     $status = 'ERROR';
-                    $code = 3;
                     $message = Common::M_LOGIN_FAILED;
                 }
             } else {
                 $status = 'ERROR';
-                $code = 4;
                 $message = Common::M_WRONG_PASSWORD;
             }
         } else {
             $status = 'ERROR';
-            $code = 4;
             $message = implode(' ', $logFrm->getFirstErrors());
         }
 
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $response = ['status' => $status, 'code' => $code, 'message' => $message, 'companyid' => $companyid];
+        $response = ['status' => $status, 'message' => $message, 'companyid' => $companyid];
         return $response;
     }
     

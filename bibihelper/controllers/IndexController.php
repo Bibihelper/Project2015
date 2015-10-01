@@ -4,8 +4,8 @@ namespace app\controllers;
 
 use yii\web\Controller;
 use app\models\SpecialOffer;
-use app\models\RegisterForm;
-use app\models\LoginForm;
+use app\models\forms\RegisterForm;
+use app\models\forms\LoginForm;
 
 class IndexController extends Controller
 {

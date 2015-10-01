@@ -16,4 +16,5 @@ class Common extends Object
     const M_WRONG_PASSWORD = 'Неверный пароль.';
     const M_EMAIL_EXISTS = 'Пользователь с таким E-mail уже существует.';
     const M_PASSWORDS_NOT_MATCH = 'Пароли не совпадают.';
+    const M_DATA_SAVE_FAILED = 'Не удалось сохранить данные.';
 }

@@ -11,7 +11,7 @@ Date.prototype.addDays = function(days)
     var dat = new Date(this.valueOf());
     dat.setDate(dat.getDate() + days);
     return dat;
-}
+};
 
 $(function() {
     var val = $("#datepicker1").attr("data-date"), date;
@@ -156,30 +156,6 @@ function setCompanySB(cbx, state, url) {
     });
 }
 
-// Информация о компании
-
-$("#cinfo-save-btn").click(function() {
-    var cid = $("#cinfo-comment").attr("data-cid");
-    var txt = $("#cinfo-comment").val();
-    
-    var request = $.ajax({
-        url: "/private-room/set-company-comment/",
-        method: "POST",
-        data: { cid: cid, txt: txt },
-        dataType: "json"
-    });
-
-    request.success(function(r) {
-        if (r.status === "OK") {
-            $("#cinfo-save-btn").attr("disabled", "disabled");
-        }
-    });
-});
-
-$("#cinfo-comment").keyup(function() {
-    $("#cinfo-save-btn").removeAttr("disabled");
-});
-
 // Стрелки
 
 $("a.arrow-item").click(function() {
@@ -232,6 +208,12 @@ $("#save-psw").click(function() {
     
     if (pswNew.length < 6) {
         showMessage("Минимальная длина пароля - 6 символов");
+        $("#psw-new").focus();
+        return false;    
+    }
+    
+    if (pswNew.length > 32) {
+        showMessage("Максимальная длина пароля - 32 символа");
         $("#psw-new").focus();
         return false;    
     }

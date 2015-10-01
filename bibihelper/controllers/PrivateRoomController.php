@@ -10,10 +10,10 @@ use app\models\Shedule;
 use app\models\User;
 use app\models\Category;
 use app\models\Country;
-use app\models\Brand;
 use app\models\CompanyServices;
 use app\models\CompanyBrands;
 use app\models\SpecialOffer;
+use app\models\forms\CompanyInfoForm;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 
@@ -32,12 +32,15 @@ class PrivateRoomController extends Controller
         $categories = Category::find()->all();
         $countries = Country::find()->all();
         
+        $cInfFrm = new CompanyInfoForm();
+        $cInfFrm->loadInfo($id);
+        
         return $this->render('/private-room/private-room', [
             'company' => $company, 
-            'brands' => $brands,
             'shedule' => $shedule,
             'categories' => $categories,
             'countries' => $countries,
+            'cInfFrm' => $cInfFrm,
         ]);
     }
     
@@ -104,31 +107,6 @@ class PrivateRoomController extends Controller
         $cb = new CompanyBrands();
         $ok = $cb->setCompanyBrand($cmid, $sbid, $state);
         
-        if (!$ok) {
-            $status = 'ERROR';
-        }
-
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $responce = ['status' => $status];
-        return $responce;
-    }
-    
-    public function actionSetCompanyComment()
-    {
-        $status = "OK";
-        $data = Yii::$app->request->post();
-        
-        $cid = $data["cid"];
-        $txt = $data["txt"];
-        
-        $company = Company::findOne($cid);
-        
-        if ($company) {
-            $ok = $company->setComment($txt);
-        } else {
-            $status = "ERROR";
-        }
-
         if (!$ok) {
             $status = 'ERROR';
         }

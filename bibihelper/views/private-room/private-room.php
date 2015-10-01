@@ -3,7 +3,9 @@
 /* @var $this yii\web\View */
 
 use app\assets\PrivateRoomAsset;
+use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\bootstrap\ActiveForm;
 
 PrivateRoomAsset::register($this);
 
@@ -184,17 +186,25 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             <div class="arrow-ud arrow_down-a"></div>
                                             
                                         </div>
+                                        
                                         <div id="company-info" class="tab-pane fade">
-
-                                            <div class="info-c">
-                                                <textarea class="info-c__text" id="cinfo-comment" data-cid="<?= $company->id ?>"><?= $company->comment ?></textarea>
+                                            <div class="ci-block">
+                                                <?php $form = ActiveForm::begin(['id' => 'company-info-form']); ?>
+                                                    <?= $form->field($cInfFrm, 'info', [
+                                                            'options' => ['class' => 'form-group'],
+                                                            'template' => "{input}\n",
+                                                        ])->textarea([
+                                                            'class' => 'f-textarea', 'id' => 'ci-info'
+                                                        ])->label(false)
+                                                    ?>
+                                                    <?= $form->field($cInfFrm, 'id')->hiddenInput()->label(false) ?>
+                                                    <div class="form-group c-tar">
+                                                        <?= Html::button('Сохранить', ['class' => 'f-button f-submit', 'id' => 'ci-submit', 'disabled' => 'disabled']) ?>
+                                                    </div>
+                                                <?php ActiveForm::end(); ?>
                                             </div>
-
-                                            <div class="info-c__btn">
-                                                <button type="button" class="btn bibi-form-btn info-c__btn_save" id="cinfo-save-btn" disabled="disabled">Сохранить</button>
-                                            </div>
-                    
                                         </div>
+                                        
                                         <div id="sp-off" class="tab-pane fade" data-cid="<?= $company->id ?>" data-soid="<?= $company->specialOffer->id ?>">
 
                                             <div class="s-off">
