@@ -18,9 +18,11 @@ $this->params["page"] = "index";
     <div class="modal-dialog m-dialog">
         <?php $form = ActiveForm::begin([
             'id' => 'login-form',
-            'fieldConfig' => [
-                'template' => "{label}\n<span class=\"f-icon f-icon-ok\"></span>{input}\n<div class=\"f-hint\"><span class=\"f-text\"></span></div>\n{error}",
-            ]]); ?>
+            'enableAjaxValidation' => true,
+            'action' => Url::to('/user/login/'),
+            'validationUrl' => Url::to('/index/validate-login-form/'),
+            'successCssClass' => '',
+        ]); ?>
             <div class="modal-content f-content rf-content">
                 <button type="button" class="close f-close" data-dismiss="modal" aria-hidden="true" id="rf-close">&times;</button>
 
@@ -29,26 +31,26 @@ $this->params["page"] = "index";
                 </div>
 
                 <div class="modal-body f-body">
+                    
                     <?= $form->field($logFrm, 'email', [
                             'options' => ['class' => 'form-group f-group']
                         ])->textInput([
-                            'class' => 'form-control f-control', 'id' => 'lf-email'
+                            'class' => 'form-control f-control'
                         ])->label($logFrm->getAttributeLabel('email'), [
                             'class' => 'f-label'
                         ])
                     ?>
-
+                    
                     <?= $form->field($logFrm, 'password', [
                             'options' => ['class' => 'form-group f-group'],
                             'template' => "{label}\n"
                                 . "<span class=\"f-icon f-icon-ok\"></span>"
                                 . "<div class=\"input-group\">{input}"
-                                    . "<div class=\"f-hint\"><span class=\"f-text\"></span></div>\n{error}"
-                                    . "<span class=\"input-group-addon f-input-group-addon\" id=\"lf-restore-password\">?</span>"
+                                    . "<span class=\"input-group-addon f-input-group-addon\">?</span>"
                                     . "<span class=\"f-hint f-hint-password\">Забыли пароль?</span>"
-                                . "</div>\n"
+                                . "</div>\n{error}"
                         ])->passwordInput([
-                            'class' => 'form-control f-control', 'id' => 'lf-password', 'type' => 'password',
+                            'class' => 'form-control f-control'
                         ])->label($logFrm->getAttributeLabel('password'), [
                             'class' => 'f-label'
                         ]) 
@@ -58,7 +60,7 @@ $this->params["page"] = "index";
                             'options' => ['class' => 'form-group f-group c-mb0'],
                             'checkboxTemplate' => "{input}\n{label}"
                         ])->checkbox([
-                            'class' => 'f-checkbox', 'id' => 'lf-remember-me'
+                            'class' => 'f-checkbox'
                         ])->label($logFrm->getAttributeLabel('rememberme'), [
                             'class' => 'f-label'
                         ])
@@ -68,7 +70,7 @@ $this->params["page"] = "index";
                 
                 <div class="modal-footer f-footer">
                     <div class="form-group f-group">
-                        <?= Html::button('Войти', ['class' => 'f-button f-submit', 'id' => 'lf-submit']) ?>
+                        <?= Html::submitButton('Войти', ['class' => 'f-button f-submit', 'id' => 'lf-submit']) ?>
                     </div>
 
                     <div class="form-group f-group">

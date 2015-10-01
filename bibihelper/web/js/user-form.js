@@ -121,24 +121,24 @@ function rfSendForm() {
 }
 
 // login form - send data
-
-function lfSendForm() {
-    var form = $("#login-form");
-    
-    $.ajax({
-        url: "/user/login/",
-        method: "POST",
-        data: form.serialize(),
-        dataType: "json",
-        success: function(response) {
-            if (response.status === "OK") {
-                window.location.href = "/private-room/?id=" + response.companyid;
-            } else {
-                alert(response.message);
-            }
-        }
-    });
-}
+//
+//function sendLoginForm() {
+//    var form = $("#login-form");
+//    
+//    $.ajax({
+//        url: "/user/login/",
+//        method: "POST",
+//        data: form.serialize(),
+//        dataType: "json",
+//        success: function(response) {
+//            if (response.status === "OK") {
+//                window.location.href = "/private-room/?id=" + response.companyid;
+//            } else {
+//                alert(response.message);
+//            }
+//        }
+//    });
+//}
 
 // События - форма регистрации
 
@@ -162,32 +162,23 @@ $("#rf-submit").click(function() {
     $("#user-register-form").modal("hide");
 });
 
-$("#rf-login").click(function() {
-    setTimeout(function() {
-        $("#user-register-form").modal("hide");
-    }, 200);
-    setTimeout(function() {
-        $("#user-login-form").modal("show");
-    }, 700);
-});
-
 // События - форма входа
 
-$("#lf-email").blur(function() {
-    checkEmail(this,"398px");
-});
-
-$("#lf-password").blur(function() {
-    checkPassword(this, "235px");
-});
-
-$("#lf-submit").click(function() {
-    if (!lfCheckAll()) {
-        return false;
-    }
-    lfSendForm();
-    $("#user-login-form").modal("hide");
-});
+//$("#lf-email").blur(function() {
+//    checkEmail(this,"398px");
+//});
+//
+//$("#lf-password").blur(function() {
+//    checkPassword(this, "235px");
+//});
+//
+//$("#lf-submit").click(function() {
+//    if (!lfCheckAll()) {
+//        return false;
+//    }
+//    sendLoginForm();
+//    $("#user-login-form").modal("hide");
+//});
 
 $("#lf-register").click(function() {
     setTimeout(function() {
@@ -207,11 +198,18 @@ $("#lf-restore-password").click(function() {
     }, 700);
 });
 
-//function hideHint() {
-//    $("div.f-hint").hide();
-//}
-//
-//$("#user-login-form"   ).on('hidden.bs.modal', hideHint);
-//$("#user-register-form").on('hidden.bs.modal', hideHint);
+$("#rf-login").click(function() {
+    setTimeout(function() {
+        $("#user-register-form").modal("hide");
+    }, 200);
+    setTimeout(function() {
+        $("#user-login-form").modal("show");
+    }, 700);
+});
+
+
+
+
+
 
 

@@ -49,30 +49,16 @@ class UserController extends Controller
     
     public function actionLogin()
     {
-        $status = 'OK';
-        $message = '';
-        $companyid = 0;
-        
         $logFrm = new LoginForm();
         
         if ($logFrm->load(Yii::$app->request->post()) && $logFrm->validate()) {
-            if ($logFrm->validatePassword()) {
-                if (!($companyid = $logFrm->login())) {
-                    $status = 'ERROR';
-                    $message = Common::M_LOGIN_FAILED;
-                }
-            } else {
-                $status = 'ERROR';
-                $message = Common::M_WRONG_PASSWORD;
+            $companyID = $logFrm->login();
+            if ($companyID) {
+                return $this->redirect(Url::to('/private-room/?id=' . $companyID));
             }
-        } else {
-            $status = 'ERROR';
-            $message = implode(' ', $logFrm->getFirstErrors());
         }
-
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $response = ['status' => $status, 'message' => $message, 'companyid' => $companyid];
-        return $response;
+        
+        return $this->goHome();
     }
     
     public function actionLogout()

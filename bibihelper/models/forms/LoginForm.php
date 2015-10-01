@@ -11,7 +11,7 @@ class LoginForm extends Model
 {
     public $email;
     public $password;
-    public $rememberme;
+    public $rememberme = true;
     
     private $_user = false;
     
@@ -30,6 +30,7 @@ class LoginForm extends Model
             ['email', 'email', 'message' => Common::M_WRONG_EMAIL],
             ['email', 'emailNotExists'],
             ['password', 'string', 'length' => [6, 32], 'tooShort' => Common::M_MIN_PASSWORD_LENGTH, 'tooLong' => Common::M_MAX_PASSWORD_LENGTH],
+            ['password', 'validatePassword'],
         ];
     }
     
@@ -50,9 +51,14 @@ class LoginForm extends Model
         }
     }
 
-    public function validatePassword()
+    public function validatePassword($attribute, $params)
     {
-        return $this->getUser()->validatePassword($this->password);
+        if (!$this->hasErrors()) {
+            $ok = $this->getUser()->validatePassword($this->password);
+            if (!$ok) {
+                $this->addError($attribute, Common::M_WRONG_PASSWORD);
+            }
+        }
     }
 
     public function login()
