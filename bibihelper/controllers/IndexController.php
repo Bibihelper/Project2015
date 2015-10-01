@@ -36,4 +36,30 @@ class IndexController extends Controller
             return ActiveForm::validate($logFrm);
         }
     }
+    
+    public function actionValidateRegisterForm()
+    {
+        $regFrm = new RegisterForm();
+        
+        if (Yii::$app->request->isAjax && $regFrm->load(Yii::$app->request->post()))
+        {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($regFrm);
+        }
+    }
+    
+    public function actionRegisterSuccess($message)
+    {
+        $regFrm = new RegisterForm();
+        $logFrm = new LoginForm();
+        $spOffs = new SpecialOffer();
+        $spOffs = $spOffs->getAllSpecialOffers();
+        
+        return $this->render('index', [
+            'spOffs' => $spOffs,
+            'regFrm' => $regFrm,
+            'logFrm' => $logFrm,
+            'responseMessage' => $message,
+        ]);
+    }
 }

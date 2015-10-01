@@ -64,11 +64,12 @@ use yii\helpers\Url;
     <div class="row">
         <div class="container">                
             <div class="row">
-            
-                <div class="logo" data-home="<?= Url::home() ?>">
-                    <p class="logo__bibi-helper logo__bibi_color logo__bibi_shift"><span>BiBi<span class="logo__bibi-helper logo__helper_color">Helper</span></span></p>
-                    <p class="logo__slogan">Удобный выбор автосервиса</p>                        
-                </div>
+                <a href="<?= Url::base(true) ?>" title="">
+                    <div class="logo">
+                        <p class="logo__bibi-helper logo__bibi_color logo__bibi_shift"><span>BiBi<span class="logo__bibi-helper logo__helper_color">Helper</span></span></p>
+                        <p class="logo__slogan">Удобный выбор автосервиса</p>                        
+                    </div>
+                </a>
                 
                 <?php if ($this->params['page'] == 'index'): ?>
                     <div class="city">                                             

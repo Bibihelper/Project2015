@@ -14,24 +14,16 @@ class UserController extends Controller
 {
     public function actionRegister()
     {
-        $status = 'OK';
-        $message = Common::M_EMAIL_SEND;
-
         $regFrm = new RegisterForm();
         
         if ($regFrm->load(Yii::$app->request->post()) && $regFrm->validate()) {
-            if (!$regFrm->register()) {
-                $status = 'ERROR';
-                $message = Common::M_FAILED_SAVE_DATA;
+            $ok = $regFrm->register();
+            if ($ok) {
+                return $this->redirect(Url::to('/index/register-success/?message=' . Common::M_EMAIL_SEND));
             }
-        } else {
-            $status = 'ERROR';
-            $message = implode(' ', $regFrm->getFirstErrors());
         }
-
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $response = ['status' => $status, 'message' => $message];
-        return $response;
+        
+        return $this->goHome();
     }
     
     public function actionConfirm($id, $token)

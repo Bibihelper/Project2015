@@ -20,7 +20,7 @@ class RegisterForm extends Model
     public function rules()
     {
         return [
-            [['email', 'password', 'passwordok'], 'required'],
+            [['email', 'password', 'passwordok'], 'required', 'message' => Common::M_FIELD_CANNOT_BE_BLANK],
             ['email', 'email', 'message' => Common::M_WRONG_EMAIL],
             ['email', 'emailExists'],
             ['password', 'string', 'length' => [6, 32], 'tooShort' => Common::M_MIN_PASSWORD_LENGTH, 'tooLong' => Common::M_MAX_PASSWORD_LENGTH],

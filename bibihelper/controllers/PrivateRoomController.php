@@ -23,7 +23,13 @@ class PrivateRoomController extends Controller
     
     public function actionIndex($id)
     {
-        if (Yii::$app->user->isGuest || $id != Yii::$app->user->id) {
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect(Url::home());
+        }
+        
+        $user = User::findOne(Yii::$app->user->id);
+
+        if ($user->company->id != $id) {
             return $this->redirect(Url::home());
         }
         

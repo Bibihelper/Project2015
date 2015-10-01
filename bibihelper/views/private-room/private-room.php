@@ -256,9 +256,9 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             
                                             <div class="info-c__btn">
                                                 <?php if ($company->hasOffer()): ?>
-                                                    <button type="button" class="btn bibi-form-btn info-c__btn_save" id="s-publish" data-btn-type="2">Удалить предложение</button>
+                                                    <button type="button" class="f-button f-submit" id="s-publish" data-btn-type="2">Удалить предложение</button>
                                                 <?php else: ?>
-                                                    <button type="button" class="btn bibi-form-btn info-c__btn_save disabled" id="s-publish" data-btn-type="1">Опубликовать</button>
+                                                    <button type="button" class="f-button f-submit disabled" id="s-publish" data-btn-type="1">Опубликовать</button>
                                                 <?php endif ?>
                                             </div>
                     

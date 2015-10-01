@@ -277,12 +277,6 @@ $("#save-email").click(function() {
     return true;
 });
 
-// Logo
-
-$(".logo").click(function() {
-    window.location.href = $(this).attr("data-home");
-});
-
 // Загрузка картинки
 
 var image;

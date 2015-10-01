@@ -86,9 +86,11 @@ $this->params["page"] = "index";
     <div class="modal-dialog m-dialog">
         <?php $form = ActiveForm::begin([
             'id' => 'register-form',
-            'fieldConfig' => [
-                'template' => "{label}\n<span class=\"f-icon f-icon-ok\"></span>{input}\n<div class=\"f-hint\"><span class=\"f-text\"></span></div>\n{error}",
-            ]]); ?>
+            'enableAjaxValidation' => true,
+            'action' => Url::to('/user/register/'),
+            'validationUrl' => Url::to('/index/validate-register-form/'),
+            'successCssClass' => '',
+        ]); ?>
             <div class="modal-content f-content rf-content">
                 <button type="button" class="close f-close" data-dismiss="modal" aria-hidden="true" id="rf-close">&times;</button>
 
@@ -100,7 +102,7 @@ $this->params["page"] = "index";
                     <?= $form->field($regFrm, 'email', [
                             'options' => ['class' => 'form-group f-group']
                         ])->textInput([
-                            'class' => 'form-control f-control', 'id' => 'rf-email'
+                            'class' => 'form-control f-control'
                         ])->label($regFrm->getAttributeLabel('email'), [
                             'class' => 'f-label'
                         ]) 
@@ -109,7 +111,7 @@ $this->params["page"] = "index";
                     <?= $form->field($regFrm, 'password', [
                             'options' => ['class' => 'form-group f-group']
                         ])->passwordInput([
-                            'class' => 'form-control f-control', 'id' => 'rf-password', 'type' => 'password'
+                            'class' => 'form-control f-control'
                         ])->label($regFrm->getAttributeLabel('password'), [
                             'class' => 'f-label'
                         ]) 
@@ -118,7 +120,7 @@ $this->params["page"] = "index";
                     <?= $form->field($regFrm, 'passwordok', [
                             'options' => ['class' => 'form-group f-group c-mb0']
                         ])->passwordInput([
-                            'class' => 'form-control f-control', 'id' => 'rf-password-ok', 'type' => 'password'
+                            'class' => 'form-control f-control'
                         ])->label($regFrm->getAttributeLabel('password'), [
                             'class' => 'f-label'
                         ])
@@ -127,7 +129,7 @@ $this->params["page"] = "index";
                 
                 <div class="modal-footer f-footer">
                     <div class="form-group f-group">
-                        <?= Html::button('Зарегистрироваться', ['class' => 'f-button f-submit', 'id' => 'rf-submit']) ?>
+                        <?= Html::submitButton('Зарегистрироваться', ['class' => 'f-button f-submit', 'id' => 'rf-submit']) ?>
                     </div>
 
                     <div class="form-group f-group">
@@ -288,6 +290,10 @@ $this->params["page"] = "index";
 
 <div class="container main">
     <div class="row">
+        
+        <div class="register-response">
+            <span class="register-message"><?= $responseMessage ?></span>
+        </div>
         
         <div id="map">
         <!--

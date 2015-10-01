@@ -396,7 +396,7 @@ ul.info-s {
 
 .s-off {
     padding: 30px 65px 60px 40px;
-    height: 385px;
+    height: 340px;
 }
 
 .s-off-ctrls {
@@ -644,6 +644,7 @@ ul.info-s {
 .primg > img {
     width: 285px;
     height: 170px;
+    border: 1px solid #071d70;
 }
 #s-br {
     display: none;
@@ -663,6 +664,11 @@ ul.info-s {
 
 .c-edit_m {
     margin-bottom: 10px;
+}
+
+.info-c__btn {
+    padding: 0 65px 30px 40px;
+    text-align: right;
 }
 
 .info-c__btn_m {

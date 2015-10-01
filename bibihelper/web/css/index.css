@@ -256,3 +256,16 @@
     background-color: #38b2ce;
 }
 
+/* register response */
+
+.register-response {
+    text-align: center;
+    background-color: #38B2CE;
+}
+
+.register-message {
+    color: #fff;
+    font-family: MyriadProBold;
+    font-size: 16px;
+    line-height: 35px;
+}

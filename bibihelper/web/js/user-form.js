@@ -142,26 +142,26 @@ function rfSendForm() {
 
 // События - форма регистрации
 
-$("#rf-email").blur(function() {
-    checkEmail(this, "398px");
-});
-
-$("#rf-password").blur(function() {
-    checkPassword(this, "250px");
-});
-
-$("#rf-password-ok").keyup(function() {
-    checkPasswordOk(this, "362px");
-});
-
-$("#rf-submit").click(function() {
-    if (!rfCheckAll()) {
-        return false;
-    }
-    rfSendForm();
-    $("#user-register-form").modal("hide");
-});
-
+//$("#rf-email").blur(function() {
+//    checkEmail(this, "398px");
+//});
+//
+//$("#rf-password").blur(function() {
+//    checkPassword(this, "250px");
+//});
+//
+//$("#rf-password-ok").keyup(function() {
+//    checkPasswordOk(this, "362px");
+//});
+//
+//$("#rf-submit").click(function() {
+//    if (!rfCheckAll()) {
+//        return false;
+//    }
+//    rfSendForm();
+//    $("#user-register-form").modal("hide");
+//});
+//
 // События - форма входа
 
 //$("#lf-email").blur(function() {
