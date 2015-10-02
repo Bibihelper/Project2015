@@ -9,12 +9,6 @@ function init()
     VK.Widgets.Like("vk_like", {type: "mini", height: 24});
 }
 
-// logo
-
-$(".logo").click(function() {
-    window.location.href = "#";
-});
-
 // Переключение между формами простого и расширенного поиска
 
 $("#ext-search-btn").click(function() {
@@ -197,4 +191,5 @@ $(".arrow_right").click(function() {
         return;
     animateSlide(currentSlide);
 });
+
 

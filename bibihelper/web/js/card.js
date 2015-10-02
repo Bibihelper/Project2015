@@ -24,8 +24,8 @@ function updateData(r) {
     $("div.address > span.a-title").html(r.company.name);
     $("div.address > span.a-district").html(r.address.district);
     $("div.address > span.a-address").html(getAddressStr(r.address));
-    $("div.address > span.a-shedule").html(getShedule(r.shedule, r.company.twenty_four_hour));
-    $("div.address > span.a-phone").html(r.address.phone);
+    $("div.address > span.a-shedule").html(getShedule(r.shedule, r.company.twenty_four_hours));
+    $("div.address > div.a-phone > span.a-phone-number").html(r.company.phone || " - не указан");
     
     getBrand(r.brand);
     getService(r.category, r.service);
@@ -88,7 +88,7 @@ function getSheduleTable(shedule) {
 }
 
 function getShedule(shedule, twfh) {
-    if (twfh) {
+    if (twfh == 1) {
         return getTwFourHour();
     }
     var sheduleTable = getSheduleTable(shedule);

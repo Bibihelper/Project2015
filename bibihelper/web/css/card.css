@@ -2,7 +2,7 @@
 
 .c-card {
     width: 870px;
-    margin-top: 150px;
+    margin-top: 75px;
 }
 
 .c-content {
@@ -77,11 +77,19 @@
 }
 
 .a-phone {
+  
+}
+
+.a-phone-img {
+    display: inline-block;
+}
+
+.a-phone-number {
     font-family: Tahoma;
     font-size: 12px;
     font-weight: 600;
     color: #071d70;
-    display: block;
+    display: inline-block;
     margin-top: 10px;
 }
 

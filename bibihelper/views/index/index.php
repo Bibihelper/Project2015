@@ -198,7 +198,10 @@ $this->params["page"] = "index";
                         <span class="a-district">Центральный район</span>
                         <span class="a-address">ул. Ленина, д.3, к.1, стр. 2</span>
                         <span class="a-shedule">График работы: ежедневно <img src="images/twenty-four-hour.png" alt=""></span>
-                        <span class="a-phone"><img src="images/a-phone.png" alt=""> +7 (985) 647-85-11</span>
+                        <div class="a-phone">
+                            <span class="a-phone-img"><img src="images/a-phone.png" alt=""></span>
+                            <span class="a-phone-number"> +7 (985) 647-85-11</span>
+                        </div>
                     </div>
 
                     <div class="info">

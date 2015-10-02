@@ -10,8 +10,8 @@ return [
 
 //return [
 //    'class' => 'yii\db\Connection',
-//    'dsn' => 'mysql:host=mysql.hostinger.ru;port=3306;dbname=u336579318_bbhls',
-//    'username' => 'u336579318_userb',
-//    'password' => 'bbhls336579318',
+//    'dsn' => 'mysql:host=localhost;port=3306;dbname=xdetalru',
+//    'username' => 'leo@bibihelper.com',
+//    'password' => 'bibihelper0909',
 //    'charset' => 'utf8',
 //];
