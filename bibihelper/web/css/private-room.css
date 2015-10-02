@@ -73,7 +73,7 @@
     padding: 40px 40px 20px 40px;
 }
 
-#map-pr {
+#private-room-map-id {
     background-color: #fff;
     width: 443px;
     height: 305px;
@@ -650,11 +650,11 @@ ul.info-s {
     display: none;
 }
 
-.opt {
+.options {
     padding: 40px 315px 60px 315px;
 }
 
-.opt-title {
+.options-title {
     font-family: MyriadProBold;
     font-size: 16px;
     color: #071d70;
@@ -667,7 +667,7 @@ ul.info-s {
 }
 
 .info-c__btn {
-    padding: 0 65px 30px 40px;
+    padding: 15px 65px 30px 40px;
     text-align: right;
 }
 

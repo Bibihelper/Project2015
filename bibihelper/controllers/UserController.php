@@ -4,9 +4,11 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\Response;
 use app\models\User;
 use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
+use app\models\forms\ChangePasswordForm;
 use app\components\Common;
 use yii\helpers\Url;
 
@@ -57,5 +59,24 @@ class UserController extends Controller
     {
         Yii::$app->user->logout();
         return $this->redirect(Url::home());
+    }
+    
+    public function actionChangePassword()
+    {
+        $cPasFrm = new ChangePasswordForm();
+        
+        if ($cPasFrm->load(Yii::$app->request->post()) && $cPasFrm->validate()) {
+            $user = User::findIdentity(Yii::$app->user->id);
+            if ($user) {
+                $user->setPassword($cPasFrm->new_password);
+                Yii::$app->response->format = Response::FORMAT_JSON;
+                $responce = ['status' => 'OK', 'message' => Common::M_PASSWORD_CHANGED];
+                return $responce;
+            }
+        }
+        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $responce = ['status' => 'ERROR', 'message' => Common::M_CHANGE_PASSWORD_FAILED];
+        return $responce;
     }
 }

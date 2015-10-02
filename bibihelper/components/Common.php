@@ -18,4 +18,6 @@ class Common extends Object
     const M_PASSWORDS_NOT_MATCH = 'Пароли не совпадают';
     const M_DATA_SAVE_FAILED = 'Не удалось сохранить данные';
     const M_FIELD_CANNOT_BE_BLANK = 'Поле не может быть пустым';
+    const M_CHANGE_PASSWORD_FAILED = 'Не удалось изменить пароль';
+    const M_PASSWORD_CHANGED = 'Пароль изменен';
 }

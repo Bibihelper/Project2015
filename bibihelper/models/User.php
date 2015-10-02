@@ -113,24 +113,10 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->password_hash;
     }
 
-    public function changePassword($data)
+    public function setPassword($password)
     {
-        if (empty($data['pswOld']) || !$this->validatePassword($data['pswOld'])) {
-            return 1;
-        }
-        
-        if (strlen($data['pswNew']) < 6) {
-            return 2;
-        }
-        
-        if ($data['pswNew'] !== $data['pswCnf']) {
-            return 3;
-        }
-        
-        $this->password_hash = Yii::$app->security->generatePasswordHash($data["pswNew"]);
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
         $this->save();
-            
-        return 0;
     }
     
     public function changeEmail($data)

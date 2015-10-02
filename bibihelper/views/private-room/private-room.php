@@ -24,7 +24,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                 
                     <ul class="nav nav-tabs nav-tabs_pr">
                         <li class="tab-pr tab-pr_w1 tab-pr_right active"><a href="#profile" data-toggle="tab" class="tab-pr_a">Профиль</a></li>
-                        <li class="tab-pr tab-pr_w1"><a href="#options-pr" data-toggle="tab" class="tab-pr_a">Настройки аккаунта</a></li>
+                        <li class="tab-pr tab-pr_w1"><a href="#user-options" data-toggle="tab" class="tab-pr_a">Настройки аккаунта</a></li>
                     </ul>
                     
                     <div class="tab-content tab-content_pr">
@@ -32,9 +32,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                         <div id="profile" class="tab-pane fade in active tab-pane_pr">
                             
                             <div class="tab-content__info tab-content__info_h1">
-                                <div id="map-pr">
-                                    <img src="<?= Url::to('/images/map-pr.png') ?>" title="">
-                                </div>
+                                <div id="private-room-map-id"></div>
                                 <div class="content__info">
                                     <span class="info info__title"><?= $company->name ?></span>
                                     <span class="info info__addr"><?= $company->address->getAddressStr() ?></span>
@@ -46,7 +44,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                     <?php endif ?>
                                     <span class="info info__phone"><?= $company->phone ?></span>
                                     <span class="info info__change"><a href="#" title="" id="opt-ch">[Изменить]</a></span>
-                                    <span class="info info__change"><a href="<?= Url::to('/user/logout/') ?>" title="" style="display: none;">[Выйти]</a></span>
+                                    <span class="info info__change"><a href="<?= Url::to('/user/logout/') ?>" title="">[Выйти]</a></span>
                                     <span class="hidden" id="cid"><?= $company->id ?></span>
                                 </div>
                             </div>
@@ -406,22 +404,48 @@ $this->params['company']['user']['email'] = $company->user->email;
                             
                         </div>
                         
-                        <div id="options-pr" class="tab-pane fade" data-cid="<?= $company->id ?>">
-
-                            <div class="opt">
-
-                                <span class="opt-title">Личные настройки аккаунта</span>
+                        <div id="user-options" class="tab-pane fade">
+                            <div class="options">
+                                <span class="options-title">Личные настройки аккаунта</span>
                                 
-                                <form>
-                                    <div class="c-block c-block_m">
-                                        <span class="c-caption">Сменить пароль:</span>
-                                        <input type="password" class="form-control c-edit c-edit_m" placeholder="Старый пароль" id="psw-old">
-                                        <input type="password" class="form-control c-edit c-edit_m" placeholder="Новый пароль" id="psw-new">
-                                        <input type="password" class="form-control c-edit c-edit_m" placeholder="Подтверждение" id="psw-confirm">
-                                        <div class="info-c__btn info-c__btn_m">
-                                            <button type="button" class="btn bibi-form-btn info-c__btn_save" id="save-psw">Сохранить</button>
+                                    <?php $form = ActiveForm::begin([
+                                        'id' => 'change-password-form',
+                                        'enableAjaxValidation' => true,
+                                        'action' => Url::to('/user/change-password/'),
+                                        'validationUrl' => Url::to('/private-room/validate-change-password-form/'),
+                                        'successCssClass' => '',
+                                    ]); ?>
+
+                                        <div class="uo-block">
+                                            <span class="c-caption">Сменить пароль:</span>
+                                            
+                                            <?= $form->field($cPasFrm, 'old_password', [
+                                                    'options' => ['class' => 'form-group f-group']
+                                                ])->passwordInput([
+                                                    'class' => 'form-control f-control', 'placeholder' => 'Старый пароль'
+                                                ])->label(false) 
+                                            ?>
+                                            
+                                            <?= $form->field($cPasFrm, 'new_password', [
+                                                    'options' => ['class' => 'form-group f-group']
+                                                ])->passwordInput([
+                                                    'class' => 'form-control f-control', 'placeholder' => 'Новый пароль'
+                                                ])->label(false) 
+                                            ?>
+                                            
+                                            <?= $form->field($cPasFrm, 'ok_password', [
+                                                    'options' => ['class' => 'form-group f-group']
+                                                ])->passwordInput([
+                                                    'class' => 'form-control f-control', 'placeholder' => 'Подтверждение'
+                                                ])->label(false) 
+                                            ?>
+                                            
+                                            <div class="form-group f-group c-tar">
+                                                <?= Html::submitButton('Сохранить', ['class' => 'f-button f-submit', 'id' => 'cpf-submit']) ?>
+                                            </div>
                                         </div>
-                                    </div>
+                                    <?php ActiveForm::end(); ?>
+                                <form>
                                     <div class="c-block c-block_m2">
                                         <span class="c-caption">Сменить e-mail:</span>
                                         <input type="email" class="form-control c-edit c-edit_m" id="new-email" value="<?= $company->user->email ?>">

@@ -1,8 +1,29 @@
 /* Private room */
 
 $(document).ready(function() {
-  
+    showPosition();
 });
+
+// Координаты
+
+function showPosition() {
+    var m = null;
+
+    $.ajax({
+        url: "/private-room/get-coords/",
+        method: "POST",
+        data: { },
+        dataType: "json",
+        success: function(r) {
+            m = new Map("private-room-map-id");
+            if (r.latitude === 0 || r.longitude === 0)
+                m.showMap(63.31268278, 103.42773438);
+            else
+                m.showMap(r.latitude, r.longitude, 10);
+            m.showMoveableMarker();
+        }
+    });
+}
 
 // Календарь
 
@@ -170,111 +191,6 @@ $("a.arrow-item").click(function() {
         $(this).children("img").attr("src", "/images/arrow-item-right.png");
         $(sbm).removeClass("item-menu_active");
     }
-});
-
-// Личные настройки аккаунта
-
-$("#send-site-news").click(function() {
-    var ch = $(this).attr("data-ch");
-    ch = (ch == 0) ? 1 : 0;
-    $(this).attr("data-ch", ch);
-    if (ch == 1)
-        $(this).css("background-position", "-23px 0");
-    else
-        $(this).css("background-position", "0 0");
-});
-
-function showMessage(msg) {
-    alert(msg);
-}
-
-$("#save-psw").click(function() {
-    var pswOld = $("#psw-old").val();
-    var pswNew = $("#psw-new").val();
-    var pswCnf = $("#psw-confirm").val();
-    var cid    = $("#options-pr").attr("data-cid");
-    
-    if (pswOld === "") {
-        showMessage("Введите старый пароль");
-        $("#psw-old").focus();
-        return false;    
-    }
-    
-    if (pswNew === "") {
-        showMessage("Введите новый пароль");
-        $("#psw-new").focus();
-        return false;    
-    }
-    
-    if (pswNew.length < 6) {
-        showMessage("Минимальная длина пароля - 6 символов");
-        $("#psw-new").focus();
-        return false;    
-    }
-    
-    if (pswNew.length > 32) {
-        showMessage("Максимальная длина пароля - 32 символа");
-        $("#psw-new").focus();
-        return false;    
-    }
-    
-    if (pswNew !== pswCnf) {
-        showMessage("Пароли не совпадают");
-        $("#psw-confirm").focus();
-        return false;    
-    }
-    
-    var request = $.ajax({
-        url: "/private-room/change-password/",
-        method: "POST",
-        data: { pswOld: pswOld, pswNew: pswNew, pswCnf: pswCnf, cid: cid },
-        dataType: "json"
-    });
-
-    request.success(function(r) {
-        if (r.status === "OK") {
-            showMessage("Пароль изменен");
-            $("psw-old").val("");
-            $("psw-new").val("");
-            $("psw-confirm").val("");
-        }
-        
-        if (r.status === "ERROR") {
-            showMessage("Не удалось изменить пароль: " + r.code + " - " + r.error);
-        }
-    });
-    
-    return true;    
-});
-
-$("#save-email").click(function() {
-    var email = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-    var emailNew = $("#new-email").val();
-    var cid = $("#options-pr").attr("data-cid");
-    
-    if (!email.test(emailNew)) {
-        showMessage("Неверный email");
-        return false;
-    }
-    
-    var request = $.ajax({
-        url: "/private-room/change-email/",
-        method: "POST",
-        data: { email: emailNew, cid: cid },
-        dataType: "json"
-    });
-
-    request.success(function(r) {
-        if (r.status === "OK") {
-            showMessage("E-mail изменен");
-        }
-        
-        if (r.status === "ERROR") {
-            showMessage("Не удалось изменить E-mail: " + r.code + " - " + r.error);
-        }
-    });
-    
-    return true;
 });
 
 // Загрузка картинки

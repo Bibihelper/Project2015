@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\Response;
+use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use app\models\Company;
 use app\models\Shedule;
@@ -14,6 +16,7 @@ use app\models\CompanyServices;
 use app\models\CompanyBrands;
 use app\models\SpecialOffer;
 use app\models\forms\CompanyInfoForm;
+use app\models\forms\ChangePasswordForm;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 
@@ -41,12 +44,15 @@ class PrivateRoomController extends Controller
         $cInfFrm = new CompanyInfoForm();
         $cInfFrm->loadInfo($id);
         
+        $cPasFrm = new ChangePasswordForm();
+        
         return $this->render('/private-room/private-room', [
             'company' => $company, 
             'shedule' => $shedule,
             'categories' => $categories,
             'countries' => $countries,
             'cInfFrm' => $cInfFrm,
+            'cPasFrm' => $cPasFrm,
         ]);
     }
     
@@ -154,41 +160,15 @@ class PrivateRoomController extends Controller
         return $responce;
     }
     
-    public function actionChangePassword()
+    public function actionValidateChangePasswordForm()
     {
-        $status = "OK";
-        $err = 0;
-        $error = "";
-        $company = $user = null;
-        $data = Yii::$app->request->post();
-        $company = Company::findOne($data['cid']);
+        $cPasFrm = new ChangePasswordForm();
         
-        if ($company) {
-            $user = $company->user;
-        } else {
-            $err = 4;
+        if (Yii::$app->request->isAjax && $cPasFrm->load(Yii::$app->request->post()))
+        {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($cPasFrm);
         }
-        
-        if ($user) {
-            $err = $user->changePassword($data);
-        } else {
-            $err = 4;
-        }
-        
-        if ($err) {
-            $status = "ERROR";
-            
-            switch ($err) {
-                case 1: $error = "Неверный старый пароль"; break;
-                case 2: $error = "Минимальная длина пароля - 6 символов"; break;
-                case 3: $error = "Пароли не совпадают"; break;
-                case 4: $error = "Unknown error"; break;
-            }
-        }
-        
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $responce = ['status' => $status, 'code' => $err, 'error' => $error];
-        return $responce;
     }
     
     public function actionChangeEmail()
@@ -288,5 +268,31 @@ class PrivateRoomController extends Controller
         }
         
         return true;
+    }
+    
+    public function actionSaveCoords()
+    {
+        $user = User::findOne(Yii::$app->user->id);
+        if ($user) {
+            $data = Yii::$app->request->post();
+            $user->company->address->latitude  = $data['latitude'];
+            $user->company->address->longitude = $data['longitude'];
+            $user->company->address->save();
+        }
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['status' => 'OK'];
+        return $responce;
+    }
+    
+    public function actionGetCoords()
+    {
+        $user = User::findOne(Yii::$app->user->id);
+        if ($user) {
+            $lat = $user->company->address->latitude;
+            $lng = $user->company->address->longitude;
+        }
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['latitude' => $lat, 'longitude' => $lng];
+        return $responce;
     }
 }

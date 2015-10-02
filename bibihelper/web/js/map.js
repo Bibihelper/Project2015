@@ -7,7 +7,8 @@ function Map(mapid)
     this.lat = 0;
     this.lng = 0;
     this.infoWindowTitle = "Ваше местоположение";
-    this.infoWinfowContent = "Широта: " + this.lat + ", Долгота: " + this.lng;
+    this.infoWinfowContent = "";
+    this.marker = null;
 }
 
 Map.prototype.showMap = function(lat, lng, zoom)
@@ -36,16 +37,59 @@ Map.prototype.showMarker = function()
         title: this.infoWindowTitle,
         clickable: true
     };
-    var marker = new google.maps.Marker(markerOptions);
+    this.marker = new google.maps.Marker(markerOptions);
+
+    this.infoWinfowContent = "Широта: " + this.lat + ",<br>Долгота: " + this.lng;
     var infoWindowOptions = {
         content: this.infoWinfowContent,
         position: coords
     };
     var infoWindow = new google.maps.InfoWindow(infoWindowOptions);
-    google.maps.event.addListener(marker, "click", function () {
+    
+    google.maps.event.addListener(this.marker, "click", function () {
         infoWindow.open(this.map);
     });
 };
+
+Map.prototype.hideMarker = function()
+{
+    if (this.marker)
+        this.marker.setMap(null);
+};
+
+Map.prototype.showMoveableMarker = function()
+{
+    var m = this;
+    m.showMarker();
+	google.maps.event.addListener(m.map, 'click', function(event) {
+        m.moveMarker(event.latLng);
+        m.saveCoords("/private-room/save-coords/");
+	});
+};
+
+Map.prototype.moveMarker = function(latLng)
+{
+    this.hideMarker();
+    this.lat = latLng.H;
+    this.lng = latLng.L;
+    this.showMarker();    
+};
+
+Map.prototype.saveCoords = function(url)
+{
+    $.ajax({
+        url: url,
+        method: "POST",
+        data: { latitude: this.lat, longitude: this.lng },
+        dataType: "json"
+    });
+};
+
+
+
+
+
+
 
 
 
