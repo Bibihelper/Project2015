@@ -17,6 +17,7 @@ use app\models\CompanyBrands;
 use app\models\SpecialOffer;
 use app\models\forms\CompanyInfoForm;
 use app\models\forms\ChangePasswordForm;
+use app\models\forms\ChangeEmailForm;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 
@@ -46,6 +47,9 @@ class PrivateRoomController extends Controller
         
         $cPasFrm = new ChangePasswordForm();
         
+        $cEmailFrm = new ChangeEmailForm();
+        $cEmailFrm->loadEmail();
+        
         return $this->render('/private-room/private-room', [
             'company' => $company, 
             'shedule' => $shedule,
@@ -53,7 +57,30 @@ class PrivateRoomController extends Controller
             'countries' => $countries,
             'cInfFrm' => $cInfFrm,
             'cPasFrm' => $cPasFrm,
+            'cEmailFrm' => $cEmailFrm,
         ]);
+    }
+    
+    public function actionValidateChangePasswordForm()
+    {
+        $cPasFrm = new ChangePasswordForm();
+        
+        if (Yii::$app->request->isAjax && $cPasFrm->load(Yii::$app->request->post()))
+        {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($cPasFrm);
+        }
+    }
+    
+    public function actionValidateChangeEmailForm()
+    {
+        $cEmailFrm = new ChangeEmailForm();
+        
+        if (Yii::$app->request->isAjax && $cEmailFrm->load(Yii::$app->request->post()))
+        {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($cEmailFrm);
+        }
     }
     
     public function actionLoadImage($id)
@@ -157,52 +184,6 @@ class PrivateRoomController extends Controller
         
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $responce = ['status' => $status];
-        return $responce;
-    }
-    
-    public function actionValidateChangePasswordForm()
-    {
-        $cPasFrm = new ChangePasswordForm();
-        
-        if (Yii::$app->request->isAjax && $cPasFrm->load(Yii::$app->request->post()))
-        {
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($cPasFrm);
-        }
-    }
-    
-    public function actionChangeEmail()
-    {
-        $status = "OK";
-        $err = 0;
-        $error = "";
-        $company = $user = null;
-        $data = Yii::$app->request->post();
-        $company = Company::findOne($data['cid']);
-        
-        if ($company) {
-            $user = $company->user;
-        } else {
-            $err = 4;
-        }
-        
-        if ($user) {
-            $err = $user->changeEmail($data);
-        } else {
-            $err = 4;
-        }
-        
-        if ($err) {
-            $status = "ERROR";
-            
-            switch ($err) {
-                case 1: $error = "Неверный email"; break;
-                case 4: $error = "Unknown error"; break;
-            }
-        }
-        
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $responce = ['status' => $status, 'code' => $err, 'error' => $error];
         return $responce;
     }
     

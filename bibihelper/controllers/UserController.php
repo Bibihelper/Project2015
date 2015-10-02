@@ -9,6 +9,7 @@ use app\models\User;
 use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
 use app\models\forms\ChangePasswordForm;
+use app\models\forms\ChangeEmailForm;
 use app\components\Common;
 use yii\helpers\Url;
 
@@ -64,19 +65,40 @@ class UserController extends Controller
     public function actionChangePassword()
     {
         $cPasFrm = new ChangePasswordForm();
+        $status = 'ERROR';
+        $message = Common::M_CHANGE_PASSWORD_FAILED;
         
         if ($cPasFrm->load(Yii::$app->request->post()) && $cPasFrm->validate()) {
             $user = User::findIdentity(Yii::$app->user->id);
             if ($user) {
                 $user->setPassword($cPasFrm->new_password);
-                Yii::$app->response->format = Response::FORMAT_JSON;
-                $responce = ['status' => 'OK', 'message' => Common::M_PASSWORD_CHANGED];
-                return $responce;
+                $status = 'OK';
+                $message = Common::M_PASSWORD_CHANGED;
             }
         }
         
         Yii::$app->response->format = Response::FORMAT_JSON;
-        $responce = ['status' => 'ERROR', 'message' => Common::M_CHANGE_PASSWORD_FAILED];
+        $responce = ['status' => $status, 'message' => $message];
+        return $responce;
+    }
+    
+    public function actionChangeEmail()
+    {
+        $cEmailFrm = new ChangeEmailForm();
+        $status = 'ERROR';
+        $message = Common::M_CHANGE_EMAIL_FAILED;
+        
+        if ($cEmailFrm->load(Yii::$app->request->post()) && $cEmailFrm->validate()) {
+            $user = User::findIdentity(Yii::$app->user->id);
+            if ($user) {
+                $user->setEmail($cEmailFrm->email);
+                $status = 'OK';
+                $message = Common::M_EMAIL_CHANGED;
+            }
+        }
+        
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $responce = ['status' => $status, 'message' => $message];
         return $responce;
     }
 }

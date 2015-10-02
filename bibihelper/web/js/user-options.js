@@ -1,6 +1,8 @@
 /* User options */
 
-$("body").on('beforeSubmit', "form#change-password-form", function () {
+$("body").on("beforeSubmit", "form#change-password-form, form#change-email-form", proceedChangeForm);
+
+function proceedChangeForm() {
      var form = $(this);
      if (form.find('.has-error').length) {
           return false;
@@ -14,6 +16,6 @@ $("body").on('beforeSubmit', "form#change-password-form", function () {
           }
      });
      return false;
-});
+};
 
 

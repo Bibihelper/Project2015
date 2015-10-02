@@ -20,4 +20,6 @@ class Common extends Object
     const M_FIELD_CANNOT_BE_BLANK = 'Поле не может быть пустым';
     const M_CHANGE_PASSWORD_FAILED = 'Не удалось изменить пароль';
     const M_PASSWORD_CHANGED = 'Пароль изменен';
+    const M_CHANGE_EMAIL_FAILED = 'Не удалось изменить E-mail';
+    const M_EMAIL_CHANGED = 'E-mail изменен';
 }

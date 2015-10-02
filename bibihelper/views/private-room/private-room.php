@@ -408,60 +408,72 @@ $this->params['company']['user']['email'] = $company->user->email;
                             <div class="options">
                                 <span class="options-title">Личные настройки аккаунта</span>
                                 
-                                    <?php $form = ActiveForm::begin([
-                                        'id' => 'change-password-form',
-                                        'enableAjaxValidation' => true,
-                                        'action' => Url::to('/user/change-password/'),
-                                        'validationUrl' => Url::to('/private-room/validate-change-password-form/'),
-                                        'successCssClass' => '',
-                                    ]); ?>
+                                <?php $form = ActiveForm::begin([
+                                    'id' => 'change-password-form',
+                                    'enableAjaxValidation' => true,
+                                    'action' => Url::to('/user/change-password/'),
+                                    'validationUrl' => Url::to('/private-room/validate-change-password-form/'),
+                                    'successCssClass' => '',
+                                ]); ?>
+                                    <div class="uo-block">
+                                        <span class="c-caption">Сменить пароль:</span>
 
-                                        <div class="uo-block">
-                                            <span class="c-caption">Сменить пароль:</span>
-                                            
-                                            <?= $form->field($cPasFrm, 'old_password', [
-                                                    'options' => ['class' => 'form-group f-group']
-                                                ])->passwordInput([
-                                                    'class' => 'form-control f-control', 'placeholder' => 'Старый пароль'
-                                                ])->label(false) 
-                                            ?>
-                                            
-                                            <?= $form->field($cPasFrm, 'new_password', [
-                                                    'options' => ['class' => 'form-group f-group']
-                                                ])->passwordInput([
-                                                    'class' => 'form-control f-control', 'placeholder' => 'Новый пароль'
-                                                ])->label(false) 
-                                            ?>
-                                            
-                                            <?= $form->field($cPasFrm, 'ok_password', [
-                                                    'options' => ['class' => 'form-group f-group']
-                                                ])->passwordInput([
-                                                    'class' => 'form-control f-control', 'placeholder' => 'Подтверждение'
-                                                ])->label(false) 
-                                            ?>
-                                            
-                                            <div class="form-group f-group c-tar">
-                                                <?= Html::submitButton('Сохранить', ['class' => 'f-button f-submit', 'id' => 'cpf-submit']) ?>
-                                            </div>
+                                        <?= $form->field($cPasFrm, 'old_password', [
+                                                'options' => ['class' => 'form-group f-group']
+                                            ])->passwordInput([
+                                                'class' => 'form-control f-control', 'placeholder' => 'Старый пароль'
+                                            ])->label(false) 
+                                        ?>
+
+                                        <?= $form->field($cPasFrm, 'new_password', [
+                                                'options' => ['class' => 'form-group f-group']
+                                            ])->passwordInput([
+                                                'class' => 'form-control f-control', 'placeholder' => 'Новый пароль'
+                                            ])->label(false) 
+                                        ?>
+
+                                        <?= $form->field($cPasFrm, 'ok_password', [
+                                                'options' => ['class' => 'form-group f-group']
+                                            ])->passwordInput([
+                                                'class' => 'form-control f-control', 'placeholder' => 'Подтверждение'
+                                            ])->label(false) 
+                                        ?>
+
+                                        <div class="form-group f-group c-tar">
+                                            <?= Html::submitButton('Сохранить', ['class' => 'f-button f-submit', 'id' => 'cpf-submit']) ?>
                                         </div>
-                                    <?php ActiveForm::end(); ?>
-                                <form>
-                                    <div class="c-block c-block_m2">
+                                    </div>
+                                <?php ActiveForm::end(); ?>
+
+                                <?php $form = ActiveForm::begin([
+                                    'id' => 'change-email-form',
+                                    'enableAjaxValidation' => true,
+                                    'action' => Url::to('/user/change-email/'),
+                                    'validationUrl' => Url::to('/private-room/validate-change-email-form/'),
+                                    'successCssClass' => '',
+                                ]); ?>
+                                    <div class="uo-block">
                                         <span class="c-caption">Сменить e-mail:</span>
-                                        <input type="email" class="form-control c-edit c-edit_m" id="new-email" value="<?= $company->user->email ?>">
-                                        <div class="info-c__btn info-c__btn_m">
-                                            <button type="button" class="btn bibi-form-btn info-c__btn_save" id="save-email">Сохранить</button>
+
+                                        <?= $form->field($cEmailFrm, 'email', [
+                                                'options' => ['class' => 'form-group f-group']
+                                            ])->textInput([
+                                                'class' => 'form-control f-control'
+                                            ])->label(false) 
+                                        ?>
+
+                                        <div class="form-group f-group c-tar">
+                                            <?= Html::submitButton('Сохранить', ['class' => 'f-button f-submit', 'id' => 'cef-submit']) ?>
                                         </div>
                                     </div>
-                                    <div class="c-block">
-                                        <span class="c-caption c-caption_m">Настройки уведомлений:</span>
-                                        <span class="c-cbx" data-ch="0" id="send-site-news"></span>
-                                        <span class="c-caption c-caption_m">Новости сайта</span>
-                                    </div>
-                                </form>
+                                <?php ActiveForm::end(); ?>
 
+                                <div class="uo-block">
+                                    <span class="c-caption c-caption_m">Настройки уведомлений:</span>
+                                    <span class="c-cbx" data-ch="0" id="send-site-news"></span>
+                                    <span class="c-caption c-caption_m">Новости сайта</span>
+                                </div>
                             </div>
-
                         </div>
                         
                     </div> <!-- /tab-content -->
