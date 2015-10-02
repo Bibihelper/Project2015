@@ -1,4 +1,4 @@
-/* Form */
+/* common */
 
 .m-dialog {
     margin-top: 180px;
@@ -17,6 +17,24 @@
     text-align: right;
 }
 
+.c-block {
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.c-caption {
+    font-family: Tahoma;
+    font-size: 14px;
+    color: #000;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.c-caption-m {
+    display: inline-block;
+    margin-right: 20px;
+}
+
 .rf-content {
     padding: 0 35px;
 }
@@ -30,6 +48,8 @@
     font-size: 12px;
     font-weight: 400;
 }
+
+/* form */
 
 .f-content {
     border-radius: 0;

@@ -403,19 +403,6 @@ ul.info-s {
     float: left;
 }
 
-.c-block {
-    margin-bottom: 35px;
-    position: relative;
-}
-
-.c-caption {
-    font-family: Tahoma;
-    font-size: 14px;
-    color: #000;
-    display: block;
-    margin-bottom: 5px;
-}
-
 .s-off-caption_b {
     display: inline-block;
     margin-left: 0;
@@ -695,11 +682,6 @@ ul.info-s {
     display: inline-block;
     vertical-align: -0.4em;
     cursor: pointer;
-}
-
-.c-caption_m {
-    display: inline-block;
-    margin-right: 20px;
 }
 
 .opt-frm {

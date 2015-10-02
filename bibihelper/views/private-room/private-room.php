@@ -415,7 +415,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                     'validationUrl' => Url::to('/private-room/validate-change-password-form/'),
                                     'successCssClass' => '',
                                 ]); ?>
-                                    <div class="uo-block">
+                                    <div class="c-block">
                                         <span class="c-caption">Сменить пароль:</span>
 
                                         <?= $form->field($cPasFrm, 'old_password', [
@@ -452,7 +452,7 @@ $this->params['company']['user']['email'] = $company->user->email;
                                     'validationUrl' => Url::to('/private-room/validate-change-email-form/'),
                                     'successCssClass' => '',
                                 ]); ?>
-                                    <div class="uo-block">
+                                    <div class="c-block">
                                         <span class="c-caption">Сменить e-mail:</span>
 
                                         <?= $form->field($cEmailFrm, 'email', [
@@ -468,10 +468,10 @@ $this->params['company']['user']['email'] = $company->user->email;
                                     </div>
                                 <?php ActiveForm::end(); ?>
 
-                                <div class="uo-block">
-                                    <span class="c-caption c-caption_m">Настройки уведомлений:</span>
-                                    <span class="c-cbx" data-ch="0" id="send-site-news"></span>
-                                    <span class="c-caption c-caption_m">Новости сайта</span>
+                                <div class="c-block">
+                                    <span class="c-caption c-caption-m">Настройки уведомлений:</span>
+                                    <input type="checkbox" class="f-checkbox" id="site-news">
+                                    <label for="site-news" class="f-label">Новости сайта</label>
                                 </div>
                             </div>
                         </div>
