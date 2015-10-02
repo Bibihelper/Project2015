@@ -22,7 +22,7 @@ class UserController extends Controller
         if ($regFrm->load(Yii::$app->request->post()) && $regFrm->validate()) {
             $ok = $regFrm->register();
             if ($ok) {
-                return $this->redirect(Url::to('/index/register-success/?message=' . Common::M_EMAIL_SEND));
+                return $this->redirect(Url::to('/index/register-success/'));
             }
         }
         

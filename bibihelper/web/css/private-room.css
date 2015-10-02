@@ -235,41 +235,7 @@
 .arrow-ud {
     height: 40px;
     width: 100%;
-//    cursor: pointer;
 }
-/*
-.arrow_up-a {
-    background: #fff url("../images/arrow-up-a.png") 50% 13px no-repeat;
-}
-
-.arrow_up-a:hover {
-    background: #f8f8f7 url("../images/arrow-up-a.png") 50% 13px no-repeat;
-}
-
-.arrow_up-na {
-    background: #fff url("../images/arrow-up-na.png") 50% 13px no-repeat;
-}
-
-.arrow_up-na:hover {
-    background: #f8f8f7 url("../images/arrow-up-na.png") 50% 13px no-repeat;
-}
-
-.arrow_down-a {
-    background: #fff url("../images/arrow-down-a.png") 50% 13px no-repeat;
-}
-
-.arrow_down-a:hover {
-    background: #f8f8f7 url("../images/arrow-down-a.png") 50% 13px no-repeat;
-}
-
-.arrow_down-na {
-    background: #fff url("../images/arrow-down-na.png") 50% 13px no-repeat;
-}
-
-.arrow_down-na:hover {
-    background: #f8f8f7 url("../images/arrow-down-na.png") 50% 13px no-repeat;
-}
-*/
 
 ul.info-s {
     list-style: none;

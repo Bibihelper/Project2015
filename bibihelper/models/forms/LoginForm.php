@@ -29,6 +29,7 @@ class LoginForm extends Model
             [['email', 'password'], 'required'],
             ['email', 'email', 'message' => Common::M_WRONG_EMAIL],
             ['email', 'emailNotExists'],
+            ['email', 'emailNotConfirmed'],
             ['password', 'string', 'length' => [6, 32], 'tooShort' => Common::M_MIN_PASSWORD_LENGTH, 'tooLong' => Common::M_MAX_PASSWORD_LENGTH],
             ['password', 'validatePassword'],
         ];
@@ -47,6 +48,15 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             if (!$this->getUser()) {
                 $this->addError($attribute, Common::M_EMAIL_NOT_EXISTS);
+            }
+        }
+    }
+
+    public function emailNotConfirmed($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            if ($this->getUser() && $this->getUser()->email_confirm == 0) {
+                $this->addError($attribute, Common::M_EMAIL_NOT_CONFIRMED);
             }
         }
     }

@@ -8,6 +8,7 @@ class Common extends Object
 {
     const M_WRONG_EMAIL = 'Неверный email';
     const M_EMAIL_NOT_EXISTS = 'Пользователя с таким E-mail не существует';
+    const M_EMAIL_NOT_CONFIRMED = 'E-mail не подтвержден';
     const M_MIN_PASSWORD_LENGTH = 'Минимальная длина пароля - 6 символов';
     const M_MAX_PASSWORD_LENGTH = 'Максимальная длина пароля - 32 символа';
     const M_EMAIL_SEND = 'Вам на почту высланно письмо для подтверждения регистрации';

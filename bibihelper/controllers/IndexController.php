@@ -9,6 +9,7 @@ use yii\bootstrap\ActiveForm;
 use app\models\SpecialOffer;
 use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
+use app\components\Common;
 
 class IndexController extends Controller
 {
@@ -48,7 +49,7 @@ class IndexController extends Controller
         }
     }
     
-    public function actionRegisterSuccess($message)
+    public function actionRegisterSuccess()
     {
         $regFrm = new RegisterForm();
         $logFrm = new LoginForm();
@@ -59,7 +60,7 @@ class IndexController extends Controller
             'spOffs' => $spOffs,
             'regFrm' => $regFrm,
             'logFrm' => $logFrm,
-            'responseMessage' => $message,
+            'responseMessage' => Common::M_EMAIL_SEND,
         ]);
     }
 }
