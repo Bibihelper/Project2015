@@ -52,7 +52,7 @@ use yii\helpers\Url;
                 </div>
             <?php elseif ($this->params['page'] == 'private-room'): ?>
                 <div class="menu__item">
-                    <a href="mailto:<?= $this->params['company']['user']['email'] ?>" title=""><?= $this->params['company']['user']['email'] ?></a>
+                    <div style="color:white"><?= $this->params['company']['user']['email'] ?></div>
                 </div>
             <?php endif ?>
             </div> <!-- /row -->

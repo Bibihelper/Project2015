@@ -28,6 +28,8 @@ class PrivateRoomAsset extends AssetBundle
         'js/datepicker-ru.js',
         'js/private-room.js',
         'js/company-info.js',
+        'js/JQuery.maskedinput.js',
+
     ];
     public $depends = [
         'app\assets\ResetAsset',

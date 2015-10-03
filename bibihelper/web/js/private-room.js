@@ -1,7 +1,6 @@
 /* Private room */
-
 $(document).ready(function() {
-  
+    $("#company_phone").mask("+7 (999) 999-99-99", {placeholder:"_"});
 });
 
 // Календарь
@@ -13,7 +12,10 @@ Date.prototype.addDays = function(days)
     return dat;
 };
 
+
 $(function() {
+
+
     var val = $("#datepicker1").attr("data-date"), date;
     
     if (val == "") {
@@ -21,7 +23,8 @@ $(function() {
     } else {
         date = (new Date(parseInt(val)));
     }
-    
+
+
     $("#datepicker1").datepicker($.datepicker.regional["ru"]);
     $("#datepicker1").datepicker("setDate", date);
     
@@ -31,6 +34,8 @@ $(function() {
         }
         return true;
     });
+
+
     
     $('#datepicker1').datepicker('option', 'onClose', function() {
         if ($("#c-arrow-1").hasClass("ca-exp")) {
@@ -38,6 +43,7 @@ $(function() {
         }
         return true;
     });
+        
 });
 
 $("#c-arrow-1").click(function(e) {
@@ -58,12 +64,14 @@ $(function() {
         date = (new Date(parseInt(val)));
     }
     
+
     $("#datepicker2").datepicker($.datepicker.regional["ru"]);                
     $("#datepicker2").datepicker("setDate", date);
     
     $('#datepicker2').datepicker('option', 'beforeShow', function() {
         if (!$("#c-arrow-2").hasClass("ca-exp")) {
             $("#c-arrow-2").removeClass("c-arrow_expand").addClass("c-arrow_collapse").addClass("ca-exp");
+            
         }
         return true;
     });
@@ -400,6 +408,7 @@ $("#s-descr-edit").keyup(function() {
 });
 
 // Форма данных о компании
+
 
 $(".frm-block > input[type='text']").keyup(function() {
     var regexp = /^[ a-zA-Zа-яА-Я0-9-_\.]*$/;
