@@ -292,7 +292,7 @@ $this->params["page"] = "index";
     <div class="row">
         
         <div class="register-response">
-            <span class="register-message"><?= $responseMessage ?></span>
+            <span class="register-message"><?// $responseMessage ?></span>
         </div>
         
         <div id="map">
