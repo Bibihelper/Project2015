@@ -17,46 +17,43 @@ $this->params['user']['email'] = $company->user->email;
 
 <div class="container-fluid pr-room">
     <div class="row">
-    
         <div class="container main">
             <div class="row">
                 <div class="tabs">
-                
-                    <ul class="nav nav-tabs nav-tabs_pr">
-                        <li class="tab-pr tab-pr_w1 tab-pr_right active"><a href="#profile" data-toggle="tab" class="tab-pr_a">Профиль</a></li>
-                        <li class="tab-pr tab-pr_w1"><a href="#user-options" data-toggle="tab" class="tab-pr_a">Настройки аккаунта</a></li>
+                    <ul class="nav nav-tabs nav-tabs-pr">
+                        <li class="tab-pr tab-pr-w1 tab-pr-right active"><a href="#profile" data-toggle="tab" class="tab-pr-a">Профиль</a></li>
+                        <li class="tab-pr tab-pr-w1"><a href="#user-options" data-toggle="tab" class="tab-pr-a">Настройки аккаунта</a></li>
                     </ul>
                     
-                    <div class="tab-content tab-content_pr">
-                        
-                        <div id="profile" class="tab-pane fade in active tab-pane_pr">
-                            
-                            <div class="tab-content__info tab-content__info_h1">
+                    <div class="tab-content tab-content-pr">
+                        <div id="profile" class="tab-pane fade in active tab-pane-pr">
+                            <div class="tab-content-info tab-content-info-h1">
                                 <div id="private-room-map-id"></div>
-                                <div class="content__info">
-                                    <span class="info info__title"><?= $company->name ?></span>
-                                    <span class="info info__addr"><?= $company->address->getAddressStr() ?></span>
+                                
+                                <div class="content-info">
+                                    <span class="info info-title"><?= $company->name ?></span>
+                                    <span class="info info-addr"><?= $company->address->getAddressStr() ?></span>
                                     <?php if ($company->twenty_four_hours): ?>
-                                        <span class="info info__shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>" title=""></span>
+                                        <span class="info info-shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>" title=""></span>
                                     <?php else: ?>
-                                        <span class="info info__shedule">График работы:</span>
-                                        <div class="info info__shedule info__shedule_m"><?= $shedule ?></div>
+                                        <span class="info info-shedule">График работы:</span>
+                                        <div class="info info-shedule info-shedule-m"><?= $shedule ?></div>
                                     <?php endif ?>
-                                    <span class="info info__phone"><?= $company->phone ?></span>
-                                    <span class="info info__change"><a href="#" title="" id="opt-ch">[Изменить]</a></span>
-                                    <span class="info info__change"><a href="<?= Url::to('/user/logout/') ?>" title="">[Выйти]</a></span>
+                                    <span class="info info-phone"><?= $company->phone ?></span>
+                                    <span class="info info-change"><a href="#" title="" id="opt-ch">[Изменить]</a></span>
+                                    <span class="info info-change"><a href="<?= Url::to('/user/logout/') ?>" title="">[Выйти]</a></span>
                                     <span class="hidden" id="cid"><?= $company->id ?></span>
                                 </div>
                             </div>
                         
-                            <div class="tab-content__info tab-content__info_t">
+                            <div class="tab-content-info tab-content-info-t">
                                 <div class="tabs tabs_t">
                                 
-                                    <ul class="nav nav-tabs nav-tabs_t">
-                                        <li class="tab-pr tab-pr_w2 tab-pr_fs active"><a href="#service" data-toggle="tab" class="tab-pr_a">Оказываемые услуги</a></li>
-                                        <li class="tab-pr tab-pr_w2 tab-pr_sd"><a href="#brand" data-toggle="tab" class="tab-pr_a">Марки авто</a></li>
-                                        <li class="tab-pr tab-pr_w2 tab-pr_td"><a href="#company-info" data-toggle="tab" class="tab-pr_a">Информация о компании</a></li>
-                                        <li class="tab-pr tab-pr_w2 tab-pr_ls"><a href="#sp-off" data-toggle="tab" class="tab-pr_a tab-pr_a-left">Специальное предложение</a></li>
+                                    <ul class="nav nav-tabs nav-tabs-t">
+                                        <li class="tab-pr tab-pr-w2 tab-pr_fs active"><a href="#service" data-toggle="tab" class="tab-pr-a">Оказываемые услуги</a></li>
+                                        <li class="tab-pr tab-pr-w2 tab-pr_sd"><a href="#brand" data-toggle="tab" class="tab-pr-a">Марки авто</a></li>
+                                        <li class="tab-pr tab-pr-w2 tab-pr_td"><a href="#company-info" data-toggle="tab" class="tab-pr-a">Информация о компании</a></li>
+                                        <li class="tab-pr tab-pr-w2 tab-pr_ls"><a href="#sp-off" data-toggle="tab" class="tab-pr-a tab-pr-a-left">Специальное предложение</a></li>
                                     </ul>
                                     
                                     <div class="tab-content">
@@ -250,7 +247,7 @@ $this->params['user']['email'] = $company->user->email;
                                 </div>
                             </div>
                  
-                            <div class="tab-content__info" style="display: none;">
+                            <div class="tab-content-info" style="display: none;">
                                 <div class="opt-frm">
                                     <form method="post" action="<?= Url::to("/private-room/options-save") ?>">
                                         <div class="frm-hint" id="frm-hint-1">
@@ -385,7 +382,6 @@ $this->params['user']['email'] = $company->user->email;
                                     </form>
                                 </div>
                             </div>
-                            
                         </div>
                         
                         <div id="user-options" class="tab-pane fade">
@@ -459,13 +455,10 @@ $this->params['user']['email'] = $company->user->email;
                                 </div>
                             </div>
                         </div>
-                        
-                    </div> <!-- /tab-content -->
-                    
-                </div> <!-- /tabs -->
-            </div> <!-- /row -->
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </div> <!-- /row -->
+    </div>
 </div>
 

@@ -6,7 +6,7 @@
 
 /* Top tabs */
 
-.nav-tabs_pr {
+.nav-tabs-pr {
     height: 75px;
     background-color: #fffcf4;
     border: none;
@@ -16,20 +16,20 @@
     text-align: center;
 }
 
-.tab-pr_w1 {
+.tab-pr-w1 {
     margin-top: 41px;
     width: 255px;
 }
 
-.tab-pr_w2 {
+.tab-pr-w2 {
     width: 242px;
 }
 
-.tab-pr_right {
+.tab-pr-right {
     margin-left: 35px;
 }
 
-.nav-tabs > li > a.tab-pr_a {
+.nav-tabs > li > a.tab-pr-a {
     font-family: MyriadProBold;
     font-size: 16px;
     color: #38b2ce;
@@ -40,36 +40,36 @@
     background-color: #e8e6e6;
 }
 
-.nav-tabs > li > a.tab-pr_a-left {
+.nav-tabs > li > a.tab-pr-a-left {
     margin-right: 0;
 }
 
-.nav-tabs > li.active > a.tab-pr_a,
-.nav-tabs > li.active > a.tab-pr_a:focus,
-.nav-tabs > li.active > a.tab-pr_a:hover {
+.nav-tabs > li.active > a.tab-pr-a,
+.nav-tabs > li.active > a.tab-pr-a:focus,
+.nav-tabs > li.active > a.tab-pr-a:hover {
     background-color: #d5eded;
     color: #071d70;
     border: none;
 }
 
-.nav-tabs_t {
+.nav-tabs-t {
     border-bottom: none;
 }
 
-.tab-content_pr {
+.tab-content-pr {
     background-color: #d5eded;
     margin-bottom: 30px;
 }
 
-.tab-content__info {
+.tab-content-info {
     margin-bottom: 40px;
 }
 
-.tab-content__info_h1 {
+.tab-content-info-h1 {
     height: 305px;
 }
 
-.tab-pane_pr {
+.tab-pane-pr {
     padding: 40px 40px 20px 40px;
 }
 
@@ -81,47 +81,45 @@
     float: left;
 }
 
-.content__info {
+.content-info {
     margin-left: 540px;
+    height: 100%;
 }
 
 .info {
     display: block;
-}
-
-.info__title {
-    font-family: MyriadProBold;
-    font-size: 18px;
-    color: #071d70;
     margin-bottom: 8px;
 }
 
-.info__addr, .info__shedule {
+.info-title {
+    font-family: MyriadProBold;
+    font-size: 18px;
+    color: #071d70;
+}
+
+.info-addr, .info-shedule {
     font-family: Tahoma;
     font-size: 14px;
     font-style: normal;
     color: #000;
-    margin-bottom: 4px;
 }
 
-.info__shedule_m {
+.info-shedule-m {
     margin-left: 20px;
 }
 
-.info__phone {
+.info-phone {
     font-family: Tahoma;
     font-size: 14px;
     font-weight: 600;
     color: #000;    
-    margin-bottom: 8px;
 }
 
-.info__change > a {
+.info-change > a {
     font-family: Tahoma;
     font-size: 12px;
     font-weight: 400;
     color: #006;    
-    margin-bottom: 8px;
 }
 
 /* Bottom tabs */
@@ -153,7 +151,7 @@
         width: 670px;
     }
 
-    .tab-content__info_t {
+    .tab-content-info-t {
         padding: 0;
     }
     
@@ -182,7 +180,7 @@
         width: 770px;
     }
     
-    .tab-content__info_t {
+    .tab-content-info-t {
         padding: 0 60px;
     }
     
@@ -210,7 +208,7 @@
         width: 100%;
     }
     
-    .tab-content__info_t {
+    .tab-content-info-t {
         padding: 0 60px;
     }
     
