@@ -176,12 +176,12 @@ $this->params['user']['email'] = $user->email;
                     </div>
                     
                 </form>
-            </div> <!-- /modal-body_dlg -->
+            </div>
             
-        </div> <!-- /modal-content -->
+        </div>
         
     </div>
-</div> <!-- /restore-psw -->
+</div>
 
 <div class="modal fade" id="card" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="a-card">
     <div class="modal-dialog c-card">
@@ -355,7 +355,7 @@ $this->params['user']['email'] = $user->email;
                     <button type="button" class="btn f-button search-button">Подобрать</button>
                 </div>
             </div>
-        </div> <!-- /search -->
+        </div>
         
         <div class="search search-ext" style="display: none;">
             <div class="search-headline"></div>
@@ -455,9 +455,9 @@ $this->params['user']['email'] = $user->email;
                     <li class="icons-list-item"><img src="<?= Url::to('/images/icon-red.png') ?>" alt="">- официальный диллер</li>
                     <li class="icons-list-item"><img src="<?= Url::to('/images/icon-cyan.png') ?>" alt="">- универсальный автосервис</li>
                 </ul>
-            </div> <!-- /row -->
+            </div>
         </div>
-    </div> <!-- /row -->
+    </div>
 </div>
 
 <div class="container-fluid special-offers-header">
@@ -465,9 +465,9 @@ $this->params['user']['email'] = $user->email;
         <div class="container">
             <div class="row">
                 <span class="special-offers-header-title">Специальные предложения</span>
-            </div> <!-- /row -->
+            </div>
         </div>
-    </div> <!-- row -->
+    </div>
 </div>
 
 <div class="container-fluid special-offers">       
@@ -490,7 +490,7 @@ $this->params['user']['email'] = $user->email;
                     <?php endif ?>
                 </ul>
             
-            </div> <!-- /row -->
+            </div>
         </div>
         
         <div class="container">
@@ -520,10 +520,10 @@ $this->params['user']['email'] = $user->email;
                     <?php endif ?>
                 </ul>
 
-                <div class="arrow arrow_left" ></div>
-                <div class="arrow arrow_right"></div>
+                <div class="slider-arrow slider-arrow-left" ></div>
+                <div class="slider-arrow slider-arrow-right"></div>
                 
-            </div> <!-- /row -->
+            </div>
         </div>
                     
         <div class="container">
@@ -567,9 +567,9 @@ $this->params['user']['email'] = $user->email;
                 <div class="all-special-offers-block">
                     <button type="button" class="btn f-button f-submit special-offers-button">Смотреть все акции</button>
                 </div>
-            </div> <!-- /row -->
+            </div>
         </div>       
-    </div> <!-- /row -->
+    </div>
 </div>
             
 

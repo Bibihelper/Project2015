@@ -17,13 +17,13 @@ function initSlider() {
         sliderTimer = setInterval(nextSlide, sliderInterval);
     });
 
-    $('div.slider-row-middle > .arrow_left').hover(function() {
+    $('div.slider-row-middle > .slider-arrow-left').hover(function() {
         clearInterval(sliderTimer);
     },function(){
         sliderTimer = setInterval(nextSlide, sliderInterval);
     });
 
-    $('div.slider-row-middle > .arrow_right').hover(function() {
+    $('div.slider-row-middle > .slider-arrow-right').hover(function() {
         clearInterval(sliderTimer);
     },function(){
         sliderTimer = setInterval(nextSlide, sliderInterval);
@@ -56,7 +56,7 @@ function nextSlide(){
     animateSlide(currentSlide);
 }
 
-$(".arrow_left").click(function() {
+$(".slider-arrow-left").click(function() {
     var currentSlide = parseInt($('div.slider-row-middle > ul.slider-viewport').data('current'));
     var slideCount   = $('div.slider-row-middle > ul.slider-viewport').children().size();
     if (currentSlide >= slideCount - 3)
@@ -65,7 +65,7 @@ $(".arrow_left").click(function() {
     animateSlide(currentSlide);
 });
 
-$(".arrow_right").click(function() {
+$(".slider-arrow-right").click(function() {
     var currentSlide = parseInt($('div.slider-row-middle > ul.slider-viewport').data('current'));
     if (currentSlide <= 0)
         return;

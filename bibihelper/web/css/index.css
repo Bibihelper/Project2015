@@ -232,3 +232,33 @@
     width: 100%;
 }
 
+/* slider arrows */
+
+.slider-arrow {
+    display: inline-block;
+    width: 30px;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+}
+
+.slider-arrow-left {
+    background: #fffcf4 url("../images/arrow-left.png") 7px 50% no-repeat;
+    left: 0;
+}
+
+.slider-arrow-right {
+    background: #fffcf4 url("../images/arrow-right.png") 7px 50% no-repeat;
+    right: 0;
+}
+
+.slider-arrow-left:hover {
+    background: #f8f8f7 url("../images/arrow-left.png") 7px 50% no-repeat;
+    left: 0;
+}
+
+.slider-arrow-right:hover {
+    background: #f8f8f7 url("../images/arrow-right.png") 7px 50% no-repeat;
+    right: 0;
+}

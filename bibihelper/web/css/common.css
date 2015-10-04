@@ -85,32 +85,3 @@ img {
    width: auto\9; /* ie8 */
 }
 
-.arrow {
-    display: inline-block;
-    width: 30px;
-    height: 100%;
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-}
-
-.arrow_left {
-    background: #fffcf4 url("../images/arrow-left.png") 7px 50% no-repeat;
-    left: 0;
-}
-
-.arrow_right {
-    background: #fffcf4 url("../images/arrow-right.png") 7px 50% no-repeat;
-    right: 0;
-}
-
-.arrow_left:hover {
-    background: #f8f8f7 url("../images/arrow-left.png") 7px 50% no-repeat;
-    left: 0;
-}
-
-.arrow_right:hover {
-    background: #f8f8f7 url("../images/arrow-right.png") 7px 50% no-repeat;
-    right: 0;
-}
-
