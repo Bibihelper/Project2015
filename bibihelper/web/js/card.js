@@ -1,6 +1,6 @@
 /* Card */
 
-$(".slider__href").click(openCard);
+$(".slider-href").click(openCard);
 
 function openCard(e) {
     var cid = $(e.currentTarget).attr("data-cid");

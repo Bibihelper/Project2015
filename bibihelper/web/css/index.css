@@ -1,32 +1,26 @@
-/* styles for index */
+/* 
+    Created on : 04.10.2015, 14:18:02
+    Author     : Leon
+*/
 
-/* media */
+/* main */
 
-@media all and (max-width: 660px) {
-
-    .header1, .header2, .main, .icons, .special-offers-header, .special-offers, .all-special-offers, .pre-footer, .footer {
-        width: 660px;
-    }
-
+.main {
+    position: relative;
 }
 
-/* button city */
+/* register response */
 
-.city {
-    float: right;
-    padding: 32.5px 0;
-    margin: 0 30px;
+.register-response {
+    text-align: center;
+    background-color: #38B2CE;
 }
 
-.bibi-btn_city, .bibi-btn_city:hover, .bibi-btn_city:focus {
+.register-message {
     color: #fff;
-    background-color: #38b2ce;
-    width: 180px;
-}
-
-.bibi-list_city {
-    background-color: #38b2ce;
-    border-color: #38b2ce;
+    font-family: MyriadProBold;
+    font-size: 16px;
+    line-height: 35px;
 }
 
 /* search form */
@@ -36,89 +30,65 @@
     background-color: rgba(7, 29, 112, 0.9);
     right: 30px;
     top: 45px;
+    width: 320px;
 }
 
-.search_simple {
-    width: 320px;
+.search-simple {
     height: 310px;
 }
 
-.search_ext {
-    width: 320px;
-    height: 520px;
+.search-ext {
+    height: 530px;
 }
 
-.search__headline {
+.search-headline {
     height: 10px;
     background-color: #38b2ce;
 }
 
-.search__form {
+.search-form {
     padding: 20px 20px 0px 20px;
 }
 
-.form__block {
-    margin-bottom: 10px;
-}
-
-.form__caption {
-    font-family: MyriadProBold;
-    font-size: 16px;
+.search-button, .search-button:hover, .search-button:focus {
     color: #fff;
-    margin-bottom: 5px;
-    display: block;
+    text-align: center;
+    background-color: #38b2ce;
+    height: 35px;
+    width: 100%;
 }
 
-.form__caption_tw {
-    margin-right: 12px;
+.search-list {
+    background-color: #fff;
+    border: 1px solid #fff;
+    padding: 0;
+    height: 300px;
+    overflow: auto;
 }
 
-.form__cbx {
-    display: none;
+.search-list > li {
+    background-color: #e8e6e6;
+    margin-bottom: 2px;
 }
 
-.form__check {
-    display: inline-block;
-    vertical-align: middle;
-    width: 25px;
-    height: 25px;
-    margin-top: -2px;
-    background: url("../images/cbx.png") no-repeat -25px 0;
-    cursor: pointer;    
+.search-list > li > a {
+    font-family: Tahoma;
+    font-size: 14px;
+    color: #000;
 }
 
-.form__ext-s-btn {
+.search-list > li > a:hover {
+    background-color: #a4a1a1;
+}
+
+.search-text-button {
     font-family: MyriadProRegular;
     font-size: 12px;
     color: #fff;
     text-decoration: underline;
 }
 
-.bibi-btn_search-form {
-    width: 280px;
-    background-color: #fff;
-}
-
-.bibi-list_form {
-    background-color: #fff;
-    border-color: #fff;
-}
-
-.bibi-list_form > li > a {
-    color: #071d70;
-}
-
-.bibi-form-btn_search, .bibi-form-btn_search:hover, .bibi-form-btn_search:focus {
-    width: 280px;
-    color: #fff;
-    background-color: #38b2ce;
-}
-
-.bibi-btn-caret_blue {
-    color: #071d70;
-}
-
-.input-group .bibi-form-edit {
+.input-group .search-edit {
     width: 280px;
 }
 
@@ -129,13 +99,13 @@
     background-color: #fffcf4;
 }
 
-.icons__i-list {
+.icons-list {
     list-style: none;
     margin: 0;
     padding: 20px 0 0 30px;
 }
 
-.i-list__item {
+.icons-list-item {
     font-family: Tahoma;
     font-size: 14px;
     font-style: normal;
@@ -149,7 +119,7 @@
     background-color: #071d70;
 }
 
-.special-offers-header__title {
+.special-offers-header-title {
     font-family: MyriadProBold;
     font-size: 18px;
     color: #fff;
@@ -161,6 +131,11 @@
 
 .special-offers {
     background-color: #fffcf4;
+}
+
+.special-offer-comment, .special-offer-period {
+    display: block;
+    margin-bottom: 10px;
 }
 
 /* slider */
@@ -175,7 +150,7 @@
     position: relative;
 }
 
-.slider__viewport {
+.slider-viewport {
     list-style: none;
     position: absolute;
     left: 30px;
@@ -184,7 +159,7 @@
     padding: 0;
 }
 
-.slider__col {
+.slider-col {
     display: inline-block;
     width: 350px;
     margin: 0 10px;
@@ -206,21 +181,21 @@
     }
 }
 
-.slider-row_top {
+.slider-row-top {
     height: 55px;
     padding: 0 30px;
 }
 
-.slider-row_middle {
+.slider-row-middle {
     height: 210px;
 }
 
-.slider-row_bottom {
+.slider-row-bottom {
     height: 75px;
     padding: 0 30px;
 }
 
-.slider__col-header {
+.slider-col-header {
     padding-top: 15px;
     font-family: MyriadProBold;
     font-size: 18px;
@@ -228,7 +203,7 @@
     text-align: center;
 }
 
-.slider__col-footer {
+.slider-col-footer {
     height: 75px;
     padding: 15px 10px 0 10px;
     font-family: Tahoma;
@@ -245,27 +220,15 @@
     background-color: #fffcf4;
 }
 
-.all-special-offers__btn {
+.all-special-offers-block {
     margin: 15px auto;
     width: 350px;
 }
 
-.bibi-form-btn_sp-off, .bibi-form-btn_sp-off:hover, .bibi-form-btn_sp-off:focus {
-    width: 350px;
+.special-offers-button, .special-offers-button:hover, .special-offers-button:focus {
     color: #fff;
-    background-color: #38b2ce;
-}
-
-/* register response */
-
-.register-response {
     text-align: center;
-    background-color: #38B2CE;
+    background-color: #38b2ce;
+    width: 100%;
 }
 
-.register-message {
-    color: #fff;
-    font-family: MyriadProBold;
-    font-size: 16px;
-    line-height: 35px;
-}

@@ -18,20 +18,17 @@ class IndexAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/common.css',
         'css/index.css',
-        'css/form.css',
         'css/card.css',
     ];
     public $js = [
         'js/index.js',
         'js/user-form.js',
+        'js/city-button.js',
         'js/card.js',
+        'js/slider.js',
     ];
     public $depends = [
-        'app\assets\ResetAsset',
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
-        'app\assets\MapAsset',
+        'app\assets\MainAsset',
     ];
 }

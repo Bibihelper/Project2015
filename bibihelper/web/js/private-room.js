@@ -35,13 +35,7 @@ Date.prototype.addDays = function(days)
 };
 
 $(function() {
-    var val = $("#datepicker1").attr("data-date"), date;
-    
-    if (val == "") {
-        date = (new Date());
-    } else {
-        date = (new Date(parseInt(val)));
-    }
+    var date = (new Date());
     
     $("#datepicker1").datepicker($.datepicker.regional["ru"]);
     $("#datepicker1").datepicker("setDate", date);
@@ -71,13 +65,7 @@ $("#c-arrow-1").click(function(e) {
 });
 
 $(function() {
-    var val = $("#datepicker2").attr("data-date"), date;
-    
-    if (val == "") {
-        date = (new Date()).addDays(10);
-    } else {
-        date = (new Date(parseInt(val)));
-    }
+    var date = (new Date()).addDays(10);
     
     $("#datepicker2").datepicker($.datepicker.regional["ru"]);                
     $("#datepicker2").datepicker("setDate", date);
@@ -298,7 +286,7 @@ $("#s-publish").click(function() {
 });
 
 function updateStatePublishBtn() {
-    if ($("#s-descr-edit").val().length > 6 && $("#s-image").attr("data-load") == "1") {
+    if ($("#s-descr-edit").val().length > 0 && $("#s-image").attr("data-load") == "1") {
         $("#s-publish").removeClass("disabled")
     } else {
         $("#s-publish").addClass("disabled")      

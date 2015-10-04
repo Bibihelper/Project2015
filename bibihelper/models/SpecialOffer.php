@@ -59,27 +59,30 @@ class SpecialOffer extends \yii\db\ActiveRecord
     public function getActiveFrom()
     {
         $activeFrom = $this->active_from;
-        
         if ($activeFrom == null) {
             $activeFrom = date('Y-m-d H:i:s');
         }
-        
         $date = \DateTime::createFromFormat('Y-m-d H:i:s', $activeFrom);
-        return $date->getTimestamp() * 1000;
+        return $date;
     }
 
     public function getActiveTo()
     {
         $activeTo = $this->active_to;
-        
         if ($activeTo == null) {
             $activeTo = date('Y-m-d H:i:s', strtotime("now +10 days"));
         }
-        
         $date = \DateTime::createFromFormat('Y-m-d H:i:s', $activeTo);
-        return $date->getTimestamp() * 1000;
+        return $date;
     }
     
+    public function getPeriod()
+    {
+        $af = $this->getActiveFrom()->format('d.m.Y');
+        $at = $this->getActiveTo  ()->format('d.m.Y');
+        return 'c ' . $af . ' по ' . $at;
+    }
+
     public function saveFile($data)
     {
         $file = new Files();

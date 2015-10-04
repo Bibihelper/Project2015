@@ -10,9 +10,9 @@ use yii\helpers\Url;
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="ru-RU">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Удобный выбор автосервиса">
@@ -34,30 +34,32 @@ use yii\helpers\Url;
     <div class="row">
         <div class="container">
             <div class="row menu">
-            <?php if ($this->params['page'] == 'index'): ?>
-                <?php if (Yii::$app->user->isGuest): ?>
-                    <div class="menu__item">
-                        <a href="#" title="" data-toggle="modal" data-target="#user-login-form" id="pre">Войти в личный кабинет</a>
+                <?php if ($this->params['page'] == 'index'): ?>
+                    <?php if (Yii::$app->user->isGuest): ?>
+                        <div class="menu-item">
+                            <a href="#" title="" data-toggle="modal" data-target="#user-login-form">Войти в личный кабинет</a>
+                        </div>
+                    <?php else: ?>
+                        <div class="menu-item">
+                            <a href="<?= Yii::$app->user->getReturnUrl() ?>" title=""><?= $this->params['user']['email'] ?></a>
+                        </div>
+                    <?php endif ?>
+
+                    <div class="menu-item menu-item-mr">
+                        <a href="#" title="" data-toggle="modal" data-target="#user-register-form">Добавить автосервис</a>
                     </div>
-                <?php else: ?>
-                    <div class="menu__item">
-                        <a href="<?= Yii::$app->user->getReturnUrl() ?>" title="">Войти в личный кабинет</a>
+
+                    <div class="menu-item menu-item-mr" style="display: none;">
+                        <a href="#" title="" data-toggle="modal" data-target="#user-restore-password-form">Восстановить пароль</a>
+                    </div>
+                <?php elseif ($this->params['page'] == 'private-room'): ?>
+                    <div class="menu-item">
+                        <a href="<?= Yii::$app->user->getReturnUrl() ?>" title=""><?= $this->params['user']['email'] ?></a>
                     </div>
                 <?php endif ?>
-                <div class="menu__item menu__item_mrg-r">
-                    <a href="#" title="" data-toggle="modal" data-target="#user-register-form" id="reg">Добавить автосервис</a>
-                </div>
-                <div class="menu__item menu__item_mrg-r" style="display: none;">
-                    <a href="#" title="" data-toggle="modal" data-target="#restore-psw" id="rst">Восстановить пароль</a>
-                </div>
-            <?php elseif ($this->params['page'] == 'private-room'): ?>
-                <div class="menu__item">
-                    <a href="mailto:<?= $this->params['company']['user']['email'] ?>" title=""><?= $this->params['company']['user']['email'] ?></a>
-                </div>
-            <?php endif ?>
-            </div> <!-- /row -->
+            </div>
         </div> 
-    </div> <!-- /row -->
+    </div>
 </div>
 
 <div class="container-fluid header2">
@@ -66,19 +68,21 @@ use yii\helpers\Url;
             <div class="row">
                 <a href="<?= Url::base(true) ?>" title="">
                     <div class="logo">
-                        <p class="logo__bibi-helper logo__bibi_color logo__bibi_shift"><span>BiBi<span class="logo__bibi-helper logo__helper_color">Helper</span></span></p>
-                        <p class="logo__slogan">Удобный выбор автосервиса</p>                        
+                        <p class="logo-bibi-helper logo-bibi-color logo-bibi-shift"><span>BiBi<span class="logo-bibi-helper logo-helper-color">Helper</span></span></p>
+                        <p class="logo-slogan">Удобный выбор автосервиса</p>                        
                     </div>
                 </a>
                 
                 <?php if ($this->params['page'] == 'index'): ?>
                     <div class="city">                                             
                         <div class="btn-group">
-                            <button type="button" class="btn dropdown-toggle bibi-btn bibi-btn_city" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="bibi-btn-text" id="city__btn" data-city-id="0">Мой город</span>
-                                <span class="caret bibi-btn-caret"></span>
+                            <button type="button" class="btn dropdown-toggle f-button city-button" id="city-button" data-city-id="0" data-toggle="dropdown">
+                                <span class="f-button-caption">
+                                    <span class="f-button-text">Мой город</span>
+                                    <span class="caret f-button-caret"></span>
+                                </span>
                             </button>
-                            <ul class="dropdown-menu bibi-list bibi-list_city">
+                            <ul class="dropdown-menu f-list city-list" id="city-list">
                                 <li data-city-id="1" data-city-coords="{latitude: 55.75368981, longitude: 37.61855388}"><a href="#" title="">Москва</a></li>
                                 <li data-city-id="2" data-city-coords="{latitude: 59.93291880, longitude: 30.31607890}"><a href="#" title="">Санкт-Питербург</a></li>
                                 <li data-city-id="3" data-city-coords="{latitude: 55.01749779, longitude: 82.92943263}"><a href="#" title="">Новосибирск</a></li>
@@ -88,10 +92,9 @@ use yii\helpers\Url;
                         </div>                                                                                               
                     </div>
                 <?php endif ?>
-                
-            </div> <!-- /row -->               
+            </div>
         </div>     
-    </div> <!-- /row -->
+    </div>
 </div>
 
 <?= $content ?>
@@ -103,32 +106,34 @@ use yii\helpers\Url;
         <div class="container">
             <div class="row">
                 
-                <div class="f-menu">
-                    <div class="f-menu__col">
+                <div class="footer-menu">
+                    <div class="footer-menu-col">
                         <span><a href="#" title="">Для автосервисов</a></span>
                         <span><a href="#" title="">Автовладельцам</a></span>
                     </div>
-                    <div class="f-menu__col">
+                    <div class="footer-menu-col">
                         <span><a href="#" title="">О проекте</a></span>
                         <span><a href="#" title="">Обратная связь</a></span>                        
                     </div>
                 </div>
                 
-                <div class="f-block">
-                    <div class="f-block__social">
+                <div class="footer-block">
+                    <div class="footer-block-social">
                         <script type="text/javascript" src="http://vk.com/js/api/share.js?92" charset="windows-1251"></script>
                         <script type="text/javascript"><!--
                             document.write(VK.Share.button(false,{type: "custom", text: "<img src=\"http://vk.com/images/share_32_eng.png\" width=\"32\" height=\"32\" />", eng: 1}));
+                            VK.init({apiId: 5050952, onlyWidgets: true});
+                            VK.Widgets.Like("vk_like", {type: "mini", height: 24});
                         --></script>
                     </div>
-                    <div class="f-block__copyright">
+                    <div class="footer-block-copyright">
                         <p><span class="copyright-sign">&nbsp;&nbsp;&nbsp;&nbsp;&copy;&nbsp;</span><span class="copyrighter">2015&nbsp;BiBiHelper</span></p>
                     </div>
                 </div>
                 
-            </div> <!-- /row -->
+            </div>
         </div>    
-    </div> <!-- /row -->
+    </div>
     <span class="version">v.0.1</span>
 </div>
 

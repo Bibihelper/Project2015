@@ -10,11 +10,12 @@ use app\assets\IndexAsset;
 IndexAsset::register($this);
 
 $this->title = 'BibiHelper';
-$this->params["page"] = "index";
+$this->params['page'] = 'index';
+$this->params['user']['email'] = $user->email;
 
 ?>
 
-<div class="modal fade" id="user-login-form" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
+<div class="modal fade" id="user-login-form" tabindex="-1" role="dialog" aria-labelledby="a-user-login-form" aria-hidden="true">
     <div class="modal-dialog m-dialog">
         <?php $form = ActiveForm::begin([
             'id' => 'login-form',
@@ -33,7 +34,7 @@ $this->params["page"] = "index";
                 <div class="modal-body f-body">
                     
                     <?= $form->field($logFrm, 'email', [
-                            'options' => ['class' => 'form-group f-group']
+                            'options' => ['class' => 'form-group']
                         ])->textInput([
                             'class' => 'form-control f-control'
                         ])->label($logFrm->getAttributeLabel('email'), [
@@ -42,7 +43,7 @@ $this->params["page"] = "index";
                     ?>
                     
                     <?= $form->field($logFrm, 'password', [
-                            'options' => ['class' => 'form-group f-group'],
+                            'options' => ['class' => 'form-group'],
                             'template' => "{label}\n"
                                 . "<span class=\"f-icon f-icon-ok\"></span>"
                                 . "<div class=\"input-group\">{input}"
@@ -57,7 +58,7 @@ $this->params["page"] = "index";
                     ?>
                     
                     <?= $form->field($logFrm, 'rememberme', [
-                            'options' => ['class' => 'form-group f-group c-mb0'],
+                            'options' => ['class' => 'form-group c-mb0'],
                             'checkboxTemplate' => "{input}\n{label}"
                         ])->checkbox([
                             'class' => 'f-checkbox'
@@ -69,11 +70,11 @@ $this->params["page"] = "index";
                 </div>
                 
                 <div class="modal-footer f-footer">
-                    <div class="form-group f-group">
+                    <div class="form-group">
                         <?= Html::submitButton('Войти', ['class' => 'f-button f-submit', 'id' => 'lf-submit']) ?>
                     </div>
 
-                    <div class="form-group f-group">
+                    <div class="form-group">
                         <span class="f-link" id="lf-register">Еще не зарегистрировались?</span>
                     </div>
                 </div>
@@ -82,7 +83,7 @@ $this->params["page"] = "index";
     </div>
 </div> 
     
-<div class="modal fade" id="user-register-form" tabindex="-1" role="dialog" aria-labelledby="modal-label-reg" aria-hidden="true">
+<div class="modal fade" id="user-register-form" tabindex="-1" role="dialog" aria-labelledby="a-user-register-form" aria-hidden="true">
     <div class="modal-dialog m-dialog">
         <?php $form = ActiveForm::begin([
             'id' => 'register-form',
@@ -100,7 +101,7 @@ $this->params["page"] = "index";
 
                 <div class="modal-body f-body">
                     <?= $form->field($regFrm, 'email', [
-                            'options' => ['class' => 'form-group f-group']
+                            'options' => ['class' => 'form-group']
                         ])->textInput([
                             'class' => 'form-control f-control'
                         ])->label($regFrm->getAttributeLabel('email'), [
@@ -109,7 +110,7 @@ $this->params["page"] = "index";
                     ?>
 
                     <?= $form->field($regFrm, 'password', [
-                            'options' => ['class' => 'form-group f-group']
+                            'options' => ['class' => 'form-group']
                         ])->passwordInput([
                             'class' => 'form-control f-control'
                         ])->label($regFrm->getAttributeLabel('password'), [
@@ -118,7 +119,7 @@ $this->params["page"] = "index";
                     ?>
 
                     <?= $form->field($regFrm, 'passwordok', [
-                            'options' => ['class' => 'form-group f-group c-mb0']
+                            'options' => ['class' => 'form-group c-mb0']
                         ])->passwordInput([
                             'class' => 'form-control f-control'
                         ])->label($regFrm->getAttributeLabel('password'), [
@@ -128,11 +129,11 @@ $this->params["page"] = "index";
                 </div>
                 
                 <div class="modal-footer f-footer">
-                    <div class="form-group f-group">
+                    <div class="form-group">
                         <?= Html::submitButton('Зарегистрироваться', ['class' => 'f-button f-submit', 'id' => 'rf-submit']) ?>
                     </div>
 
-                    <div class="form-group f-group">
+                    <div class="form-group">
                         <span class="f-qtext">Уже зарегистрировались?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                         <span class="f-link" id="rf-login">Войти</span>
                     </div>
@@ -142,7 +143,7 @@ $this->params["page"] = "index";
     </div>
 </div> 
 
-<div class="modal fade" id="user-restorepsw-form" tabindex="-3" role="dialog" aria-labelledby="modal-label-restore-psw" aria-hidden="true">
+<div class="modal fade" id="user-restorepsw-form" tabindex="-3" role="dialog" aria-labelledby="a-user-restorepsw-form" aria-hidden="true">
     <div class="modal-dialog modal-dialog_dlg">
     
         <div class="modal-content modal-content_dlg">
@@ -182,7 +183,7 @@ $this->params["page"] = "index";
     </div>
 </div> <!-- /restore-psw -->
 
-<div class="modal fade" id="card" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="aria-card">
+<div class="modal fade" id="card" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="a-card">
     <div class="modal-dialog c-card">
 
         <div class="modal-content c-content">
@@ -298,169 +299,161 @@ $this->params["page"] = "index";
             <span class="register-message"><?= $responseMessage ?></span>
         </div>
         
-        <div id="map">
-        <!--
-            <img src="images/map.png">
-        -->
-        </div> <!-- /map -->
+        <div id="map"></div>
         
-        <div class="search search_simple">
-            <div class="search__headline"></div>
+        <div class="search search-simple">
+            <div class="search-headline"></div>
             
-            <div class="search__form">
-                <form>
-                    
-                    <div class="form__block">
-                        <span class="form__caption">Марка</span>
-                        <div class="btn-group">
-                            <button type="button" class="form-control btn dropdown-toggle bibi-btn bibi-btn_search-form" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="bibi-btn-text" id="search_simple__brand" data-brand-id="0">&nbsp;</span>
-                                <span class="caret bibi-btn-caret bibi-btn-caret_blue"></span>
-                            </button>
-                            <ul class="dropdown-menu bibi-list bibi-list_form" id="search_simple__brand-list">
-                                <li data-brand-id="1"><a href="#" title="">Mersedes</a></li>
-                                <li data-brand-id="2"><a href="#" title="">Audi</a></li>
-                                <li data-brand-id="3"><a href="#" title="">BMW</a></li>
-                                <li data-brand-id="4"><a href="#" title="">Toyota</a></li>
-                                <li data-brand-id="5"><a href="#" title="">Jeep</a></li>
-                            </ul>
-                        </div>                                                                                               
-                    </div>
-                    
-                    <div class="form__block">
-                        <span class="form__caption">Вид работы</span>
-                        <div class="btn-group">
-                            <button type="button" class="form-control btn dropdown-toggle bibi-btn bibi-btn_search-form" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="bibi-btn-text" id="search_simple__w-type" data-w-type-id="0">&nbsp;</span>
-                                <span class="caret bibi-btn-caret bibi-btn-caret_blue"></span>
-                            </button>
-                            <ul class="dropdown-menu bibi-list bibi-list_form" id="search_simple__w-type-list">
-                                <li data-w-type-id="1"><a href="#" title="">Замена масла</a></li>
-                                <li data-w-type-id="2"><a href="#" title="">Зарядка аккумулятора</a></li>
-                                <li data-w-type-id="3"><a href="#" title="">Подкачка шин</a></li>
-                                <li data-w-type-id="4"><a href="#" title="">Диагностика</a></li>
-                            </ul>
-                        </div>                                                                                                                               
-                    </div>
-                    
-                    <div class="form__block">
-                        <span class="form__caption">
-                            <span class="form__caption_tw">Круглосуточно</span>
-                            <span class="form__check" id="search_simple__tw-check"></span>
-                            <input type="checkbox" class="form__cbx" id="search_simple__tw-cbx" checked="checked">
-                        </span>
-                    </div>
-                    
-                    <div class="form__block">
-                        <a href="#" title="" class="form__ext-s-btn" id="ext-search-btn">Расширенный поиск</a>
-                    </div>
-                    
-                    <div class="form__block">
-                        <button type="button" class="btn bibi-form-btn bibi-form-btn_search">Подобрать</button>
-                    </div>
-                    
-                </form>
+            <div class="search-form">
+                <div class="f-group">
+                    <span class="f-caption">Марка</span>
+                    <div class="btn-group">
+                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown brand" data-id="0" data-toggle="dropdown">
+                            <span class="f-button-caption">
+                                <span class="f-button-text">&nbsp;</span>
+                                <span class="caret f-button-caret f-button-caret-blue"></span>
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu f-list search-list">
+                            <li data-id="1"><a href="#" title="">Mersedes</a></li>
+                            <li data-id="2"><a href="#" title="">Audi</a></li>
+                            <li data-id="3"><a href="#" title="">BMW</a></li>
+                            <li data-id="4"><a href="#" title="">Toyota</a></li>
+                            <li data-id="5"><a href="#" title="">Jeep</a></li>
+                        </ul>
+                    </div>                                                                                               
+                </div>
+
+                <div class="f-group">
+                    <span class="f-caption">Вид работы</span>
+                    <div class="btn-group">
+                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown wtype" data-id="0" data-toggle="dropdown">
+                            <span class="f-button-caption">
+                                <span class="f-button-text">&nbsp;</span>
+                                <span class="caret f-button-caret f-button-caret-blue"></span>
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu f-list search-list">
+                            <li data-id="1"><a href="#" title="">Замена масла</a></li>
+                            <li data-id="2"><a href="#" title="">Зарядка аккумулятора</a></li>
+                            <li data-id="3"><a href="#" title="">Подкачка шин</a></li>
+                            <li data-id="4"><a href="#" title="">Диагностика</a></li>
+                        </ul>
+                    </div>                                                                                                                               
+                </div>
+
+                <div class="f-group">
+                    <input type="checkbox" class="f-checkbox f-twfhr" id="twfhr-checkbox-1" checked="checked">
+                    <label for="twfhr-checkbox-1" class="f-caption">Круглосуточно</label>
+                </div>
+
+                <div class="f-group">
+                    <a href="#" title="" class="search-text-button" id="search-ext-button">Расширенный поиск</a>
+                </div>
+
+                <div class="f-group">
+                    <button type="button" class="btn f-button search-button">Подобрать</button>
+                </div>
             </div>
         </div> <!-- /search -->
         
-        <div class="search search_ext" style="display: none;">
-            <div class="search__headline"></div>
+        <div class="search search-ext" style="display: none;">
+            <div class="search-headline"></div>
             
-            <div class="search__form">
-                <form>
+            <div class="search-form">
+                <div class="f-group">
+                    <span class="f-caption">Марка</span>
+                    <div class="btn-group">
+                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown brand" data-id="0" data-toggle="dropdown">
+                            <span class="f-button-caption">
+                                <span class="f-button-text">&nbsp;</span>
+                                <span class="caret f-button-caret f-button-caret-blue"></span>
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu f-list search-list">
+                            <li data-id="1"><a href="#" title="">Mersedes</a></li>
+                            <li data-id="2"><a href="#" title="">Audi</a></li>
+                            <li data-id="3"><a href="#" title="">BMW</a></li>
+                            <li data-id="4"><a href="#" title="">Toyota</a></li>
+                            <li data-id="5"><a href="#" title="">Jeep</a></li>
+                        </ul>
+                    </div>                                                                                               
+                </div>
                     
-                    <div class="form__block">
-                        <span class="form__caption">Марка</span>
-                        <div class="btn-group">
-                            <button type="button" class="form-control btn dropdown-toggle bibi-btn bibi-btn_search-form" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="bibi-btn-text" id="search_ext__brand" data-brand-id="0">&nbsp;</span>
-                                <span class="caret bibi-btn-caret bibi-btn-caret_blue"></span>
-                            </button>
-                            <ul class="dropdown-menu bibi-list bibi-list_form" id="search_ext__brand-list">
-                                <li data-brand-id="1"><a href="#" title="">Mersedes</a></li>
-                                <li data-brand-id="2"><a href="#" title="">Audi</a></li>
-                                <li data-brand-id="3"><a href="#" title="">BMW</a></li>
-                                <li data-brand-id="4"><a href="#" title="">Toyota</a></li>
-                                <li data-brand-id="5"><a href="#" title="">Jeep</a></li>
-                            </ul>
-                        </div>                                                                                               
-                    </div>
+                <div class="f-group">
+                    <span class="f-caption">Вид работы</span>
+                    <div class="btn-group">
+                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown wtype"  data-id="0" data-toggle="dropdown">
+                            <span class="f-button-caption">
+                                <span class="f-button-text">&nbsp;</span>
+                                <span class="caret f-button-caret f-button-caret-blue"></span>
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu f-list search-list">
+                            <li data-id="1"><a href="#" title="">Замена масла</a></li>
+                            <li data-id="2"><a href="#" title="">Зарядка аккумулятора</a></li>
+                            <li data-id="3"><a href="#" title="">Подкачка шин</a></li>
+                            <li data-id="4"><a href="#" title="">Диагностика</a></li>
+                        </ul>
+                    </div>                                                                                                                               
+                </div>
                     
-                    <div class="form__block">
-                        <span class="form__caption">Вид работы</span>
-                        <div class="btn-group">
-                            <button type="button" class="form-control btn dropdown-toggle bibi-btn bibi-btn_search-form" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="bibi-btn-text" id="search_ext__w-type" data-w-type-id="0">&nbsp;</span>
-                                <span class="caret bibi-btn-caret bibi-btn-caret_blue"></span>
-                            </button>
-                            <ul class="dropdown-menu bibi-list bibi-list_form" id="search_ext__w-type-list">
-                                <li data-w-type-id="1"><a href="#" title="">Замена масла</a></li>
-                                <li data-w-type-id="2"><a href="#" title="">Зарядка аккумулятора</a></li>
-                                <li data-w-type-id="3"><a href="#" title="">Подкачка шин</a></li>
-                                <li data-w-type-id="4"><a href="#" title="">Диагностика</a></li>
-                            </ul>
-                        </div>                                                                                                                               
-                    </div>
+                <div class="f-group">
+                    <span class="f-caption">Район</span>
+                    <div class="btn-group">
+                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown" data-id="0" data-toggle="dropdown">
+                            <span class="f-button-caption">
+                                <span class="f-button-text">&nbsp;</span>
+                                <span class="caret f-button-caret f-button-caret-blue"></span>
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu f-list search-list">
+                            <li data-distr-id="1"><a href="#" title="">Октябрьский</a></li>
+                            <li data-distr-id="2"><a href="#" title="">Ленинский</a></li>
+                            <li data-distr-id="3"><a href="#" title="">Советский</a></li>
+                        </ul>
+                    </div>                                                                                                                               
+                </div>
                     
-                    <div class="form__block">
-                        <span class="form__caption">Район</span>
-                        <div class="btn-group">
-                            <button type="button" class="form-control btn dropdown-toggle bibi-btn bibi-btn_search-form" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="bibi-btn-text" id="search_ext__distr" data-distr-id="0">&nbsp;</span>
-                                <span class="caret bibi-btn-caret bibi-btn-caret_blue"></span>
-                            </button>
-                            <ul class="dropdown-menu bibi-list bibi-list_form" id="search_ext__distr-list">
-                                <li data-distr-id="1"><a href="#" title="">Октябрьский</a></li>
-                                <li data-distr-id="2"><a href="#" title="">Ленинский</a></li>
-                                <li data-distr-id="3"><a href="#" title="">Советский</a></li>
-                            </ul>
-                        </div>                                                                                                                               
-                    </div>
+               <div class="f-group">
+                    <span class="f-caption">Названиее автосервиса</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-edit">
+                    </div>                                                                                                                               
+                </div>
                     
-                    <div class="form__block">
-                        <span class="form__caption">Названиее автосервиса</span>
-                        <div class="input-group">
-                            <input type="text" class="form-control bibi-form-edit">
-                        </div>                                                                                                                               
-                    </div>
+                <div class="f-group">
+                    <span class="f-caption">Адрес</span>
+                    <div class="input-group">
+                        <input type="text" class="form-control search-edit">
+                    </div>                                                                                                                               
+                </div>
                     
-                    <div class="form__block">
-                        <span class="form__caption">Адрес</span>
-                        <div class="input-group">
-                            <input type="text" class="form-control bibi-form-edit">
-                        </div>                                                                                                                               
-                    </div>
-                    
-                    <div class="form__block">
-                        <span class="form__caption">
-                            <span class="form__caption_tw">Круглосуточно</span>
-                            <span class="form__check" id="search_ext__tw-check"></span>
-                            <input type="checkbox" class="form__cbx" id="search_ext__tw-cbx" checked="checked">
-                        </span>
-                    </div>
-                    
-                    <div class="form__block">
-                        <a href="#" title="" class="form__ext-s-btn" id="simple-search-btn">Свернуть</a>
-                    </div>
-                    
-                    <div class="form__block">
-                        <button type="button" class="btn bibi-form-btn bibi-form-btn_search">Подобрать</button>
-                    </div>
-                    
-                </form>
+                <div class="f-group">
+                    <input type="checkbox" class="f-checkbox f-twfhr" id="twfhr-checkbox-2" checked="checked">
+                    <label for="twfhr-checkbox-2" class="f-caption">Круглосуточно</label>
+                </div>
+
+                <div class="f-group">
+                    <a href="#" title="" class="search-text-button" id="search-simple-button">Свернуть</a>
+                </div>
+
+                <div class="f-group">
+                    <button type="button" class="btn f-button search-button">Подобрать</button>
+                </div>
             </div>
-        </div> <!-- /ext-search -->
+        </div>
         
-    </div> <!-- /row -->
+    </div>
 </div>
 
 <div class="container-fluid icons">
     <div class="row">
         <div class="container">
             <div class="row">
-                <ul class="icons__i-list">
-                    <li class="i-list__item"><img src="<?= Url::to('/images/icon-red.png') ?>" alt="">- официальный диллер</li>
-                    <li class="i-list__item"><img src="<?= Url::to('/images/icon-cyan.png') ?>" alt="">- универсальный автосервис</li>
+                <ul class="icons-list">
+                    <li class="icons-list-item"><img src="<?= Url::to('/images/icon-red.png') ?>" alt="">- официальный диллер</li>
+                    <li class="icons-list-item"><img src="<?= Url::to('/images/icon-cyan.png') ?>" alt="">- универсальный автосервис</li>
                 </ul>
             </div> <!-- /row -->
         </div>
@@ -471,7 +464,7 @@ $this->params["page"] = "index";
     <div class="row">
         <div class="container">
             <div class="row">
-                <span class="special-offers-header__title">Специальные предложения</span>
+                <span class="special-offers-header-title">Специальные предложения</span>
             </div> <!-- /row -->
         </div>
     </div> <!-- row -->
@@ -481,18 +474,18 @@ $this->params["page"] = "index";
     <div class="row">
             
         <div class="container">
-            <div class="row slider-row slider-row_top">
+            <div class="row slider-row slider-row-top">
             
-                <ul class="slider__viewport">
+                <ul class="slider-viewport">
                     <?php if ($spOffs !== false): ?>
                         <?php foreach ($spOffs as $spOff): ?>
-                            <li class="slider__col"><div class="slider__col-header"><?= $spOff->company->name ?></div></li>
+                            <li class="slider-col"><div class="slider-col-header"><?= $spOff->company->name ?></div></li>
                         <?php endforeach ?>
                     <?php else: ?>
                         <?php for ($i = 1; $i <= 3; $i++): ?> 
-                            <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
-                            <li class="slider__col"><div class="slider__col-header">Сервис-X</div></li>
-                            <li class="slider__col"><div class="slider__col-header">Ультра сервис</div></li>
+                            <li class="slider-col"><div class="slider-col-header">Ультра сервис</div></li>
+                            <li class="slider-col"><div class="slider-col-header">Сервис-X</div></li>
+                            <li class="slider-col"><div class="slider-col-header">Ультра сервис</div></li>
                         <?php endfor ?>
                     <?php endif ?>
                 </ul>
@@ -501,13 +494,13 @@ $this->params["page"] = "index";
         </div>
         
         <div class="container">
-            <div class="row slider-row slider-row_middle">
+            <div class="row slider-row slider-row-middle">
             
-                <ul class="slider__viewport" data-current="0">
+                <ul class="slider-viewport" data-current="0">
                     <?php if ($spOffs !== false): ?>
                         <?php foreach ($spOffs as $spOff): ?>
-                            <li class="slider__col">
-                                <a href="#" title="" class="slider__href" data-cid="<?= $spOff->company_id ?>">
+                            <li class="slider-col">
+                                <a href="#" title="" class="slider-href" data-cid="<?= $spOff->company_id ?>">
                                     <img src="<?= Url::to($spOff->file->getFileFullName('/images/slide-1.png')) ?>" alt="">
                                 </a>
                             </li>
@@ -516,7 +509,7 @@ $this->params["page"] = "index";
                         <?php for ($i = 1; $i <= 3; $i++): ?>
                             
                             <?php for ($j = 1; $j <= 3; $j++): ?>
-                                <li class="slider__col">
+                                <li class="slider-col">
                                     <a href="#" title="">
                                         <img src="<?= Url::to('/images/slide-' . $j . '.png') ?>" alt="">
                                     </a>
@@ -534,42 +527,45 @@ $this->params["page"] = "index";
         </div>
                     
         <div class="container">
-            <div class="row slider-row slider-row_bottom">
+            <div class="row slider-row slider-row-bottom">
             
-                <ul class="slider__viewport">
+                <ul class="slider-viewport">
                     <?php if ($spOffs !== false): ?>
                         <?php foreach ($spOffs as $spOff): ?>
-                            <li class="slider__col">
-                                <div class="slider__col-footer"><?= $spOff->comment ?></div>
+                            <li class="slider-col">
+                                <div class="slider-col-footer">
+                                    <span class="special-offer-comment"><?= $spOff->comment ?></span>
+                                    <span class="special-offer-period"><?= $spOff->getPeriod() ?></span>
+                                </div>
                             </li>
                         <?php endforeach ?>
                     <?php else: ?>
                         <?php for ($i = 1; $i <= 3; $i++): ?>
-                            <li class="slider__col">
-                                <div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
+                            <li class="slider-col">
+                                <div class="slider-col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
                             </li>
-                            <li class="slider__col">
-                                <div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
+                            <li class="slider-col">
+                                <div class="slider-col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
                             </li>
-                            <li class="slider__col">
-                                <div class="slider__col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
+                            <li class="slider-col">
+                                <div class="slider-col-footer">Скидка 20% на замену масла плюс мойка за полцены!<br>С 20 августа по 20 сентября</div>
                             </li>
                         <?php endfor ?>
                     <?php endif ?>
                 </ul>
                 
-            </div> <!-- /row -->                        
+            </div>
         </div>               
                             
-    </div> <!-- /row -->
+    </div>
 </div>
 
 <div class="container-fluid all-special-offers">
     <div class="row">
         <div class="container">
             <div class="row">
-                <div class="all-special-offers__btn">
-                    <button type="button" class="btn bibi-form-btn bibi-form-btn_sp-off">Смотреть все акции</button>
+                <div class="all-special-offers-block">
+                    <button type="button" class="btn f-button f-submit special-offers-button">Смотреть все акции</button>
                 </div>
             </div> <!-- /row -->
         </div>       

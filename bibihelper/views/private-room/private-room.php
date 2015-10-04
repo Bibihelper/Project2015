@@ -11,7 +11,7 @@ PrivateRoomAsset::register($this);
 
 $this->title = 'BibiHelper: ЛК';
 $this->params['page'] = 'private-room';
-$this->params['company']['user']['email'] = $company->user->email;
+$this->params['user']['email'] = $company->user->email;
 
 ?>
 
@@ -124,14 +124,6 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             <div class="arrow-ud arrow_up-na"></div>
 
                                             <ul class="info-s">
-                                                <!--
-                                                <li class="info__item">
-                                                    <span class="info__item-label">Все</span>
-                                                    <span class="info__chbx info__chbx_all">
-                                                        <div class="info__cbx" data-ch="0"></div>
-                                                    </span>
-                                                </li>
-                                                -->
                                                 
                                                 <?php foreach($countries as $cntr): ?>
                                                     <li class="info__item" data-exp="1">
@@ -204,41 +196,35 @@ $this->params['company']['user']['email'] = $company->user->email;
                                         </div>
                                         
                                         <div id="sp-off" class="tab-pane fade" data-cid="<?= $company->id ?>" data-soid="<?= $company->specialOffer->id ?>">
-
                                             <div class="s-off">
                                                 
                                                 <div class="s-off-ctrls" style="<?= $company->hasOffer() ? "display: none;" : "display: block;" ?>">
-                                                    <form>
-                                                    
-                                                        <div class="c-block">
-                                                            <span class="c-caption">Выберете картинку для акции.</span>
-                                                            <button type="button" class="btn s-off-btn" id="s-browse">Обзор</button><input type="text" class="form-control c-edit s-off-edit_m" placeholder="Фото.jpg" id="s-filename">
-                                                            <button type="button" class="btn s-off-btn s-off-btn_m disabled" id="s-load-image">Загрузить</button>
-                                                            <input type="file" id="s-br" name="sBr" accept="image/jpeg, image/png, image/gif">
-                                                        </div>
-                                                        
-                                                        <div class="c-block">
-                                                            <span class="c-caption">Период действия предложения:</span>
-                                                            
-                                                            <span class="c-caption s-off-caption_b">с</span>
-                                                            <input type="text" id="datepicker1" data-date="<?= $company->specialOffer->getActiveFrom() ?>">
-                                                            <span class="c-arrow c-arrow_expand c-arrow_1" id="c-arrow-1"></span>
-                                                            
-                                                            <span class="c-caption s-off-caption_e">по</span>
-                                                            <input type="text" id="datepicker2" data-date="<?= $company->specialOffer->getActiveTo() ?>">
-                                                            <span class="c-arrow c-arrow_expand c-arrow_2" id="c-arrow-2"></span>
-                                                        </div>
-                                                        
-                                                        <div class="c-block">
-                                                            <span class="c-caption">Описание предложения (макс. 50 символов):</span>
-                                                            <input type="text" class="form-control c-edit s-off-edit_m2" id="s-descr-edit" maxlength="50" value="<?= $company->specialOffer->comment ?>">
-                                                        </div>
-                                                        
-                                                    </form>
+                                                    <div class="c-block">
+                                                        <span class="c-caption">Выберете картинку для акции.</span>
+                                                        <button type="button" class="btn s-off-btn" id="s-browse">Обзор</button><input type="text" class="form-control c-edit s-off-edit_m" placeholder="Фото.jpg" id="s-filename">
+                                                        <button type="button" class="btn s-off-btn s-off-btn_m disabled" id="s-load-image">Загрузить</button>
+                                                        <input type="file" id="s-br" name="sBr" accept="image/jpeg, image/png, image/gif">
+                                                    </div>
+
+                                                    <div class="c-block">
+                                                        <span class="c-caption">Период действия предложения:</span>
+
+                                                        <span class="c-caption c-caption-m">с</span>
+                                                        <input type="text" id="datepicker1">
+                                                        <span class="c-arrow c-arrow_expand c-arrow_1" id="c-arrow-1"></span>
+
+                                                        <span class="c-caption c-caption-m">по</span>
+                                                        <input type="text" id="datepicker2">
+                                                        <span class="c-arrow c-arrow_expand c-arrow_2" id="c-arrow-2"></span>
+                                                    </div>
+
+                                                    <div class="c-block">
+                                                        <span class="c-caption">Описание предложения (макс. 50 символов):</span>
+                                                        <input type="text" class="form-control c-edit s-off-edit_m2" id="s-descr-edit" maxlength="50" value="<?= $company->specialOffer->comment ?>">
+                                                    </div>
                                                 </div>
                                                 
                                                 <div class="s-off-preview" style="<?= $company->hasOffer() ? "float: none;" : "float: right;" ?>">
-                                                
                                                     <div class="preview-block">
                                                         <span class="prtxt prtxt_caption">Предпоказ акции:</span>
                                                         <span class="prtxt prtxt_title"><?= $company->name ?></span>
@@ -247,19 +233,17 @@ $this->params['company']['user']['email'] = $company->user->email;
                                                         </div>
                                                         <span class="prtxt prtxt_text" id="s-descr"><?= $company->specialOffer->comment ?></span>
                                                     </div>
-                                                    
                                                 </div>
                                                 
                                             </div>
                                             
-                                            <div class="info-c__btn">
+                                            <div class="button-block">
                                                 <?php if ($company->hasOffer()): ?>
                                                     <button type="button" class="f-button f-submit" id="s-publish" data-btn-type="2">Удалить предложение</button>
                                                 <?php else: ?>
                                                     <button type="button" class="f-button f-submit disabled" id="s-publish" data-btn-type="1">Опубликовать</button>
                                                 <?php endif ?>
                                             </div>
-                    
                                         </div>
                                     </div>
                                     
@@ -380,8 +364,8 @@ $this->params['company']['user']['email'] = $company->user->email;
                                             <input type="text" class="text-edit" placeholder="+7 (_ _ _) _ _ _-_ _-_ _" value="<?= $company->phone ?>" id="company_phone" name="company_phone_2">
                                         </div>
                                         <div class="frm-block">
-                                            <div class="info-c__btn info-c__btn_m">
-                                                <button type="submit" class="btn bibi-form-btn info-c__btn_save" id="save-opt">Сохранить</button>
+                                            <div class="button-block-2">
+                                                <button type="submit" class="f-button f-submit" id="save-opt">Сохранить</button>
                                             </div>
                                         </div>
                                         <div class="frm-data">

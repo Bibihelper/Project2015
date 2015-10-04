@@ -360,6 +360,8 @@ ul.info-s {
     vertical-align: 3px;    
 }
 
+/* special offer */
+
 .s-off {
     padding: 30px 65px 60px 40px;
     height: 340px;
@@ -395,15 +397,6 @@ ul.info-s {
 
 .s-off-btn_m {
     margin-left: 28px;
-}
-
-.c-edit {
-    font-family: Tahoma;
-    font-size: 14px;
-    border-radius: 0;
-    border: #38b2ce solid 1px;
-    display: inline-block;
-    height: 30px;
 }
 
 .s-off-edit_m {
@@ -599,9 +592,12 @@ ul.info-s {
     height: 170px;
     border: 1px solid #071d70;
 }
+
 #s-br {
     display: none;
 }
+
+/* ------------------- */
 
 .options {
     padding: 40px 315px 60px 315px;
@@ -619,14 +615,16 @@ ul.info-s {
     margin-bottom: 10px;
 }
 
-.info-c__btn {
-    padding: 15px 65px 30px 40px;
+.button-block {
+    padding: 0 65px 30px 40px;
     text-align: right;
+    clear: both;
 }
 
-.info-c__btn_m {
+.button-block-2 {
     padding: 0;
-    height: 55px;
+    text-align: center;
+    clear: none;
 }
 
 .c-block_m {

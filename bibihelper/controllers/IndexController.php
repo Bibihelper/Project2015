@@ -6,6 +6,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\Response;
 use yii\bootstrap\ActiveForm;
+use app\models\User;
 use app\models\SpecialOffer;
 use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
@@ -15,12 +16,15 @@ class IndexController extends Controller
 {
     public function actionIndex()
     {
+        $user = User::findIdentity(Yii::$app->user->id);
+
         $regFrm = new RegisterForm();
         $logFrm = new LoginForm();
         $spOffs = new SpecialOffer();
         $spOffs = $spOffs->getAllSpecialOffers();
         
         return $this->render('index', [
+            'user'   => $user,
             'spOffs' => $spOffs,
             'regFrm' => $regFrm,
             'logFrm' => $logFrm,

@@ -35,6 +35,15 @@
     margin-right: 20px;
 }
 
+.c-edit {
+    font-family: Tahoma;
+    font-size: 14px;
+    border-radius: 0;
+    border: #38b2ce solid 1px;
+    display: inline-block;
+    height: 30px;
+}
+
 .rf-content {
     padding: 0 35px;
 }
@@ -79,26 +88,20 @@
 
 }
 
-.f-hint {
-    position: absolute;
-    left: 0;
-    top: 0;
-    border: 1px solid #000;
-    background-color: #ffe490;
-    padding: 0px 8px;
-    display: none;    
-}
-
-.f-text {
-    font-family: Tahoma;
-    font-size: 12px;
-    font-weight: 400;
-    color: #000;
-    vertical-align: 1px;
-}
-
 .f-group {
+    margin-bottom: 15px;
+}
 
+.f-caption {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.f-caption-twfhr {
+    margin-right: 12px;
 }
 
 .f-label {
@@ -107,6 +110,26 @@
     font-weight: 400;
     color: #000;
     margin-bottom: 5px;
+}
+
+.f-button-caption {
+    height: 100%;
+    display: block;
+}
+
+.f-button-text {
+    float: left;
+    display: block;
+}
+
+.f-button-caret {
+    float: right;
+    margin-top: 10px;
+    display: block;
+}
+
+.f-button-caret-blue {
+    color: #071d70;
 }
 
 .f-control {
@@ -159,8 +182,8 @@ span.f-link:hover {
     font-family: MyriadProBold;
     font-size: 16px;
     color: #fff;
-    background-color: #38b2ce;
     text-align: center;
+    background-color: #38b2ce;
     border-radius: 0;
     border: 1px solid #38b2ce;
 }
@@ -168,6 +191,32 @@ span.f-link:hover {
 .f-submit {
     width: 235px;
     height: 40px;
+}
+
+.f-list-button {
+    font-family: Tahoma;
+    font-size: 14px;
+    color: #000;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 0;
+    border: 1px solid #fff;
+}
+
+.f-dropdown {
+    height: 35px;
+    width: 280px;    
+}
+
+.f-list {
+    border-radius: 0;
+    width: 100%;
+}
+
+.f-list > li > a {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #fff;    
 }
 
 .f-checkbox {
@@ -215,6 +264,28 @@ span.f-link:hover {
     background-color: #e8e6e6;
     color: #38b2ce;
     cursor: pointer;
+}
+
+.f-twfhr:not(checked) + label:before {
+    border: 1px solid #fff;
+}
+
+.f-hint {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid #000;
+    background-color: #ffe490;
+    padding: 0px 8px;
+    display: none;    
+}
+
+.f-text {
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 400;
+    color: #000;
+    vertical-align: 1px;
 }
 
 .f-hint-password {

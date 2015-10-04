@@ -18,9 +18,7 @@ class PrivateRoomAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/common.css',
         'css/private-room.css',
-        'css/form.css',
     ];
     public $js = [
         'js/datepicker-ru.js',
@@ -29,10 +27,7 @@ class PrivateRoomAsset extends AssetBundle
         'js/user-options.js',
     ];
     public $depends = [
-        'app\assets\ResetAsset',
-        'yii\web\YiiAsset',
-        'yii\bootstrap\BootstrapAsset',
+        'app\assets\MainAsset',
         'yii\jui\JuiAsset',
-        'app\assets\MapAsset',
     ];
 }
