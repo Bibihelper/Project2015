@@ -20,11 +20,10 @@ class IndexAsset extends AssetBundle
     public $css = [
         'css/index.css',
         'css/card.css',
+        'css/slider.css',
     ];
     public $js = [
         'js/index.js',
-        'js/user-form.js',
-        'js/city-button.js',
         'js/card.js',
         'js/slider.js',
     ];
