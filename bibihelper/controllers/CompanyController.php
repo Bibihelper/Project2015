@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\Response;
 use app\models\Company;
 use app\models\Address;
 use app\models\Shedule;
@@ -63,7 +64,7 @@ class CompanyController extends Controller
             ->asArray()
             ->one();
         
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         
         $response = [
             'company'  => $company,
@@ -92,7 +93,7 @@ class CompanyController extends Controller
             }
         }
 
-        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         $response = ['status' => $status, 'message' => $message];
         return $response;
     }

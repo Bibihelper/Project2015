@@ -206,66 +206,20 @@ class PrivateRoomController extends Controller
     
     public function actionSaveOptions()
     {
-//        $data = Yii::$app->request->post();
-//        $user = new User();
-//        $user = $user->findOne(Yii::$app->user->id);
-//        $this->optionsSave($data, $user);
-//        $this->redirect(Url::to('/private-room/index/?id=' . $user->company->id));
-    }
-    
-    public function saveOptions($data, $user)
-    {
-        $db = Yii::$app->db;
+        $status = 'OK';
+        $message = '';
+        $cOptFrm = new OptionsForm();
         
-        $transaction = $db->beginTransaction();
-        
-        try {
-            
-            $company = $user->company;
-            $company->name  = $data['company_name_2'];
-            $company->phone = $data['company_phone_2'];
-            $company->twenty_four_hours = $data['shedule_twfh_2'];
-            $company->save();
-            
-            $address = $user->company->address;
-            $address->region   = $data['address_region_2'];
-            $address->city     = $data['address_city_2'];
-            $address->district = $data['address_district_2'];
-            $address->street   = $data['address_street_2'];
-            $address->home     = $data['address_home_2'];
-            $address->housing  = $data['address_housing_2'];
-            $address->building = $data['address_building_2'];
-            $address->metro    = $data['address_metro_2'];
-            $address->save();
-            
-            Shedule::deleteAll(['company_id' => $company->id]);
-            
-            $days = array(1 => 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun');
-            
-            for ($i = 1; $i <= 7; $i++) {
-                $dataDay = 'shedule_' . $days[$i] . '_2';
-                $dayValue = $data[$dataDay];
-            
-                if ($dayValue == 1) {
-                    $shedule = new Shedule();
-                    $shedule->company_id = $company->id;
-                    $shedule->day        = $i;
-                    $shedule->begin      = $data['b_hour_2'] . ':' . $data['b_minute_2'] . ':00';
-                    $shedule->end        = $data['e_hour_2'] . ':' . $data['e_minute_2'] . ':00';
-                    $shedule->save();
-                }
+        if ($cOptFrm->load(Yii::$app->request->post())) {
+            if (!$cOptFrm->saveOptions()) {
+                $status = 'ERROR';
+                $message = Common::M_DATA_SAVE_FAILED;
             }
-            
-            $transaction->commit();
-            
-        } catch (Exception $e) {
-        
-            $transaction->rollBack();
-            return false;
-            
         }
-        
-        return true;
+
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $response = ['status' => $status, 'message' => $message];
+        return $response;
     }
     
     public function actionSaveCoords()

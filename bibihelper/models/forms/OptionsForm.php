@@ -108,4 +108,9 @@ class OptionsForm extends Model
         $this->e_minute = $shedule->getMinute('end');
         $this->company_phone = $company->phone;
     }
+    
+    public function saveOptions()
+    {
+        return true;
+    }
 }
