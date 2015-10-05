@@ -352,3 +352,38 @@ label:before + .f-checkbox-inv:checked {
     max-height: 300px;
     min-height: 300px;
 }
+
+.f-block {
+    margin-bottom: 15px;
+}
+
+.f-block-nm {
+    margin-bottom: 0;
+}
+
+.f-block-inline {
+    display: inline-block;    
+    margin-right: 50px;
+    width: 120px;
+}
+
+.f-block-ta {
+    text-align: center;
+}
+
+.f-block-top {
+    vertical-align: top;
+}
+
+.f-block-w {
+    width: 175px;
+    margin-right: 30px;
+}
+
+.f-block-mb {
+    margin-bottom: 40px;
+}
+
+.f-label-lh20 {
+    line-height: 20px;
+}

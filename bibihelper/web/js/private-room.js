@@ -299,27 +299,6 @@ $("#s-descr-edit").keyup(function() {
 
 // Форма данных о компании
 
-$(".frm-block > input[type='text']").keyup(function() {
-    var regexp = /^[ a-zA-Zа-яА-Я0-9-_\.]*$/;
-    $("#frm-hint-1 > span.hint-text").html("Допустим ввод символов руссокго и латинского алфавитов и знаков: . - ");
-    if (this.id === "company_phone") {
-        regexp = /^[ 0-9-\(\)\+]*$/;
-        $("#frm-hint-1 > span.hint-text").html("Допустим ввод цифр и знаков: - ( ) + ");
-    }
-    var test = regexp.test($(this).val());
-    
-    if (!test) {
-        $("#frm-hint-1")
-            .css("left", 0)
-            .css("top", this.offsetTop + this.offsetHeight + 1);
-        $("#frm-hint-1").show();
-        $(this).addClass("type-error");
-    } else {
-        $("#frm-hint-1").hide();
-        $(this).removeClass("type-error");
-    }
-});
-
 function uncheck(cbx) {
     $(cbx).removeClass("info-cbx-active");
     $(cbx).attr("data-ch", 0);
@@ -396,47 +375,59 @@ function setTwfh(cbx) {
 
 $(".cntr-arrow-up").click(function() {
     var t = $(this).next();
-    var v = parseInt($(t).attr("data-time"));
+    var i = $(t).siblings("div.f-block").children("input[type = hidden]");
+    var v = parseInt($(i).val());
 
     if ($(t).hasClass("cntr-hours")) {
-        if (v > 0) {
-            v--;
-            $(t).children("img").animate({top: -25 * v});
-            $(t).attr("data-time", v);
-            $("#" + $(t).attr("id") + "_2").val(v);
+        v--;
+        if (v < 0) {
+            v = 23;
+            $(t).children("img").css("top", -25 * 24 + "px");
         }
+        $(t).children("img").animate({top: -25 * v});
+        $(i).val(v);
     }
     
     if ($(t).hasClass("cntr-minutes")) {
-        if (v > 0) {
-            v = v - 15;
-            $(t).children("img").animate({top: -25 * Math.floor(v / 15)});
-            $(t).attr("data-time", v);
-            $("#" + $(t).attr("id") + "_2").val(v);
+        v = v - 15;
+        if (v < 0) {
+            v = 45;
+            $(t).children("img").css("top", -25 * 4 + "px");
         }
+        $(t).children("img").animate({top: -25 * Math.floor(v / 15)});
+        $(i).val(v);
     }
 });
 
 $(".cntr-arrow-down").click(function() {
     var t = $(this).prev();
-    var v = parseInt($(t).attr("data-time"));
+    var i = $(t).siblings("div.f-block").children("input[type = hidden]");
+    var v = parseInt($(i).val());
     
     if ($(t).hasClass("cntr-hours")) {
-        if (v < 23) {
-            v++;
+        v++;
+        if (v > 23) {
+            v = 0;
+            $(t).children("img").animate({top: -25 * 24 + "px"}, 400, function() {
+                $(t).children("img").css("top", 0);
+            });
+        } else {
             $(t).children("img").animate({top: -25 * v});
-            $(t).attr("data-time", v);
-            $("#" + $(t).attr("id") + "_2").val(v);
         }
+        $(i).val(v);
     }
     
     if ($(t).hasClass("cntr-minutes")) {
-        if (v < 45) {
-            v = v + 15;
+        v = v + 15;
+        if (v > 45) {
+            v = 0;
+            $(t).children("img").animate({top: -25 * 4 + "px"}, 400, function() {
+                $(t).children("img").css("top", 0);
+            });
+        } else {
             $(t).children("img").animate({top: -25 * Math.floor(v / 15)});
-            $(t).attr("data-time", v);
-            $("#" + $(t).attr("id") + "_2").val(v);
         }
+        $(i).val(v);
     }
 });
 

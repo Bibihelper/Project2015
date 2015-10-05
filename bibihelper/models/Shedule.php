@@ -38,7 +38,9 @@ class SheduleQuery extends ActiveQuery
     public function getTime()
     {
         if (!$this->time) {
+            $days = [1, 2, 3, 4, 5, 6, 7];
             $this->time = $this->select(['*'])
+                ->where(['day' => $days])
                 ->one();
             if ($this->time == null) {
                 $this->time['begin'] = '09:00';

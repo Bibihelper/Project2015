@@ -23,6 +23,11 @@ class Common extends Object
     const M_PASSWORD_CHANGED = 'Пароль изменен';
     const M_CHANGE_EMAIL_FAILED = 'Не удалось изменить E-mail';
     const M_EMAIL_CHANGED = 'E-mail изменен';
+    const M_FIELD_MAX_LENGTH_32 = 'Максимальная длина 32 символа';
+    const M_FIELD_MAX_LENGTH_255 = 'Максимальная длина 255 символов';
+    const M_FIELD_MAX_LENGTH_50 = 'Максимальная длина 50 символов';
+    const M_PHONE_NOT_MATCH_PATTERN = 'Телефон должен соответствовать шаблону - +7 (XXX) XXX-XX-XX';
+    const M_FIELD_NOT_MATCH_PATTERN = 'Допустим ввод символов руссокго и латинского алфавитов и знаков: . - ""';
     
     public static function transl($text) 
     { 

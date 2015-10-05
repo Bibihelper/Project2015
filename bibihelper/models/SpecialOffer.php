@@ -155,7 +155,9 @@ class SpecialOffer extends \yii\db\ActiveRecord
 
     public function getAllSpecialOffers()
     {
-        $val = $this->find()->all();
+        $val = $this->find()
+            ->orderBy('RAND()')
+            ->all();
         
         switch (count($val)) {
             case 0: return false;

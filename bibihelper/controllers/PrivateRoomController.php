@@ -18,6 +18,7 @@ use app\models\SpecialOffer;
 use app\models\forms\CompanyInfoForm;
 use app\models\forms\ChangePasswordForm;
 use app\models\forms\ChangeEmailForm;
+use app\models\forms\OptionsForm;
 use app\components\Common;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
@@ -51,6 +52,9 @@ class PrivateRoomController extends Controller
         $cEmailFrm = new ChangeEmailForm();
         $cEmailFrm->loadEmail();
         
+        $cOptFrm = new OptionsForm();
+        $cOptFrm->loadData($id);
+        
         return $this->render('/private-room/private-room', [
             'company' => $company, 
             'shedule' => $shedule,
@@ -59,6 +63,7 @@ class PrivateRoomController extends Controller
             'cInfFrm' => $cInfFrm,
             'cPasFrm' => $cPasFrm,
             'cEmailFrm' => $cEmailFrm,
+            'cOptFrm' => $cOptFrm,
         ]);
     }
     
@@ -81,6 +86,17 @@ class PrivateRoomController extends Controller
         {
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($cEmailFrm);
+        }
+    }
+    
+    public function actionValidateOptionsForm()
+    {
+        $cOptFrm = new ChangeEmailForm();
+        
+        if (Yii::$app->request->isAjax && $cOptFrm->load(Yii::$app->request->post()))
+        {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($cOptFrm);
         }
     }
     

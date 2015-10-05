@@ -628,9 +628,9 @@ ul.info-s {
     display: block;
 }
 
-.c-edit_m {
+/*.c-edit_m {
     margin-bottom: 10px;
-}
+}*/
 
 .button-block {
     padding: 0 65px 30px 40px;
@@ -644,52 +644,21 @@ ul.info-s {
     clear: none;
 }
 
-.c-cbx {
+/*.c-cbx {
     background: #fff url("../images/op-cbx.png") 0px 0px no-repeat;
     width: 23px;
     height: 23px;
     display: inline-block;
     vertical-align: -0.4em;
     cursor: pointer;
-}
+}*/
 
 .opt-frm {
     margin: 0 280px;
     position: relative;
 }
 
-.frm-block {
-    margin-bottom: 15px;
-}
-
-.frm-block_nm {
-    margin-bottom: 0;
-}
-
-.frm-block_inline {
-    display: inline-block;    
-    margin-right: 50px;
-    width: 120px;
-}
-
-.frm-block_ta {
-    text-align: center;
-}
-
-.frm-block_top {
-    vertical-align: top;
-}
-
-.frm-block_w {
-    width: 175px;
-    margin-right: 30px;
-}
-
-.frm-block_mb {
-    margin-bottom: 40px;
-}
-
-.frm-header {
+.opt-frm-header {
     font-family: MyriadProBold;
     font-size: 16px;
     color: #071d72;
@@ -703,11 +672,11 @@ ul.info-s {
     display: block;
 }
 
-.ctrl-title_mb {
+.ctrl-title-mb {
     margin-bottom: 10px;
 }
 
-.text-edit {
+/*.text-edit {
     display: block;
     width: 100%;
     font-family: Tahoma;
@@ -717,7 +686,7 @@ ul.info-s {
     border: 1px solid #39b2cf;
     height: 30px;
     padding: 0 10px;
-}
+}*/
 
 .not-req {
     background-color: #e0dcdb;
@@ -729,24 +698,6 @@ ul.info-s {
 
 .type-error {
     background-color: #fecbca;
-}
-
-.frm-hint {
-    position: absolute;
-    left: 0;
-    top: 0;
-    border: 1px solid #000;
-    background-color: #ffe490;
-    padding: 0px 8px;
-    display: none;
-}
-
-.hint-text {
-    font-family: Tahoma;
-    font-size: 12px;
-    font-weight: 400;
-    color: #000;
-    vertical-align: 1px;
 }
 
 .week {
