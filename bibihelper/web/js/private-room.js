@@ -100,9 +100,9 @@ function setCbxState(cbx, state) {
     $(cbx).attr("data-ch", state);
 
     if (state == 1) {
-        $(cbx).addClass("info__cbx_active");
+        $(cbx).addClass("info-cbx-active");
     } else {
-        $(cbx).removeClass("info__cbx_active");
+        $(cbx).removeClass("info-cbx-active");
     }    
 }
 
@@ -120,8 +120,8 @@ function setCbxStateDB(cbx, state) {
     }
 }
 
-$("li.item-menu__i_first").click(function() {
-    var cbx = $(this).children("div.info__chbx").children("span.info__cbx");
+$("li.item-menu-ifirst").click(function() {
+    var cbx = $(this).children("div.info-chbx").children("span.info-cbx");
     var stt = $(cbx).attr("data-ch");
     stt = (stt == 0) ? 1 : 0;
     setCbxState(cbx, stt);
@@ -130,7 +130,7 @@ $("li.item-menu__i_first").click(function() {
     var len = $(nxt).length;
     
     while (len != 0) {
-        var nxx = $(nxt).children("div.info__chbx").children("span.info__cbx");
+        var nxx = $(nxt).children("div.info-chbx").children("span.info-cbx");
         setCbxStateDB(nxx, stt);
         nxt = $(nxt).next();
         len = $(nxt).length;
@@ -139,8 +139,8 @@ $("li.item-menu__i_first").click(function() {
     return true;
 });
 
-$("li.item-menu__i").click(function() {
-    var cbx = $(this).children("div.info__chbx").children("span.info__cbx");
+$("li.item-menu-i").click(function() {
+    var cbx = $(this).children("div.info-chbx").children("span.info-cbx");
     var stt = $(cbx).attr("data-ch");
     stt = (stt == 0) ? 1 : 0;
     setCbxStateDB(cbx, stt);
@@ -151,6 +151,8 @@ function setCompanySB(cbx, state, url) {
     var cmid = $(cbx).attr("data-cid");
     var sbid = $(cbx).attr("data-sid");
 
+    setCbxState(cbx, state);
+
     var request = $.ajax({
         url: url,
         method: "POST",
@@ -159,8 +161,8 @@ function setCompanySB(cbx, state, url) {
     });
 
     request.success(function(r) {
-        if (r.status === "OK") {
-            setCbxState(cbx, state);
+        if (r.status === "ERROR") {
+            setCbxState(cbx, !state);
         }
     });
 }
@@ -327,18 +329,18 @@ $(".frm-block > input[type='text']").keyup(function() {
 });
 
 function uncheck(cbx) {
-    $(cbx).removeClass("info__cbx_active");
+    $(cbx).removeClass("info-cbx-active");
     $(cbx).attr("data-ch", 0);
     $("#" + cbx.id + "_2").val(0);
 }
 
 function check(cbx) {
-    $(cbx).addClass("info__cbx_active");
+    $(cbx).addClass("info-cbx-active");
     $(cbx).attr("data-ch", 1);
     $("#" + cbx.id + "_2").val(1);
 }
 
-$(".frm-block .info__cbx-inline").click(function() {
+$(".frm-block .info-cbx-inline").click(function() {
     var state = $(this).attr("data-ch");
     switch (state) {
         case "0": check(this); break;

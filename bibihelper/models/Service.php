@@ -24,6 +24,12 @@ class ServiceQuery extends ActiveQuery
     {
         return $this->andWhere(['id' => $serviceID]);
     }
+    
+    public function getServiceArrayID($categoryID = 0)
+    {
+        return $this->andWhere(['category_id' => $categoryID])
+            ->column();
+    }
 }
 
 /**

@@ -226,13 +226,13 @@ span.f-link:hover {
     height: 20px;
 }
 
-.f-checkbox + label {
-    cursor: pointer;
-}
-
 .f-checkbox:not(checked) {
     position: absolute;
     opacity: 0;
+}
+
+.f-checkbox + label {
+    cursor: pointer;
 }
 
 .f-checkbox:not(checked) + label {
@@ -252,6 +252,42 @@ span.f-link:hover {
 }
 
 .f-checkbox:checked + label:before {
+    background: #fff url("../images/form-checkbox.png") no-repeat 0 0;
+}
+
+.f-checkbox-inv {
+    vertical-align: top;
+    margin: 0 3px 0 0;
+    width: 20px;
+    height: 20px;
+}
+
+.f-checkbox-inv:not(checked) {
+    position: absolute;
+    opacity: 0;
+}
+
+label + .f-checkbox-inv {
+    cursor: pointer;
+}
+
+label + .f-checkbox-inv:not(checked) {
+    position: relative;
+    padding: 0 0 0 30px;
+}
+
+label:before + .f-checkbox-inv:not(checked) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #38b2ce;
+    background: #fff;
+}
+
+label:before + .f-checkbox-inv:checked {
     background: #fff url("../images/form-checkbox.png") no-repeat 0 0;
 }
 

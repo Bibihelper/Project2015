@@ -47,7 +47,7 @@ $this->params['user']['email'] = $company->user->email;
                             </div>
                         
                             <div class="tab-content-info tab-content-info-t">
-                                <div class="tabs tabs_t">
+                                <div class="tabs tabs-t">
                                 
                                     <ul class="nav nav-tabs nav-tabs-t">
                                         <li class="tab-pr tab-pr-w2 tab-pr_fs active"><a href="#service" data-toggle="tab" class="tab-pr-a">Оказываемые услуги</a></li>
@@ -59,47 +59,47 @@ $this->params['user']['email'] = $company->user->email;
                                     <div class="tab-content">
                                         
                                         <div id="service" class="tab-pane fade in active">
-
                                             <div class="arrow-ud arrow_up-na"></div>
 
                                             <ul class="info-s">
-                                                
                                                 <?php foreach($categories as $ctg): ?>
-                                                    <li class="info__item" data-exp="1">
+                                                    <li class="info-item" data-exp="1">
                                                         
-                                                        <span class="info__item-label">
-                                                            <?= $ctg->name ?>
-                                                            <a href="javascript::void(0)" title="" class="arrow-item arrow-item-left" data-exp="0">
+                                                        <span class="info-item-label">
+                                                            <span class="info-item-label-text"><?= $ctg->name ?></span>
+                                                            <a href="javascript::void(0)" title="" class="arrow-item arrow-item-left info-item-label-arrow" data-exp="0">
                                                                 <img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt="">
                                                             </a>
                                                         </span>
                                                         
-                                                        <ul class="item-menu item-menu_m">
+                                                        <ul class="item-menu item-menu-m">
                                                             <?php if (count($ctg->service) != 0): ?>
                                                             
-                                                                <li class="item-menu__i item-menu__i_first">
-                                                                    <span class="item-menu__i-label">Выбрать все</span>
+                                                                <li class="item-menu-i item-menu-ifirst">
+                                                                    <span class="item-menu-ilabel">Выбрать все</span>
+                                                                    
                                                                     <?php if (count($company->getService()->filterByCategory($ctg->id)->all()) == count($ctg->service)): ?>
-                                                                        <div class="info__chbx">
-                                                                            <span class="info__cbx info__cbx_active" data-ch="1" data-type="select-all"></span>  
+                                                                        <div class="info-chbx">
+                                                                            <span class="info-cbx info-cbx-active" data-ch="1" data-type="select-all"></span>  
                                                                         </div>
                                                                     <?php else: ?>
-                                                                        <div class="info__chbx">
-                                                                            <span class="info__cbx" data-ch="0" data-type="sellect-all"></span>  
+                                                                        <div class="info-chbx">
+                                                                            <span class="info-cbx" data-ch="0" data-type="sellect-all"></span>  
                                                                         </div>
                                                                     <?php endif ?>
                                                                 </li>
                                                                 
                                                                 <?php foreach($ctg->service as $srv): ?>
-                                                                    <li class="item-menu__i">
-                                                                        <span class="item-menu__i-label"><?= $srv->name ?></span>
+                                                                    <li class="item-menu-i">
+                                                                        <span class="item-menu-ilabel"><?= $srv->name ?></span>
+                                                                        
                                                                         <?php if (count($company->getService()->filterByCategory($ctg->id)->filterByService($srv->id)->all()) == 0): ?>
-                                                                            <div class="info__chbx">
-                                                                                <span class="info__cbx" data-ch="0" data-cid="<?= $company->id ?>" data-sid="<?= $srv->id ?>" data-type="service"></span>
+                                                                            <div class="info-chbx">
+                                                                                <span class="info-cbx" data-ch="0" data-cid="<?= $company->id ?>" data-sid="<?= $srv->id ?>" data-type="service"></span>
                                                                             </div>
                                                                         <?php else: ?>
-                                                                            <div class="info__chbx">
-                                                                                <span class="info__cbx info__cbx_active" data-ch="1" data-cid="<?= $company->id ?>" data-sid="<?= $srv->id ?>" data-type="service"></span>
+                                                                            <div class="info-chbx">
+                                                                                <span class="info-cbx info-cbx-active" data-ch="1" data-cid="<?= $company->id ?>" data-sid="<?= $srv->id ?>" data-type="service"></span>
                                                                             </div>
                                                                         <?php endif ?>
                                                                     </li>
@@ -109,55 +109,51 @@ $this->params['user']['email'] = $company->user->email;
                                                         
                                                     </li>
                                                 <?php endforeach ?>
-                                                    
                                             </ul>
                                             
                                             <div class="arrow-ud arrow_down-a"></div>
-                                            
                                         </div>
                                         
                                         <div id="brand" class="tab-pane fade">
-
                                             <div class="arrow-ud arrow_up-na"></div>
 
                                             <ul class="info-s">
-                                                
                                                 <?php foreach($countries as $cntr): ?>
-                                                    <li class="info__item" data-exp="1">
+                                                    <li class="info-item" data-exp="1">
                                                         
-                                                        <span class="info__item-label">
-                                                            <?= $cntr->country ?>
-                                                            <a href="javascript::void(0)" title="" class="arrow-item arrow-item-left" data-exp="0">
+                                                        <span class="info-item-label">
+                                                            <span class="info-item-label-text"><?= $cntr->country ?></span>
+                                                            <a href="javascript::void(0)" title="" class="arrow-item arrow-item-left info-item-label-arrow" data-exp="0">
                                                                 <img src="<?= Url::to('/images/arrow-item-right.png') ?>" alt="">
                                                             </a>
                                                         </span>
                                                         
-                                                        <ul class="item-menu item-menu_m">
+                                                        <ul class="item-menu item-menu-m">
                                                             <?php if (count($cntr->brand) != 0): ?>
                                                             
-                                                                <li class="item-menu__i item-menu__i_first">
-                                                                    <span class="item-menu__i-label">Выбрать все</span>
+                                                                <li class="item-menu-i item-menu-ifirst">
+                                                                    <span class="item-menu-ilabel">Выбрать все</span>
                                                                     <?php if (count($company->getBrand()->filterByCountry($cntr->country)->all()) == count($cntr->brand)): ?>
-                                                                        <div class="info__chbx">
-                                                                            <span class="info__cbx info__cbx_active" data-ch="1" data-type="sellect-all"></span>  
+                                                                        <div class="info-chbx">
+                                                                            <span class="info-cbx info-cbx-active" data-ch="1" data-type="sellect-all"></span>  
                                                                         </div>
                                                                     <?php else: ?>
-                                                                        <div class="info__chbx">
-                                                                            <span class="info__cbx" data-ch="0" data-type="sellect-all"></span>  
+                                                                        <div class="info-chbx">
+                                                                            <span class="info-cbx" data-ch="0" data-type="sellect-all"></span>  
                                                                         </div>
                                                                     <?php endif ?>
                                                                 </li>
                                                                 
                                                                 <?php foreach($cntr->brand as $brand): ?>
-                                                                    <li class="item-menu__i">
-                                                                        <span class="item-menu__i-label"><?= $brand->name ?></span>
+                                                                    <li class="item-menu-i">
+                                                                        <span class="item-menu-ilabel"><?= $brand->name ?></span>
                                                                         <?php if (count($company->getBrand()->filterByCountry($cntr->country)->filterByBrand($brand->id)->all()) == 0): ?>
-                                                                            <div class="info__chbx">
-                                                                                <span class="info__cbx" data-ch="0"  data-cid="<?= $company->id ?>" data-sid="<?= $brand->id ?>" data-type="brand"></span>
+                                                                            <div class="info-chbx">
+                                                                                <span class="info-cbx" data-ch="0"  data-cid="<?= $company->id ?>" data-sid="<?= $brand->id ?>" data-type="brand"></span>
                                                                             </div>
                                                                         <?php else: ?>
-                                                                            <div class="info__chbx">
-                                                                                <span class="info__cbx info__cbx_active" data-ch="1" data-cid="<?= $company->id ?>" data-sid="<?= $brand->id ?>" data-type="brand"></span>
+                                                                            <div class="info-chbx">
+                                                                                <span class="info-cbx info-cbx-active" data-ch="1" data-cid="<?= $company->id ?>" data-sid="<?= $brand->id ?>" data-type="brand"></span>
                                                                             </div>
                                                                         <?php endif ?>
                                                                     </li>
@@ -167,11 +163,9 @@ $this->params['user']['email'] = $company->user->email;
                                                         
                                                     </li>
                                                 <?php endforeach ?>
-                                                    
                                             </ul>
                                             
                                             <div class="arrow-ud arrow_down-a"></div>
-                                            
                                         </div>
                                         
                                         <div id="company-info" class="tab-pane fade">
@@ -299,23 +293,23 @@ $this->params['user']['email'] = $company->user->email;
                                         <div class="frm-block">
                                             <span class="ctrl-title ctrl-title_mb">График работы:</span>
                                             <div class="frm-block" id="shedule_twenty_four_hours">
-                                                <span class="info__cbx-inline <?= $company->twenty_four_hours ? "info__cbx_active" : "" ?>" id="shedule_twfh"
-                                                      data-ch="<?= $company->twenty_four_hours ?>"></span><span class="info__cbx-caption">круглосуточно</span>
+                                                <span class="info-cbx-inline <?= $company->twenty_four_hours ? "info-cbx-active" : "" ?>" id="shedule_twfh"
+                                                      data-ch="<?= $company->twenty_four_hours ?>"></span><span class="info-cbx-caption">круглосуточно</span>
                                             </div>
                                             <div class="frm-block">
                                                 <div class="frm-block frm-block_inline frm-block_top frm-block_nm">
-                                                    <span class="info__cbx-inline <?= $company->getShedule()->isEveryDay() == 1 ? "info__cbx_active" : "" ?>"
-                                                          data-ch="<?= $company->getShedule()->isEveryDay() ?>" id="shedule_every_day"></span><span class="info__cbx-caption">ежедневно</span>
+                                                    <span class="info-cbx-inline <?= $company->getShedule()->isEveryDay() == 1 ? "info-cbx-active" : "" ?>"
+                                                          data-ch="<?= $company->getShedule()->isEveryDay() ?>" id="shedule_every_day"></span><span class="info-cbx-caption">ежедневно</span>
                                                 </div>
                                                 <div class="frm-block frm-block_inline frm-block_nm" id="shedule_days" <?= $company->getShedule()->isEveryDay() == 1 ? 'style="display: none;"' : '' ?>>
                                                     <ul class="week">
-                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(1) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(1) ?>" id="shedule_mon"></span><span class="info__cbx-caption">понедельник</span></li>
-                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(2) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(2) ?>" id="shedule_tue"></span><span class="info__cbx-caption">вторник</span></li>
-                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(3) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(3) ?>" id="shedule_wed"></span><span class="info__cbx-caption">среда</span></li>
-                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(4) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(4) ?>" id="shedule_thu"></span><span class="info__cbx-caption">четверг</span></li>
-                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(5) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(5) ?>" id="shedule_fri"></span><span class="info__cbx-caption">пятница</span></li>
-                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(6) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(6) ?>" id="shedule_sat"></span><span class="info__cbx-caption">суббота</span></li>
-                                                        <li><span class="info__cbx-inline <?= $company->getShedule()->hasDay(7) == 1 ? "info__cbx_active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(7) ?>" id="shedule_sun"></span><span class="info__cbx-caption">воскресенье</span></li>
+                                                        <li><span class="info-cbx-inline <?= $company->getShedule()->hasDay(1) == 1 ? "info-cbx-active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(1) ?>" id="shedule_mon"></span><span class="info-cbx-caption">понедельник</span></li>
+                                                        <li><span class="info-cbx-inline <?= $company->getShedule()->hasDay(2) == 1 ? "info-cbx-active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(2) ?>" id="shedule_tue"></span><span class="info-cbx-caption">вторник</span></li>
+                                                        <li><span class="info-cbx-inline <?= $company->getShedule()->hasDay(3) == 1 ? "info-cbx-active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(3) ?>" id="shedule_wed"></span><span class="info-cbx-caption">среда</span></li>
+                                                        <li><span class="info-cbx-inline <?= $company->getShedule()->hasDay(4) == 1 ? "info-cbx-active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(4) ?>" id="shedule_thu"></span><span class="info-cbx-caption">четверг</span></li>
+                                                        <li><span class="info-cbx-inline <?= $company->getShedule()->hasDay(5) == 1 ? "info-cbx-active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(5) ?>" id="shedule_fri"></span><span class="info-cbx-caption">пятница</span></li>
+                                                        <li><span class="info-cbx-inline <?= $company->getShedule()->hasDay(6) == 1 ? "info-cbx-active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(6) ?>" id="shedule_sat"></span><span class="info-cbx-caption">суббота</span></li>
+                                                        <li><span class="info-cbx-inline <?= $company->getShedule()->hasDay(7) == 1 ? "info-cbx-active" : "" ?>" data-ch="<?= $company->getShedule()->hasDay(7) ?>" id="shedule_sun"></span><span class="info-cbx-caption">воскресенье</span></li>
                                                     </ul>
                                                 </div>
                                             </div>
