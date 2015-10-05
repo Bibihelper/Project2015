@@ -299,79 +299,29 @@ $("#s-descr-edit").keyup(function() {
 
 // Форма данных о компании
 
-function uncheck(cbx) {
-    $(cbx).removeClass("info-cbx-active");
-    $(cbx).attr("data-ch", 0);
-    $("#" + cbx.id + "_2").val(0);
-}
-
-function check(cbx) {
-    $(cbx).addClass("info-cbx-active");
-    $(cbx).attr("data-ch", 1);
-    $("#" + cbx.id + "_2").val(1);
-}
-
-$(".frm-block .info-cbx-inline").click(function() {
-    var state = $(this).attr("data-ch");
-    switch (state) {
-        case "0": check(this); break;
-        case "1": uncheck(this); break;
-    }
-    switch (this.id) {
-        case "shedule_every_day": setEveryDay(this); break;
-        case "shedule_twfh"     : setTwfh(this);     break;
+$("#optionsform-shedule_every_day").change(function() {
+    document.getElementById("optionsform-shedule_mon").checked = this.checked;
+    document.getElementById("optionsform-shedule_tue").checked = this.checked;
+    document.getElementById("optionsform-shedule_wed").checked = this.checked;
+    document.getElementById("optionsform-shedule_thu").checked = this.checked;
+    document.getElementById("optionsform-shedule_fri").checked = this.checked;
+    document.getElementById("optionsform-shedule_sat").checked = this.checked;
+    document.getElementById("optionsform-shedule_sun").checked = this.checked;
+    
+    if (this.checked) {
+        $("#shedule_days").slideUp();
+    } else {
+        $("#shedule_days").slideDown();
     }
 });
 
-function setEveryDay(cbx) {    
-    var mon = document.getElementById("shedule_mon");
-    var tue = document.getElementById("shedule_tue");
-    var wed = document.getElementById("shedule_wed");
-    var thu = document.getElementById("shedule_thu");
-    var fri = document.getElementById("shedule_fri");
-    var sat = document.getElementById("shedule_sat");
-    var sun = document.getElementById("shedule_sun");
-    var state = $(cbx).attr("data-ch");
-    if (state === "1") {
-        check(mon);
-        check(tue);
-        check(wed);
-        check(thu);
-        check(fri);
-        check(sat);
-        check(sun);
+$("#optionsform-shedule_twfhr").change(function() {
+    if (this.checked) {
+        $("#shedule_clock").slideUp();
     } else {
-        uncheck(mon);
-        uncheck(tue);
-        uncheck(wed);
-        uncheck(thu);
-        uncheck(fri);
-        uncheck(sat);
-        uncheck(sun);
+        $("#shedule_clock").slideDown();
     }
-
-    var state = $(cbx).attr("data-ch");
-    switch (state) {
-        case "0": 
-            $("#shedule_days").slideDown();
-            break;
-        case "1": 
-            $("#shedule_days").slideUp();
-            break;
-    }
-}
-
-function setTwfh(cbx) {
-    var state = $(cbx).attr("data-ch");
-    switch (state) {
-        case "0": 
-            $("#shedule_clock").slideDown();
-            break;
-        case "1": 
-            $("#shedule_clock").slideUp();
-            break;
-    }
-}
+});
 
 $(".cntr-arrow-up").click(function() {
     var t = $(this).next();
