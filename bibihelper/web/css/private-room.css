@@ -414,6 +414,16 @@ ul.info-s {
     width: 470px;
 }
 
+.s-off-active-from {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.dtpckr {
+    display: inline-block;
+    position: relative;
+}
+
 #datepicker1, #datepicker2 {
     font-family: Tahoma;
     font-size: 14px;
@@ -543,13 +553,17 @@ ul.info-s {
 }
 
 .c-arrow_1 {
-    left: 150px;
-    top: 26px;
+    display: block;
+    position: absolute;
+    top: 1px;
+    right: 1px;
 }
 
 .c-arrow_2 {
-    left: 353px;
-    top: 26px;
+    display: block;
+    position: absolute;
+    top: 1px;
+    right: 1px;
 }
 
 .s-off-preview {
@@ -565,20 +579,21 @@ ul.info-s {
     display: block;
     width: 285px;
     text-align: center;
+    margin-bottom: 5px;
 }
 
-.prtxt_caption {
+.prtxt-caption {
     text-decoration: underline;
     color: #000;
     margin-bottom: 10px;
 }
 
-.prtxt_title {
+.prtxt-title {
     color: #071d70;
     margin-bottom: 3px;
 }
 
-.prtxt_text {
+.prtxt-text {
     font-family: Tahoma;
     font-size: 14px;
     font-weight: 400;
@@ -600,8 +615,6 @@ ul.info-s {
 #s-br {
     display: none;
 }
-
-/* ------------------- */
 
 .options {
     padding: 40px 315px 60px 315px;
@@ -629,18 +642,6 @@ ul.info-s {
     padding: 0;
     text-align: center;
     clear: none;
-}
-
-.c-block_m {
-    margin: 0;
-}
-
-.c-block_m {
-    margin-bottom: 10px;
-}
-
-.c-block_m2 {
-    margin-bottom: 15px;
 }
 
 .c-cbx {

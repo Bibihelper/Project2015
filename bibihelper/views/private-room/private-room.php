@@ -193,20 +193,28 @@ $this->params['user']['email'] = $company->user->email;
                                                     <div class="c-block">
                                                         <span class="c-caption">Выберете картинку для акции.</span>
                                                         <button type="button" class="btn s-off-btn" id="s-browse">Обзор</button><input type="text" class="form-control c-edit s-off-edit_m" placeholder="Фото.jpg" id="s-filename">
-                                                        <button type="button" class="btn s-off-btn s-off-btn_m disabled" id="s-load-image">Загрузить</button>
+                                                        <button type="button" class="btn s-off-btn s-off-btn_m" id="s-load-image" disabled>Загрузить</button>
                                                         <input type="file" id="s-br" name="sBr" accept="image/jpeg, image/png, image/gif">
                                                     </div>
 
                                                     <div class="c-block">
                                                         <span class="c-caption">Период действия предложения:</span>
+                                                        
+                                                        <div class="s-off-active-from">
+                                                            <span class="c-caption c-caption-m">с</span>
+                                                            <div class="dtpckr">
+                                                                <input type="text" id="datepicker1">
+                                                                <span class="c-arrow c-arrow_expand c-arrow_1" id="c-arrow-1"></span>
+                                                            </div>
+                                                        </div>
 
-                                                        <span class="c-caption c-caption-m">с</span>
-                                                        <input type="text" id="datepicker1">
-                                                        <span class="c-arrow c-arrow_expand c-arrow_1" id="c-arrow-1"></span>
-
-                                                        <span class="c-caption c-caption-m">по</span>
-                                                        <input type="text" id="datepicker2">
-                                                        <span class="c-arrow c-arrow_expand c-arrow_2" id="c-arrow-2"></span>
+                                                        <div class="s-off-active-from">
+                                                            <span class="c-caption c-caption-m">по</span>
+                                                            <div class="dtpckr">
+                                                                <input type="text" id="datepicker2">
+                                                                <span class="c-arrow c-arrow_expand c-arrow_2" id="c-arrow-2"></span>
+                                                            </div>
+                                                        </div>
                                                     </div>
 
                                                     <div class="c-block">
@@ -217,12 +225,13 @@ $this->params['user']['email'] = $company->user->email;
                                                 
                                                 <div class="s-off-preview" style="<?= $company->hasOffer() ? "float: none;" : "float: right;" ?>">
                                                     <div class="preview-block">
-                                                        <span class="prtxt prtxt_caption">Предпоказ акции:</span>
-                                                        <span class="prtxt prtxt_title"><?= $company->name ?></span>
+                                                        <span class="prtxt prtxt-caption">Предпоказ акции:</span>
+                                                        <span class="prtxt prtxt-title"><?= $company->name ?></span>
                                                         <div class="primg">
                                                             <img src="<?= Url::to($company->specialOffer->file->getFileFullName()) ?>" alt="" id="s-image">
                                                         </div>
-                                                        <span class="prtxt prtxt_text" id="s-descr"><?= $company->specialOffer->comment ?></span>
+                                                        <span class="prtxt prtxt-text" id="s-descr"><?= $company->specialOffer->comment ?></span>
+                                                        <span class="prtxt prtxt-text" id="s-period"><?= $company->specialOffer->getPeriod() ?></span>
                                                     </div>
                                                 </div>
                                                 
@@ -232,7 +241,7 @@ $this->params['user']['email'] = $company->user->email;
                                                 <?php if ($company->hasOffer()): ?>
                                                     <button type="button" class="f-button f-submit" id="s-publish" data-btn-type="2">Удалить предложение</button>
                                                 <?php else: ?>
-                                                    <button type="button" class="f-button f-submit disabled" id="s-publish" data-btn-type="1">Опубликовать</button>
+                                                    <button type="button" class="f-button f-submit" id="s-publish" data-btn-type="1" disabled>Опубликовать</button>
                                                 <?php endif ?>
                                             </div>
                                         </div>

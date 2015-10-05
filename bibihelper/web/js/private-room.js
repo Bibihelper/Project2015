@@ -193,16 +193,12 @@ $("#s-browse").click(function() {
 
 $("#s-br").change(function() {
     $("#s-filename").val($("#s-br").val());
-    $("#s-load-image").removeClass("disabled");
+    document.getElementById("s-load-image").disabled = false;
     
     image = this.files;
 });
 
 $("#s-load-image").click(function() {
-    if ($(this).hasClass("disabled")) {
-      return false;
-    }
-    
     var data = new FormData();
 
     $.each(image, function(key, value) {
@@ -231,10 +227,6 @@ $("#s-load-image").click(function() {
 });
 
 $("#s-publish").click(function() {
-    if ($(this).hasClass("disabled")) {
-        return false;
-    }
-    
     if ($(this).attr("data-btn-type") == "1") {
         var cid = $("#sp-off").attr("data-cid");
         var imgage = $(".primg > img").attr("src");
@@ -276,7 +268,7 @@ $("#s-publish").click(function() {
             if (r.status === "OK") {
                 $(".s-off-ctrls").show();
                 $(".s-off-preview").css("float", "right");
-                $(sPublish).text("Опубликовать").attr("data-btn-type", "1").addClass("disabled");
+                $(sPublish).text("Опубликовать").attr("data-btn-type", "1").attr("disabled", "");
                 $("#s-image").attr("src", "/images/s-img.png");
                 $("#s-descr-edit").val("");
                 $("#s-descr").html("");
@@ -289,9 +281,9 @@ $("#s-publish").click(function() {
 
 function updateStatePublishBtn() {
     if ($("#s-descr-edit").val().length > 0 && $("#s-image").attr("data-load") == "1") {
-        $("#s-publish").removeClass("disabled")
+        document.getElementById("s-publish").disabled = false;
     } else {
-        $("#s-publish").addClass("disabled")      
+        $("#s-publish").attr("disabled", "disabled");
     } 
 }
 

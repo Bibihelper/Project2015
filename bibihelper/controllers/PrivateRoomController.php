@@ -18,6 +18,7 @@ use app\models\SpecialOffer;
 use app\models\forms\CompanyInfoForm;
 use app\models\forms\ChangePasswordForm;
 use app\models\forms\ChangeEmailForm;
+use app\components\Common;
 use Imagine\Gd\Imagine;
 use Imagine\Image\Box;
 
@@ -87,7 +88,7 @@ class PrivateRoomController extends Controller
     {
         foreach ($_FILES as $file) {
             $fileTmpName = $file['tmp_name'];
-            $fileName    = $file['name'];
+            $fileName    = Common::transl($file['name']);
             $fileRPath   = '/data/' . $id . '/';
             $fileFPath   = Yii::$app->basePath . '/web' . $fileRPath;
         }
