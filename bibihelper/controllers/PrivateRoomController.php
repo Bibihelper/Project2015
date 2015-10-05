@@ -91,7 +91,7 @@ class PrivateRoomController extends Controller
     
     public function actionValidateOptionsForm()
     {
-        $cOptFrm = new ChangeEmailForm();
+        $cOptFrm = new OptionsForm();
         
         if (Yii::$app->request->isAjax && $cOptFrm->load(Yii::$app->request->post()))
         {
@@ -204,16 +204,16 @@ class PrivateRoomController extends Controller
         return $responce;
     }
     
-    public function actionOptionsSave()
+    public function actionSaveOptions()
     {
-        $data = Yii::$app->request->post();
-        $user = new User();
-        $user = $user->findOne(Yii::$app->user->id);
-        $this->optionsSave($data, $user);
-        $this->redirect(Url::to('/private-room/index/?id=' . $user->company->id));
+//        $data = Yii::$app->request->post();
+//        $user = new User();
+//        $user = $user->findOne(Yii::$app->user->id);
+//        $this->optionsSave($data, $user);
+//        $this->redirect(Url::to('/private-room/index/?id=' . $user->company->id));
     }
     
-    public function optionsSave($data, $user)
+    public function saveOptions($data, $user)
     {
         $db = Yii::$app->db;
         

@@ -259,7 +259,7 @@ $this->params['user']['email'] = $company->user->email;
                                     <?php $form = ActiveForm::begin([
                                         'id' => 'options-form',
                                         'enableAjaxValidation' => true,
-                                        'action' => Url::to('/private-room/options-save'),
+                                        'action' => Url::to('/private-room/save-options'),
                                         'validationUrl' => Url::to('/private-room/validate-options-form/'),
                                         'successCssClass' => '',
                                     ]); ?>

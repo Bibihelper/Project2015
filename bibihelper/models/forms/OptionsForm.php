@@ -36,13 +36,13 @@ class OptionsForm extends Model
     public function rules()
     {
         return [
-            ['id, company_name', 'required', 'message' => Common::M_FIELD_CANNOT_BE_BLANK],
+            [['id', 'company_name'], 'required', 'message' => Common::M_FIELD_CANNOT_BE_BLANK],
             [['address_region', 'address_city', 'address_district'], 'string', 'max' => 32, 'message' => Common::M_FIELD_MAX_LENGTH_32],
             ['address_street', 'string', 'max' => 255, 'message' => Common::M_FIELD_MAX_LENGTH_255],
-            [['address_home', 'address_housing', 'address_building'], 'string', 'max' => 32, 'message' => Common::M_FIELD_MAX_LENGTH_32],
+            [['address_home', 'address_housing', 'address_building'], 'string', 'max' => 10, 'message' => Common::M_FIELD_MAX_LENGTH_10],
             ['address_metro', 'string', 'max' => 50, 'message' => Common::M_FIELD_MAX_LENGTH_50],
-            [['company_name', 'address_region', 'address_city', 'address_district', 'address_street', 'address_home', 'address_housing',
-                'address_building', 'address_metro'], 'match', 'pattern' => '/^[ a-zA-Zа-яА-Я0-9-_\."]*$/', 'message' => Common::M_FIELD_NOT_MATCH_PATTERN],
+            [['company_name', 'address_region', 'address_city', 'address_district',
+                'address_street', 'address_metro'], 'match', 'pattern' => '/^[а-яА-ЯёЁa-zA-Z0-9-_\s\."@]*$/u', 'message' => Common::M_FIELD_NOT_MATCH_PATTERN],
             ['company_phone', 'match', 'pattern' => '/^(\+7) \(?\d{3}\) (\d{3})\-(\d{2})\-(\d{2})$/', 'message' => Common::M_PHONE_NOT_MATCH_PATTERN],
             [['shedule_twfhr', 'shedule_every_day', 'shedule_mon', 'shedule_tue', 'shedule_wed', 'shedule_thu', 'shedule_fri', 'shedule_sat', 'shedule_sun'], 'boolean'],
             [['b_hour', 'b_minute', 'e_hour', 'e_minute'], 'integer'],
