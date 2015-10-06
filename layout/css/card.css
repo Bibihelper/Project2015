@@ -2,7 +2,7 @@
 
 .c-card {
     width: 870px;
-    margin-top: 175px;
+    margin-top: 75px;
 }
 
 .c-content {
@@ -37,6 +37,10 @@
     padding: 0 15px;
 }
 
+.c-footer {
+    clear: both;
+}
+
 .address {
     margin-bottom: 15px;
 }
@@ -46,6 +50,7 @@
     width: 493px;
     height: 372px;
     margin-bottom: 15px;
+    background-color: #e5e3df;
 }
 
 .a-title {
@@ -71,19 +76,37 @@
     margin-bottom: 3px;
 }
 
+.a-shedule > img {
+    vertical-align: middle;
+}
+
 .a-phone {
+  
+}
+
+.a-phone-img {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.a-phone-number {
     font-family: Tahoma;
     font-size: 12px;
     font-weight: 600;
     color: #071d70;
-    display: block;
-    margin-top: 10px;
+    display: inline-block;
 }
 
 .info-arrow {
+    background-color: #d5eded;
     width: 100%;
     height: 16px;
     display: block;
+    cursor: pointer;
+}
+
+.info-arrow:hover {
+    background-color: #e6f9f9;
 }
 
 .info-arrow-up {
@@ -92,6 +115,14 @@
 
 .info-arrow-down {
     background: #d5eded url("../images/arrow-down-a.png") no-repeat 50% 50%;
+}
+
+.info-arrow-up-na {
+    background: #d5eded url("../images/arrow-up-na.png") no-repeat 50% 50%;
+}
+
+.info-arrow-down-na {
+    background: #d5eded url("../images/arrow-down-na.png") no-repeat 50% 50%;
 }
 
 .info {
@@ -112,10 +143,21 @@
     background-color: #d5eded;
 }
 
+.i-block-list {
+    position: relative;
+    height: 100px;
+    overflow: hidden;
+}
+
+.i-block-list-m {
+    height: 150px;
+}
+
 .icon-list {
     list-style: none;
     padding: 5px 20px;
     margin: 0;
+    position: absolute;
 }
 
 .il-item {
@@ -127,6 +169,7 @@
     list-style: none;
     padding: 0 15px;
     margin: 0;
+    position: absolute;    
 }
 
 .cl-item {
@@ -176,19 +219,17 @@
 }
 
 .so-info {
-
+  height: 100%;
 }
 
 .so-col-1 {
-    width: 235px;
     float: left;
+    width: 50%;
 }
 
 .so-col-2 {
-    width: auto;
-    margin-left: 235px;
     text-align: center;
-    padding: 30px 20px 0 20px;
+    padding-top: 30px;
 }
 
 .so-img {

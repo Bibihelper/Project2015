@@ -1,4 +1,4 @@
-/* Form */
+/* common */
 
 .m-dialog {
     margin-top: 180px;
@@ -13,9 +13,52 @@
     margin-bottom: 0;
 }
 
+.c-tar {
+    text-align: right;
+}
+
+.c-block {
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.c-caption {
+    font-family: Tahoma;
+    font-size: 14px;
+    color: #000;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.c-caption-m {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.c-edit {
+    font-family: Tahoma;
+    font-size: 14px;
+    border-radius: 0;
+    border: #38b2ce solid 1px;
+    display: inline-block;
+    height: 30px;
+}
+
 .rf-content {
     padding: 0 35px;
 }
+
+.ci-block {
+    padding: 30px 65px 40px 65px;
+}
+
+.help-block-error {
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+/* form */
 
 .f-content {
     border-radius: 0;
@@ -45,26 +88,20 @@
 
 }
 
-.f-hint {
-    position: absolute;
-    left: 0;
-    top: 0;
-    border: 1px solid #000;
-    background-color: #ffe490;
-    padding: 0px 8px;
-    display: none;    
-}
-
-.f-text {
-    font-family: Tahoma;
-    font-size: 12px;
-    font-weight: 400;
-    color: #000;
-    vertical-align: 1px;
-}
-
 .f-group {
+    margin-bottom: 15px;
+}
 
+.f-caption {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.f-caption-twfhr {
+    margin-right: 12px;
 }
 
 .f-label {
@@ -73,6 +110,26 @@
     font-weight: 400;
     color: #000;
     margin-bottom: 5px;
+}
+
+.f-button-caption {
+    height: 100%;
+    display: block;
+}
+
+.f-button-text {
+    float: left;
+    display: block;
+}
+
+.f-button-caret {
+    float: right;
+    margin-top: 10px;
+    display: block;
+}
+
+.f-button-caret-blue {
+    color: #071d70;
 }
 
 .f-control {
@@ -125,8 +182,8 @@ span.f-link:hover {
     font-family: MyriadProBold;
     font-size: 16px;
     color: #fff;
-    background-color: #38b2ce;
     text-align: center;
+    background-color: #38b2ce;
     border-radius: 0;
     border: 1px solid #38b2ce;
 }
@@ -136,6 +193,32 @@ span.f-link:hover {
     height: 40px;
 }
 
+.f-list-button {
+    font-family: Tahoma;
+    font-size: 14px;
+    color: #000;
+    text-align: left;
+    background-color: #fff;
+    border-radius: 0;
+    border: 1px solid #fff;
+}
+
+.f-dropdown {
+    height: 35px;
+    width: 280px;    
+}
+
+.f-list {
+    border-radius: 0;
+    width: 100%;
+}
+
+.f-list > li > a {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    color: #fff;    
+}
+
 .f-checkbox {
     vertical-align: top;
     margin: 0 3px 0 0;
@@ -143,13 +226,13 @@ span.f-link:hover {
     height: 20px;
 }
 
-.f-checkbox + label {
-    cursor: pointer;
-}
-
 .f-checkbox:not(checked) {
     position: absolute;
     opacity: 0;
+}
+
+.f-checkbox + label {
+    cursor: pointer;
 }
 
 .f-checkbox:not(checked) + label {
@@ -172,6 +255,42 @@ span.f-link:hover {
     background: #fff url("../images/form-checkbox.png") no-repeat 0 0;
 }
 
+.f-checkbox-inv {
+    vertical-align: top;
+    margin: 0 3px 0 0;
+    width: 20px;
+    height: 20px;
+}
+
+.f-checkbox-inv:not(checked) {
+    position: absolute;
+    opacity: 0;
+}
+
+label + .f-checkbox-inv {
+    cursor: pointer;
+}
+
+label + .f-checkbox-inv:not(checked) {
+    position: relative;
+    padding: 0 0 0 30px;
+}
+
+label:before + .f-checkbox-inv:not(checked) {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #38b2ce;
+    background: #fff;
+}
+
+label:before + .f-checkbox-inv:checked {
+    background: #fff url("../images/form-checkbox.png") no-repeat 0 0;
+}
+
 .f-input-group-addon {
     font-family: MyriadProBold;
     font-size: 16px;
@@ -181,6 +300,28 @@ span.f-link:hover {
     background-color: #e8e6e6;
     color: #38b2ce;
     cursor: pointer;
+}
+
+.f-twfhr:not(checked) + label:before {
+    border: 1px solid #fff;
+}
+
+.f-hint {
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 1px solid #000;
+    background-color: #ffe490;
+    padding: 0px 8px;
+    display: none;    
+}
+
+.f-text {
+    font-family: Tahoma;
+    font-size: 12px;
+    font-weight: 400;
+    color: #000;
+    vertical-align: 1px;
 }
 
 .f-hint-password {
@@ -198,3 +339,51 @@ span.f-link:hover {
     left: 389px;
 }
 
+.f-textarea {
+    font-family: Tahoma;
+    font-size: 16px;
+    width: 100%;
+    height: 300px;
+    background-color: #d5eded;
+    border: none;
+    padding: 10px;
+    max-width: 836px;
+    min-width: 418px;
+    max-height: 300px;
+    min-height: 300px;
+}
+
+.f-block {
+    margin-bottom: 15px;
+}
+
+.f-block-nm {
+    margin-bottom: 0;
+}
+
+.f-block-inline {
+    display: inline-block;    
+    margin-right: 50px;
+    width: 120px;
+}
+
+.f-block-ta {
+    text-align: center;
+}
+
+.f-block-top {
+    vertical-align: top;
+}
+
+.f-block-w {
+    width: 175px;
+    margin-right: 30px;
+}
+
+.f-block-mb {
+    margin-bottom: 40px;
+}
+
+.f-label-lh20 {
+    line-height: 20px;
+}

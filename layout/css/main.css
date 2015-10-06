@@ -1,0 +1,170 @@
+/* 
+    Created on : 03.10.2015, 14:18:02
+    Author     : Leon
+*/
+
+/* media */
+
+@media all and (max-width: 660px) {
+
+    .header1, .header2, .main, .icons, .special-offers-header, .special-offers, .all-special-offers, .pre-footer, .footer {
+        width: 660px;
+    }
+
+}
+
+/* header1 */
+
+.header1 {
+    background-color: #38b2ce;
+    height: 35px;
+}
+
+.menu {
+    position: relative;
+}
+
+.menu-item {
+    font-family: MyriadProBold;
+    font-size: 16px;
+    height: 35px;
+    line-height: 35px;
+    display: inline-block;
+    margin-right: 30px;
+    float: right;
+}
+
+.menu-item-mr {
+    margin-right: 220px;
+}
+
+/* header2 */
+
+.header2 {
+    background-color: #071d70;
+    height: 100px;
+}    
+
+/* logo */
+
+.logo {
+    background: #071d70 url("../images/emblem.png") 0 20px no-repeat;
+    padding: 20px 0;
+    float: left;
+    margin: 0 30px;
+}
+
+.logo-bibi-helper {
+    font-family: "Berlin Sans FB";
+    font-size: 40px;
+    text-shadow: 2px 3px 5px #000;
+    margin: 0;
+    line-height: 40px;
+}
+
+.logo-bibi-shift {
+    margin-left: 50px;
+}
+
+.logo-bibi-color {
+    color: #b3dede;
+}
+
+.logo-helper-color{
+    color: #ff4040;
+}
+
+.logo-slogan {
+    font-family: MyriadProBold;
+    font-size: 14px;
+    color: #fff;
+    margin: 0 0 0 50px;
+}
+
+/* button city */
+
+.city {
+    float: right;
+    padding: 32.5px 0;
+    margin: 0 30px;
+}
+
+.city-button, .city-button:hover, .city-button:focus {
+    color: #fff;
+    text-align: left;
+    background-color: #38b2ce;
+    height: 35px;
+    width: 180px;
+}
+
+.city-list {
+    border: 1px solid #38b2ce;
+    background-color: #38b2ce;
+}
+
+/* footer */
+
+.pre-footer {
+    height: 10px;
+    background-color: #38b2ce;
+}
+
+.footer {
+    height: 100px;
+    background-color: #071d70;
+    position: relative;
+}
+
+.footer-menu {
+    padding: 30px 30px 0;
+    float: left;
+}
+
+.footer-menu-col {
+    width: 190px;
+    display: inline-block;
+}
+
+.footer-menu-col > span {
+    font-family: MyriadProBold;
+    font-size: 14px;
+    color: #fff;
+    display: block;
+}
+
+.footer-block {
+    padding: 15px 30px 0;
+    float: right;
+}
+
+.footer-block-social {
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.footer-block-copyright > p {
+    font-family: MyriadPro;
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+}
+
+.copyrighter {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.copyright-sign {
+    font-size: 22px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.version {
+    position: absolute; 
+    right: 0; 
+    bottom: 0; 
+    color: #fff; 
+    font-size: 12px;
+}
+

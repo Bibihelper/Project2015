@@ -1,0 +1,114 @@
+/* 
+    Created on : 04.10.2015, 17:08:03
+    Author     : Leon
+*/
+
+/* slider */
+
+.slider {
+    background-color: #fffcf4;
+}
+
+.slider-row {
+    font-size: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.slider-viewport {
+    list-style: none;
+    position: absolute;
+    left: 30px;
+    top: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.slider-col {
+    display: inline-block;
+    width: 350px;
+    margin: 0 10px;
+}
+
+@media all and (max-width: 880px) {
+
+    .slider-row {
+        width: 430px;
+        margin: 0 auto;
+    }
+}
+
+@media all and (min-width: 880px) and (max-width: 1200px) {
+
+    .slider-row {
+        width: 800px;
+        margin: 0 auto;
+    }
+}
+
+.slider-row-top {
+    height: 55px;
+    padding: 0 30px;
+}
+
+.slider-row-middle {
+    height: 210px;
+}
+
+.slider-row-bottom {
+    height: 75px;
+    padding: 0 30px;
+}
+
+.slider-col-header {
+    padding-top: 15px;
+    font-family: MyriadProBold;
+    font-size: 18px;
+    color: #071d70;
+    text-align: center;
+}
+
+.slider-col-footer {
+    height: 75px;
+    padding: 15px 10px 0 10px;
+    font-family: Tahoma;
+    font-size: 14px;
+    font-style: normal;
+    color: #000;
+    text-align: center;
+}
+
+/* slider arrows */
+
+.slider-arrow {
+    display: inline-block;
+    width: 30px;
+    height: 100%;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+}
+
+.slider-arrow-left {
+    background: #fffcf4 url("../images/arrow-left.png") 7px 50% no-repeat;
+    left: 0;
+}
+
+.slider-arrow-right {
+    background: #fffcf4 url("../images/arrow-right.png") 7px 50% no-repeat;
+    right: 0;
+}
+
+.slider-arrow-left:hover {
+    background: #f8f8f7 url("../images/arrow-left.png") 7px 50% no-repeat;
+    left: 0;
+}
+
+.slider-arrow-right:hover {
+    background: #f8f8f7 url("../images/arrow-right.png") 7px 50% no-repeat;
+    right: 0;
+}
+
+
+
+
