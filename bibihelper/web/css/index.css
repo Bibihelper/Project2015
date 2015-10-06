@@ -113,6 +113,10 @@
     width: 230px;
 }
 
+.icons-list-item > img {
+    vertical-align: middle;
+}
+
 /* special offers */
 
 .special-offers-header {

@@ -10,6 +10,7 @@ use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
 use app\models\forms\ChangePasswordForm;
 use app\models\forms\ChangeEmailForm;
+use app\models\forms\RestorePswForm;
 use app\components\Common;
 use yii\helpers\Url;
 
@@ -40,6 +41,48 @@ class UserController extends Controller
             Yii::$app->user->setReturnUrl('/private-room/?id=' . $user->company->id);
             return $this->redirect('/private-room/?id=' . $user->company->id);
         }
+    }
+    
+    public function actionRestorepsw()
+    {
+        $rstFrm = new RestorePswForm();
+        
+        if ($rstFrm->load(Yii::$app->request->post()) && $rstFrm->validate()) {
+            $ok = $rstFrm->restorePsw();
+            if ($ok) {
+                return $this->redirect(Url::to('/index/restorepsw-confirm/'));
+            }
+        }
+        
+        return $this->goHome();
+    }
+    
+    public function actionRestorepswConfirm($id, $token)
+    {
+        $user = User::findIdentity($id);
+        if ($user->password_reset_token === $token) {
+            $newpas = Yii::$app->security->generateRandomString(8);
+            $user->password_hash = Yii::$app->security->generatePasswordHash($newpas);
+            $user->save();
+            $this->sendNewPasEmail($user->email, $newpas);
+            return $this->redirect(Url::to('/index/restorepsw-success/'));
+        }
+        return $this->goHome();
+    }
+    
+    private function sendNewPasEmail($email, $newpas)
+    {
+        $text = '<h3>BiBiHelper</h3>'
+            . '<p>Ваш новый пароль:</p>' 
+            . '<p>' . $newpas . '</p>'
+            . '<p>Вы можете изменить пароль в ЛК.</p>';
+        
+        Yii::$app->mailer->compose()
+            ->setFrom('bibihelper.test1@yandex.ru')
+            ->setTo($email)
+            ->setSubject(Url::base(true) . ' - новый пароль')
+            ->setHtmlBody($text)
+            ->send();
     }
     
     public function actionLogin()
@@ -100,5 +143,5 @@ class UserController extends Controller
         Yii::$app->response->format = Response::FORMAT_JSON;
         $responce = ['status' => $status, 'message' => $message];
         return $responce;
-    }
+    }    
 }

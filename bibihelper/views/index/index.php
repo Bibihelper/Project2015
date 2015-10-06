@@ -47,7 +47,7 @@ $this->params['user']['email'] = $user->email;
                             'template' => "{label}\n"
                                 . "<span class=\"f-icon f-icon-ok\"></span>"
                                 . "<div class=\"input-group\">{input}"
-                                    . "<span class=\"input-group-addon f-input-group-addon\">?</span>"
+                                    . "<span class=\"input-group-addon f-input-group-addon\" id=\"lf-restore-password\">?</span>"
                                     . "<span class=\"f-hint f-hint-password\">Забыли пароль?</span>"
                                 . "</div>\n{error}"
                         ])->passwordInput([
@@ -144,42 +144,46 @@ $this->params['user']['email'] = $user->email;
 </div> 
 
 <div class="modal fade" id="user-restorepsw-form" tabindex="-3" role="dialog" aria-labelledby="a-user-restorepsw-form" aria-hidden="true">
-    <div class="modal-dialog modal-dialog_dlg">
-    
-        <div class="modal-content modal-content_dlg">
-        
-            <div class="modal-header modal-header_dlg">
-                <button type="button" class="close modal-header_close-btn" data-dismiss="modal" aria-hidden="true" id="restore-psw-close">&times;</button>
-                <h1 class="modal-title modal-title_dlg">Восстановление пароля</h1>
-            </div>
-            
-            <div class="modal-body modal-body_dlg">
-                <form>
+    <div class="modal-dialog m-dialog">
+        <?php $form = ActiveForm::begin([
+            'id' => 'restorepsw-form',
+            'enableAjaxValidation' => true,
+            'action' => Url::to('/user/restorepsw/'),
+            'validationUrl' => Url::to('/index/validate-restorepsw-form/'),
+            'successCssClass' => '',
+        ]); ?>
+            <div class="modal-content f-content rf-content">
+                <button type="button" class="close f-close" data-dismiss="modal" aria-hidden="true" id="rf-close">&times;</button>
+
+                <div class="modal-header f-header">
+                    <h1 class="modal-title f-title">Восстановление пароля</h1>
+                </div>
+
+                <div class="modal-body f-body">
+                    <?= $form->field($rstFrm, 'email', [
+                            'options' => ['class' => 'form-group']
+                        ])->textInput([
+                            'class' => 'form-control f-control'
+                        ])->label($rstFrm->getAttributeLabel('email'), [
+                            'class' => 'f-label'
+                        ]) 
+                    ?>
                     
-                    <div class="modal-dialog__block">
-                        <span class="modal-dialog__caption">Адрес электронной почты:</span>
-                        <div class="input-group">
-                            <input type="text" class="form-control modal-dialog__edit" id="modal-dialog__edit_email-restore-psw">
-                            <span id="modal-dialog__email-ok-restore-psw"></span>
-                        </div>
-                    </div>
-                    
-                    <div class="modal-dialog__block">
-                        <span class="modal-dialog__caption">
-                            На указанный адрес электронной почты будет отправлено письмо<br>с новым паролем.<br>
+                    <div class="form-group">
+                        <span class="f-label">
+                            На указанный адрес электронной почты будет отправлено письмо с новым паролем.
                             Если письмо не пришло, проверьте папку "Спам" или повторите попытку.
                         </span>
                     </div>
-                    
-                    <div class="modal-dialog__block">
-                        <button type="button" class="btn bibi-form-btn bibi-form-btn-dlg bibi-form-btn-dlg_reg" id="restore-psw-btn">Восстановить</button>
+                </div>
+                
+                <div class="modal-footer f-footer">
+                    <div class="form-group">
+                        <?= Html::submitButton('Восстановить', ['class' => 'f-button f-submit', 'id' => 'rpswf-submit']) ?>
                     </div>
-                    
-                </form>
+                </div>
             </div>
-            
-        </div>
-        
+        <?php ActiveForm::end(); ?>
     </div>
 </div>
 

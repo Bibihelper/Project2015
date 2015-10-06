@@ -10,16 +10,18 @@ use app\models\User;
 use app\models\SpecialOffer;
 use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
+use app\models\forms\RestorePswForm;
 use app\components\Common;
 
 class IndexController extends Controller
 {
-    public function actionIndex()
+    private function index($message = '')
     {
         $user = User::findIdentity(Yii::$app->user->id);
 
         $regFrm = new RegisterForm();
         $logFrm = new LoginForm();
+        $rstFrm = new RestorePswForm();
         $spOffs = new SpecialOffer();
         $spOffs = $spOffs->getAllSpecialOffers();
         
@@ -28,7 +30,29 @@ class IndexController extends Controller
             'spOffs' => $spOffs,
             'regFrm' => $regFrm,
             'logFrm' => $logFrm,
+            'rstFrm' => $rstFrm,
+            'responseMessage' => $message,
         ]);
+    }
+
+    public function actionIndex()
+    {
+        return $this->index();
+    }
+    
+    public function actionRegisterSuccess()
+    {
+        return $this->index(Common::M_EMAIL_SEND);
+    }
+    
+    public function actionRestorepswConfirm()
+    {
+        return $this->index(Common::M_PSW_EMAIL_SEND);
+    }
+    
+    public function actionRestorepswSuccess()
+    {
+        return $this->index(Common::M_PSW_RESTORE_SUCCESS);
     }
     
     public function actionValidateLoginForm()
@@ -53,18 +77,14 @@ class IndexController extends Controller
         }
     }
     
-    public function actionRegisterSuccess()
+    public function actionValidateRestorepswForm()
     {
-        $regFrm = new RegisterForm();
-        $logFrm = new LoginForm();
-        $spOffs = new SpecialOffer();
-        $spOffs = $spOffs->getAllSpecialOffers();
+        $rstFrm = new RestorePswForm();
         
-        return $this->render('index', [
-            'spOffs' => $spOffs,
-            'regFrm' => $regFrm,
-            'logFrm' => $logFrm,
-            'responseMessage' => Common::M_EMAIL_SEND,
-        ]);
+        if (Yii::$app->request->isAjax && $rstFrm->load(Yii::$app->request->post()))
+        {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($rstFrm);
+        }
     }
 }

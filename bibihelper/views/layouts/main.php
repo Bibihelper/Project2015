@@ -48,10 +48,6 @@ use yii\helpers\Url;
                     <div class="menu-item menu-item-mr">
                         <a href="#" title="" data-toggle="modal" data-target="#user-register-form">Добавить автосервис</a>
                     </div>
-
-                    <div class="menu-item menu-item-mr" style="display: none;">
-                        <a href="#" title="" data-toggle="modal" data-target="#user-restore-password-form">Восстановить пароль</a>
-                    </div>
                 <?php elseif ($this->params['page'] == 'private-room'): ?>
                     <div class="menu-item">
                         <a href="<?= Yii::$app->user->getReturnUrl() ?>" title=""><?= $this->params['user']['email'] ?></a>
