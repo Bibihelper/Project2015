@@ -34,11 +34,27 @@ Date.prototype.addDays = function(days)
     return dat;
 };
 
+Date.prototype.setMyDate = function(dateText)
+{
+    var arrDate = dateText.split(".");
+    var myDate = new Date();
+    myDate.setDate(arrDate[0]);
+    myDate.setMonth(arrDate[1] - 1);
+    myDate.setFullYear(arrDate[2]);
+    myDate.setHours(0);
+    myDate.setMinutes(0);
+    myDate.setSeconds(0);
+    myDate.setMilliseconds(0);
+    return myDate;
+};
+
 $(function() {
     var date = (new Date());
     
     $("#datepicker1").datepicker($.datepicker.regional["ru"]);
     $("#datepicker1").datepicker("setDate", date);
+    $("#datepicker1").datepicker("option", "minDate", "0d");
+    $("#datepicker1").datepicker("option", "maxDate", "1m");
     
     $('#datepicker1').datepicker('option', 'beforeShow', function() {
         if (!$("#c-arrow-1").hasClass("ca-exp")) {
@@ -47,9 +63,18 @@ $(function() {
         return true;
     });
     
-    $('#datepicker1').datepicker('option', 'onClose', function() {
+    $('#datepicker1').datepicker('option', 'onClose', function(dateText, inst) {
         if ($("#c-arrow-1").hasClass("ca-exp")) {
             $("#c-arrow-1").removeClass("c-arrow_collapse").removeClass("ca-exp").addClass("c-arrow_expand");
+        }
+        if (dateText === "") {
+            $("#datepicker1").datepicker("setDate", new Date());
+        } else {
+            var maxDate = $("#datepicker2").datepicker("getDate");
+            var selDate = (new Date()).setMyDate(dateText);
+            var diff = selDate - maxDate;
+            if (diff > 0)
+                $("#datepicker1").datepicker("setDate", maxDate);
         }
         return true;
     });
@@ -69,6 +94,8 @@ $(function() {
     
     $("#datepicker2").datepicker($.datepicker.regional["ru"]);                
     $("#datepicker2").datepicker("setDate", date);
+    $("#datepicker2").datepicker("option", "minDate", "0d");
+    $("#datepicker2").datepicker("option", "maxDate", "1m");
     
     $('#datepicker2').datepicker('option', 'beforeShow', function() {
         if (!$("#c-arrow-2").hasClass("ca-exp")) {
@@ -77,9 +104,18 @@ $(function() {
         return true;
     });
     
-    $('#datepicker2').datepicker('option', 'onClose', function() {
+    $('#datepicker2').datepicker('option', 'onClose', function(dateText, inst) {
         if ($("#c-arrow-2").hasClass("ca-exp")) {
             $("#c-arrow-2").removeClass("c-arrow_collapse").removeClass("ca-exp").addClass("c-arrow_expand");
+        }
+        if (dateText === "") {
+            $("#datepicker2").datepicker("setDate", new Date());
+        } else {
+            var minDate = $("#datepicker1").datepicker("getDate");
+            var selDate = (new Date()).setMyDate(dateText);
+            var diff = minDate - selDate;
+            if (diff > 0)
+                $("#datepicker2").datepicker("setDate", minDate);
         }
         return true;
     });

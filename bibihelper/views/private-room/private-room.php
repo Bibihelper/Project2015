@@ -203,7 +203,7 @@ $this->params['user']['email'] = $company->user->email;
                                                         <div class="s-off-active-from">
                                                             <span class="c-caption c-caption-m">с</span>
                                                             <div class="dtpckr">
-                                                                <input type="text" id="datepicker1">
+                                                                <input type="text" id="datepicker1" readonly="readonly">
                                                                 <span class="c-arrow c-arrow_expand c-arrow_1" id="c-arrow-1"></span>
                                                             </div>
                                                         </div>
@@ -211,7 +211,7 @@ $this->params['user']['email'] = $company->user->email;
                                                         <div class="s-off-active-from">
                                                             <span class="c-caption c-caption-m">по</span>
                                                             <div class="dtpckr">
-                                                                <input type="text" id="datepicker2">
+                                                                <input type="text" id="datepicker2" readonly="readonly">
                                                                 <span class="c-arrow c-arrow_expand c-arrow_2" id="c-arrow-2"></span>
                                                             </div>
                                                         </div>
