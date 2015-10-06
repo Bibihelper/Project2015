@@ -2,8 +2,10 @@
 
 namespace app\models\forms;
 
+use Yii;
 use yii\base\Model;
 use app\models\Company;
+use app\models\Shedule;
 use app\components\Common;
 
 class OptionsForm extends Model
@@ -111,6 +113,55 @@ class OptionsForm extends Model
     
     public function saveOptions()
     {
+        $db = Yii::$app->db;
+        
+        $transaction = $db->beginTransaction();
+        
+        try {
+            
+            $company = Company::findOne($this->id);
+            $company->name  = $this->company_name;
+            $company->phone = $this->company_phone;
+            $company->twenty_four_hours = $this->shedule_twfhr;
+            $company->save();
+            
+            $address = $company->address;
+            $address->region   = $this->address_region;
+            $address->city     = $this->address_city;
+            $address->district = $this->address_district;
+            $address->street   = $this->address_street;
+            $address->home     = $this->address_home;
+            $address->housing  = $this->address_housing;
+            $address->building = $this->address_building;
+            $address->metro    = $this->address_metro;
+            $address->save();
+            
+            Shedule::deleteAll(['company_id' => $company->id]);
+            
+            $days = array(1 => 'mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun');
+            
+            for ($i = 1; $i <= 7; $i++) {
+                $day = 'shedule_' . $days[$i];
+            
+                if ($this[$day] == 1) {
+                    $shedule = new Shedule();
+                    $shedule->company_id = $company->id;
+                    $shedule->day        = $i;
+                    $shedule->begin      = $this->b_hour . ':' . $this->b_minute . ':00';
+                    $shedule->end        = $this->e_hour . ':' . $this->e_minute . ':00';
+                    $shedule->save();
+                }
+            }
+            
+            $transaction->commit();
+            
+        } catch (Exception $e) {
+        
+            $transaction->rollBack();
+            return false;
+            
+        }
+        
         return true;
     }
 }

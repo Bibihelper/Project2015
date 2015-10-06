@@ -206,8 +206,6 @@ class PrivateRoomController extends Controller
     
     public function actionSaveOptions()
     {
-        $status = 'OK';
-        $message = '';
         $cOptFrm = new OptionsForm();
         
         if ($cOptFrm->load(Yii::$app->request->post())) {
@@ -217,9 +215,7 @@ class PrivateRoomController extends Controller
             }
         }
 
-        Yii::$app->response->format = Response::FORMAT_JSON;
-        $response = ['status' => $status, 'message' => $message];
-        return $response;
+        $this->redirect(Url::to('/private-room/index/?id=' . $cOptFrm->id));
     }
     
     public function actionSaveCoords()

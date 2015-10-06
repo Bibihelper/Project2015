@@ -76,12 +76,17 @@
     margin-bottom: 3px;
 }
 
+.a-shedule > img {
+    vertical-align: middle;
+}
+
 .a-phone {
   
 }
 
 .a-phone-img {
     display: inline-block;
+    vertical-align: middle;
 }
 
 .a-phone-number {
@@ -90,7 +95,6 @@
     font-weight: 600;
     color: #071d70;
     display: inline-block;
-    margin-top: 10px;
 }
 
 .info-arrow {
