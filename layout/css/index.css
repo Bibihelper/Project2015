@@ -213,9 +213,18 @@
     padding-bottom: 30px;
 }
 
+.allspoff-slider {
+    position: relative;
+    height: 1020px;
+    overflow: hidden;
+}
+
 .allspoff-viewport {
     list-style: none;
     padding: 0;
+    position: absolute;
+    height: 1020px;
+    width: 100%;
 }
 
 .allspoff-item {
