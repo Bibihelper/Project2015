@@ -47,5 +47,8 @@ $("#arrow-up").click(function() {
     }
 });
 
-
+$(".back-to-search-button").click(function() {
+    var href = $("div.logo").parent("a").attr("href");
+    window.location.href = href;
+});
 
