@@ -104,5 +104,9 @@ $(".city #city-list > li").click(function() {
     m.showMap(coords.latitude, coords.longitude, 10);
 });
 
+/* All special offers button */
 
+$(".special-offers-button").click(function() {
+    window.location.href = "/special-offers/";
+});
 
