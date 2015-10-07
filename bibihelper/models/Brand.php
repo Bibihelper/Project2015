@@ -60,7 +60,9 @@ class Brand extends ActiveRecord
     
     public static function find()
     {
-        return new BrandQuery(get_called_class());
+        $bq = new BrandQuery(get_called_class());
+        $bq->orderBy('name');
+        return $bq;
     }
     
     public function getCountry()

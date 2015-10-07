@@ -66,7 +66,9 @@ class Service extends ActiveRecord
     
     public static function find()
     {
-        return new ServiceQuery(get_called_class());
+        $sq = new ServiceQuery(get_called_class());
+        $sq->orderBy('name');
+        return $sq;
     }
 
     public function getCategory()
