@@ -23,8 +23,6 @@ class PrivateRoomAsset extends AssetBundle
     public $js = [
         'js/datepicker-ru.js',
         'js/private-room.js',
-        'js/company-info.js',
-        'js/user-options.js',
     ];
     public $depends = [
         'app\assets\MainAsset',

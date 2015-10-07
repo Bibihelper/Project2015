@@ -3,8 +3,8 @@
 /* @var $this yii\web\View */
 
 use yii\bootstrap\ActiveForm;
-use yii\helpers\Url;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use app\assets\IndexAsset;
 
 IndexAsset::register($this);
@@ -295,7 +295,7 @@ $this->params['user']['email'] = $user->email;
 
     </div>
 </div>
-
+    
 <div class="container main">
     <div class="row">
         

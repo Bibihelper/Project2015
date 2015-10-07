@@ -19,13 +19,13 @@ class IndexAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/index.css',
-        'css/card.css',
         'css/slider.css',
+        'css/card.css',
     ];
     public $js = [
         'js/index.js',
-        'js/card.js',
         'js/slider.js',
+        'js/card.js',
     ];
     public $depends = [
         'app\assets\MainAsset',

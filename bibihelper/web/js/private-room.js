@@ -424,6 +424,52 @@ $("#opt-ch").click(function() {
     $(b[2]).slideDown();
 });
 
+/* User options */
+
+$("body").on("beforeSubmit", "form#change-password-form, form#change-email-form", proceedChangeForm);
+
+function proceedChangeForm() {
+     var form = $(this);
+     if (form.find('.has-error').length) {
+          return false;
+     }
+     $.ajax({
+          url: form.attr("action"),
+          method: "post",
+          data: form.serialize(),
+          success: function (r) {
+                alert(r.message);
+          }
+     });
+     return false;
+};
+
+/* Company info */
+
+$("#ci-submit").click(function() {
+    var form = $("#company-info-form");
+    var sbtn = this;
+    
+    $.ajax({
+        url: "/company/save-info/",
+        method: "POST",
+        data: form.serialize(),
+        dataType: "json",
+        success: function(r) {
+            if (r.status === "OK") {
+                $(sbtn).attr("disabled", "disabled");
+            }
+        }
+    });
+});
+
+$("#ci-info").keyup(function() {
+    $("#ci-submit").removeAttr("disabled");
+});
+
+
+
+
 
 
 
