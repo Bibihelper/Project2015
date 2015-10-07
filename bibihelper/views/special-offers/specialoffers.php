@@ -11,7 +11,7 @@ $this->title = 'BibiHelper: Все акции';
 $this->params['page'] = 'index';
 $this->params['user']['email'] = $user->email;
  
-$spOffsCount = (int) count($spOffs) / 2 + 1;
+$spOffsCount = (int) count($spOffs);
 
 ?>
 
@@ -44,13 +44,13 @@ $spOffsCount = (int) count($spOffs) / 2 + 1;
         <div class="container-fluid">
             <div class="row allspoff-slider">
                 <ul class="allspoff-viewport" data-item="0">
-                    <?php for ($i = 0; i < spOffsCount; $i += 2): ?>
+                    <?php for ($i = 0; $i < $spOffsCount; $i += 2): ?>
                         <?php if ($spOffs[$i] !== null): ?>
                             <li class="allspoff-item">
                                 <?php if ($spOffs[$i] !== null): ?>
                                     <div class="spoff-item">
                                         <div class="spoff-title">
-                                            <span class="spoff-title-text">$spOffs[$i]->company->name</span>
+                                            <span class="spoff-title-text"><?= $spOffs[$i]->company->name ?></span>
                                         </div>
                                         <div class="spoff-image">
                                             <a href="#" title="" class="slider-href" data-cid="<?= $spOffs[$i]->company_id ?>">
@@ -67,7 +67,7 @@ $spOffsCount = (int) count($spOffs) / 2 + 1;
                                 <?php if ($spOffs[$i + 1] !== null): ?>
                                     <div class="spoff-item">
                                         <div class="spoff-title">
-                                            <span class="spoff-title-text">$spOffs[$i + 1]->company->name</span>
+                                            <span class="spoff-title-text"><?= $spOffs[$i + 1]->company->name ?></span>
                                         </div>
                                         <div class="spoff-image">
                                             <a href="#" title="" class="slider-href" data-cid="<?= $spOffs[$i + 1]->company_id ?>">

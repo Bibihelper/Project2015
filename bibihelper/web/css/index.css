@@ -189,7 +189,7 @@
 }
 
 .allspoff-arrow:hover {
-    background-color: #fcfaf5;
+    background-color: #ebe8e1;
 }
 
 .allspoff-arrow-up {
@@ -215,7 +215,7 @@
 
 .allspoff-slider {
     position: relative;
-    height: 1020px;
+    height: 1002px;
     overflow: hidden;
 }
 
@@ -223,13 +223,13 @@
     list-style: none;
     padding: 0;
     position: absolute;
-    height: 1020px;
     width: 100%;
 }
 
 .allspoff-item {
     margin: 15px auto;
     width: 764px;
+    height: 314px;
     text-align: center;
 }
 
@@ -251,6 +251,7 @@
 .spoff-title {
     height: 40px;
     text-align: center;
+    padding-top: 4px;
 }
 
 .spoff-title-text {
@@ -262,12 +263,14 @@
 
 .spoff-image {
     border: 1px solid #071d70;
-    margin-bottom: 5px;
-    height: 211px;
+    margin-bottom: 10px;
+    width: 352px;
+    height: 212px;
 }
 
-.spoff-image > img {
-
+.spoff-image > a > img {
+    width: 100%;
+    height: 100%;
 }
 
 .spoff-descr {
@@ -280,7 +283,7 @@
     font-weight: 400;
     color: #000;
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 10px;
 }
 
 
