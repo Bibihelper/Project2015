@@ -2,17 +2,25 @@
 
 /* @var $this yii\web\View */
 
-use app\assets\SpecialOffersAsset;
 use yii\helpers\Url;
+use app\assets\SpecialOffersAsset;
 
 SpecialOffersAsset::register($this);
 
 $this->title = 'BibiHelper: Все акции';
 $this->params['page'] = 'specialoffers';
-$this->params['user']['email'] = $user->email;
- 
+$this->params['user'] = $user;
+$this->params['company'] = $user->company;
+
 $spOffsCount = (int) count($spOffs);
 
+?>
+
+<?= $this->render('//dialogs.php', [
+        'regFrm' => $regFrm,
+        'logFrm' => $logFrm,
+        'rstFrm' => $rstFrm,
+    ]);
 ?>
 
 <div class="container-fluid back-to-search">
