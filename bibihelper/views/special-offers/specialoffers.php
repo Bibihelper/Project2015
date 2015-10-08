@@ -8,7 +8,7 @@ use yii\helpers\Url;
 SpecialOffersAsset::register($this);
 
 $this->title = 'BibiHelper: Все акции';
-$this->params['page'] = 'index';
+$this->params['page'] = 'specialoffers';
 $this->params['user']['email'] = $user->email;
  
 $spOffsCount = (int) count($spOffs);

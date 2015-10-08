@@ -34,7 +34,7 @@ use yii\helpers\Html;
     <div class="row">
         <div class="container">
             <div class="row menu">
-                <?php if ($this->params['page'] == 'index'): ?>
+                <?php if ($this->params['page'] == 'index' || $this->params['page'] == 'specialoffers'): ?>
                     <?php if (Yii::$app->user->isGuest): ?>
                         <div class="menu-item">
                             <a href="#" title="" data-toggle="modal" data-target="#user-login-form">Войти в личный кабинет</a>
