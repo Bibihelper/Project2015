@@ -11,7 +11,8 @@ IndexAsset::register($this);
 
 $this->title = 'BibiHelper';
 $this->params['page'] = 'index';
-$this->params['user']['email'] = $user->email;
+$this->params['user'] = $user;
+$this->params['company'] = $user->company;
 
 ?>
 

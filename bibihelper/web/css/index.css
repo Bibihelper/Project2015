@@ -184,6 +184,8 @@
 .allspoff-arrow {
     height: 30px;
     width: 100%;
+//    width: 764px;
+//    margin: 0 auto;
     cursor: pointer;
     background-color: #fffcf4;
 }

@@ -41,7 +41,7 @@ use yii\helpers\Html;
                         </div>
                     <?php else: ?>
                         <div class="menu-item">
-                            <a href="<?= Yii::$app->user->getReturnUrl() ?>" title=""><?= $this->params['user']['email'] ?></a>
+                            <a href="<?= '/private-room/?id=' . $this->params['company']['id'] ?>" title=""><?= $this->params['user']['email'] ?></a>
                         </div>
                     <?php endif ?>
 
@@ -50,7 +50,7 @@ use yii\helpers\Html;
                     </div>
                 <?php elseif ($this->params['page'] == 'private-room'): ?>
                     <div class="menu-item">
-                        <a href="<?= Yii::$app->user->getReturnUrl() ?>" title=""><?= $this->params['user']['email'] ?></a>
+                        <a href="<?= '/private-room/?id=' . $this->params['company']['id'] ?>" title=""><?= $this->params['user']['email'] ?></a>
                     </div>
                 <?php endif ?>
             </div>
