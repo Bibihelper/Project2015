@@ -19,9 +19,11 @@ class MainAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/reset.css',
-        'css/common.css',
         'css/main.css',
         'css/form.css',
+    ];
+    public $js = [
+        'js/main.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

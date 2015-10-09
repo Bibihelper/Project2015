@@ -13,20 +13,14 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class PrivateRoomAsset extends AssetBundle
+class AboutAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/private-room.css',
-    ];
-    public $js = [
-        'js/private-room.js',
+        'css/about.css',
     ];
     public $depends = [
-        'yii\jui\JuiAsset',
-        'app\assets\JuiLangAsset',
-        'app\assets\JqueryMaskAsset',
         'app\assets\MainAsset',
     ];
 }

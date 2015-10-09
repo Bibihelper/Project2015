@@ -6,17 +6,29 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 
+$this->registerMetaTag([
+    'name' => 'description',
+    'content' => 'Удобный выбор автосервиса'
+]);
+
+$this->registerMetaTag([
+    'name' => 'keywords',
+    'content' => 'автосервис, автомойка, шиномонтаж'
+]);
+
+$this->registerMetaTag([
+    'http-equiv' => 'X-UA-Compatible',
+    'content' => 'IE=edge'
+]);
+
 ?>
 
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="ru-RU">
+<html lang="<?= Yii::$app->language ?>">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Удобный выбор автосервиса">
-    <meta name="keywords" content="автосервис,автомойка,шиномонтаж">
     <?= Html::csrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
@@ -34,7 +46,7 @@ use yii\helpers\Html;
     <div class="row">
         <div class="container">
             <div class="row menu">
-                <?php if ($this->params['page'] == 'index' || $this->params['page'] == 'specialoffers'): ?>
+                <?php if ($this->params['page'] == 'index' || $this->params['page'] == 'specialoffers' || $this->params['page'] == 'about'): ?>
                     <?php if (Yii::$app->user->isGuest): ?>
                         <div class="menu-item">
                             <a href="#" title="" data-toggle="modal" data-target="#user-login-form">Войти в личный кабинет</a>
@@ -108,7 +120,7 @@ use yii\helpers\Html;
                         <span><a href="#" title="">Автовладельцам</a></span>
                     </div>
                     <div class="footer-menu-col">
-                        <span><a href="#" title="">О проекте</a></span>
+                        <span><a href="<?= Url::to('/about/') ?>" title="">О проекте</a></span>
                         <span><a href="#" title="">Обратная связь</a></span>                        
                     </div>
                 </div>

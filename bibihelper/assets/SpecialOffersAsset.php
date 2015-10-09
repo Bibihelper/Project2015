@@ -18,12 +18,11 @@ class SpecialOffersAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/index.css',
+        'css/allspoffs.css',
         'css/card.css',
     ];
     public $js = [
-        'js/index.js',
-        'js/allspoff.js',
+        'js/allspoffs.js',
         'js/card.js',
     ];
     public $depends = [
