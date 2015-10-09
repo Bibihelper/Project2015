@@ -4,6 +4,18 @@ $(document).ready(function() {
     var m = new Map("map");
     m.showMap(63.31268278, 103.42773438);
     initSlider();
+    
+    var sl = $(".search-list");
+    var he = $(sl).height();
+    var lh = 28;
+    
+    $(sl).each(function (i, item) {
+        var cc = $(item).children("li").length;
+        var hh = cc * lh;
+        if (hh < he) {
+            $(item).height(hh);
+        }
+    });
 });
 
 // Переключение между формами простого и расширенного поиска
@@ -31,18 +43,24 @@ $("#twfhr-checkbox-2").click(function() {
 // Кнопки выбора на формах
 
 $(".search-list > li").click(function() {
-    var brandID   = $(this).attr("data-id");
-    var brandName = $(this).children("a").html();
+    var dataID   = $(this).attr("data-id");
+    var dataName = $(this).children("a").html();
     
     var button = $(this).parent("ul").parent("div").children("button");
     var text   = $(button).children("span.f-button-caption").children("span.f-button-text");
+    var li     = $(this).siblings("li[data-id = \"" + $(button).attr("data-id") +"\"]");
+    
+    if (!$(this).hasClass("search-item-group")) {
+        $(li)  .children("a").css("background-color", "#e8e6e6");
+        $(this).children("a").css("background-color", "#d5eded");
+    }
     
     if ($(button).hasClass("brand")) {
         button = $(".brand");
         $(button).each(function(i, item) {
             text   = $(item).children("span.f-button-caption").children("span.f-button-text");
-            $(item).attr("data-id", brandID);
-            $(text).html(brandName);
+            $(item).attr("data-id", dataID);
+            $(text).html(dataName);
         });
         return true;
     }
@@ -51,14 +69,14 @@ $(".search-list > li").click(function() {
         button = $(".wtype");
         $(button).each(function(i, item) {
             text   = $(item).children("span.f-button-caption").children("span.f-button-text");
-            $(item).attr("data-id", brandID);
-            $(text).html(brandName);
+            $(item).attr("data-id", dataID);
+            $(text).html(dataName);
         });
         return true;
     }
     
-    $(button).attr("data-id", brandID);
-    $(text).html(brandName);
+    $(button).attr("data-id", dataID);
+    $(text).html(dataName);
 });
 
 // Переключение форм login - register

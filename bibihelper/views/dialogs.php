@@ -198,7 +198,7 @@ use yii\helpers\Url;
                         <span class="a-diller">Автосервис</span>
                         <span class="a-district">Центральный район</span>
                         <span class="a-address">ул. Ленина, д.3, к.1, стр. 2</span>
-                        <span class="a-shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>s" alt=""></span>
+                        <span class="a-shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>" alt=""></span>
                         <div class="a-phone">
                             <span class="a-phone-img"><img src="<?= Url::to('/images/a-phone.png') ?>" alt=""></span>
                             <span class="a-phone-number"> +7 (985) 647-85-11</span>
