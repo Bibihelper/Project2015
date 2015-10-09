@@ -75,6 +75,7 @@
     font-family: Tahoma;
     font-size: 14px;
     color: #000;
+    white-space: pre-wrap;
 }
 
 .search-list > li > a:hover {
@@ -90,6 +91,20 @@
 
 .input-group .search-edit {
     width: 280px;
+}
+
+li.search-item-group > span {
+    font-family: Tahoma;
+    font-weight: 400;
+    font-size: 16px;
+    color: #fff;
+    background-color: #38b2ce;
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    line-height: 1.42857143;
+    white-space: pre-wrap;
+    text-align: right;
 }
 
 /* icons */

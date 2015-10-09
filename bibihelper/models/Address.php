@@ -63,4 +63,15 @@ class Address extends ActiveRecord
         
         return $city . $street . $home . $housing . $building;
     }
+    
+    public function getDistrict($city = '')
+    {
+        return $this->find()
+            ->select(['district'])
+            ->andWhere(['!=', 'district', ''])
+            ->andFilterWhere(['city' => $city])
+            ->distinct()
+            ->orderBy('district')
+            ->all();
+    }
 }

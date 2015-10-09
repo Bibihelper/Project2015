@@ -44,11 +44,12 @@ $this->params['company'] = $user->company;
                             </span>
                         </button>
                         <ul class="dropdown-menu f-list search-list">
-                            <li data-id="1"><a href="#" title="">Mersedes</a></li>
-                            <li data-id="2"><a href="#" title="">Audi</a></li>
-                            <li data-id="3"><a href="#" title="">BMW</a></li>
-                            <li data-id="4"><a href="#" title="">Toyota</a></li>
-                            <li data-id="5"><a href="#" title="">Jeep</a></li>
+                            <?php foreach ($country as $cntr): ?>
+                                <li class="search-item-group disabled" data-country-id="<?= $cntr->country ?>"><span><?= $cntr->country ?></span></li>
+                                <?php foreach ($cntr->brand as $brnd): ?>
+                                    <li data-id="<?= $brnd->id ?>"><a href="#" title=""><?= $brnd->name ?></a></li>
+                                <?php endforeach ?>
+                            <?php endforeach ?>
                         </ul>
                     </div>                                                                                               
                 </div>
@@ -63,10 +64,12 @@ $this->params['company'] = $user->company;
                             </span>
                         </button>
                         <ul class="dropdown-menu f-list search-list">
-                            <li data-id="1"><a href="#" title="">Замена масла</a></li>
-                            <li data-id="2"><a href="#" title="">Зарядка аккумулятора</a></li>
-                            <li data-id="3"><a href="#" title="">Подкачка шин</a></li>
-                            <li data-id="4"><a href="#" title="">Диагностика</a></li>
+                            <?php foreach ($category as $ctg): ?>
+                                <li class="search-item-group disabled" data-category-id="<?= $ctg->id ?>"><span><?= $ctg->name ?></span></li>
+                                <?php foreach ($ctg->service as $srv): ?>
+                                    <li data-id="<?= $srv->id ?>"><a href="#" title=""><?= $srv->name ?></a></li>
+                                <?php endforeach ?>
+                            <?php endforeach ?>
                         </ul>
                     </div>                                                                                                                               
                 </div>
@@ -100,11 +103,12 @@ $this->params['company'] = $user->company;
                             </span>
                         </button>
                         <ul class="dropdown-menu f-list search-list">
-                            <li data-id="1"><a href="#" title="">Mersedes</a></li>
-                            <li data-id="2"><a href="#" title="">Audi</a></li>
-                            <li data-id="3"><a href="#" title="">BMW</a></li>
-                            <li data-id="4"><a href="#" title="">Toyota</a></li>
-                            <li data-id="5"><a href="#" title="">Jeep</a></li>
+                            <?php foreach ($country as $cntr): ?>
+                                <li class="search-item-group disabled" data-country-id="<?= $cntr->country ?>"><span><?= $cntr->country ?></span></li>
+                                <?php foreach ($cntr->brand as $brnd): ?>
+                                    <li data-id="<?= $brnd->id ?>"><a href="#" title=""><?= $brnd->name ?></a></li>
+                                <?php endforeach ?>
+                            <?php endforeach ?>
                         </ul>
                     </div>                                                                                               
                 </div>
@@ -119,10 +123,12 @@ $this->params['company'] = $user->company;
                             </span>
                         </button>
                         <ul class="dropdown-menu f-list search-list">
-                            <li data-id="1"><a href="#" title="">Замена масла</a></li>
-                            <li data-id="2"><a href="#" title="">Зарядка аккумулятора</a></li>
-                            <li data-id="3"><a href="#" title="">Подкачка шин</a></li>
-                            <li data-id="4"><a href="#" title="">Диагностика</a></li>
+                            <?php foreach ($category as $ctg): ?>
+                                <li class="search-item-group disabled" data-category-id="<?= $ctg->id ?>"><span><?= $ctg->name ?></span></li>
+                                <?php foreach ($ctg->service as $srv): ?>
+                                    <li data-id="<?= $srv->id ?>"><a href="#" title=""><?= $srv->name ?></a></li>
+                                <?php endforeach ?>
+                            <?php endforeach ?>
                         </ul>
                     </div>                                                                                                                               
                 </div>
@@ -137,9 +143,9 @@ $this->params['company'] = $user->company;
                             </span>
                         </button>
                         <ul class="dropdown-menu f-list search-list">
-                            <li data-distr-id="1"><a href="#" title="">Октябрьский</a></li>
-                            <li data-distr-id="2"><a href="#" title="">Ленинский</a></li>
-                            <li data-distr-id="3"><a href="#" title="">Советский</a></li>
+                            <?php foreach ($distr as $d): ?>
+                                <li data-id="<?= $d->district ?>"><a href="#" title=""><?= $d->district ?></a></li>
+                            <?php endforeach ?>
                         </ul>
                     </div>                                                                                                                               
                 </div>

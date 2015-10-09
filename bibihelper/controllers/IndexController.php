@@ -8,6 +8,9 @@ use yii\web\Response;
 use yii\bootstrap\ActiveForm;
 use app\models\User;
 use app\models\SpecialOffer;
+use app\models\Category;
+use app\models\Country;
+use app\models\Address;
 use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
 use app\models\forms\RestorePswForm;
@@ -25,6 +28,12 @@ class IndexController extends Controller
         $spOffs = new SpecialOffer();
         $spOffs = $spOffs->getAllSpecialOffers();
         
+        $address = new Address();
+        $distr   = $address->getDistrict();
+        
+        $category = Category::find()->all();
+        $country  = Country::find()->all();
+        
         return $this->render('index', [
             'user'   => $user,
             'spOffs' => $spOffs,
@@ -32,6 +41,9 @@ class IndexController extends Controller
             'logFrm' => $logFrm,
             'rstFrm' => $rstFrm,
             'responseMessage' => $message,
+            'distr'    => $distr,
+            'category' => $category,
+            'country'  => $country,
         ]);
     }
 
