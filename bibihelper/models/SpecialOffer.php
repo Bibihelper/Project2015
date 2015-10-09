@@ -26,7 +26,7 @@ class SpecialOffer extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['comment', 'active_from', 'active_to', 'file_id', 'company_id'], 'required'],
+            [['active_from', 'active_to', 'file_id', 'company_id'], 'required'],
             [['comment'], 'string'],
             [['active_from', 'active_to'], 'safe'],
             [['file_id', 'company_id'], 'integer']

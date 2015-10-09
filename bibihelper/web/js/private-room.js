@@ -16,7 +16,7 @@ function showPosition() {
         dataType: "json",
         success: function(r) {
             m = new Map("private-room-map-id");
-            if (r.latitude === 0 || r.longitude === 0)
+            if (r.latitude === 0 || r.longitude === 0 || r.latitude === null || r.langitude === null)
                 m.showMap(63.31268278, 103.42773438);
             else
                 m.showMap(r.latitude, r.longitude, 10);
@@ -265,7 +265,7 @@ $("#s-load-image").click(function() {
 $("#s-publish").click(function() {
     if ($(this).attr("data-btn-type") == "1") {
         var cid = $("#sp-off").attr("data-cid");
-        var imgage = $(".primg > img").attr("src");
+        var image = $(".primg > img").attr("src");
         var comment = $("#s-descr-edit").val();
         var activeFrom = $("#datepicker1").datepicker("getDate");
         var activeTo = $("#datepicker2").datepicker("getDate");
@@ -273,7 +273,7 @@ $("#s-publish").click(function() {
         var request = $.ajax({
             url: "/private-room/set-special-offer/",
             method: "POST",
-            data: { cid: cid, image: imgage, comment: comment, activeFrom: activeFrom.toLocaleString(), activeTo: activeTo.toLocaleString() },
+            data: { cid: cid, image: image, comment: comment, activeFrom: activeFrom.toLocaleString(), activeTo: activeTo.toLocaleString() },
             dataType: "json"
         });
         
@@ -304,8 +304,9 @@ $("#s-publish").click(function() {
             if (r.status === "OK") {
                 $(".s-off-ctrls").show();
                 $(".s-off-preview").css("float", "right");
-                $(sPublish).text("Опубликовать").attr("data-btn-type", "1").attr("disabled", "");
-                $("#s-image").attr("src", "/images/s-img.png");
+                $(sPublish).text("Опубликовать").attr("data-btn-type", "1");
+                document.getElementById("s-publish").disabled = true;
+                $("#s-image").attr("src", "/images/s-img.png").attr("data-load", "0");
                 $("#s-descr-edit").val("");
                 $("#s-descr").html("");
                 $("#datepicker1").datepicker("setDate", (new Date()));
@@ -316,7 +317,7 @@ $("#s-publish").click(function() {
 });
 
 function updateStatePublishBtn() {
-    if ($("#s-descr-edit").val().length > 0 && $("#s-image").attr("data-load") == "1") {
+    if ($("#s-image").attr("data-load") === "1") {
         document.getElementById("s-publish").disabled = false;
     } else {
         $("#s-publish").attr("disabled", "disabled");

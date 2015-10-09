@@ -198,9 +198,9 @@ use yii\helpers\Url;
                         <span class="a-diller">Автосервис</span>
                         <span class="a-district">Центральный район</span>
                         <span class="a-address">ул. Ленина, д.3, к.1, стр. 2</span>
-                        <span class="a-shedule">График работы: ежедневно <img src="images/twenty-four-hour.png" alt=""></span>
+                        <span class="a-shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>s" alt=""></span>
                         <div class="a-phone">
-                            <span class="a-phone-img"><img src="images/a-phone.png" alt=""></span>
+                            <span class="a-phone-img"><img src="<?= Url::to('/images/a-phone.png') ?>" alt=""></span>
                             <span class="a-phone-number"> +7 (985) 647-85-11</span>
                         </div>
                     </div>
@@ -213,15 +213,15 @@ use yii\helpers\Url;
 
                             <div class="i-block-list">
                                 <ul class="icon-list" data-top="0">
-                                    <li class="il-item"><img src="images/brand-icons/Mercedes.png" alt=""></li>
-                                    <li class="il-item"><img src="images/brand-icons/Fiat.png" alt=""></li>
-                                    <li class="il-item"><img src="images/brand-icons/Lotus.png" alt=""></li>
-                                    <li class="il-item"><img src="images/brand-icons/Lamborghini.png" alt=""></li>
-                                    <li class="il-item"><img src="images/brand-icons/Ferrari.png" alt=""></li>
-                                    <li class="il-item"><img src="images/brand-icons/MG.png" alt=""></li>
-                                    <li class="il-item"><img src="images/brand-icons/Lancia.png" alt=""></li>
-                                    <li class="il-item"><img src="images/brand-icons/BMW.png" alt=""></li>
-                                    <li class="il-item"><img src="images/brand-icons/Hyundai.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/Mercedes.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/Fiat.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/Lotus.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/Lamborghini.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/Ferrari.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/MG.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/Lancia.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/BMW.png" alt=""></li>
+                                    <li class="il-item"><img src="/images/brand-icons/Hyundai.png" alt=""></li>
                                 </ul>
                             </div>
 
@@ -274,7 +274,7 @@ use yii\helpers\Url;
 
                         <div class="so-info">
                             <div class="so-col-1">
-                                <img src="images/slide-1.png" alt="" class="so-img">
+                                <img src="/images/slide-1.png" alt="" class="so-img">
                             </div>
 
                             <div class="so-col-2">

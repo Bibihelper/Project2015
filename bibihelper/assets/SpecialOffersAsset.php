@@ -19,10 +19,12 @@ class SpecialOffersAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/index.css',
+        'css/card.css',
     ];
     public $js = [
         'js/index.js',
         'js/allspoff.js',
+        'js/card.js',
     ];
     public $depends = [
         'app\assets\MainAsset',

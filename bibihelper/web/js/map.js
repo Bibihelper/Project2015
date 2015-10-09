@@ -53,8 +53,10 @@ Map.prototype.showMarker = function()
 
 Map.prototype.hideMarker = function()
 {
-    if (this.marker)
+    if (this.marker) {
         this.marker.setMap(null);
+        this.marker = null;
+    }
 };
 
 Map.prototype.showMoveableMarker = function()
@@ -70,8 +72,8 @@ Map.prototype.showMoveableMarker = function()
 Map.prototype.moveMarker = function(latLng)
 {
     this.hideMarker();
-    this.lat = latLng.H;
-    this.lng = latLng.L;
+    this.lat = latLng.H || latLng.J;
+    this.lng = latLng.L || latLng.M;
     this.showMarker();    
 };
 

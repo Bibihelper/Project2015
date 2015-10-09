@@ -60,7 +60,7 @@ function getAddressStr(address) {
 }
 
 function getTwFourHour() {
-    return "График работы: ежедневно <img src=\"images/twenty-four-hour.png\" alt=\"\">";
+    return "График работы: ежедневно <img src=\"/images/twenty-four-hour.png\" alt=\"\">";
 }
 
 function formatTime(time) {
