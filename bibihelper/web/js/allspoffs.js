@@ -1,6 +1,6 @@
 /* All special offers */
 
-var ROW_HEIGHT = 335;
+var ROW_HEIGHT = 329;
 
 $("#arrow-down").click(function() {
     var v = $(".allspoff-viewport");
@@ -46,6 +46,4 @@ $("#arrow-up").click(function() {
         $(a).addClass("allspoff-arrow-down");
     }
 });
-
-
 

@@ -120,6 +120,8 @@
 .f-button-text {
     float: left;
     display: block;
+    width: 90%;
+    overflow: hidden;
 }
 
 .f-button-caret {

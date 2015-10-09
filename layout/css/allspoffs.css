@@ -1,0 +1,110 @@
+/* 
+    Created on : 10.10.2015, 3:17:58
+    Author     : Leon
+*/
+
+.allspoff-arrow {
+    height: 30px;
+    width: 100%;
+    cursor: pointer;
+    background-color: #fffcf4;
+}
+
+.allspoff-arrow:hover {
+    background-color: #ebe8e1;
+}
+
+.allspoff-arrow-up {
+    background: #fffcf4 url("../images/arrow-up-a.png") no-repeat 50% 50%;
+}
+
+.allspoff-arrow-down {
+    background: #fffcf4 url("../images/arrow-down-a.png") no-repeat 50% 50%;
+}
+
+.allspoff-arrow-up-na {
+    background: #fffcf4 url("../images/arrow-up-na.png") no-repeat 50% 50%;
+}
+
+.allspoff-arrow-down-na {
+    background: #fffcf4 url("../images/arrow-down-na.png") no-repeat 50% 50%;
+}
+
+.allspoff {
+    background-color: #fffcf4;
+    padding-bottom: 30px;
+}
+
+.allspoff-slider {
+    position: relative;
+    height: 1002px;
+    overflow: hidden;
+}
+
+.allspoff-viewport {
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+}
+
+.allspoff-item {
+    margin: 15px auto;
+    width: 764px;
+    height: 314px;
+    text-align: center;
+}
+
+.spoff-item {
+    display: inline-block;
+    width: 380px;
+    height: 100%;
+    padding: 0 15px;
+}
+
+.spoff-item:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+    -o-box-shadow: 0 0 10px rgba(0,0,0,0.6);
+}
+
+.spoff-title {
+    height: 40px;
+    text-align: center;
+    padding-top: 4px;
+}
+
+.spoff-title-text {
+    font-family: MyriadProBold;
+    font-size: 18px;
+    color: #071d70;
+    vertical-align: -8px;
+}
+
+.spoff-image {
+    border: 1px solid #071d70;
+    margin-bottom: 10px;
+    width: 352px;
+    height: 212px;
+}
+
+.spoff-image > a > img {
+    width: 100%;
+    height: 100%;
+}
+
+.spoff-descr {
+    text-align: center;
+}
+
+.spoff-descr-text, .spoff-descr-period {
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+    display: block;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
