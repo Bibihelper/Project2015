@@ -1,0 +1,20 @@
+{
+  "name": "bibihelper",
+  "version": "0.1.0",
+  "homepage": "https://github.com/Bibihelper/bibihelper",
+  "authors": [
+    "Leon <return_to_castle@mainl.ru>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-mask-plugin": "igorescobar/jQuery-Mask-Plugin#~1.13.4"
+  }
+}

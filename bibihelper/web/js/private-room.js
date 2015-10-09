@@ -2,6 +2,7 @@
 
 $(document).ready(function() {
     showPosition();
+    $('#optionsform-company_phone').mask('+7 (000) 000-00-00');
 });
 
 // Координаты

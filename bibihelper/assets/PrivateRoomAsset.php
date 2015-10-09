@@ -21,11 +21,13 @@ class PrivateRoomAsset extends AssetBundle
         'css/private-room.css',
     ];
     public $js = [
-        'js/datepicker-ru.js',
+//        '@bower/jquery-mask-plugin/dist/jquery.mask.js',
         'js/private-room.js',
     ];
     public $depends = [
-        'app\assets\MainAsset',
         'yii\jui\JuiAsset',
+        'app\assets\JuiLangAsset',
+        'app\assets\JqueryMaskAsset',
+        'app\assets\MainAsset',
     ];
 }
