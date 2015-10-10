@@ -17,20 +17,7 @@ $(document).ready(function() {
         }
     });
     
-    var url = document.URL;
-    
-    if (url.indexOf("f=1") !== -1) {
-        setTimeout(function() {
-            $("#user-login-form").modal("show");
-        }, 700);
-    }
-    
-    var i = url.indexOf("#cardid=");
-    
-    if (i !== -1) {
-        var cid = url.substr(i + 8, url.length);
-        getCardData(cid);
-    }
+    proceedUrl();
 });
 
 // Переключение между формами простого и расширенного поиска

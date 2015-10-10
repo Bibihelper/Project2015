@@ -66,3 +66,23 @@ function lfSubmit(e) {
         window.location.href = "/?f=1";
     }
 }
+
+/* proceed URL */
+
+function proceedUrl() {
+    var url = document.URL;
+    
+    if (url.indexOf("f=1") !== -1) {
+        setTimeout(function() {
+            $("#user-login-form").modal("show");
+        }, 700);
+    }
+    
+    var i = url.indexOf("#cardid=");
+    
+    if (i !== -1) {
+        var cid = url.substr(i + 8, url.length);
+        getCardData(cid);
+    }
+}
+
