@@ -18,7 +18,7 @@ use app\components\Common;
 
 class IndexController extends Controller
 {
-    private function index($message = '', $showCaptcha = false)
+    public function actionIndex($mid = '', $f = 0)
     {
         $user = User::findIdentity(Yii::$app->user->id);
 
@@ -27,7 +27,7 @@ class IndexController extends Controller
         $spOffs = new SpecialOffer();
         $spOffs = $spOffs->getAllSpecialOffers();
         
-        if ($showCaptcha) {
+        if ($f) {
             $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN_CAPTCHA]);
         } else {
             $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
@@ -39,42 +39,25 @@ class IndexController extends Controller
         $category = Category::find()->all();
         $brand  = Brand::find()->all();
         
+        $msg = '';
+        
+        switch ($mid) {
+            case 1: $msg = Common::M_EMAIL_SEND;          break;
+            case 2: $msg = Common::M_PSW_EMAIL_SEND;      break;
+            case 3: $msg = Common::M_PSW_RESTORE_SUCCESS; break;
+        }
+        
         return $this->render('index', [
-            'user'   => $user,
-            'spOffs' => $spOffs,
-            'regFrm' => $regFrm,
-            'logFrm' => $logFrm,
-            'rstFrm' => $rstFrm,
-            'responseMessage' => $message,
+            'msg'      => $msg,
+            'user'     => $user,
+            'spOffs'   => $spOffs,
+            'regFrm'   => $regFrm,
+            'logFrm'   => $logFrm,
+            'rstFrm'   => $rstFrm,
             'distr'    => $distr,
             'category' => $category,
-            'brand'  => $brand,
+            'brand'    => $brand,
         ]);
-    }
-
-    public function actionIndex()
-    {
-        return $this->index();
-    }
-    
-    public function actionRegisterSuccess()
-    {
-        return $this->index(Common::M_EMAIL_SEND);
-    }
-    
-    public function actionRestorepswConfirm()
-    {
-        return $this->index(Common::M_PSW_EMAIL_SEND);
-    }
-    
-    public function actionRestorepswSuccess()
-    {
-        return $this->index(Common::M_PSW_RESTORE_SUCCESS);
-    }
-    
-    public function actionLoginCaptcha()
-    {
-        return $this->index('', true);
     }
     
     public function actionValidateLoginForm()

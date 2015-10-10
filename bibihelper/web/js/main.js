@@ -63,6 +63,6 @@ function lfSubmit(e) {
     $(this).attr("data-count", count);
     if (count >= 5) {
         $(this).addClass("disabled");
-        window.location.href = "/index/login-captcha/";
+        window.location.href = "/?f=1";
     }
 }

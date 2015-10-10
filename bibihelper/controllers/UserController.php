@@ -36,7 +36,7 @@ class UserController extends Controller
         if ($regFrm->load(Yii::$app->request->post()) && $regFrm->validate()) {
             $ok = $regFrm->register();
             if ($ok) {
-                return $this->redirect(Url::to('/index/register-success/'));
+                return $this->redirect(Url::to('/?mid=1'));
             }
         }
         
@@ -63,7 +63,7 @@ class UserController extends Controller
         if ($rstFrm->load(Yii::$app->request->post()) && $rstFrm->validate()) {
             $ok = $rstFrm->restorePsw();
             if ($ok) {
-                return $this->redirect(Url::to('/index/restorepsw-confirm/'));
+                return $this->redirect(Url::to('/?mid=2'));
             }
         }
         
@@ -78,7 +78,7 @@ class UserController extends Controller
             $user->password_hash = Yii::$app->security->generatePasswordHash($newpas);
             $user->save();
             $this->sendNewPasEmail($user->email, $newpas);
-            return $this->redirect(Url::to('/index/restorepsw-success/'));
+            return $this->redirect(Url::to('/?mid=3'));
         }
         return $this->goHome();
     }

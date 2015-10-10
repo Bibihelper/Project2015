@@ -25,7 +25,7 @@ $this->params['company'] = $user->company;
     <div class="row">
         
         <div class="register-response">
-            <span class="register-message"><?= $responseMessage ?></span>
+            <span class="register-message"><?= $msg ?></span>
         </div>
         
         <div id="map"></div>
@@ -232,7 +232,7 @@ $this->params['company'] = $user->company;
                     <?php if ($spOffs !== false): ?>
                         <?php foreach ($spOffs as $spOff): ?>
                             <li class="slider-col">
-                                <a href="#" title="" class="slider-href" data-cid="<?= $spOff->company_id ?>">
+                                <a href="<?= Url::to('/#cardid=' . $spOff->company_id) ?>" title="" class="slider-href" data-cid="<?= $spOff->company_id ?>">
                                     <img src="<?= Url::to($spOff->file->getFileFullName('/images/slide-1.png')) ?>" alt="">
                                 </a>
                             </li>
