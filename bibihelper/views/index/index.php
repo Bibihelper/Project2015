@@ -44,11 +44,8 @@ $this->params['company'] = $user->company;
                             </span>
                         </button>
                         <ul class="dropdown-menu f-list search-list">
-                            <?php foreach ($country as $cntr): ?>
-                                <li class="search-item-group disabled" data-country-id="<?= $cntr->country ?>"><span><?= $cntr->country ?></span></li>
-                                <?php foreach ($cntr->brand as $brnd): ?>
-                                    <li data-id="<?= $brnd->id ?>"><a href="#" title=""><?= $brnd->name ?></a></li>
-                                <?php endforeach ?>
+                            <?php foreach ($brand as $brnd): ?>
+                                <li data-id="<?= $brnd->id ?>"><a href="#" title=""><?= $brnd->name ?></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>                                                                                               

@@ -4,6 +4,7 @@
 
 use Yii;
 use yii\bootstrap\ActiveForm;
+use yii\captcha\Captcha;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -60,6 +61,23 @@ use yii\helpers\Url;
                             'class' => 'f-label'
                         ])
                     ?>
+                    
+                    <?php if ($logFrm->scenario === $logFrm::SCENARIO_LOGIN_CAPTCHA): ?>
+                    
+                        <?= $form->field($logFrm, 'captcha', [
+                                'options' => ['class' => 'form-group f-captcha'],
+                                'template' => "{label}\n{input}\n{error}",
+                            ])->widget(Captcha::className(), [
+                                'captchaAction' => '/user/captcha/',
+                                'options' => ['class' => 'form-control f-control f-captcha-input'],
+                                'imageOptions' => ['class' => 'f-captcha-image'],
+                                'template' => "{image}{input}",
+                            ])->label($logFrm->getAttributeLabel('captcha'), [
+                                'class' => 'f-label f-label-captcha'
+                            ])
+                        ?>
+                    
+                    <?php endif ?>
                     
                 </div>
                 

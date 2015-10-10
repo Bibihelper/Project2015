@@ -16,6 +16,19 @@ use yii\helpers\Url;
 
 class UserController extends Controller
 {
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+            'captcha' => [
+                'class' => 'app\components\MyCaptchaAction',
+                'fixedVerifyCode' => null,
+            ],
+        ];
+    }
+    
     public function actionRegister()
     {
         $regFrm = new RegisterForm();
@@ -87,7 +100,7 @@ class UserController extends Controller
     
     public function actionLogin()
     {
-        $logFrm = new LoginForm();
+        $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
         
         if ($logFrm->load(Yii::$app->request->post()) && $logFrm->validate()) {
             $companyID = $logFrm->login();

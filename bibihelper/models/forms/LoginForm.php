@@ -12,8 +12,20 @@ class LoginForm extends Model
     public $email;
     public $password;
     public $rememberme = true;
-    
+    public $captcha;
+
     private $_user = false;
+    
+    const SCENARIO_LOGIN = 'login';
+    const SCENARIO_LOGIN_CAPTCHA = 'captcha';
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+        $scenarios[self::SCENARIO_LOGIN] = ['email', 'password'];
+        $scenarios[self::SCENARIO_LOGIN_CAPTCHA] = ['email', 'password', 'captcha'];
+        return $scenarios;
+    }
     
     public function getUser()
     {
@@ -32,6 +44,8 @@ class LoginForm extends Model
             ['email', 'emailNotConfirmed'],
             ['password', 'string', 'length' => [6, 32], 'tooShort' => Common::M_MIN_PASSWORD_LENGTH, 'tooLong' => Common::M_MAX_PASSWORD_LENGTH],
             ['password', 'validatePassword'],
+            ['captcha', 'required'],
+            ['captcha', 'captcha', 'captchaAction' => '/user/captcha/'],
         ];
     }
     
@@ -40,6 +54,7 @@ class LoginForm extends Model
             'email' => 'Адрес электронной почты:',
             'password' => 'Пароль:',
             'rememberme' => 'Запомнить',
+            'captcha' => 'Введите текст, который видите на картинке:',
         ];
     }
 
@@ -76,7 +91,6 @@ class LoginForm extends Model
         if ($this->getUser()) {
             $ok = Yii::$app->user->login($this->getUser(), $this->rememberme ? 3600 * 24 * 30 : 0);
             if ($ok) {
-                Yii::$app->user->setReturnUrl('/private-room/?id=' . $this->getUser()->company->id);
                 return $this->getUser()->company->id;
             }
         }

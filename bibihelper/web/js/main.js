@@ -50,4 +50,15 @@ $(".back-to-search-button").click(function() {
     window.location.href = href;
 });
 
+/* login form submit button */
 
+$("#lf-submit").click(lfSubmit);
+
+function lfSubmit(e) {
+    var count = $(this).attr("data-count");
+    if (count === undefined)
+        count = 1;
+    else
+        count++;
+    $(this).attr("data-count", count);
+}

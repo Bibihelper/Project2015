@@ -58,6 +58,10 @@
     font-weight: 400;
 }
 
+#loginform-captcha-image {
+    cursor: pointer;
+}
+
 /* form */
 
 .f-content {
@@ -389,3 +393,24 @@ label:before + .f-checkbox-inv:checked {
 .f-label-lh20 {
     line-height: 20px;
 }
+
+.f-captcha {
+    margin-top: 15px;
+}
+
+.f-captcha-input {
+    width: 25%;
+    display: inline-block;
+    vertical-align: 21px;
+    margin-left: 20px;
+}
+
+.f-captcha-image {
+    border: 1px solid #38b2ce;
+    display: inline-block;
+}
+
+.f-label-captcha {
+    display: block;
+}
+

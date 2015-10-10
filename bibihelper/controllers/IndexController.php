@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 use app\models\User;
 use app\models\SpecialOffer;
 use app\models\Category;
-use app\models\Country;
+use app\models\Brand;
 use app\models\Address;
 use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
@@ -23,7 +23,7 @@ class IndexController extends Controller
         $user = User::findIdentity(Yii::$app->user->id);
 
         $regFrm = new RegisterForm();
-        $logFrm = new LoginForm();
+        $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
         $rstFrm = new RestorePswForm();
         $spOffs = new SpecialOffer();
         $spOffs = $spOffs->getAllSpecialOffers();
@@ -32,7 +32,7 @@ class IndexController extends Controller
         $distr   = $address->getDistrict();
         
         $category = Category::find()->all();
-        $country  = Country::find()->all();
+        $brand  = Brand::find()->all();
         
         return $this->render('index', [
             'user'   => $user,
@@ -43,7 +43,7 @@ class IndexController extends Controller
             'responseMessage' => $message,
             'distr'    => $distr,
             'category' => $category,
-            'country'  => $country,
+            'brand'  => $brand,
         ]);
     }
 
