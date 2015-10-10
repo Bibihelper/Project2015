@@ -16,6 +16,14 @@ $(document).ready(function() {
             $(item).height(hh);
         }
     });
+    
+    var url = document.URL;
+    
+    if (url.indexOf("login") !== -1) {
+        setTimeout(function() {
+            $("#user-login-form").modal("show");
+        }, 700);
+    }        
 });
 
 // Переключение между формами простого и расширенного поиска

@@ -98,9 +98,13 @@ class UserController extends Controller
             ->send();
     }
     
-    public function actionLogin()
+    public function actionLogin($showCaptcha = false)
     {
-        $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
+        if ($showCaptcha) {
+            $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN_CAPTCHA]);
+        } else {
+            $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
+        }
         
         if ($logFrm->load(Yii::$app->request->post()) && $logFrm->validate()) {
             $companyID = $logFrm->login();

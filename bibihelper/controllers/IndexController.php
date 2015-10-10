@@ -18,16 +18,21 @@ use app\components\Common;
 
 class IndexController extends Controller
 {
-    private function index($message = '')
+    private function index($message = '', $showCaptcha = false)
     {
         $user = User::findIdentity(Yii::$app->user->id);
 
         $regFrm = new RegisterForm();
-        $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
         $rstFrm = new RestorePswForm();
         $spOffs = new SpecialOffer();
         $spOffs = $spOffs->getAllSpecialOffers();
         
+        if ($showCaptcha) {
+            $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN_CAPTCHA]);
+        } else {
+            $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
+        }
+
         $address = new Address();
         $distr   = $address->getDistrict();
         
@@ -65,6 +70,11 @@ class IndexController extends Controller
     public function actionRestorepswSuccess()
     {
         return $this->index(Common::M_PSW_RESTORE_SUCCESS);
+    }
+    
+    public function actionLoginCaptcha()
+    {
+        return $this->index('', true);
     }
     
     public function actionValidateLoginForm()
