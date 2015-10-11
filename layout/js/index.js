@@ -87,6 +87,51 @@ $(".special-offers-button").click(function() {
     window.location.href = "/special-offers/";
 });
 
+/* Search results arrows */
+
+var ROW_HEIGHT = 105;
+
+$("#srlist-arrow-d").click(function() {
+    var v = $(".srlist");
+    var i = $(v).attr("data-item") || 0;
+    var l = $(v).children().length - 3;
+    i++;
+    if (i < l) {
+        $(v).animate({top: -i * ROW_HEIGHT + "px"}).attr("data-item", i);
+    }
+    if (i === (l - 1)) {
+        if ($(this).hasClass("srlist-arrow-down")) {
+            $(this).removeClass("srlist-arrow-down");
+            $(this).addClass("srlist-arrow-down-na");
+        }
+    }
+    var a = $(".srlist-arrow-up-na");
+    if ($(a) !== null) {
+        $(a).removeClass("srlist-arrow-up-na");
+        $(a).addClass("srlist-arrow-up");
+    }
+});
+
+$("#srlist-arrow-u").click(function() {
+    var v = $(".srlist");
+    var i = $(v).attr("data-item") || 0;
+    i--;
+    if (i >= 0) {
+        $(v).animate({top: -i * ROW_HEIGHT + "px"}).attr("data-item", i);
+    }
+    if (i === 0) {
+        if ($(this).hasClass("srlist-arrow-up")) {
+            $(this).removeClass("srlist-arrow-up");
+            $(this).addClass("srlist-arrow-up-na");
+        }
+    }
+    var a = $(".srlist-arrow-down-na");
+    if ($(a) !== null) {
+        $(a).removeClass("srlist-arrow-down-na");
+        $(a).addClass("srlist-arrow-down");
+    }
+});
+
 
 
 
