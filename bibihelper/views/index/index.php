@@ -176,6 +176,105 @@ $this->params['company'] = $user->company;
             </div>
         </div>
         
+        <div class="search search-results" style="display: none;">
+            <div class="search-headline"></div>
+            
+            <div class="srchres-header">
+                <a href="#" title="" class="srchres-header-title">Уточнить параметры поиска</a>
+            </div>
+            
+            <div class="srchres-amount">
+                <span class="srchres-amount-text">Найдено <span id="srchres-counter">8</span> автосервисов</span>
+            </div>
+            
+            <div class="srlist-arrow srlist-arrow-up-na" id="srlist-arrow-u"></div>
+            
+            <div class="srlist-viewport">
+                <ul class="srlist">
+                    <li class="srlist-item">
+                        <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                        <a href="#" title="" class="srlist-ispo slider-href"></a>
+                        <span class="srlist-itwh"></span>
+                    </li>
+                    
+                    <li class="srlist-item">
+                        <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                        <a href="#" title="" class="srlist-ispo slider-href"></a>
+                        <span class="srlist-itwh"></span>
+                    </li>
+                    
+                    <li class="srlist-item">
+                        <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                        <a href="#" title="" class="srlist-ispo slider-href"></a>
+                        <span class="srlist-itwh"></span>
+                    </li>
+                    
+                    <li class="srlist-item">
+                        <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                        <a href="#" title="" class="srlist-ispo slider-href"></a>
+                        <span class="srlist-itwh"></span>
+                    </li>
+                    
+                    <li class="srlist-item">
+                        <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                        <a href="#" title="" class="srlist-ispo slider-href"></a>
+                        <span class="srlist-itwh"></span>
+                    </li>
+                    
+                    <li class="srlist-item">
+                        <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                        <a href="#" title="" class="srlist-ispo slider-href"></a>
+                        <span class="srlist-itwh"></span>
+                    </li>
+                    
+                    <li class="srlist-item">
+                        <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                        <a href="#" title="" class="srlist-ispo slider-href"></a>
+                        <span class="srlist-itwh"></span>
+                    </li>
+                    
+                    <li class="srlist-item">
+                        <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                        <a href="#" title="" class="srlist-ispo slider-href"></a>
+                        <span class="srlist-itwh"></span>
+                    </li>
+                </ul>
+            </div>
+        
+            <div class="srlist-arrow srlist-arrow-down" id="srlist-arrow-d"></div>
+        </div>
     </div>
 </div>
 
@@ -184,8 +283,8 @@ $this->params['company'] = $user->company;
         <div class="container">
             <div class="row">
                 <ul class="icons-list">
-                    <li class="icons-list-item"><img src="<?= Url::to('/images/icon-red.png') ?>" alt="">- официальный диллер</li>
-                    <li class="icons-list-item"><img src="<?= Url::to('/images/icon-cyan.png') ?>" alt="">- универсальный автосервис</li>
+                    <li class="icons-list-item"><img src="<?= Url::to('/images/pointer-red.png') ?>" alt=""> - официальный диллер</li>
+                    <li class="icons-list-item"><img src="<?= Url::to('/images/pointer-blue.png') ?>" alt=""> - универсальный автосервис</li>
                 </ul>
             </div>
         </div>

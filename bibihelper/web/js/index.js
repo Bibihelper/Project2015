@@ -1,5 +1,7 @@
 /* Index */
 
+var srchActive = null;
+
 $(document).ready(function() {
     var m = new Map("map");
     m.showMap(63.31268278, 103.42773438);
@@ -18,6 +20,8 @@ $(document).ready(function() {
     });
     
     proceedUrl();
+    
+    srchActive = $(".search-simple");
 });
 
 // Переключение между формами простого и расширенного поиска
@@ -25,11 +29,13 @@ $(document).ready(function() {
 $("#search-ext-button").click(function() {
     $(".search-simple").hide("slow");
     $(".search-ext").show("slow");
+    srchActive = $(".search-ext");
 });
 
 $("#search-simple-button").click(function() {
     $(".search-ext").hide("slow");
     $(".search-simple").show("slow");
+    srchActive = $(".search-simple");
 });
 
 // Синхронизация чекбоксов на формах простого и расширенного поиска
@@ -86,6 +92,75 @@ $(".search-list > li").click(function() {
 $(".special-offers-button").click(function() {
     window.location.href = "/special-offers/";
 });
+
+/* Search results arrows */
+
+var ROW_HEIGHT = 105;
+
+$("#srlist-arrow-d").click(function() {
+    var v = $(".srlist");
+    var i = $(v).attr("data-item") || 0;
+    var l = $(v).children().length - 3;
+    i++;
+    if (i < l) {
+        $(v).animate({top: -i * ROW_HEIGHT + "px"}).attr("data-item", i);
+    }
+    if (i === (l - 1)) {
+        if ($(this).hasClass("srlist-arrow-down")) {
+            $(this).removeClass("srlist-arrow-down");
+            $(this).addClass("srlist-arrow-down-na");
+        }
+    }
+    var a = $(".srlist-arrow-up-na");
+    if ($(a) !== null) {
+        $(a).removeClass("srlist-arrow-up-na");
+        $(a).addClass("srlist-arrow-up");
+    }
+});
+
+$("#srlist-arrow-u").click(function() {
+    var v = $(".srlist");
+    var i = $(v).attr("data-item") || 0;
+    i--;
+    if (i >= 0) {
+        $(v).animate({top: -i * ROW_HEIGHT + "px"}).attr("data-item", i);
+    }
+    if (i === 0) {
+        if ($(this).hasClass("srlist-arrow-up")) {
+            $(this).removeClass("srlist-arrow-up");
+            $(this).addClass("srlist-arrow-up-na");
+        }
+    }
+    var a = $(".srlist-arrow-down-na");
+    if ($(a) !== null) {
+        $(a).removeClass("srlist-arrow-down-na");
+        $(a).addClass("srlist-arrow-down");
+    }
+});
+
+/* Search button */
+
+$(".search-button").click(makeSearch);
+
+function makeSearch(e) {
+    var srchres = $(".search-results");
+    $(srchActive).hide("slow");
+    $(srchres).show("slow");
+}
+
+/* Уточнить параметры поиска */
+
+$(".srchres-header-title").click(backToSearch);
+
+function backToSearch(e) {
+    $(".search-results").hide("slow");
+    $(srchActive).show("slow");
+}
+
+
+
+
+
 
 
 
