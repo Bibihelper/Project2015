@@ -50,4 +50,39 @@ $(".back-to-search-button").click(function() {
     window.location.href = href;
 });
 
+/* login form submit button */
+
+$("#lf-submit").click(lfSubmit);
+
+function lfSubmit(e) {
+    var count = $(this).attr("data-count");
+    if (count === undefined)
+        count = 1;
+    else
+        count++;
+    $(this).attr("data-count", count);
+    if (count >= 5) {
+        $(this).addClass("disabled");
+        window.location.href = "/?f=1";
+    }
+}
+
+/* proceed URL */
+
+function proceedUrl() {
+    var url = document.URL;
+    
+    if (url.indexOf("f=1") !== -1) {
+        setTimeout(function() {
+            $("#user-login-form").modal("show");
+        }, 700);
+    }
+    
+    var i = url.indexOf("#cardid=");
+    
+    if (i !== -1) {
+        var cid = url.substr(i + 8, url.length);
+        getCardData(cid);
+    }
+}
 

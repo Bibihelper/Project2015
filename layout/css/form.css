@@ -58,6 +58,10 @@
     font-weight: 400;
 }
 
+#loginform-captcha-image {
+    cursor: pointer;
+}
+
 /* form */
 
 .f-content {
@@ -95,6 +99,7 @@
 .f-caption {
     font-family: MyriadProBold;
     font-size: 16px;
+    font-weight: 400;
     color: #fff;
     margin-bottom: 5px;
     display: block;
@@ -223,7 +228,7 @@ span.f-link:hover {
 
 .f-checkbox {
     vertical-align: top;
-    margin: 0 3px 0 0;
+    margin: 0 3px 0 0 !important;
     width: 20px;
     height: 20px;
 }
@@ -389,3 +394,24 @@ label:before + .f-checkbox-inv:checked {
 .f-label-lh20 {
     line-height: 20px;
 }
+
+.f-captcha {
+    margin-top: 15px;
+}
+
+.f-captcha-input {
+    width: 25%;
+    display: inline-block;
+    vertical-align: 21px;
+    margin-left: 20px;
+}
+
+.f-captcha-image {
+    border: 1px solid #38b2ce;
+    display: inline-block;
+}
+
+.f-label-captcha {
+    display: block;
+}
+

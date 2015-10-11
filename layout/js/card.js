@@ -3,8 +3,14 @@
 $(".slider-href").click(openCard);
 
 function openCard(e) {
+    e.preventDefault();
+
     var cid = $(e.currentTarget).attr("data-cid");
-    
+    window.location.hash = "cardid=" + cid;
+    getCardData(cid);
+}
+
+function getCardData(cid) {
     $.ajax({
         url: "/company/get-card/?cid=" + cid,
         method: "POST",
@@ -14,7 +20,7 @@ function openCard(e) {
             updateData(r);
             $("#card").modal("show");
         }
-    });
+    });    
 }
 
 var latitude1 = longitude1 = 0.0;

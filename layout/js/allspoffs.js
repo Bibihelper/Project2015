@@ -1,5 +1,9 @@
 /* All special offers */
 
+$(document).ready(function() {
+    proceedUrl();
+});
+
 var ROW_HEIGHT = 329;
 
 $("#arrow-down").click(function() {

@@ -16,6 +16,8 @@ $(document).ready(function() {
             $(item).height(hh);
         }
     });
+    
+    proceedUrl();
 });
 
 // Переключение между формами простого и расширенного поиска
