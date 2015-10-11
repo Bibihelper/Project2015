@@ -1,5 +1,7 @@
 /* Index */
 
+var srchActive = null;
+
 $(document).ready(function() {
     var m = new Map("map");
     m.showMap(63.31268278, 103.42773438);
@@ -18,6 +20,8 @@ $(document).ready(function() {
     });
     
     proceedUrl();
+    
+    srchActive = $(".search-simple");
 });
 
 // Переключение между формами простого и расширенного поиска
@@ -25,11 +29,13 @@ $(document).ready(function() {
 $("#search-ext-button").click(function() {
     $(".search-simple").hide("slow");
     $(".search-ext").show("slow");
+    srchActive = $(".search-ext");
 });
 
 $("#search-simple-button").click(function() {
     $(".search-ext").hide("slow");
     $(".search-simple").show("slow");
+    srchActive = $(".search-simple");
 });
 
 // Синхронизация чекбоксов на формах простого и расширенного поиска
@@ -131,6 +137,30 @@ $("#srlist-arrow-u").click(function() {
         $(a).addClass("srlist-arrow-down");
     }
 });
+
+/* Search button */
+
+$(".search-button").click(makeSearch);
+
+function makeSearch(e) {
+    var srchres = $(".search-results");
+    $(srchActive).hide("slow");
+    $(srchres).show("slow");
+}
+
+/* Уточнить параметры поиска */
+
+$(".srchres-header-title").click(backToSearch);
+
+function backToSearch(e) {
+    $(".search-results").hide("slow");
+    $(srchActive).show("slow");
+}
+
+
+
+
+
 
 
 
