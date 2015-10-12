@@ -426,6 +426,13 @@ $("#opt-ch").click(function() {
     $(b[2]).slideDown();
 });
 
+$("#of-back").click(function() {
+    var b = $("#profile").children("div");
+    $(b[2]).slideUp();    
+    $(b[1]).slideDown();
+    $(b[0]).slideDown();
+});
+
 /* User options */
 
 $("body").on("beforeSubmit", "form#change-password-form, form#change-email-form", proceedChangeForm);

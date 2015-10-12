@@ -515,7 +515,8 @@ $this->params['user']['email'] = $company->user->email;
                                         ?>
                     
                                         <div class="f-block f-block-ta">
-                                            <?= Html::submitButton('Сохранить', ['class' => 'f-button f-submit', 'id' => 'of-submit']) ?>
+                                            <?= Html::submitButton('Сохранить', ['class' => 'f-button f-submit c-mlr5', 'id' => 'of-submit']) ?>
+                                            <?= Html::button('Назад', ['class' => 'f-button f-submit c-mlr5', 'id' => 'of-back']) ?>
                                         </div>
                                     
                                     <?php ActiveForm::end(); ?>
