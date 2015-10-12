@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Url;
+use yii\helpers\Html;
 use app\assets\IndexAsset;
 
 IndexAsset::register($this);
@@ -11,6 +12,7 @@ $this->title = 'BibiHelper';
 $this->params['page'] = 'index';
 $this->params['user'] = $user;
 $this->params['company'] = $user->company;
+$this->params['city'] = $city;
 
 ?>
 
@@ -100,11 +102,8 @@ $this->params['company'] = $user->company;
                             </span>
                         </button>
                         <ul class="dropdown-menu f-list search-list">
-                            <?php foreach ($country as $cntr): ?>
-                                <li class="search-item-group disabled" data-country-id="<?= $cntr->country ?>"><span><?= $cntr->country ?></span></li>
-                                <?php foreach ($cntr->brand as $brnd): ?>
-                                    <li data-id="<?= $brnd->id ?>"><a href="#" title=""><?= $brnd->name ?></a></li>
-                                <?php endforeach ?>
+                            <?php foreach ($brand as $brnd): ?>
+                                <li data-id="<?= $brnd->id ?>"><a href="#" title=""><?= $brnd->name ?></a></li>
                             <?php endforeach ?>
                         </ul>
                     </div>                                                                                               
@@ -189,13 +188,25 @@ $this->params['company'] = $user->company;
             
             <div class="srlist-arrow srlist-arrow-up-na" id="srlist-arrow-u"></div>
             
+            <ul class="srlist-tmpl" style="display: none;">
+                <li class="srlist-item">
+                    <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
+                    <span class="srlist-iinf sr-address">ул. Ленина, д.3, к.1, стр.2</span>
+                    <span class="srlist-iinf sr-shedule">9.00-20.00 (ежедневно)</span>
+                    <span class="srlist-iinf sr-phone">+7 (985) 486-43-11</span>
+                    <a href="#" title="" class="srlist-iptr map-ptr"></a>
+                    <a href="#" title="" class="srlist-ispo slider-href"></a>
+                    <span class="srlist-itwh"></span>
+                </li>
+            </ul>
+            
             <div class="srlist-viewport">
                 <ul class="srlist">
                     <li class="srlist-item">
                         <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
-                        <span class="srlist-iinf">ул. Ленина, д.3, к.1, стр.2</span>
-                        <span class="srlist-iinf">9.00-20.00 (ежедневно)</span>
-                        <span class="srlist-iinf">+7 (985) 486-43-11</span>
+                        <span class="srlist-iinf sr-address">ул. Ленина, д.3, к.1, стр.2</span>
+                        <span class="srlist-iinf sr-shedule">9.00-20.00 (ежедневно)</span>
+                        <span class="srlist-iinf sr-phone">+7 (985) 486-43-11</span>
                         <a href="#" title="" class="srlist-iptr map-ptr"></a>
                         <a href="#" title="" class="srlist-ispo slider-href"></a>
                         <span class="srlist-itwh"></span>
@@ -310,7 +321,7 @@ $this->params['company'] = $user->company;
                 <ul class="slider-viewport">
                     <?php if ($spOffs !== false): ?>
                         <?php foreach ($spOffs as $spOff): ?>
-                            <li class="slider-col"><div class="slider-col-header"><?= $spOff->company->name ?></div></li>
+                            <li class="slider-col"><div class="slider-col-header"><?= Html::encode($spOff->company->name) ?></div></li>
                         <?php endforeach ?>
                     <?php else: ?>
                         <?php for ($i = 1; $i <= 3; $i++): ?> 
@@ -365,7 +376,7 @@ $this->params['company'] = $user->company;
                         <?php foreach ($spOffs as $spOff): ?>
                             <li class="slider-col">
                                 <div class="slider-col-footer">
-                                    <span class="special-offer-comment"><?= $spOff->comment ?></span>
+                                    <span class="special-offer-comment"><?= Html::encode($spOff->comment) ?></span>
                                     <span class="special-offer-period"><?= $spOff->getPeriod() ?></span>
                                 </div>
                             </li>

@@ -372,6 +372,7 @@ label:before + .f-checkbox-inv:checked {
     display: inline-block;    
     margin-right: 50px;
     width: 120px;
+    vertical-align: top;
 }
 
 .f-block-ta {

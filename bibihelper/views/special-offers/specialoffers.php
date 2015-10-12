@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Url;
+use yii\helpers\Html;
 use app\assets\SpecialOffersAsset;
 
 SpecialOffersAsset::register($this);
@@ -58,7 +59,7 @@ $spOffsCount = (int) count($spOffs);
                                 <?php if ($spOffs[$i] !== null): ?>
                                     <div class="spoff-item">
                                         <div class="spoff-title">
-                                            <span class="spoff-title-text"><?= $spOffs[$i]->company->name ?></span>
+                                            <span class="spoff-title-text"><?= Html::encode($spOffs[$i]->company->name) ?></span>
                                         </div>
                                         <div class="spoff-image">
                                             <a href="#" title="" class="slider-href" data-cid="<?= $spOffs[$i]->company_id ?>">
@@ -66,7 +67,7 @@ $spOffsCount = (int) count($spOffs);
                                             </a>
                                         </div>
                                         <div class="spoff-descr">
-                                            <span class="spoff-descr-text"><?= $spOffs[$i]->comment ?></span>
+                                            <span class="spoff-descr-text"><?= Html::encode($spOffs[$i]->comment) ?></span>
                                             <span class="spoff-descr-period"><?= $spOffs[$i]->getPeriod() ?></span>
                                         </div>
                                     </div>
@@ -75,7 +76,7 @@ $spOffsCount = (int) count($spOffs);
                                 <?php if ($spOffs[$i + 1] !== null): ?>
                                     <div class="spoff-item">
                                         <div class="spoff-title">
-                                            <span class="spoff-title-text"><?= $spOffs[$i + 1]->company->name ?></span>
+                                            <span class="spoff-title-text"><?= Html::encode($spOffs[$i + 1]->company->name) ?></span>
                                         </div>
                                         <div class="spoff-image">
                                             <a href="#" title="" class="slider-href" data-cid="<?= $spOffs[$i + 1]->company_id ?>">
@@ -83,7 +84,7 @@ $spOffsCount = (int) count($spOffs);
                                             </a>
                                         </div>
                                         <div class="spoff-descr">
-                                            <span class="spoff-descr-text"><?= $spOffs[$i + 1]->comment ?></span>
+                                            <span class="spoff-descr-text"><?= Html::encode($spOffs[$i + 1]->comment) ?></span>
                                             <span class="spoff-descr-period"><?= $spOffs[$i + 1]->getPeriod() ?></span>
                                         </div>
                                     </div>

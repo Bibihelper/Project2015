@@ -21,6 +21,13 @@ $this->registerMetaTag([
     'content' => 'IE=edge'
 ]);
 
+$this->registerMetaTag([
+    'name' => 'yandex-verification',
+    'content' => '544d159be3f4a791'
+]);
+
+$city = $this->params['city'];
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -29,15 +36,50 @@ $this->registerMetaTag([
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <?= Html::csrfMetaTags() ?>
+
     <title><?= Html::encode($this->title) ?></title>
+
     <?php $this->head() ?>
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter32958359 = new Ya.Metrika({
+                        id:32958359,
+                        clickmap:true,
+                        trackLinks:true,
+                        accurateTrackBounce:true,
+                        webvisor:true,
+                        trackHash:true
+                    });
+                } catch(e) { }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () { n.parentNode.insertBefore(s, n); };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else { f(); }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <!-- /Yandex.Metrika counter -->
+
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -91,11 +133,12 @@ $this->registerMetaTag([
                                 </span>
                             </button>
                             <ul class="dropdown-menu f-list city-list" id="city-list">
-                                <li data-city-id="1" data-city-coords="{latitude: 55.75368981, longitude: 37.61855388}"><a href="#" title="">Москва</a></li>
-                                <li data-city-id="2" data-city-coords="{latitude: 59.93291880, longitude: 30.31607890}"><a href="#" title="">Санкт-Питербург</a></li>
-                                <li data-city-id="3" data-city-coords="{latitude: 55.01749779, longitude: 82.92943263}"><a href="#" title="">Новосибирск</a></li>
-                                <li data-city-id="4" data-city-coords="{latitude: 58.52212461, longitude: 31.27240443}"><a href="#" title="">Новгород</a></li>
-                                <li data-city-id="5" data-city-coords="{latitude: 43.12041367, longitude: 131.8851974}"><a href="#" title="">Владивосток</a></li>
+                                <?php foreach ($city as $c): ?>
+                                    <li data-city-id="<?= $c->id ?>"
+                                            data-city-coords="{latitude: <?= $c->latitude ?>, longitude: <?= $c->longitude ?>}">
+                                        <a href="#" title=""><?= $c->name ?></a>
+                                    </li>
+                                <?php endforeach ?>
                             </ul>
                         </div>                                                                                               
                     </div>
@@ -138,6 +181,8 @@ $this->registerMetaTag([
                         <p><span class="copyright-sign">&nbsp;&nbsp;&nbsp;&nbsp;&copy;&nbsp;</span><span class="copyrighter">2015&nbsp;BiBiHelper</span></p>
                     </div>
                 </div>
+                
+                <noscript><div><img src="https://mc.yandex.ru/watch/32958359" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
                 
             </div>
         </div>    

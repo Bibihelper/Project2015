@@ -10,6 +10,8 @@ use app\models\User;
 use app\models\SpecialOffer;
 use app\models\Category;
 use app\models\Brand;
+use app\models\Company;
+use app\models\City;
 use app\models\Address;
 use app\models\forms\RegisterForm;
 use app\models\forms\LoginForm;
@@ -32,6 +34,8 @@ class IndexController extends Controller
         } else {
             $logFrm = new LoginForm(['scenario' => LoginForm::SCENARIO_LOGIN]);
         }
+        
+        $city = City::find()->all();
 
         $address = new Address();
         $distr   = $address->getDistrict();
@@ -54,6 +58,7 @@ class IndexController extends Controller
             'regFrm'   => $regFrm,
             'logFrm'   => $logFrm,
             'rstFrm'   => $rstFrm,
+            'city'     => $city,
             'distr'    => $distr,
             'category' => $category,
             'brand'    => $brand,
@@ -91,5 +96,14 @@ class IndexController extends Controller
             Yii::$app->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($rstFrm);
         }
+    }
+    
+    public function actionSrchRes()
+    {
+        $company = new Company();
+        $srchres = $company->getSrchRes();
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['srchres' => $srchres];
+        return $responce;
     }
 }

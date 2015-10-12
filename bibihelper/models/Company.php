@@ -117,8 +117,19 @@ class Company extends \yii\db\ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id'])
             ->via('userCompanies');
-    }    
+    }
     
+    public function getSrchRes()
+    {
+        $srchres = $this->find()
+            ->select(['company.*', 'address.street', 'address.home', 'address.housing', 'address.building'])
+            ->leftJoin('address', '`address`.`id` = `company`.`address_id`')
+            ->asArray()
+            ->all();
+        
+        return $srchres;
+    }
+
     public function setComment($comment)
     {
         $this->comment = $comment;

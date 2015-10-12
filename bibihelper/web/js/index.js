@@ -146,6 +146,16 @@ function makeSearch(e) {
     var srchres = $(".search-results");
     $(srchActive).hide("slow");
     $(srchres).show("slow");
+    
+    $.ajax({
+        url: "/index/srch-res/",
+        method: "POST",
+        data: {},
+        dataType: "json",
+        success: function(r) {
+            updateSrchRes(r.srchres);
+        }
+    });
 }
 
 /* Уточнить параметры поиска */
@@ -157,7 +167,21 @@ function backToSearch(e) {
     $(srchActive).show("slow");
 }
 
+/* Search results */
 
+function updateSrchRes(srchres) {
+    var srlist = $(".srlist");
+    var sritem = $(".srlist-tmpl").children("li");
+        
+    $(srlist).empty();
+    $("#srchres-counter").html(srchres.length);
+    
+    for (var i = 0; i < srchres.length; i++) {
+        $(sritem).find(".srlist-ittl").html(srchres[i].name);
+        $(sritem).find(".sr-phone").html(srchres[i].phone);
+        $(sritem).clone().appendTo(srlist);
+    }
+}
 
 
 
