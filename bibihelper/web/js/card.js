@@ -49,9 +49,10 @@ $("#card").on("shown.bs.modal", function() {
 });
 
 $("#card").on("hidden.bs.modal", function() {
-    resetCounters();
+    resetArrowsCounters();
     var m = new Map("address-map-id");
     m.showMap(63.31268278, 103.42773438);
+    window.location.hash = "";
 });
 
 
@@ -167,7 +168,7 @@ function getFile(file) {
     $("div.so-info > div.so-col-1 > img").attr("src", file.src + file.name);
 }
 
-function resetCounters() {
+function resetArrowsCounters() {
     $("ul.icon-list").attr("data-top", "0").css("top", "0px");
     $("ul.cat-list" ).attr("data-top", "0").css("top", "0px");
     

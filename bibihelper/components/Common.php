@@ -27,8 +27,9 @@ class Common extends Object
     const M_FIELD_MAX_LENGTH_255 = 'Максимальная длина 255 символов';
     const M_FIELD_MAX_LENGTH_50 = 'Максимальная длина 50 символов';
     const M_FIELD_MAX_LENGTH_10 = 'Максимальная длина 10 символов';
-    const M_PHONE_NOT_MATCH_PATTERN = 'Телефон должен соответствовать шаблону - +7 (XXX) XXX-XX-XX';
-    const M_FIELD_NOT_MATCH_PATTERN = 'Допустим ввод символов русского и латинского алфавитов и знаков: . _ - "" @';
+    const M_PHONE = 'Телефон должен соответствовать шаблону - +7 (XXX) XXX-XX-XX';
+    const M_COMPANY_NAME = 'Допустим ввод символов русского и латинского алфавитов, цифр и знаков - и ""';
+    const M_ADDRESS = 'Допустим ввод символов русского алфавита, цифр и знака -';
     const M_PSW_EMAIL_SEND = 'Вам на почту высланно письмо для восстановления пароля';
     const M_PSW_RESTORE_SUCCESS = 'Вы можете зайти в ЛК используя новый пароль';
     
