@@ -4,7 +4,6 @@ $(".slider-href").click(openCard);
 
 function openCard(e) {
     e.preventDefault();
-
     var cid = $(e.currentTarget).attr("data-cid");
     setLocation("/?cardid=" + cid);
     getCardData(cid);
@@ -64,11 +63,11 @@ $("#card").on("hidden.bs.modal", function() {
 });
 
 function getAddressStr(address) {
-    var city     = (address.city     === "") ? "" :        fmtCity     ( address.city     );
-    var street   = (address.street   === "") ? "" : ", " + fmtStreet   ( address.street   );
-    var home     = (address.home     === "") ? "" : ", " + fmtHome     ( address.home     );
-    var housing  = (address.housing  === "") ? "" : ", " + fmtHousing  ( address.housing  );
-    var building = (address.building === "") ? "" : ", " + fmtBuilding ( address.building );
+    var city     = (address.city     + "" === "") ? "" :        fmtCity     ( address.city     );
+    var street   = (address.street   + "" === "") ? "" : ", " + fmtStreet   ( address.street   );
+    var home     = (address.home     + "" === "") ? "" : ", " + fmtHome     ( address.home     );
+    var housing  = (address.housing  + "" === "") ? "" : ", " + fmtHousing  ( address.housing  );
+    var building = (address.building + "" === "") ? "" : ", " + fmtBuilding ( address.building );
 
     return city + street + home + housing + building;
 }
