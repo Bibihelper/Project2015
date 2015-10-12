@@ -6,7 +6,7 @@ function openCard(e) {
     e.preventDefault();
 
     var cid = $(e.currentTarget).attr("data-cid");
-    window.location.hash = "cardid=" + cid;
+    setLocation("/?cardid=" + cid);
     getCardData(cid);
 }
 
@@ -42,6 +42,14 @@ function updateData(r) {
     longitude1 = parseFloat(r.address.longitude);
 }
 
+function setLocation(curLoc){
+    try {
+        history.pushState(null, null, curLoc);
+        return;
+    } catch(e) {}
+    location.hash = '#' + curLoc;
+}
+
 $("#card").on("shown.bs.modal", function() {
     var m = new Map("address-map-id");
     m.showMap(latitude1, longitude1, 10);
@@ -52,16 +60,15 @@ $("#card").on("hidden.bs.modal", function() {
     resetArrowsCounters();
     var m = new Map("address-map-id");
     m.showMap(63.31268278, 103.42773438);
-    window.location.hash = "";
+    setLocation("/");
 });
 
-
 function getAddressStr(address) {
-    var city     = (address.city     === "") ? "" : "г. "     + address.city;
-    var street   = (address.street   === "") ? "" : ", ул. "  + address.street;
-    var home     = (address.home     === "") ? "" : ", д. "   + address.home;
-    var housing  = (address.housing  === "") ? "" : ", к. "   + address.housing;
-    var building = (address.building === "") ? "" : ", стр. " + address.building;
+    var city     = (address.city     === "") ? "" :        fmtCity     ( address.city     );
+    var street   = (address.street   === "") ? "" : ", " + fmtStreet   ( address.street   );
+    var home     = (address.home     === "") ? "" : ", " + fmtHome     ( address.home     );
+    var housing  = (address.housing  === "") ? "" : ", " + fmtHousing  ( address.housing  );
+    var building = (address.building === "") ? "" : ", " + fmtBuilding ( address.building );
 
     return city + street + home + housing + building;
 }

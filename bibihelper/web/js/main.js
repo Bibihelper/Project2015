@@ -78,11 +78,39 @@ function proceedUrl() {
         }, 700);
     }
     
-    var i = url.indexOf("#cardid=");
+    var i = url.indexOf("?cardid=");
     
     if (i !== -1) {
         var cid = url.substr(i + 8, url.length);
         getCardData(cid);
     }
 }
+
+/* Address formating helpers */
+
+function fmtCity(city) {
+    city += "";
+    return (city.indexOf("г.") === -1) ? "г. " + city : city;
+}
+
+function fmtStreet(street) {
+    street += "";
+    return (street.indexOf("ул.") === -1) ? "ул. " + street : street;
+}
+
+function fmtHome(home) {
+    home += "";
+    return (home.indexOf("д.") === -1) ? "д. " + home : home;
+}
+
+function fmtHousing(housing) {
+    housing += "";
+    return (housing.indexOf("к.") === -1) ? "к. " + housing : housing;
+}
+
+function fmtBuilding(building) {
+    building += "";
+    return (building.indexOf("стр.") === -1) ? "стр. " + building : building;
+}
+
 
