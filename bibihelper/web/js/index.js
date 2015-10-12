@@ -178,6 +178,7 @@ function updateSrchRes(srchres) {
     
     for (var i = 0; i < srchres.length; i++) {
         $(sritem).find(".srlist-ittl").html(srchres[i].name);
+        $(sritem).find(".sr-address").html(getAddressStr2("", srchres[i].street, srchres[i].home, srchres[i].housing, srchres[i].building));
         $(sritem).find(".sr-phone").html(srchres[i].phone);
         $(sritem).clone().appendTo(srlist);
     }

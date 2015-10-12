@@ -3,6 +3,7 @@
 namespace app\models;
 
 use yii\db\ActiveRecord;
+use app\components\Common;
 
 /**
  * This is the model class for table "address".
@@ -55,13 +56,15 @@ class Address extends ActiveRecord
     
     public function getAddressStr()
     {
-        $city     = ($this->city     == null) ? '' : 'г. ' . $this->city;
-        $street   = ($this->street   == null) ? '' : ', ул. ' . $this->street;
-        $home     = ($this->home     == null) ? '' : ', д. ' . $this->home;
-        $housing  = ($this->housing  == null) ? '' : ', к. ' . $this->housing;
-        $building = ($this->building == null) ? '' : ', стр. ' . $this->building;
+        $addr = [];
         
-        return $city . $street . $home . $housing . $building;
+        if ( $this->city     ) { $addr[] = Common::fmtCity     ( $this->city     ); }
+        if ( $this->street   ) { $addr[] = Common::fmtStreet   ( $this->street   ); }
+        if ( $this->home     ) { $addr[] = Common::fmtHome     ( $this->home     ); }
+        if ( $this->housing  ) { $addr[] = Common::fmtHousing  ( $this->housing  ); }
+        if ( $this->building ) { $addr[] = Common::fmtBuilding ( $this->building ); }
+        
+        return implode(', ', $addr);
     }
     
     public function getDistrict($city = '')

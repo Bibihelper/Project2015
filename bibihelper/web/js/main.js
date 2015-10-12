@@ -113,4 +113,28 @@ function fmtBuilding(building) {
     return (building.indexOf("стр.") === -1) ? "стр. " + building : building;
 }
 
+function getAddressStr(address) {
+    var addr = [];
+    
+    if ( address.city     ) addr.push( fmtCity     ( address.city     ) );
+    if ( address.street   ) addr.push( fmtStreet   ( address.street   ) );
+    if ( address.home     ) addr.push( fmtHome     ( address.home     ) );
+    if ( address.housing  ) addr.push( fmtHousing  ( address.housing  ) );
+    if ( address.building ) addr.push( fmtBuilding ( address.building ) );
+    
+    return addr.join(", ");
+}
+
+function getAddressStr2(city, street, home, housing, building) {
+    var addr = [];
+    
+    if ( city     ) addr.push( fmtCity     ( city     ) );
+    if ( street   ) addr.push( fmtStreet   ( street   ) );
+    if ( home     ) addr.push( fmtHome     ( home     ) );
+    if ( housing  ) addr.push( fmtHousing  ( housing  ) );
+    if ( building ) addr.push( fmtBuilding ( building ) );
+    
+    return addr.join(", ");
+}
+
 

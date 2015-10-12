@@ -110,4 +110,29 @@ class Common extends Object
             return $text;                  
         } 
     }
+    
+    public static function fmtCity($city)
+    {
+        return (strpos($city, 'г.')) ? $city : 'г. ' . $city;
+    }
+    
+    public static function fmtStreet($street)
+    {
+        return (strpos($street, 'ул.')) ? $street : 'ул. ' . $street;
+    }
+    
+    public static function fmtHome($home)
+    {
+        return (strpos($home, 'д.')) ? $home : 'д. ' . $home;
+    }
+    
+    public static function fmtHousing($housing)
+    {
+        return (strpos($housing, 'к.')) ? $housing : 'к. ' . $housing;
+    }
+    
+    public static function fmtBuilding($building)
+    {
+        return (strpos($building, 'стр.')) ? $building : 'стр. ' . $building;
+    }
 }

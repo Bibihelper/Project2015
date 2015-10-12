@@ -62,16 +62,6 @@ $("#card").on("hidden.bs.modal", function() {
     setLocation("/");
 });
 
-function getAddressStr(address) {
-    var city     = (address.city     + "" === "") ? "" :        fmtCity     ( address.city     );
-    var street   = (address.street   + "" === "") ? "" : ", " + fmtStreet   ( address.street   );
-    var home     = (address.home     + "" === "") ? "" : ", " + fmtHome     ( address.home     );
-    var housing  = (address.housing  + "" === "") ? "" : ", " + fmtHousing  ( address.housing  );
-    var building = (address.building + "" === "") ? "" : ", " + fmtBuilding ( address.building );
-
-    return city + street + home + housing + building;
-}
-
 function getTwFourHour() {
     return "График работы: ежедневно <img src=\"/images/twenty-four-hour.png\" alt=\"\">";
 }

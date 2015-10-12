@@ -122,7 +122,7 @@ class Company extends \yii\db\ActiveRecord
     public function getSrchRes()
     {
         $srchres = $this->find()
-            ->select(['company.*', 'address.street', 'address.home', 'address.housing', 'address.building'])
+            ->select(['company.*', 'address.city', 'address.street', 'address.home', 'address.housing', 'address.building'])
             ->leftJoin('address', '`address`.`id` = `company`.`address_id`')
             ->asArray()
             ->all();
