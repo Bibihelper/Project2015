@@ -62,43 +62,17 @@ $("#card").on("hidden.bs.modal", function() {
     setLocation("/");
 });
 
-function getTwFourHour() {
-    return "График работы: ежедневно <img src=\"/images/twenty-four-hour.png\" alt=\"\">";
-}
-
-function formatTime(time) {
-    t = new Date('Thu, 01 Jan 1970 ' + time);
-    
-    var h = t.getHours  () + "";
-    var m = t.getMinutes() + "";
-    
-    var i = (h.length === 1) ? "0" + h : h;
-    var j = (m.length === 1) ? "0" + m : m;
-    
-    return i + ":" + j;
-}
-
-function getSheduleTable(shedule) {
-    var DayOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-    var table = "";
-    
-    for (var i in shedule) {
-        table += "&nbsp;&nbsp;&nbsp;" + DayOfWeek[shedule[i].day - 1] + ": " + 
-            formatTime(shedule[i].begin) + "-" + formatTime(shedule[i].end) + "<br>";
-    }
-    
-    return table;
+function twfhr() {
+    return "<img src=\"/images/twenty-four-hour.png\" alt=\"\">";
 }
 
 function getShedule(shedule, twfh) {
-    if (twfh == 1) {
-        return getTwFourHour();
-    }
-    var sheduleTable = getSheduleTable(shedule);
-    if (sheduleTable)
-        return "График работы:<br>" + sheduleTable;
-    else
-        return "";
+    var sheduleStr = "График работы:<br>&nbsp;&nbsp;&nbsp;&nbsp;" + getSheduleStr(shedule, twfh);
+    
+    if (twfh === "1")
+        sheduleStr = sheduleStr + "&nbsp;" + twfhr();
+    
+    return sheduleStr;
 }
 
 function showInfo(ul) {

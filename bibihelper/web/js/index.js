@@ -1,10 +1,11 @@
 /* Index */
 
 var srchActive = null;
+var iMap = null;
 
 $(document).ready(function() {
-    var m = new Map("map");
-    m.showMap(63.31268278, 103.42773438);
+    iMap = new Map("map");
+    iMap.showMap(63.31268278, 103.42773438);
     initSlider();
     
     var sl = $(".search-list");
@@ -20,7 +21,6 @@ $(document).ready(function() {
     });
     
     proceedUrl();
-    
     srchActive = $(".search-simple");
 });
 
@@ -147,10 +147,19 @@ function makeSearch(e) {
     $(srchActive).hide("slow");
     $(srchres).show("slow");
     
+    var city     = $(".city").children("div").children("button").attr("data-city-id");
+    var brand    = $(srchActive).find(".brand").attr("data-id");
+    var service  = $(srchActive).find(".wtype").attr("data-id");
+    var district = $(srchActive).find(".company-district").attr("data-id");
+    var name     = $(srchActive).find(".company-name").val();
+    var address  = $(srchActive).find(".company-address").val();
+    var ftwfhr   = $(srchActive).find(".f-twfhr");
+    var twfhr    = ftwfhr[0].checked;
+    
     $.ajax({
         url: "/index/srch-res/",
         method: "POST",
-        data: {},
+        data: {city: city, brand: brand, service: service, district: district, name: name, address: address, twfhr: twfhr},
         dataType: "json",
         success: function(r) {
             updateSrchRes(r.srchres);
@@ -171,22 +180,46 @@ function backToSearch(e) {
 
 function updateSrchRes(srchres) {
     var srlist = $(".srlist");
-    var sritem = $(".srlist-tmpl").children("li");
         
     $(srlist).empty();
-    $("#srchres-counter").html(srchres.length);
-    
+    showSrlistArrows(0);
+
     for (var i = 0; i < srchres.length; i++) {
-        $(sritem).find(".srlist-ittl").html(srchres[i].name);
-        $(sritem).find(".sr-address").html(getAddressStr2("", srchres[i].street, srchres[i].home, srchres[i].housing, srchres[i].building));
+        var sritemtmpl = $(".srlist-tmpl").children("li");
+        $(sritemtmpl).clone().appendTo(srlist);
+        var sritem = $(srlist).children("li").last();
+        
+        $(sritem).find(".srlist-ittl").html(srchres[i].name).attr("data-cid", srchres[i].id).bind("click", openCard);
+        $(sritem).find(".sr-address").html(getAddressStr2("", srchres[i].street, srchres[i].home, srchres[i].housing, srchres[i].building, true));
+        $(sritem).find(".sr-shedule").html(getSheduleStr(srchres[i].shedule, srchres[i].twenty_four_hours));
         $(sritem).find(".sr-phone").html(srchres[i].phone);
-        $(sritem).clone().appendTo(srlist);
+        $(sritem).find(".sr-mapptr").attr("data-latitude", srchres[i].latitude).attr("data-longitude", srchres[i].longitude).bind("click", posMap);
+        
+        if (srchres[i].twenty_four_hours === "0")
+            $(sritem).find(".srlist-itwh").css("display", "none");
+        
+        if (srchres[i].special_offer_id === null)
+            $(sritem).find(".srlist-ispo").css("display", "none");
     }
+    
+    $("#srchres-counter").html(srchres.length);
+    showSrlistArrows(srchres.length > 4);
 }
 
+function posMap(e) {
+    e.preventDefault();
+    var lat = $(e.currentTarget).attr("data-latitude" );
+    var lng = $(e.currentTarget).attr("data-longitude");
+    iMap.showMap(parseFloat(lat), parseFloat(lng), 15);
+}
 
-
-
-
-
+function showSrlistArrows($show) {
+    if ($show) {
+        $("#srlist-arrow-d").show();
+        $("#srlist-arrow-u").show();
+    } else {
+        $("#srlist-arrow-d").hide();
+        $("#srlist-arrow-u").hide();
+    }
+}
 

@@ -169,10 +169,11 @@ li.search-item-group > span {
     box-shadow: 3px 3px 10px rgba(12, 12, 12, 0.75), -3px -3px 10px rgba(12, 12, 12, 0.75);
 }
 
-.srlist-ittl {
+.srlist-ittl, .srlist-ittl:active, .srlist-ittl:visited, .srlist-ittl:focus {
     font-family: MyriadProBold;
     font-size: 16px;
     color: #071d70 !important;
+    text-decoration: underline;
     line-height: 28px;
     display: block;
 }

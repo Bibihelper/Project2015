@@ -100,10 +100,34 @@ class IndexController extends Controller
     
     public function actionSrchRes()
     {
+        $data = Yii::$app->request->post();
+        
+        $city     = $this->pval($data['city']); 
+        $brand    = $this->pval($data['brand']); 
+        $service  = $this->pval($data['service']); 
+        $district = $this->pval($data['district']); 
+        $name     = $this->pval($data['name']); 
+        $address  = $this->pval($data['address']); 
+        $twfhr    = $this->pval($data['twfhr']);
+        
+        if ($twfhr === 'true' || $twfhr === 'on' || $twfhr === '1') {
+            $twfhr = 1;
+        } else {
+            $twfhr = 0;
+        }
+        
         $company = new Company();
-        $srchres = $company->getSrchRes();
+        $srchres = $company->getSrchRes($city, $brand, $service, $district, $name, $address, $twfhr);
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         $responce = ['srchres' => $srchres];
         return $responce;
+    }
+    
+    private function pval($value)
+    {
+        if ($value === '' || $value === '0' || $value === 'undefined' || $value === 0) {
+            return null;
+        }
+        return $value;
     }
 }

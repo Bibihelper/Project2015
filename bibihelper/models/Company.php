@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\db\ActiveRecord;
 use app\models\CompanyBrands;
 use app\models\Brand;
 use app\models\Address;
@@ -10,6 +11,8 @@ use app\models\Service;
 use app\models\User;
 use app\models\SpecialOffer;
 use app\models\Shedule;
+use app\models\City;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "company".
@@ -24,7 +27,7 @@ use app\models\Shedule;
  * @property integer $status_d
  * @property integer $address_id
  */
-class Company extends \yii\db\ActiveRecord
+class Company extends ActiveRecord
 {
     public static function tableName()
     {
@@ -119,13 +122,69 @@ class Company extends \yii\db\ActiveRecord
             ->via('userCompanies');
     }
     
-    public function getSrchRes()
+    public function getSrchRes($city = null, $brand = null, $service = null, $district = null, $name = null, $address = null, $twfhr = null)
     {
+        $cityObj = City::findOne($city);
+        
+        if ($address) {
+            $a1 = str_replace(' ', ',', trim($address));
+            $a2 = explode(',', $a1);
+            if ($a2) {
+                $a4 = [];
+                foreach ($a2 as $a3) {
+                    if (mb_strlen($a3, 'UTF-8') > 4)
+                        $a4[] = $a3;
+                }
+                if (count($a4) > 0) {
+                    $a5 = implode('%', $a4);
+                    $address = $a5;
+                }
+            }
+        }
+        
         $srchres = $this->find()
-            ->select(['company.*', 'address.city', 'address.street', 'address.home', 'address.housing', 'address.building'])
+            ->select([
+                    'company.id', 'company.name', 'company.phone', 'company.twenty_four_hours',
+                    'address.city', 'address.district', 'address.street',
+                        'address.home', 'address.housing', 'address.building', 'address.latitude', 'address.longitude',
+                    'special_offer.id AS special_offer_id',
+                    'company_brands.id AS company_brands_id',
+                    'company_services.id AS company_services_id'
+                ])
             ->leftJoin('address', '`address`.`id` = `company`.`address_id`')
+            ->leftJoin('special_offer', '`special_offer`.`company_id` = `company`.`id`')
+            ->leftJoin('company_brands', '`company_brands`.`company_id` = `company`.`id`')
+            ->leftJoin('company_services', '`company_services`.`company_id` = `company`.`id`')
+            ->filterWhere([
+                    'company_brands.brand_id' => $brand,
+                    'company_services.service_id' => $service,
+                    'address.city' => $cityObj['name'],
+                    'address.district' => $district,
+                    'company.name' => $name,
+                    'company.twenty_four_hours' => $twfhr,
+                ])
+            ->andFilterWhere(['like', 'address.street', $address])
             ->asArray()
             ->all();
+        
+        $id = ArrayHelper::getColumn($srchres, 'id');
+        
+        $shedule = Shedule::find()
+            ->where(['company_id' => $id])
+            ->asArray()
+            ->all();
+        
+        $shedule2 = [];
+        
+        foreach ($shedule as $sh) {
+            $companyID = $sh['company_id'];
+            $shedule2[$companyID][] = $sh;
+        }
+        
+        for ($i = 0; $i < count($srchres); $i++) {
+            $companyID = $srchres[$i]['id'];
+            $srchres[$i]['shedule'] = $shedule2[$companyID];
+        }
         
         return $srchres;
     }

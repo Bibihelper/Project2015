@@ -112,7 +112,7 @@ $this->params['city'] = $city;
                 <div class="f-group">
                     <span class="f-caption">Вид работы</span>
                     <div class="btn-group">
-                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown wtype"  data-id="0" data-toggle="dropdown">
+                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown wtype" data-id="0" data-toggle="dropdown">
                             <span class="f-button-caption">
                                 <span class="f-button-text">&nbsp;</span>
                                 <span class="caret f-button-caret f-button-caret-blue"></span>
@@ -132,7 +132,7 @@ $this->params['city'] = $city;
                 <div class="f-group">
                     <span class="f-caption">Район</span>
                     <div class="btn-group">
-                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown" data-id="0" data-toggle="dropdown">
+                        <button type="button" class="form-control btn dropdown-toggle f-list-button f-dropdown company-district" data-id="0" data-toggle="dropdown">
                             <span class="f-button-caption">
                                 <span class="f-button-text">&nbsp;</span>
                                 <span class="caret f-button-caret f-button-caret-blue"></span>
@@ -149,14 +149,14 @@ $this->params['city'] = $city;
                <div class="f-group">
                     <span class="f-caption">Названиее автосервиса</span>
                     <div class="input-group">
-                        <input type="text" class="form-control search-edit">
+                        <input type="text" class="form-control search-edit company-name">
                     </div>                                                                                                                               
                 </div>
                     
                 <div class="f-group">
                     <span class="f-caption">Адрес</span>
                     <div class="input-group">
-                        <input type="text" class="form-control search-edit">
+                        <input type="text" class="form-control search-edit company-address">
                     </div>                                                                                                                               
                 </div>
                     
@@ -183,19 +183,19 @@ $this->params['city'] = $city;
             </div>
             
             <div class="srchres-amount">
-                <span class="srchres-amount-text">Найдено <span id="srchres-counter">8</span> автосервисов</span>
+                <span class="srchres-amount-text">Найдено <span id="srchres-counter">0</span> автосервисов</span>
             </div>
             
             <div class="srlist-arrow srlist-arrow-up-na" id="srlist-arrow-u"></div>
             
             <ul class="srlist-tmpl" style="display: none;">
                 <li class="srlist-item">
-                    <a href="#" title ="" class="srlist-ittl slider-href">Ультра-Сервис</a>
-                    <span class="srlist-iinf sr-address">ул. Ленина, д.3, к.1, стр.2</span>
-                    <span class="srlist-iinf sr-shedule">9.00-20.00 (ежедневно)</span>
-                    <span class="srlist-iinf sr-phone">+7 (985) 486-43-11</span>
-                    <a href="#" title="" class="srlist-iptr map-ptr"></a>
-                    <a href="#" title="" class="srlist-ispo slider-href"></a>
+                    <a href="#" title="" class="srlist-ittl"></a>
+                    <span class="srlist-iinf sr-address"></span>
+                    <span class="srlist-iinf sr-shedule"></span>
+                    <span class="srlist-iinf sr-phone"></span>
+                        <a href="#" title="" class="srlist-iptr sr-mapptr" data-latitude="63.31268278" data-longitude="103.42773438"></a>
+                    <a href="javascript::void(0)" title="" class="srlist-ispo"></a>
                     <span class="srlist-itwh"></span>
                 </li>
             </ul>
@@ -262,7 +262,7 @@ $this->params['city'] = $city;
                     <?php if ($spOffs !== false): ?>
                         <?php foreach ($spOffs as $spOff): ?>
                             <li class="slider-col">
-                                <a href="<?= Url::to('/#cardid=' . $spOff->company_id) ?>" title="" class="slider-href" data-cid="<?= $spOff->company_id ?>">
+                                <a href="<?= Url::to('/?cardid=' . $spOff->company_id) ?>" title="" class="slider-href" data-cid="<?= $spOff->company_id ?>">
                                     <img src="<?= Url::to($spOff->file->getFileFullName('/images/slide-1.png')) ?>" alt="">
                                 </a>
                             </li>

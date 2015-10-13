@@ -36,7 +36,7 @@ $(".city #city-list > li").click(function() {
     var cityName = $(this).children("a").html();
     
     $("#city-button").attr("data-city-id", cityID);
-    $("#city-button > .c-button-caption > .c-button-text").html(cityName);
+    $("#city-button > .f-button-caption > .f-button-text").html(cityName);
     
     var coords = eval("(" + $(this).attr("data-city-coords") + ")");    
     var m = new Map("map");
@@ -125,7 +125,10 @@ function getAddressStr(address) {
     return addr.join(", ");
 }
 
-function getAddressStr2(city, street, home, housing, building) {
+function getAddressStr2(city, street, home, housing, building, cut) {
+    if (street === "" || street === null)
+        return "";
+    
     var addr = [];
     
     if ( city     ) addr.push( fmtCity     ( city     ) );
@@ -134,7 +137,55 @@ function getAddressStr2(city, street, home, housing, building) {
     if ( housing  ) addr.push( fmtHousing  ( housing  ) );
     if ( building ) addr.push( fmtBuilding ( building ) );
     
+    if (cut) {
+        var addr2 = addr.join(", ");
+        var addr3 = (addr2.length > 24) ? addr2.substr(0, 19) + " ..." : addr2;
+        return addr3;
+    }
+    
     return addr.join(", ");
+}
+
+/* Shedule helpers */
+
+function formatTime(time) {
+    t = new Date('Thu, 01 Jan 1970 ' + time);
+    
+    var h = t.getHours  () + "";
+    var m = t.getMinutes() + "";
+    
+    var i = (h.length === 1) ? "0" + h : h;
+    var j = (m.length === 1) ? "0" + m : m;
+    
+    return i + ":" + j;
+}
+
+function getSheduleStr(shedule, twfhr) {
+    if (!shedule)
+        return "";
+    
+    var DayOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+    var days = [];
+    var time = null;
+    
+    for (var i = 0; i < shedule.length; i++) {
+        var dayNumber = shedule[i]["day"];
+        days.push(DayOfWeek[dayNumber]);
+        time = formatTime(shedule[i]["begin"]) + "-" + formatTime(shedule[i]["end"]);
+    }
+    
+    if (!time || time === "NaN:NaN-Nan:NaN")
+        return "";
+    
+    var sheduleStr = "";
+    
+    if (days.length === 7) {
+        sheduleStr = (twfhr === "1") ? "(ежедневно)" : time + " (ежедневно)";
+    } else {
+        sheduleStr = (twfhr === "1") ? days.join(",") : days.join(",") + ": " + time;
+    }
+    
+    return sheduleStr;
 }
 
 
