@@ -16,12 +16,14 @@ function showPosition() {
         data: { },
         dataType: "json",
         success: function(r) {
-            m = new Map("private-room-map-id");
-            if (r.latitude === 0 || r.longitude === 0 || r.latitude === null || r.langitude === null)
-                m.showMap(63.31268278, 103.42773438);
-            else
+            m = new googleMap("private-room-map-id");
+            if (r.latitude === 0 || r.longitude === 0 || r.latitude === null || r.langitude === null) {
+                m.showMap();
+                m.showMoveableMarker();
+            } else {
                 m.showMap(r.latitude, r.longitude, 10);
-            m.showMoveableMarker();
+                m.showMoveableMarker(r.latitude, r.longitude);
+            }
         }
     });
 }

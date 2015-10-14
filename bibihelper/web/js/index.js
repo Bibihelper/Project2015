@@ -1,11 +1,11 @@
 /* Index */
 
 var srchActive = null;
-var iMap = null;
 
 $(document).ready(function() {
-    iMap = new Map("map");
-    iMap.showMap(63.31268278, 103.42773438);
+    iMap = new googleMap("map");
+    iMap.showMap();
+    showMarkers(iMap);
     initSlider();
     
     var sl = $(".search-list");
@@ -204,13 +204,19 @@ function updateSrchRes(srchres) {
     
     $("#srchres-counter").html(srchres.length);
     showSrlistArrows(srchres.length > 4);
+    
+    iMap.clearMarkers();
+    iMap.placeMarkers(srchres);
+    iMap.markerClusterInit();
 }
 
 function posMap(e) {
     e.preventDefault();
     var lat = $(e.currentTarget).attr("data-latitude" );
     var lng = $(e.currentTarget).attr("data-longitude");
+    iMap.clearMarkers();
     iMap.showMap(parseFloat(lat), parseFloat(lng), 15);
+    iMap.showMarker(parseFloat(lat), parseFloat(lng));
 }
 
 function showSrlistArrows($show) {

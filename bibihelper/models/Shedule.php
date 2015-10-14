@@ -108,7 +108,7 @@ class Shedule extends ActiveRecord
         return new SheduleQuery(get_called_class());
     }
     
-    public static function getSheduleString($companyID)
+    public static function getSheduleString($companyID, $twfhr)
     {
         $shedule = self::find()
             ->where(['company_id' => $companyID])
@@ -123,7 +123,10 @@ class Shedule extends ActiveRecord
             $beginTime = \DateTime::createFromFormat('H:i:s', $day->begin);
             $endTime = \DateTime::createFromFormat('H:i:s', $day->end);
             $workTime = $beginTime->format('H:i') . '-' . $endTime->format('H:i');
-            $sheduleStr .= $dayName . ': ' . $workTime . '<br>';
+            if ($twfhr)
+                $sheduleStr .= $sheduleStr === '' ? $dayName : ', ' . $dayName;
+            else
+                $sheduleStr .= $dayName . ': ' . $workTime . '<br>';
         }
         
         return $sheduleStr;

@@ -34,7 +34,7 @@ $this->params['user']['email'] = $company->user->email;
                                     <span class="info info-title"><?= $company->name ?></span>
                                     <span class="info info-addr"><?= $company->address->getAddressStr() ?></span>
                                     <?php if ($company->twenty_four_hours): ?>
-                                        <span class="info info-shedule">График работы: ежедневно <img src="<?= Url::to('/images/twenty-four-hour.png') ?>" title=""></span>
+                                        <span class="info info-shedule">График работы: <?= $shedule ?> <img src="<?= Url::to('/images/twenty-four-hour.png') ?>" title=""></span>
                                     <?php else: ?>
                                         <span class="info info-shedule">График работы:</span>
                                         <div class="info info-shedule info-shedule-m"><?= $shedule ?></div>

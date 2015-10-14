@@ -40,7 +40,7 @@ class PrivateRoomController extends Controller
         }
         
         $company = Company::findOne($id);
-        $shedule = Shedule::getSheduleString($company->id);
+        $shedule = Shedule::getSheduleString($company->id, $company->twenty_four_hours);
         $categories = Category::find()->all();
         $countries = Country::find()->all();
         

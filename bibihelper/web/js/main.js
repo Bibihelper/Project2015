@@ -1,5 +1,7 @@
 /* Main */
 
+var iMap = null;
+
 // Переключение форм login - register
 
 $("#lf-register").click(function() {
@@ -39,9 +41,29 @@ $(".city #city-list > li").click(function() {
     $("#city-button > .f-button-caption > .f-button-text").html(cityName);
     
     var coords = eval("(" + $(this).attr("data-city-coords") + ")");    
-    var m = new Map("map");
-    m.showMap(coords.latitude, coords.longitude, 10);
+    iMap.showMap(coords.latitude, coords.longitude, 12);
+    showMarkers(iMap);
 });
+
+// Показать маркеры
+
+function showMarkers(map) {
+    var city = $(".city").children("div").children("button").attr("data-city-id");
+    
+    $.ajax({
+        url: "/index/get-coords/",
+        method: "POST",
+        data: {city: city },
+        dataType: "json",
+        success: function(r) {
+            if (r.coords) {
+                map.clearMarkers();
+                map.placeMarkers(r.coords);
+                map.markerClusterInit();
+            }
+        }
+    });
+}
 
 /* Back to search button */
 

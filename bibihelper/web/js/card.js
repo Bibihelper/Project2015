@@ -1,5 +1,8 @@
 /* Card */
 
+var cMap = null;
+var latitude1 = longitude1 = 0.0;
+
 $(".slider-href").click(openCard);
 
 function openCard(e) {
@@ -21,8 +24,6 @@ function getCardData(cid) {
         }
     });    
 }
-
-var latitude1 = longitude1 = 0.0;
 
 function updateData(r) {
     
@@ -50,15 +51,15 @@ function setLocation(curLoc){
 }
 
 $("#card").on("shown.bs.modal", function() {
-    var m = new Map("address-map-id");
-    m.showMap(latitude1, longitude1, 10);
-    m.showMarker();
+    cMap = new googleMap("address-map-id");
+    cMap.showMap(latitude1, longitude1, 10);
+    cMap.showMarker(latitude1, longitude1);
 });
 
 $("#card").on("hidden.bs.modal", function() {
     resetArrowsCounters();
-    var m = new Map("address-map-id");
-    m.showMap(63.31268278, 103.42773438);
+    cMap.clearMarkers();
+    cMap.showMap();
     setLocation("/");
 });
 
@@ -119,8 +120,10 @@ function getService(category, service) {
 }
 
 function getSpOffer(spoffer) {
-    $("div.special-offer span.so-text"  ).html(spoffer.comment);
-    $("div.special-offer span.so-period").html(getSpOfferPeriod(spoffer));
+    if (spoffer) {
+        $("div.special-offer span.so-text"  ).html(spoffer.comment);
+        $("div.special-offer span.so-period").html(getSpOfferPeriod(spoffer));
+    }
 }
 
 function getSpOfferPeriod(spoffer) {
@@ -135,7 +138,8 @@ function getSpOfferPeriod(spoffer) {
 }
 
 function getFile(file) {
-    $("div.so-info > div.so-col-1 > img").attr("src", file.src + file.name);
+    if (file)
+        $("div.so-info > div.so-col-1 > img").attr("src", file.src + file.name);
 }
 
 function resetArrowsCounters() {

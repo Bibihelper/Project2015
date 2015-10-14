@@ -130,4 +130,25 @@ class IndexController extends Controller
         }
         return $value;
     }
+    
+    public function actionGetCoords()
+    {
+        $data = Yii::$app->request->post();
+        $cityID = $data['city'];
+        
+        $city = City::findOne($cityID);
+        $cityName = null;
+        if ($city) {
+            $cityName = $city->name;
+        }
+        
+        $address = Address::find()
+            ->andFilterWhere(['city' => $cityName])
+            ->asArray()
+            ->all();
+        
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $responce = ['coords' => $address];
+        return $responce;
+    }
 }
