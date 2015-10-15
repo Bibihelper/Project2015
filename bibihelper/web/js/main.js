@@ -152,7 +152,7 @@ function getSheduleStr(shedule, twfhr) {
     if (!shedule)
         return "";
     
-    var DayOfWeek = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+    var DayOfWeek = ['', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
     var days = [];
     var time = null;
     

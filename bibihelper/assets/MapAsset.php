@@ -19,7 +19,7 @@ class MapAsset extends AssetBundle
     public $baseUrl = '@web';
     public $js = [
         'http://maps.google.com/maps/api/js?sensor=true',
-        'http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU',
+//        'http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU',
         'js/markerclusterer_compiled.js',
         'js/map.js',
     ];

@@ -137,7 +137,7 @@ googleMap.prototype.showMarker = function(lat, lng, icon, moveable)
     if (moveable) {
         this.mMarker = marker;
         this.mLat = lat;
-        this.mLng = lng
+        this.mLng = lng;
         this.mIcon = icon;
     } else {
         this.markers.push(marker);
@@ -167,7 +167,7 @@ googleMap.prototype.moveMarker = function(latLng)
     this.hideMarker();
     this.mLat = latLng.lat();
     this.mLng = latLng.lng();
-    this.showMarker(this.mLat, this.mLng, this.mIcon);    
+    this.showMarker(this.mLat, this.mLng, this.mIcon, true);    
 };
 
 googleMap.prototype.saveCoords = function(url)

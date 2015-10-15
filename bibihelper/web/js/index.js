@@ -5,11 +5,7 @@ var userLat = null;
 var userLng = null;
 
 $(document).ready(function() {
-    ymaps.ready(initYandexMaps);
-
-    iMap = new googleMap("map");
-    iMap.showMap(userLat, userLng, 10);
-    showMarkers(iMap);
+    userLocation();
     initSlider();
     
     var sl = $(".search-list");
@@ -28,16 +24,42 @@ $(document).ready(function() {
     srchActive = $(".search-simple");
 });
 
-// Карты Яндекса
+// Geolocation
 
-function initYandexMaps() {
-    var geolocation = ymaps.geolocation;
-    geolocation.get({
-        provider: 'yandex',
-        mapStateAutoApply: true
-    }).then(function (result) {
-        userLat = result.geoObjects.position[0];
-        userLng = result.geoObjects.position[1];
+function userLocation() {
+    $.ajax({
+        url: "http://ipinfo.io/json",
+        method: "GET",
+        dataType: "json",
+        success: function(r) {
+            if (r) {
+                var loc = r.loc.split(",");
+                userLat = loc[0];
+                userLng = loc[1];
+                iMap = new googleMap("map");
+                iMap.showMap(userLat, userLng, 9);
+            }
+        }
+    });    
+}
+
+// Показать маркеры
+
+function showMarkers(map) {
+    var city = $(".city").children("div").children("button").attr("data-city-id");
+    
+    $.ajax({
+        url: "/index/get-coords/",
+        method: "POST",
+        data: {city: city },
+        dataType: "json",
+        success: function(r) {
+            if (r.coords) {
+                map.clearMarkers();
+                map.placeMarkers(r.coords);
+                map.markerClusterInit();
+            }
+        }
     });
 }
 
@@ -157,7 +179,7 @@ $("#srlist-arrow-u").click(function() {
 
 /* City button */
 
-var includeTwfhr = true;
+//var includeTwfhr = true;
 
 $(".city #city-list > li").click(selectCity);
 
@@ -177,8 +199,8 @@ function selectCity() {
     iMap.showMap(coords.latitude, coords.longitude, zoom - 0);
     showMarkers(iMap);
     
-    includeTwfhr = false;
-    makeSearch();
+//    includeTwfhr = false;
+//    makeSearch();
 }
 
 /* Search button */
@@ -199,10 +221,10 @@ function makeSearch() {
     var ftwfhr   = $(srchActive).find(".f-twfhr");
     var twfhr    = ftwfhr[0].checked;
     
-    if (!includeTwfhr) {
-        twfhr = null;
-        includeTwfhr = true;
-    }
+//    if (!includeTwfhr) {
+//        twfhr = null;
+//        includeTwfhr = true;
+//    }
     
     $.ajax({
         url: "/index/srch-res/",
@@ -286,25 +308,5 @@ function showSrlistArrows($show) {
         $("#srlist-arrow-d").hide();
         $("#srlist-arrow-u").hide();
     }
-}
-
-// Показать маркеры
-
-function showMarkers(map) {
-    var city = $(".city").children("div").children("button").attr("data-city-id");
-    
-    $.ajax({
-        url: "/index/get-coords/",
-        method: "POST",
-        data: {city: city },
-        dataType: "json",
-        success: function(r) {
-            if (r.coords) {
-                map.clearMarkers();
-                map.placeMarkers(r.coords);
-                map.markerClusterInit();
-            }
-        }
-    });
 }
 

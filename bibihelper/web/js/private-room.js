@@ -1,6 +1,11 @@
 /* Private room */
 
+var prMap = null;
+var userLat = null;
+var userLng = null;
+
 $(document).ready(function() {
+    prMap = new googleMap("private-room-map-id");
     showPosition();
     $('#optionsform-company_phone').mask('+7 (000) 000-00-00');
 });
@@ -8,24 +13,39 @@ $(document).ready(function() {
 // Координаты
 
 function showPosition() {
-    var m = null;
-
     $.ajax({
         url: "/private-room/get-coords/",
         method: "POST",
         data: { },
         dataType: "json",
         success: function(r) {
-            m = new googleMap("private-room-map-id");
             if (r.latitude === 0 || r.longitude === 0 || r.latitude === null || r.langitude === null) {
-                m.showMap();
-                m.showMoveableMarker();
+                userLocation();
             } else {
-                m.showMap(r.latitude, r.longitude, 10);
-                m.showMoveableMarker(r.latitude, r.longitude);
+                prMap.showMap(r.latitude, r.longitude, 10);
+                prMap.showMoveableMarker(r.latitude, r.longitude);
             }
         }
     });
+}
+
+// Geolocation
+
+function userLocation() {
+    $.ajax({
+        url: "http://ipinfo.io/json",
+        method: "GET",
+        dataType: "json",
+        success: function(r) {
+            if (r) {
+                var loc = r.loc.split(",");
+                userLat = loc[0];
+                userLng = loc[1];
+                prMap.showMap(userLat, userLng, 9);
+                prMap.showMoveableMarker(userLat, userLng);
+            }
+        }
+    });    
 }
 
 // Календарь
