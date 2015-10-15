@@ -287,7 +287,7 @@ $this->params['user']['email'] = $company->user->email;
                     
                                         <?= $form->field($cOptFrm, 'address_city', [
                                                 'options' => ['class' => 'f-block']
-                                            ])->textInput([
+                                            ])->dropDownList($cities, [
                                                 'class' => 'form-control f-control'
                                             ])->label($cOptFrm->getAttributeLabel('address_city'), [
                                                 'class' => 'f-label'

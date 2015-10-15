@@ -1,67 +1,49 @@
 /* Marker cluster styles */
 
 var styles = [[{
-        url: 'js-marker-cluster/images/people35.png',
-        height: 35,
-        width: 35,
+        url: '/js/js-marker-cluster/images/union2bluemarker.png',
+        height: 56,
+        width: 40,
         anchor: [16, 0],
-        textColor: '#ff00ff',
+        textColor: '#000000',
         textSize: 10
     }, {
-        url: 'js-marker-cluster/images/people45.png',
-        height: 45,
-        width: 45,
+        url: '/js/js-marker-cluster/images/union10bluemarker.png',
+        height: 66,
+        width: 50,
         anchor: [24, 0],
-        textColor: '#ff0000',
+        textColor: '#000000',
         textSize: 11
     }, {
-        url: 'js-marker-cluster/images/people55.png',
-        height: 55,
-        width: 55,
+        url: '/js/js-marker-cluster/images/union100bluemarker.png',
+        height: 106,
+        width: 90,
         anchor: [32, 0],
-        textColor: '#ffffff',
+        textColor: '#000000',
         textSize: 12
     }], [{
-        url: 'js-marker-cluster/images/conv30.png',
-        height: 27,
-        width: 30,
-        anchor: [3, 0],
-        textColor: '#ff00ff',
+        url: '/js/js-marker-cluster/images/union2redmarker.png',
+        height: 40,
+        width: 40,
+        anchor: [16, 0],
+        textColor: '#000000',
         textSize: 10
     }, {
-        url: 'js-marker-cluster/images/conv40.png',
-        height: 36,
-        width: 40,
-        anchor: [6, 0],
-        textColor: '#ff0000',
+        url: '/js/js-marker-cluster/images/union10redmarker.png',
+        height: 50,
+        width: 50,
+        anchor: [24, 0],
+        textColor: '#000000',
         textSize: 11
     }, {
-        url: 'js-marker-cluster/images/conv50.png',
-        width: 50,
-        height: 45,
-        anchor: [8, 0],
+        url: '/js/js-marker-cluster/images/union100redmarker.png',
+        height: 90,
+        width: 90,
+        anchor: [32, 0],
+        textColor: '#000000',
         textSize: 12
-    }], [{
-        url: 'js-marker-cluster/images/heart30.png',
-        height: 26,
-        width: 30,
-        anchor: [4, 0],
-        textColor: '#ff00ff',
-        textSize: 10
-    }, {
-        url: 'js-marker-cluster/images/heart40.png',
-        height: 35,
-        width: 40,
-        anchor: [8, 0],
-        textColor: '#ff0000',
-        textSize: 11
-    }, {
-        url: 'js-marker-cluster/images/heart50.png',
-        width: 50,
-        height: 44,
-        anchor: [12, 0],
-        textSize: 12
-}]];
+    }],
+];
 
 /* Google map */
 
@@ -184,7 +166,7 @@ googleMap.prototype.markerClusterInit = function(maxZoom, gridSize, style)
 {
     this.maxZoom = maxZoom || null;
     this.gridSize = gridSize || null;
-    this.style = style || null;
+    this.style = style || 0;
     
     this.markerClusterer = new MarkerClusterer(this.map, this.markers, {
         maxZoom: this.maxZoom,

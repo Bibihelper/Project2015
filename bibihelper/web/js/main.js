@@ -148,7 +148,7 @@ function formatTime(time) {
     return i + ":" + j;
 }
 
-function getSheduleStr(shedule, twfhr) {
+function getSheduleStr(shedule, twfhr, truncate) {
     if (!shedule)
         return "";
     
@@ -173,7 +173,8 @@ function getSheduleStr(shedule, twfhr) {
         sheduleStr = (twfhr === "1") ? days.join(",") : days.join(",") + ": " + time;
     }
     
-    sheduleStr = (sheduleStr.length > 24) ? sheduleStr.substr(0, 19) + " ..." : sheduleStr;
+    if (truncate)
+        sheduleStr = (sheduleStr.length > 24) ? sheduleStr.substr(0, 19) + " ..." : sheduleStr;
     return sheduleStr;
 }
 

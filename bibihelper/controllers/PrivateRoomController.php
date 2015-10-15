@@ -7,6 +7,8 @@ use yii\web\Controller;
 use yii\web\Response;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
+use app\models\City;
 use app\models\Company;
 use app\models\Shedule;
 use app\models\User;
@@ -55,6 +57,12 @@ class PrivateRoomController extends Controller
         $cOptFrm = new OptionsForm();
         $cOptFrm->loadData($id);
         
+        $cities = City::find()
+            ->asArray()
+            ->all();
+        
+        $cities = ArrayHelper::map($cities, 'name', 'name');
+        
         return $this->render('/private-room/private-room', [
             'company' => $company, 
             'shedule' => $shedule,
@@ -64,6 +72,7 @@ class PrivateRoomController extends Controller
             'cPasFrm' => $cPasFrm,
             'cEmailFrm' => $cEmailFrm,
             'cOptFrm' => $cOptFrm,
+            'cities' => $cities,
         ]);
     }
     

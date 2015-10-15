@@ -266,7 +266,7 @@ function updateSrchRes(srchres) {
             .bind("click", openCard);
         
         $(sritem).find(".sr-address").html(getAddressStr2("", srchres[i].street, srchres[i].home, srchres[i].housing, srchres[i].building, true));
-        $(sritem).find(".sr-shedule").html(getSheduleStr(srchres[i].shedule, srchres[i].twenty_four_hours));
+        $(sritem).find(".sr-shedule").html(getSheduleStr(srchres[i].shedule, srchres[i].twenty_four_hours, true));
         $(sritem).find(".sr-phone").html(srchres[i].phone);
         
         $(sritem).find(".sr-mapptr")
