@@ -220,6 +220,7 @@ $this->params['user']['email'] = $company->user->email;
                                                     <div class="c-block">
                                                         <span class="c-caption">Описание предложения (макс. 50 символов):</span>
                                                         <input type="text" class="form-control c-edit s-off-edit_m2" id="s-descr-edit" maxlength="50" value="<?= $company->specialOffer->comment ?>">
+                                                        <p class="help-block help-block-error" id="s-descr-edit-error"></p>
                                                     </div>
                                                 </div>
                                                 

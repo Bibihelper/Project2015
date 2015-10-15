@@ -175,7 +175,7 @@ googleMap.prototype.saveCoords = function(url)
     $.ajax({
         url: url,
         method: "POST",
-        data: { latitude: this.lat, longitude: this.lng },
+        data: { latitude: this.mLat, longitude: this.mLng },
         dataType: "json"
     });
 };

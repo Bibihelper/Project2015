@@ -110,12 +110,6 @@ class IndexController extends Controller
         $address  = $this->pval($data['address']); 
         $twfhr    = $this->pval($data['twfhr']);
         
-        if ($twfhr === 'true' || $twfhr === 'on' || $twfhr === '1') {
-            $twfhr = 1;
-        } else {
-            $twfhr = 0;
-        }
-        
         $company = new Company();
         $srchres = $company->getSrchRes($city, $brand, $service, $district, $name, $address, $twfhr);
         Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;

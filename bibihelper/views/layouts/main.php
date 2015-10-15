@@ -126,7 +126,8 @@ $city = $this->params['city'];
                 <?php if ($this->params['page'] == 'index'): ?>
                     <div class="city">                                             
                         <div class="btn-group">
-                            <button type="button" class="btn dropdown-toggle f-button city-button" id="city-button" data-city-id="0" data-toggle="dropdown">
+                            <button type="button" class="btn dropdown-toggle f-button city-button" id="city-button"
+                                    data-city-id="0" data-city-zoom="0" data-city-coords="" data-toggle="dropdown">
                                 <span class="f-button-caption">
                                     <span class="f-button-text">Мой город</span>
                                     <span class="caret f-button-caret"></span>
@@ -135,8 +136,8 @@ $city = $this->params['city'];
                             <ul class="dropdown-menu f-list city-list" id="city-list">
                                 <?php foreach ($city as $c): ?>
                                     <li data-city-id="<?= $c->id ?>"
-                                            data-city-coords="{latitude: <?= $c->latitude ?>, longitude: <?= $c->longitude ?>}">
-                                        <a href="#" title=""><?= $c->name ?></a>
+                                            data-city-coords="{latitude: <?= $c->latitude ?>, longitude: <?= $c->longitude ?>}" data-city-zoom="<?= $c->zoom ?>">
+                                        <a href="javascript::void(0)" title=""><?= $c->name ?></a>
                                     </li>
                                 <?php endforeach ?>
                             </ul>
@@ -159,12 +160,12 @@ $city = $this->params['city'];
                 
                 <div class="footer-menu">
                     <div class="footer-menu-col">
-                        <span><a href="#" title="">Для автосервисов</a></span>
-                        <span><a href="#" title="">Автовладельцам</a></span>
+                        <span><a href="javascript::void(0)" title="">Для автосервисов</a></span>
+                        <span><a href="javascript::void(0)" title="">Автовладельцам</a></span>
                     </div>
                     <div class="footer-menu-col">
                         <span><a href="<?= Url::to('/about/') ?>" title="">О проекте</a></span>
-                        <span><a href="#" title="">Обратная связь</a></span>                        
+                        <span><a href="javascript::void(0)" title="">Обратная связь</a></span>                        
                     </div>
                 </div>
                 

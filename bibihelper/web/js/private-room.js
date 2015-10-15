@@ -243,7 +243,7 @@ $("#s-load-image").click(function() {
     $.each(image, function(key, value) {
         data.append(key, value);
     });
-    
+
     var cID = $("#cid").html();
     
     var request = $.ajax({
@@ -319,13 +319,33 @@ $("#s-publish").click(function() {
     }
 });
 
+var hasError = false;
+
 function updateStatePublishBtn() {
-    if ($("#s-image").attr("data-load") === "1") {
+    if ($("#s-image").attr("data-load") === "1" && !hasError) {
         document.getElementById("s-publish").disabled = false;
     } else {
         $("#s-publish").attr("disabled", "disabled");
     } 
 }
+
+$("#s-descr-edit").keyup(function() {
+    var r = /^[а-яА-ЯёЁa-zA-Z0-9-_,!:;%#=\$\(\)\+\*\?\.\s]*$/;
+    var v = $(this).val();
+    var t = $("#s-descr-edit-error");
+    
+    if (r.test(v)) {
+        $(t).html("");
+        if ($(t).parent().hasClass("has-error"))
+            $(t).parent().removeClass("has-error");
+        hasError = false;
+    } else {
+        $(t).html("Допустим ввод символов латинского и русского алфавита, цифр и орф. знаков");
+        if (!$(t).parent().hasClass("has-error"))
+            $(t).parent().addClass("has-error");
+        hasError = true;
+    }
+});
 
 // Описание специального предложения
 

@@ -1,13 +1,14 @@
 /* Index */
 
 var srchActive = null;
+var userLat = null;
+var userLng = null;
 
 $(document).ready(function() {
-//    var lat = ymaps.geolocation.latitude;
-//    var lng = ymaps.geolocation.longitude;
+    ymaps.ready(initYandexMaps);
 
     iMap = new googleMap("map");
-    iMap.showMap();
+    iMap.showMap(userLat, userLng, 10);
     showMarkers(iMap);
     initSlider();
     
@@ -26,6 +27,19 @@ $(document).ready(function() {
     proceedUrl();
     srchActive = $(".search-simple");
 });
+
+// Карты Яндекса
+
+function initYandexMaps() {
+    var geolocation = ymaps.geolocation;
+    geolocation.get({
+        provider: 'yandex',
+        mapStateAutoApply: true
+    }).then(function (result) {
+        userLat = result.geoObjects.position[0];
+        userLng = result.geoObjects.position[1];
+    });
+}
 
 // Переключение между формами простого и расширенного поиска
 
@@ -143,16 +157,27 @@ $("#srlist-arrow-u").click(function() {
 
 /* City button */
 
+var includeTwfhr = true;
+
 $(".city #city-list > li").click(selectCity);
 
 function selectCity() {
     var cityID   = $(this).attr("data-city-id");
+    var zoom     = $(this).attr("data-city-zoom");
     var cityName = $(this).children("a").html();
-    var coords = eval("(" + $(this).attr("data-city-coords") + ")");    
+    var cityCrds = $(this).attr("data-city-coords");
+    
+    var coords = eval("(" + cityCrds + ")");    
+    
     $("#city-button").attr("data-city-id", cityID);
+    $("#city-button").attr("data-city-zoom", zoom);
+    $("#city-button").attr("data-city-coords", cityCrds);
     $("#city-button > .f-button-caption > .f-button-text").html(cityName);
-    iMap.showMap(coords.latitude, coords.longitude, 12);
+    
+    iMap.showMap(coords.latitude, coords.longitude, zoom - 0);
     showMarkers(iMap);
+    
+    includeTwfhr = false;
     makeSearch();
 }
 
@@ -173,6 +198,11 @@ function makeSearch() {
     var address  = $(srchActive).find(".company-address").val();
     var ftwfhr   = $(srchActive).find(".f-twfhr");
     var twfhr    = ftwfhr[0].checked;
+    
+    if (!includeTwfhr) {
+        twfhr = null;
+        includeTwfhr = true;
+    }
     
     $.ajax({
         url: "/index/srch-res/",
@@ -198,6 +228,7 @@ function backToSearch(e) {
 
 function updateSrchRes(srchres) {
     var srlist = $(".srlist");
+    var zoom = $("#city-button").attr("data-city-zoom");
         
     $(srlist).empty();
     showSrlistArrows(0);
@@ -207,11 +238,20 @@ function updateSrchRes(srchres) {
         $(sritemtmpl).clone().appendTo(srlist);
         var sritem = $(srlist).children("li").last();
         
-        $(sritem).find(".srlist-ittl").html(srchres[i].name).attr("data-cid", srchres[i].id).bind("click", openCard);
+        $(sritem).find(".srlist-ittl")
+            .html(srchres[i].name)
+            .attr("data-cid", srchres[i].id)
+            .bind("click", openCard);
+        
         $(sritem).find(".sr-address").html(getAddressStr2("", srchres[i].street, srchres[i].home, srchres[i].housing, srchres[i].building, true));
         $(sritem).find(".sr-shedule").html(getSheduleStr(srchres[i].shedule, srchres[i].twenty_four_hours));
         $(sritem).find(".sr-phone").html(srchres[i].phone);
-        $(sritem).find(".sr-mapptr").attr("data-latitude", srchres[i].latitude).attr("data-longitude", srchres[i].longitude).bind("click", posMap);
+        
+        $(sritem).find(".sr-mapptr")
+            .attr("data-latitude", srchres[i].latitude)
+            .attr("data-longitude", srchres[i].longitude)
+            .attr("data-zoom", zoom)
+            .bind("click", posMap);
         
         if (srchres[i].twenty_four_hours === "0")
             $(sritem).find(".srlist-itwh").css("display", "none");
@@ -230,10 +270,11 @@ function updateSrchRes(srchres) {
 
 function posMap(e) {
     e.preventDefault();
-    var lat = $(e.currentTarget).attr("data-latitude" );
-    var lng = $(e.currentTarget).attr("data-longitude");
+    var lat  = $(e.currentTarget).attr("data-latitude" );
+    var lng  = $(e.currentTarget).attr("data-longitude");
+    var zoom = $(e.currentTarget).attr("data-zoom");
     iMap.clearMarkers();
-    iMap.showMap(parseFloat(lat), parseFloat(lng), 15);
+    iMap.showMap(parseFloat(lat), parseFloat(lng), parseInt(zoom) + 5);
     iMap.showMarker(parseFloat(lat), parseFloat(lng));
 }
 
