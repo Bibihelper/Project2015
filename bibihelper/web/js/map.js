@@ -220,6 +220,3 @@ googleMap.prototype.clearMarkers = function()
     }
 }
 
-
-
-

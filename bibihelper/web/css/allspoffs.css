@@ -60,6 +60,7 @@
     width: 380px;
     height: 100%;
     padding: 0 15px;
+    vertical-align: top;
 }
 
 .spoff-item:hover {
@@ -85,7 +86,7 @@
 .spoff-image {
     border: 1px solid #071d70;
     margin-bottom: 10px;
-    width: 352px;
+    width: 350px;
     height: 212px;
 }
 

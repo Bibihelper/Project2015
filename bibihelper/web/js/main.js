@@ -31,40 +31,6 @@ $("#rf-login").click(function() {
     }, 700);
 });
 
-/* City button */
-
-$(".city #city-list > li").click(function() {
-    var cityID   = $(this).attr("data-city-id");
-    var cityName = $(this).children("a").html();
-    
-    $("#city-button").attr("data-city-id", cityID);
-    $("#city-button > .f-button-caption > .f-button-text").html(cityName);
-    
-    var coords = eval("(" + $(this).attr("data-city-coords") + ")");    
-    iMap.showMap(coords.latitude, coords.longitude, 12);
-    showMarkers(iMap);
-});
-
-// Показать маркеры
-
-function showMarkers(map) {
-    var city = $(".city").children("div").children("button").attr("data-city-id");
-    
-    $.ajax({
-        url: "/index/get-coords/",
-        method: "POST",
-        data: {city: city },
-        dataType: "json",
-        success: function(r) {
-            if (r.coords) {
-                map.clearMarkers();
-                map.placeMarkers(r.coords);
-                map.markerClusterInit();
-            }
-        }
-    });
-}
-
 /* Back to search button */
 
 $(".back-to-search-button").click(function() {
@@ -207,6 +173,7 @@ function getSheduleStr(shedule, twfhr) {
         sheduleStr = (twfhr === "1") ? days.join(",") : days.join(",") + ": " + time;
     }
     
+    sheduleStr = (sheduleStr.length > 24) ? sheduleStr.substr(0, 19) + " ..." : sheduleStr;
     return sheduleStr;
 }
 

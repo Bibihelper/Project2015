@@ -3,6 +3,9 @@
 var srchActive = null;
 
 $(document).ready(function() {
+//    var lat = ymaps.geolocation.latitude;
+//    var lng = ymaps.geolocation.longitude;
+
     iMap = new googleMap("map");
     iMap.showMap();
     showMarkers(iMap);
@@ -138,11 +141,26 @@ $("#srlist-arrow-u").click(function() {
     }
 });
 
+/* City button */
+
+$(".city #city-list > li").click(selectCity);
+
+function selectCity() {
+    var cityID   = $(this).attr("data-city-id");
+    var cityName = $(this).children("a").html();
+    var coords = eval("(" + $(this).attr("data-city-coords") + ")");    
+    $("#city-button").attr("data-city-id", cityID);
+    $("#city-button > .f-button-caption > .f-button-text").html(cityName);
+    iMap.showMap(coords.latitude, coords.longitude, 12);
+    showMarkers(iMap);
+    makeSearch();
+}
+
 /* Search button */
 
 $(".search-button").click(makeSearch);
 
-function makeSearch(e) {
+function makeSearch() {
     var srchres = $(".search-results");
     $(srchActive).hide("slow");
     $(srchres).show("slow");
@@ -227,5 +245,25 @@ function showSrlistArrows($show) {
         $("#srlist-arrow-d").hide();
         $("#srlist-arrow-u").hide();
     }
+}
+
+// Показать маркеры
+
+function showMarkers(map) {
+    var city = $(".city").children("div").children("button").attr("data-city-id");
+    
+    $.ajax({
+        url: "/index/get-coords/",
+        method: "POST",
+        data: {city: city },
+        dataType: "json",
+        success: function(r) {
+            if (r.coords) {
+                map.clearMarkers();
+                map.placeMarkers(r.coords);
+                map.markerClusterInit();
+            }
+        }
+    });
 }
 
